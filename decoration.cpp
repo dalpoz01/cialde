@@ -1,6 +1,6 @@
 #include "decoration.h"
 
-Decoration::Decoration(u_int h,const std::string &id) : Waffle(id), height(h) {}
+Decoration::Decoration(const std::string &id, u_int h) : Waffle(id), height(h) {}
 Decoration::Decoration(const Decoration &d) : Waffle(d.getID()), height(d.getHeight()) {}
 
 //GETTER, SETTER

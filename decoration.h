@@ -8,7 +8,7 @@ class Decoration : public Waffle {
 private:
     u_int height;
 public:
-    Decoration(u_int = 0, const std::string& = "");
+    Decoration(const std::string& = "", u_int = 0);
     Decoration(const Decoration&);
     virtual ~Decoration() = default;
 

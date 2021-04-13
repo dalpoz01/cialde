@@ -3,11 +3,12 @@
 #include "decoration.h"
 typedef unsigned int u_int;
 
+//Classe concreta polimorfa
 class Ventagli : public Decoration {
 private:
      u_int width;
 public:
-    Ventagli(u_int = 0, const std::string& = "", u_int = 0);
+    Ventagli(const std::string& = "", u_int = 0, u_int = 0);
     Ventagli(const Ventagli&);
     virtual ~Ventagli() = default;
 

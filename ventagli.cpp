@@ -1,7 +1,7 @@
 #include "ventagli.h"
 
-Ventagli::Ventagli(u_int h, const std::string &id, u_int w) : Decoration(h,id), width(w) {}
-Ventagli::Ventagli(const Ventagli &v) : Decoration(v.getHeight(),v.getID()), width(v.getWidth()) {}
+Ventagli::Ventagli(const std::string &id, u_int h, u_int w) : Decoration(id,h), width(w) {}
+Ventagli::Ventagli(const Ventagli &v) : Decoration(v.getID(),v.getHeight()), width(v.getWidth()) {}
 
 //GETTER, SETTER
 u_int Ventagli::getWidth() const {return width;}

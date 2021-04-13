@@ -4,16 +4,16 @@
 #include "waffle.h"
 class Circle : public Waffle{
     private:
-        unsigned int diametro;
+        u_int diametro;
     public:
         //Costruttore, costruttore di copia e distruttore
-        Circle(const std::string& = "", unsigned int = 0);
+        Circle(const std::string& = "", u_int = 0);
         Circle(const Circle&);
         virtual ~Circle() = default;
         //GETTER
-        unsigned int getDiametro() const;
+        u_int getDiametro() const;
         //SETTER
-        void setDiametro(unsigned int);
+        void setDiametro(u_int);
         //OPERATORI
         virtual bool operator ==(const Circle&);
         virtual bool operator !=(const Circle&);

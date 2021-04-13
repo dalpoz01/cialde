@@ -2,7 +2,7 @@
 #include <string>
 
 Waffle::Waffle(const std::string &id) : ID(id) {}
-Waffle::Waffle(const Waffle &w) : ID(w.ID) {}
+Waffle::Waffle(const Waffle &w) : ID(w.getID()) {}
 
 //GETTER
 std::string Waffle::getID() const {return ID;}
