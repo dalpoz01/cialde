@@ -1,12 +1,13 @@
 #ifndef WAFFLE_H
 #define WAFFLE_H
+#include<string>
 
 //Classe BASE ASTRATTA POLIMORFA
 class Waffle {
 private:
     std::string ID;
 public:
-    Waffle(const std::string& id="");   //Costruttore
+    Waffle(const std::string& id=" ");   //Costruttore
     Waffle(const Waffle& w);    //Costruttore di copia
     virtual ~Waffle() = default;    //Distruttore
 

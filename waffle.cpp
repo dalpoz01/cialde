@@ -1,18 +1,16 @@
-#include "waffle.h"
+#include <waffle.h>
+#include <string>
 
-Waffle::Waffle(const std::string& id) : ID(id) {} //Costruttore
-
-Waffle::Waffle(const Waffle &w) :  ID(w.ID) {} // Costruttore di copia
+Waffle::Waffle(const std::string &id) : ID(id) {}
+Waffle::Waffle(const Waffle &w) : ID(w.ID) {}
 
 //GETTER
-std::string getID() const {return ID;}
+std::string Waffle::getID() const {return ID;}
 
 //SETTER
-void setID(const std::string id) {ID=id;}
+void Waffle::setID(const std::string &id) {ID = id;}
 
-//OPERATORI VARI
-bool Waffle::operator==(const Waffle& w) const {return ID == w.ID}
+//OPERATORI ==, !=
+bool Waffle::operator ==(const Waffle &w) const {return ID == w.ID;}
+bool Waffle::operator !=(const Waffle &w) const {return ID != w.ID;}
 
-bool Waffle::operator!=(const Waffle& w) const {return ID != w.ID}
-
-//CLONE
