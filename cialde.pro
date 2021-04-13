@@ -30,6 +30,7 @@ SOURCES += \
     circle.cpp \
     decoration.cpp \
     ventagli.cpp \
+    cup.cpp \
     cones.cpp
 
 HEADERS += \
@@ -38,6 +39,7 @@ HEADERS += \
     circle.h \
     decoration.h \
     ventagli.h \
+    cup.h \
     cones.h
 
 FORMS += \
