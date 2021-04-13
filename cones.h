@@ -5,8 +5,8 @@
 
 class Cones : public Waffle{
     private:
-        u_int diametro_esterno;
-        u_int altezza;
+        u_int ext_diameter;
+        u_int height;
         std::string brand;
     public:
         //Costruttore, costruttore di copia e distruttore
@@ -14,12 +14,12 @@ class Cones : public Waffle{
         Cones(const Cones&);
         virtual ~Cones() = default;
         //GETTER
-        u_int getDiametroEsterno() const;
-        u_int getAltezza() const;
+        u_int getExtDiameter() const;
+        u_int getHeight() const;
         std::string getBrand() const;
         //SETTER
-        void setDiametroEsterno(u_int);
-        void setAltezza(u_int);
+        void setExtDiameter(u_int);
+        void setHeight(u_int);
         void setBrand(const std::string&);
         //OPERATORI
         virtual bool operator ==(const Cones&);
