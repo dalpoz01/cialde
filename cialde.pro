@@ -31,7 +31,8 @@ SOURCES += \
     decoration.cpp \
     ventagli.cpp \
     cup.cpp \
-    cones.cpp
+    cones.cpp \
+    covered.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -40,7 +41,8 @@ HEADERS += \
     decoration.h \
     ventagli.h \
     cup.h \
-    cones.h
+    cones.h \
+    covered.h
 
 FORMS += \
     mainwindow.ui
