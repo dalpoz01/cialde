@@ -28,12 +28,16 @@ SOURCES += \
     mainwindow.cpp \
     waffle.cpp \
     circle.cpp \
+    decoration.cpp \
+    ventagli.cpp \
     cones.cpp
 
 HEADERS += \
     mainwindow.h \
     waffle.h \
     circle.h \
+    decoration.h \
+    ventagli.h \
     cones.h
 
 FORMS += \
