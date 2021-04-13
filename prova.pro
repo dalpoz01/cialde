@@ -25,10 +25,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        waffle.cpp \
+        circle.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+        waffle.cpp \
+        circle.h \
+
 
 FORMS += \
         mainwindow.ui
