@@ -1,7 +1,7 @@
 #ifndef CUP_H
 #define CUP_H
 
-#include "cones.h"
+#include "conebox.h"
 
 class Cup: public Cones{
 private:

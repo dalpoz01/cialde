@@ -26,23 +26,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    waffle.cpp \
-    circle.cpp \
-    decoration.cpp \
-    ventagli.cpp \
     cup.cpp \
-    cones.cpp \
-    covered.cpp
+    covered.cpp \
+    wafflebox.cpp \
+    circlebox.cpp \
+    heightproviderbox.cpp \
+    conebox.cpp \
+    ventagliobox.cpp
 
 HEADERS += \
     mainwindow.h \
-    waffle.h \
-    circle.h \
-    decoration.h \
-    ventagli.h \
     cup.h \
-    cones.h \
-    covered.h
+    covered.h \
+    wafflebox.h \
+    circlebox.h \
+    heightproviderbox.h \
+    conebox.h \
+    ventagliobox.h
 
 FORMS += \
     mainwindow.ui

@@ -1,7 +1,7 @@
 #ifndef COVERED_H
 #define COVERED_H
 
-#include "cones.h"
+#include "conebox.h"
 
 class Covered: public Cones{
 private:
