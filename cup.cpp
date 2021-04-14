@@ -1,22 +1,22 @@
 #include "cup.h"
 
 //Costruttore
-Cup::Cup(const std::string& id, u_int dia_est, u_int alt, const std::string& br, u_int dia_int):
-    Cones(id,dia_est,alt,br), int_diameter(dia_int){}
+Cup::Cup(const std::string& id, u_int dia_est, u_int alt, const std::string& br):
+    Cones(id,dia_est,alt), brand(br){}
 
 //Costruttore di copia
 Cup::Cup(const Cup& c):
-    Cones(c.getID(),c.getExtDiameter(),c.getHeight(),c.getBrand()),int_diameter(c.getIntDiameter()){}
+    Cones(c.getID(),c.getExtDiameter(),c.getHeight()),brand(c.getBrand()){}
 
 //Getter
-u_int Cup::getIntDiameter() const{return int_diameter;}
+std::string Cup::getBrand() const{return brand;}
 
 //Setter
-void Cup::setIntDiameter(u_int dia_int){int_diameter=dia_int;}
+void Cup::setBrand(const std::string& br){brand=br;}
 
 //Operatori
-bool Cup::operator ==(const Cup&c) {return Cones::operator ==(c) && int_diameter == c.int_diameter;}
-bool Cup::operator !=(const Cup&c) {return Cones::operator !=(c) || int_diameter != c.int_diameter;}
+bool Cup::operator ==(const Cup&c) {return Cones::operator ==(c) && brand == c.brand;}
+bool Cup::operator !=(const Cup&c) {return Cones::operator !=(c) || brand != c.brand;}
 
 //Clone
 Cup* Cup::clone() const {return new Cup(*this);}

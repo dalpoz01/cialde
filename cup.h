@@ -5,16 +5,16 @@
 
 class Cup: public Cones{
 private:
-    u_int int_diameter;
+    std::string brand;
 public:
     //Costruttore, costruttore di copia e distruttore
-    Cup(const std::string& = "", u_int = 0, u_int = 0, const std::string& ="", u_int = 0);
+    Cup(const std::string& = "", u_int = 0, u_int = 0, const std::string& ="");
     Cup(const Cup&);
     virtual ~Cup() = default;
     //GETTER
-    u_int getIntDiameter() const;
+    std::string getBrand() const;
     //SETTER
-    void setIntDiameter(u_int);
+    void setBrand(const std::string&);
     //OPERATORI
     virtual bool operator ==(const Cup&);
     virtual bool operator !=(const Cup&);
