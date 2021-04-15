@@ -32,7 +32,8 @@ SOURCES += \
     heightproviderbox.cpp \
     conebox.cpp \
     ventagliobox.cpp \
-    cannolobox.cpp
+    cannolobox.cpp \
+    branded.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -42,7 +43,8 @@ HEADERS += \
     heightproviderbox.h \
     conebox.h \
     ventagliobox.h \
-    cannolobox.h
+    cannolobox.h \
+    branded.h
 
 FORMS += \
     mainwindow.ui
