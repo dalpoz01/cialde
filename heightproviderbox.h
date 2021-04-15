@@ -14,7 +14,7 @@ public:
     u_int getHeight() const;
 
     //SETTER
-    void setHeight(u_int) const;
+    void setHeight(u_int);
 
     //OPERATORI
     virtual bool operator ==(const HeightProviderBox&) const;

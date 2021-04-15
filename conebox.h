@@ -3,24 +3,27 @@
 
 #include "heightproviderbox.h"
 
+//Classe concreta polimorfa
 class ConeBox : public HeightProviderBox {
     private:
         u_int ext_diameter;
     public:
         //Costruttore, costruttore di copia e distruttore
-        ConeBox(const std::string& id=" ", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0);
+        ConeBox(const std::string& = "", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0, u_int = 0);
         ConeBox(const ConeBox&);
         virtual ~ConeBox() = default;
-        //GETTER
+
+        //Getter
         u_int getExtDiameter() const;
 
-        //SETTER
+        //Setter
         void setExtDiameter(u_int);
 
-        //OPERATORI
+        //Operatori
         virtual bool operator ==(const ConeBox&);
         virtual bool operator !=(const ConeBox&);
-        //CLONE
+
+        //Clone
         virtual ConeBox *clone() const;
 };
 

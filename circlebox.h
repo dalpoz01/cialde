@@ -2,25 +2,27 @@
 #define CIRCLEBOX_H
 #include "wafflebox.h"
 
+//Classe concreta
 class CircleBox : public WaffleBox {
     private:
         u_int radius;
     public:
+        //Costruttore, costruttore di copia e distruttore
         CircleBox(const std::string& id=" ", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0);
         CircleBox(const CircleBox&);
         virtual ~CircleBox() = default;
 
-        //GETTER
+        //Getter
         u_int getRadius() const;
 
-        //SETTER
+        //Setter
         void setRadius(u_int);
 
-        //OPERATORI
+        //Operatori
         virtual bool operator ==(const CircleBox&);
         virtual bool operator !=(const CircleBox&);
 
-        //CLONE
+        //Clone
         virtual CircleBox *clone() const;
 };
 
