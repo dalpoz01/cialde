@@ -44,7 +44,8 @@ HEADERS += \
     conebox.h \
     ventagliobox.h \
     cannolobox.h \
-    branded.h
+    branded.h \
+    container.h
 
 FORMS += \
     mainwindow.ui
