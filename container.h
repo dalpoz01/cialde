@@ -21,6 +21,38 @@ public:
     //distruttore
     ~Container();
 
+    class const_iterator;
+
+    class iterator{
+        friend class Container<T>;
+    private:
+        T* p;
+        iterator(T* = 0);
+    public:
+        bool operator ==(const const_iterator&) const;
+        bool operator !=(const const_iterator&) const;
+        bool operator <=(const const_iterator&) const;
+        bool operator >=(const const_iterator&) const;
+        bool operator <(const const_iterator&) const;
+        bool operator >(const const_iterator&) const;
+
+        T& operator *() const;
+        T& operator [](u_int) const;
+
+        iterator& operator ++();
+        iterator operator ++(int);
+
+        iterator& operator --();
+        iterator operator --(int);
+
+        iterator& operator +=(int);
+        iterator& operator -=(int);
+
+        iterator operator +(int) const;
+        iterator operator -(int) const;
+
+    }
+
     //OPERATORI
     Container& operator =(const Container&);
     T& operator[](u_int);
@@ -43,9 +75,9 @@ public:
     void pop_back();    //rimuove l'ultimo elemento dal container, riducendo size di 1.
     u_int getSize() const;
     u_int getCapacity() const;
-    void erase(u_int,u_int); //toglie elementi tra due indici
-    void erase(u_int);  //toglie elemento in quell'indice
-    void erase(T);
+    void erase(u_int,u_int); //rimuove elementi tra due indici
+    void erase(u_int);  //rimuove elemento in quell'indice
+    void erase(T);  //rimuove elemento T
 
     /* DA IMPLEMENTARE
      *
