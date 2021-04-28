@@ -37,16 +37,31 @@ public:
     const T& back() const;
     T& front();
     const T& front() const;
-    bool empty() const; //true se container size è 0.
     void clear();   //rimuove elementi dal container.
-    void push_back(const T&);
-    void pop_back();
+    bool empty() const; //true se container size è 0.
+    void push_back(const T&);   //aggiunge un elemento alla fine del container, aumentando size di 1 (capacità permettendo altrimenti resize()).
+    void pop_back();    //rimuove l'ultimo elemento dal container, riducendo size di 1.
     u_int getSize() const;
     u_int getCapacity() const;
     void erase(u_int,u_int); //toglie elementi tra due indici
     void erase(u_int);  //toglie elemento in quell'indice
     void erase(T);
 
+    /* DA IMPLEMENTARE
+     *
+     * iterator begin();    //ritorna iteratore che punta al primo elemento del container.
+     * iterator end();  //ritorna iteratore past-the-end
+     * iterator erase(iterator);
+     * iterator erase(iterator, iterator);
+     * iterator insert(iterator, const T&);
+     */
+
+    /*
+     * const_iterator cbegin() const;   //ritorna iteratore costante che punta al primo elemento (non modificabile essendo const_iterator)
+     * const_iterator cend() const; //ritorna const_iterator che punta past-the-end del container
+     * const_iterator begin() const;    //ritorna iteratore costante al primo elemento del container
+     * const_iterator end() const;  //ritorna const_iterator past-the-end
+     */
 
 };
 
@@ -94,10 +109,10 @@ template<class T>
 const T& Container<T>::front() const{return p[0];}
 
 template<class T>
-bool Container<T>::empty() const{return size==0;}
+void Container<T>::clear(){if(p) delete[] p; p = new T[1]; size=0;}
 
 template<class T>
-void Container<T>::clear(){if(p) delete[] p; p = new T[1]; size=0;}
+bool Container<T>::empty() const{return size==0;}
 
 template<class T>
 void Container<T>::push_back(const T& t){if(size == capacity) resize(); p[size] = t; size++;} //size è l'ultimo elemento
