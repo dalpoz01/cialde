@@ -2,11 +2,7 @@
 #define CONTAINER_H
 using namespace std;
 typedef unsigned int u_int;
-/*
-*    METODI
-*    Distruttore -> viene deallocata la memoria di ogni cosa contenuta dal contenitore
-*    Size_type size()
-*/
+
 template<class T>
 class Container {
 private:
@@ -37,14 +33,20 @@ public:
     bool operator >=(const Container&) const;
 
     //METODI
-    bool empty() const;
-    void clear();
+    T& back();
+    const T& back() const;
+    T& front();
+    const T& front() const;
+    bool empty() const; //true se container size è 0.
+    void clear();   //rimuove elementi dal container.
     void push_back(const T&);
     void pop_back();
     u_int getSize() const;
     u_int getCapacity() const;
     void erase(u_int,u_int); //toglie elementi tra due indici
     void erase(u_int);  //toglie elemento in quell'indice
+    void erase(T);
+
 
 };
 
@@ -80,6 +82,18 @@ void Container<T>::resize(){
 /**** METODI *****/
 
 template<class T>
+T& Container<T>::back(){return p[size-1];}
+
+template<class T>
+const T& Container<T>::back() const{return p[size-1];}
+
+template<class T>
+T& Container<T>::front(){return p[0];}
+
+template<class T>
+const T& Container<T>::front() const{return p[0];}
+
+template<class T>
 bool Container<T>::empty() const{return size==0;}
 
 template<class T>
@@ -89,7 +103,7 @@ template<class T>
 void Container<T>::push_back(const T& t){if(size == capacity) resize(); p[size] = t; size++;} //size è l'ultimo elemento
 
 template<class T>
-void Container<T>::pop_back(){if(size > 0) size--;};
+void Container<T>::pop_back(){if(size > 0) size--;}
 
 template<class T>
 u_int Container<T>::getSize() const {return size;}
@@ -104,7 +118,6 @@ void Container<T>::erase(u_int first, u_int last){  //DA COMPLETARE
     for(u_int i = first; k<size; ++i, k++) p[i] = p[k]; //scorro dal primo elemento dopo il range di elementi [first-last], e assegno partendo da first gli elementi successivi all'indice last.
 
     size -= (last-first)+1; //dimensione effettiva diventa la dimensione precedente MENO gli elementi di cui si è fatto l'erase.
-
 }
 
 template<class T>
@@ -114,6 +127,14 @@ void Container<T>::erase(u_int position){
         p[i] = p[i+1];
     size--;
 }
+
+template<class T>
+void Container<T> ::erase(T obj){
+    for(u_int = 0; i<size; ++i)
+        if(p[i] == obj)
+            erase(i);
+}
+
 /**** OPERATORI *****/
 
 //operator=
