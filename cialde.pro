@@ -25,27 +25,27 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp \
-    covered.cpp \
-    wafflebox.cpp \
-    circlebox.cpp \
-    heightproviderbox.cpp \
-    conebox.cpp \
-    ventagliobox.cpp \
-    cannolobox.cpp \
-    branded.cpp
+    view/mainwindow.cpp \
+    model/covered.cpp \
+    model/wafflebox.cpp \
+    model/circlebox.cpp \
+    model/heightproviderbox.cpp \
+    model/conebox.cpp \
+    model/ventagliobox.cpp \
+    model/cannolobox.cpp \
+    model/branded.cpp
 
 HEADERS += \
-    mainwindow.h \
-    covered.h \
-    wafflebox.h \
-    circlebox.h \
-    heightproviderbox.h \
-    conebox.h \
-    ventagliobox.h \
-    cannolobox.h \
-    branded.h \
-    container.h
+    view/mainwindow.h \
+    model/covered.h \
+    model/wafflebox.h \
+    model/circlebox.h \
+    model/heightproviderbox.h \
+    model/conebox.h \
+    model/ventagliobox.h \
+    model/cannolobox.h \
+    model/branded.h \
+    model/container.h
 
 FORMS += \
     mainwindow.ui
