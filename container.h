@@ -79,6 +79,13 @@ public:
     void erase(u_int);  //rimuove elemento in quell'indice
     void erase(T);  //rimuove elemento T
 
+    iterator begin();
+    iterator end();
+    iterator erase(iterator);
+    iterator erase(iterator, iterator);
+    iterator insert(iterator, const T&);
+
+
     /* DA IMPLEMENTARE
      *
      * iterator begin();    //ritorna iteratore che punta al primo elemento del container.
@@ -269,5 +276,53 @@ bool Container<T>::operator <=(const Container& c) const{return *this == c || *t
 //operator>=
 template<class T>
 bool Container<T>::operator >=(const Container& c) const{return *this == c || *this > c;}//Sfrutta la definizione di operator > e ==
+
+//iterator begin
+template <class C>
+typename Container<C>::iterator Container<C>::begin() {return iterator(p);}
+
+//iterator end
+template <class C>
+typename Container<C>::iterator Container<C>::end() {return iterator(p+size);}
+
+//iterator erase
+template <class C>
+typename Container<C>::iterator Container<C>::erase(iterator i) {return erase(i, i);}
+
+//iterator erase(iterator, iterator)
+template <class C>
+typename Container<C>::iterator Container<C>::erase(iterator i, iterator f){
+    if(size == 0){
+        return iterator(0);
+    }else{
+        if(i < begin()){
+            i = begin();
+        }
+        if(f < end()){
+            f = end();
+        }
+        for(iterator a = i, k(f+1); k<end(); ++a, ++k){
+            *a = *k;
+        }
+        size-=static_cast<unsigned int>(last.p-i.p)+1;
+        return i;
+    }
+}
+
+//iterator insert
+template <class C>
+typename Container<C>::iterator Container<C>::insert(iterator it, const C &c){
+    unsigned int position = it.p-p;
+    if(size==capacity){
+        resize();
+    }
+    for(unsigned int i = size; i>position; --i){
+        p[i] = p[i-1];
+    }
+    p[position] = c;
+    size++;
+    return it;
+}
+
 
 #endif // CONTAINER_H
