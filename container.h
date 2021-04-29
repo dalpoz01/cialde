@@ -124,16 +124,6 @@ public:
     iterator erase(iterator, iterator);
     iterator insert(iterator, const T&);
 
-
-    /* DA IMPLEMENTARE
-     *
-     * iterator begin();    //ritorna iteratore che punta al primo elemento del container.
-     * iterator end();  //ritorna iteratore past-the-end
-     * iterator erase(iterator);
-     * iterator erase(iterator, iterator);
-     * iterator insert(iterator, const T&);
-     */
-
     /*
      * const_iterator cbegin() const;   //ritorna iteratore costante che punta al primo elemento (non modificabile essendo const_iterator)
      * const_iterator cend() const; //ritorna const_iterator che punta past-the-end del container
@@ -326,6 +316,48 @@ Container<T>::iterator::iterator(T* t) : p(t) {}
 template<class T>
 Container<T>::iterator::iterator(const iterator& it) : p(it.p) {}
 
+template <class C>
+typename Container<C>::iterator Container<C>::begin() {return iterator(p);}
+
+template <class C>
+typename Container<C>::iterator Container<C>::end() {return iterator(p+size);}
+
+template <class C>
+typename Container<C>::iterator Container<C>::erase(iterator i) {return erase(i, i);}
+
+template <class C>
+typename Container<C>::iterator Container<C>::erase(iterator i, iterator f){
+    if(size == 0){
+        return iterator(0);
+    }else{
+        if(i < begin()){
+            i = begin();
+        }
+        if(f < end()){
+            f = end();
+        }
+        for(iterator a = i, k(f+1); k<end(); ++a, ++k){
+            *a = *k;
+        }
+        size-=static_cast<unsigned int>(last.p-i.p)+1;
+        return i;
+    }
+}
+
+template <class C>
+typename Container<C>::iterator Container<C>::insert(iterator it, const C &c){
+    unsigned int position = it.p-p;
+    if(size==capacity){
+        resize();
+    }
+    for(unsigned int i = size; i>position; --i){
+        p[i] = p[i-1];
+    }
+    p[position] = c;
+    size++;
+    return it;
+}
+
 template<class T>
 bool Container<T>::iterator::operator ==(const const_iterator& cit) const{return p == cit.p;}
 
@@ -442,52 +474,7 @@ const_iterator Container<T>::iterator::operator +(const const_iterator& cit) con
 template<class T>
 const_iterator Container<T>::iterator::operator -(const const_iterator&) const{return const_iterator(cit.p - p);}
 
-//iterator begin
-template <class C>
-typename Container<C>::iterator Container<C>::begin() {return iterator(p);}
 
-//iterator end
-template <class C>
-typename Container<C>::iterator Container<C>::end() {return iterator(p+size);}
-
-//iterator erase
-template <class C>
-typename Container<C>::iterator Container<C>::erase(iterator i) {return erase(i, i);}
-
-//iterator erase(iterator, iterator)
-template <class C>
-typename Container<C>::iterator Container<C>::erase(iterator i, iterator f){
-    if(size == 0){
-        return iterator(0);
-    }else{
-        if(i < begin()){
-            i = begin();
-        }
-        if(f < end()){
-            f = end();
-        }
-        for(iterator a = i, k(f+1); k<end(); ++a, ++k){
-            *a = *k;
-        }
-        size-=static_cast<unsigned int>(last.p-i.p)+1;
-        return i;
-    }
-}
-
-//iterator insert
-template <class C>
-typename Container<C>::iterator Container<C>::insert(iterator it, const C &c){
-    unsigned int position = it.p-p;
-    if(size==capacity){
-        resize();
-    }
-    for(unsigned int i = size; i>position; --i){
-        p[i] = p[i-1];
-    }
-    p[position] = c;
-    size++;
-    return it;
-}
 
 
 #endif // CONTAINER_H
