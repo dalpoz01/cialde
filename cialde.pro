@@ -45,7 +45,8 @@ HEADERS += \
     model/ventagliobox.h \
     model/cannolobox.h \
     model/branded.h \
-    model/container.h
+    model/container.h \
+    model/deepptr.h
 
 FORMS += \
     mainwindow.ui

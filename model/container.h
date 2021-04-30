@@ -84,9 +84,6 @@ public:
         const_iterator& operator +=(int);
         const_iterator& operator -=(int);
 
-        const_iterator& operator +=(const const_iterator&);
-        const_iterator& operator -=(const const_iterator&);
-
         const_iterator operator +(int) const;
         const_iterator operator -(int) const;
 
@@ -464,9 +461,6 @@ typename const_iterator& Container<T>::const_iterator::operator +=(int i){if(p) 
 
 template<class T>
 typename const_iterator& Container<T>::const_iterator::operator -=(int i){if(p) p -= i; return *(this);}
-
-template<class T>
-typename const_iterator& Container<T>::const_iterator::operator +=(const const_iterator& cit){}
 
 template<class T>
 typename const_iterator Container<T>::const_iterator::operator +(int i) const{if(p) return iterator(p+i); return iterator();}
