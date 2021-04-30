@@ -40,6 +40,8 @@ public:
         T& operator *() const;
         T& operator [](u_int) const;
 
+        T* operator ->() const;
+
         iterator& operator ++();
         iterator operator ++(int);
 
@@ -74,6 +76,8 @@ public:
 
         const T& operator *() const;
         T& operator [](u_int) const;
+
+        const T* operator ->() const;
 
         const_iterator& operator ++();
         const_iterator operator ++(int);
@@ -141,12 +145,12 @@ Container<T>::Container(u_int s, u_int c) : size(s), capacity(c), p(new T[c]) {}
 
 //Costruttore di copia
 template<class T>
-Container<T>::Container(const Container<T> &c) : size(c.size), capacity(c.capacity), p(new T[c.capacity])
+Container<T>::Container(const Container<T>& c) : size(c.size), capacity(c.capacity), p(new T[c.capacity])
     {for(u_int i= 0; i<size; ++i) p[i] = c.p[i];}
 
 //FIll constructor
 template<class T>
-Container<T>::Container(const T &t, u_int n) : size(n), capacity(n), p(new T[n])
+Container<T>::Container(const T& t, u_int n) : size(n), capacity(n), p(new T[n])
     {for(u_int i = 0; i<n; ++i) p[i] = t;}
 
 //Distruttore
@@ -383,6 +387,9 @@ template<class T>
 T& Container<T>::iterator::operator [](u_int index) const{return *(p+index);}
 
 template<class T>
+T* Container<T>::iterator::operator ->() const{return p;}
+
+template<class T>
 typename iterator& Container<T>::iterator::operator ++(){if(p) ++p; return *(this);}
 
 template<class T>
@@ -443,6 +450,9 @@ T& Container<T>::const_iterator::operator *() const{return *(p);}
 
 template<class T>
 T& Container<T>::const_iterator::operator [](u_int index) const{return *(p+index);}
+
+template<class T>
+const T* Container<T>::const_iterator::operator ->() const{return p;}
 
 template<class T>
 typename const_iterator& Container<T>::const_iterator::operator ++(){if(p) ++p; return *(this);}
