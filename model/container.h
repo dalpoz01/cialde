@@ -122,7 +122,7 @@ public:
     u_int getCapacity() const;
     void erase(u_int,u_int); //rimuove elementi tra due indici
     void erase(u_int);  //rimuove elemento in quell'indice
-    void erase(T);  //rimuove elemento T
+    void erase(const T&);  //rimuove elemento T
 
     iterator begin();
     iterator end();
@@ -308,7 +308,7 @@ void Container<T>::erase(u_int position){
 }
 
 template<class T>
-void Container<T>::erase(T obj){
+void Container<T>::erase(const T& obj){
     for(u_int i = 0; i<size; ++i)
         if(p[i] == obj)
             erase(i);

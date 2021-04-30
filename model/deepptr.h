@@ -10,7 +10,7 @@ public:
     DeepPtr(const DeepPtr&);
     ~DeepPtr();
 
-    DeepPtr<T>& operator =(const DeepPtr&); //assegnazione
+    DeepPtr& operator =(const DeepPtr&); //assegnazione
     T& operator *() const;  //dereferenziazione
     T* operator ->() const; //accesso a membro
     bool operator==(const DeepPtr&) const;
