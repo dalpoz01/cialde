@@ -10,7 +10,7 @@ public:
     DeepPtr(const DeepPtr&);
     ~DeepPtr();
 
-    T& operator =(const DeepPtr&);
+    DeepPtr<T>& operator =(const DeepPtr&);
     T& operator *() const;
     T* operator ->() const;
 };
@@ -35,8 +35,8 @@ template<class T>
 DeepPtr<T>::~DeepPtr(){if(p) delete p;}
 
 template<class T>
-T& DeepPtr<T>::operator =(const DeepPtr& ptr){
-    if(ptr != this){
+DeepPtr<T>& DeepPtr<T>::operator =(const DeepPtr& ptr){
+    if(&ptr != this){
         if(p) delete p;
         if(ptr.p == nullptr)
             p = nullptr;
