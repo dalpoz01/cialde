@@ -322,17 +322,17 @@ Container<T>::iterator::iterator(T* t) : p(t) {}
 template<class T>
 Container<T>::iterator::iterator(const iterator& it) : p(it.p) {}
 
-template <class C>
-typename Container<C>::iterator Container<C>::begin() {return iterator(p);}
+template <class T>
+typename Container<T>::iterator Container<T>::begin() {return iterator(p);}
 
-template <class C>
-typename Container<C>::iterator Container<C>::end() {return iterator(p+size);}
+template <class T>
+typename Container<T>::iterator Container<T>::end() {return iterator(p+size);}
 
-template <class C>
-typename Container<C>::iterator Container<C>::erase(iterator i) {return erase(i, i);}
+template <class T>
+typename Container<T>::iterator Container<T>::erase(iterator i) {return erase(i, i);}
 
-template <class C>
-typename Container<C>::iterator Container<C>::erase(iterator i, iterator f){
+template <class T>
+typename Container<T>::iterator Container<T>::erase(iterator i, iterator f){
     if(size == 0){
         return iterator(0);
     }else{
@@ -350,8 +350,8 @@ typename Container<C>::iterator Container<C>::erase(iterator i, iterator f){
     }
 }
 
-template <class C>
-typename Container<C>::iterator Container<C>::insert(iterator it, const C &c){
+template <class T>
+typename Container<T>::iterator Container<T>::insert(iterator it, const T& t){
     unsigned int position = it.p-p;
     if(size==capacity){
         resize();
@@ -359,7 +359,7 @@ typename Container<C>::iterator Container<C>::insert(iterator it, const C &c){
     for(unsigned int i = size; i>position; --i){
         p[i] = p[i-1];
     }
-    p[position] = c;
+    p[position] = t;
     size++;
     return it;
 }

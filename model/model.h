@@ -11,6 +11,8 @@ public:
 
     Model(u_int);
     void addBox(WaffleBox*);
+    void removeBox(u_int);
+    void removeBox(iterator&);
 };
 
 #endif // MODEL_H
