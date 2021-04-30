@@ -6,3 +6,4 @@ void Model::addBox(WaffleBox* waffleb){container.push_back(DeepPtr<WaffleBox>(wa
 
 void Model::removeBox(u_int index){container.erase(index);}
 
+void Model::removeBox(DeepPtr<WaffleBox>& ptr){container.erase(ptr);}

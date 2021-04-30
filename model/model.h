@@ -12,6 +12,10 @@ public:
     Model(u_int);
     void addBox(WaffleBox*);
     void removeBox(u_int);
+    void removeBox(DeepPtr<WaffleBox>&);
+
+
+
 };
 
 #endif // MODEL_H
