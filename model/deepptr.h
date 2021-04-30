@@ -32,7 +32,7 @@ DeepPtr<T>::DeepPtr(const DeepPtr& ptr){
 }
 
 template<class T>
-DeepPtr::~DeepPtr(){if(p) delete p;}
+DeepPtr<T>::~DeepPtr(){if(p) delete p;}
 
 template<class T>
 T& DeepPtr<T>::operator =(const DeepPtr& ptr){

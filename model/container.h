@@ -1,6 +1,8 @@
 #ifndef CONTAINER_H
 #define CONTAINER_H
+#include <iostream>
 using namespace std;
+
 typedef unsigned int u_int;
 
 template<class T>
@@ -66,7 +68,7 @@ public:
         T* p;
         const_iterator(T* = 0);
     public:
-        const_iterator(const const_iterator&);
+        const_iterator(const iterator&);
         bool operator ==(const const_iterator&) const;
         bool operator !=(const const_iterator&) const;
         bool operator <=(const const_iterator&) const;
@@ -337,13 +339,13 @@ typename Container<C>::iterator Container<C>::erase(iterator i, iterator f){
         if(i < begin()){
             i = begin();
         }
-        if(f < end()){
+        if(f > end()){
             f = end();
         }
         for(iterator a = i, k(f+1); k<end(); ++a, ++k){
             *a = *k;
         }
-        size-=static_cast<unsigned int>(last.p-i.p)+1;
+        size-=static_cast<unsigned int>(f.p-i.p)+1;
         return i;
     }
 }
@@ -390,34 +392,34 @@ template<class T>
 T* Container<T>::iterator::operator ->() const{return p;}
 
 template<class T>
-typename iterator& Container<T>::iterator::operator ++(){if(p) ++p; return *(this);}
+typename Container<T>::iterator& Container<T>::iterator::operator ++(){if(p) ++p; return *(this);}
 
 template<class T>
-typename iterator Container<T>::iterator::operator ++(int i){iterator temp = iterator(*this); if(p) ++p; return temp;} //incremento postfisso, ritorno l'iteratore prima dell'incremento.
+typename Container<T>::iterator Container<T>::iterator::operator ++(int i){iterator temp = iterator(*this); if(p) ++p; return temp;} //incremento postfisso, ritorno l'iteratore prima dell'incremento.
 
 template<class T>
-typename iterator& Container<T>::iterator::operator --(){if(p) --p; return *(this);}
+typename Container<T>::iterator& Container<T>::iterator::operator --(){if(p) --p; return *(this);}
 
 template<class T>
-typename iterator Container<T>::iterator::operator --(int i){iterator temp = iterator(*this); if(p) --p; return temp;}//decremento postifisso, analogo come l'incremento.
+typename Container<T>::iterator Container<T>::iterator::operator --(int i){iterator temp = iterator(*this); if(p) --p; return temp;}//decremento postifisso, analogo come l'incremento.
 
 template<class T>
-typename iterator& Container<T>::iterator::operator +=(int i){if(p) p += i; return *(this);}
+typename Container<T>::iterator& Container<T>::iterator::operator +=(int i){if(p) p += i; return *(this);}
 
 template<class T>
-typename iterator& Container<T>::iterator::operator -=(int i){if(p) p -= i; return *(this);}
+typename Container<T>::iterator& Container<T>::iterator::operator -=(int i){if(p) p -= i; return *(this);}
 
 template<class T>
-typename iterator Container<T>::iterator::operator +(int i) const{if(p) return iterator(p+i); return iterator();}
+typename Container<T>::iterator Container<T>::iterator::operator +(int i) const{if(p) return iterator(p+i); return iterator();}
 
 template<class T>
-typename iterator Container<T>::iterator::operator -(int i) const{if(p) return iterator(p-i); return iterator();}
+typename Container<T>::iterator Container<T>::iterator::operator -(int i) const{if(p) return iterator(p-i); return iterator();}
 
 template<class T>
-typename iterator Container<T>::iterator::operator +(const const_iterator& cit) const{return iterator(cit.p + p);}
+typename Container<T>::iterator Container<T>::iterator::operator +(const const_iterator& cit) const{return iterator(cit.p + p);}
 
 template<class T>
-typename iterator Container<T>::iterator::operator -(const const_iterator&) const{return iterator(cit-p - p);}
+typename Container<T>::iterator Container<T>::iterator::operator -(const const_iterator& cit) const{return iterator(cit-p - p);}
 
 /*********************** CLASSE const_iterator ***************************/
 
@@ -425,7 +427,7 @@ template<class T>
 Container<T>::const_iterator::const_iterator(T* t) : p(t) {}
 
 template<class T>
-Container<T>::const_iterator::const_iterator(const const_iterator& it) : p(it.p) {}
+Container<T>::const_iterator::const_iterator(const iterator& it) : p(it.p) {}
 
 template<class T>
 bool Container<T>::const_iterator::operator ==(const const_iterator& cit) const{return p == cit.p;}
@@ -446,7 +448,7 @@ template<class T>
 bool Container<T>::const_iterator::operator >(const const_iterator& cit) const{return p > cit.p;}
 
 template<class T>
-T& Container<T>::const_iterator::operator *() const{return *(p);}
+const T& Container<T>::const_iterator::operator *() const{return *(p);}
 
 template<class T>
 T& Container<T>::const_iterator::operator [](u_int index) const{return *(p+index);}
@@ -455,33 +457,33 @@ template<class T>
 const T* Container<T>::const_iterator::operator ->() const{return p;}
 
 template<class T>
-typename const_iterator& Container<T>::const_iterator::operator ++(){if(p) ++p; return *(this);}
+typename Container<T>::const_iterator& Container<T>::const_iterator::operator ++(){if(p) ++p; return *(this);}
 
 template<class T>
-typename const_iterator Container<T>::const_iterator::operator ++(int i){iterator temp = iterator(*this); if(p) ++p; return temp;} //incremento postfisso, ritorno l'iteratore prima dell'incremento.
+typename Container<T>::const_iterator Container<T>::const_iterator::operator ++(int i){iterator temp = iterator(*this); if(p) ++p; return temp;} //incremento postfisso, ritorno l'iteratore prima dell'incremento.
 
 template<class T>
-typename const_iterator& Container<T>::const_iterator::operator --(){if(p) --p; return *(this);}
+typename Container<T>::const_iterator& Container<T>::const_iterator::operator --(){if(p) --p; return *(this);}
 
 template<class T>
-typename const_iterator Container<T>::const_iterator::operator --(int i){iterator temp = iterator(*this); if(p) --p; return temp;}//decremento postifisso, analogo come l'incremento.
+typename Container<T>::const_iterator Container<T>::const_iterator::operator --(int i){iterator temp = iterator(*this); if(p) --p; return temp;}//decremento postifisso, analogo come l'incremento.
 
 template<class T>
-typename const_iterator& Container<T>::const_iterator::operator +=(int i){if(p) p += i; return *(this);}
+typename Container<T>::const_iterator& Container<T>::const_iterator::operator +=(int i){if(p) p += i; return *(this);}
 
 template<class T>
-typename const_iterator& Container<T>::const_iterator::operator -=(int i){if(p) p -= i; return *(this);}
+typename Container<T>::const_iterator& Container<T>::const_iterator::operator -=(int i){if(p) p -= i; return *(this);}
 
 template<class T>
-typename const_iterator Container<T>::const_iterator::operator +(int i) const{if(p) return iterator(p+i); return iterator();}
+typename Container<T>::const_iterator Container<T>::const_iterator::operator +(int i) const{if(p) return iterator(p+i); return iterator();}
 
 template<class T>
-typename const_iterator Container<T>::const_iterator::operator -(int i) const{if(p) return iterator(p-i); return iterator();}
+typename Container<T>::const_iterator Container<T>::const_iterator::operator -(int i) const{if(p) return iterator(p-i); return iterator();}
 
 template<class T>
-typename const_iterator Container<T>::iterator::operator +(const const_iterator& cit) const{return const_iterator(cit.p + p);}
+typename Container<T>::const_iterator Container<T>::const_iterator::operator +(const const_iterator& cit) const{return const_iterator(cit.p + p);}
 
 template<class T>
-typename const_iterator Container<T>::iterator::operator -(const const_iterator&) const{return const_iterator(cit.p - p);}
+typename Container<T>::const_iterator Container<T>::const_iterator::operator -(const const_iterator& cit) const{return const_iterator(cit.p - p);}
 
 #endif // CONTAINER_H
