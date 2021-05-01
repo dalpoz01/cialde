@@ -7,7 +7,7 @@ class VentaglioBox : public HeightProviderBox {
 private:
      u_int width;
 public:
-    VentaglioBox(const std::string& id=" ", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0, u_int = 0);
+    VentaglioBox(const std::string& id=" ", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0, u_int = 0, u_int = 0);
     VentaglioBox(const VentaglioBox&);
     virtual ~VentaglioBox() = default;
 

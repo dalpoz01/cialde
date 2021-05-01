@@ -6,7 +6,7 @@ class HeightProviderBox : public WaffleBox {
 private:
     u_int height;
 public:
-    HeightProviderBox(const std::string& id=" ", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0);
+    HeightProviderBox(const std::string& id=" ", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0, u_int = 0);
     HeightProviderBox(const HeightProviderBox&);
     virtual ~HeightProviderBox() = default;
 

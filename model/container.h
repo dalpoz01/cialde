@@ -12,6 +12,7 @@ private:
     u_int capacity; //Quanti elementi posso memorizzare
     T *p;
 
+    void reduce();
     void resize();
 public:
     //Costruttore standard
@@ -170,6 +171,16 @@ void Container<T>::resize(){
     p = temp;
 }
 
+//Reduce, necessaria in caso di erase() per ridimensionare il container
+template<class T>
+void Container<T>::reduce(){
+    T* temp = new T[size];
+    for(u_int i = 0; i<size; ++i)
+        temp[i] = p[i];
+    delete[] p;
+    p = temp;
+}
+
 /**** OPERATORI *****/
 
 //operator=
@@ -297,6 +308,8 @@ void Container<T>::erase(u_int first, u_int last){  //DA COMPLETARE
     for(u_int i = first; k<size; ++i, k++) p[i] = p[k]; //scorro dal primo elemento dopo il range di elementi [first-last], e assegno partendo da first gli elementi successivi all'indice last.
 
     size -= (last-first)+1; //dimensione effettiva diventa la dimensione precedente MENO gli elementi di cui si è fatto l'erase.
+
+    reduce();
 }
 
 template<class T>

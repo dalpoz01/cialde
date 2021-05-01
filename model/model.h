@@ -14,8 +14,6 @@ public:
     void removeBox(u_int);
     void removeBox(DeepPtr<WaffleBox>&);
 
-
-
 };
 
 #endif // MODEL_H
