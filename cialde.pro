@@ -33,7 +33,8 @@ SOURCES += \
     model/conebox.cpp \
     model/ventagliobox.cpp \
     model/cannolobox.cpp \
-    model/branded.cpp
+    model/branded.cpp \
+    view/menubar.cpp
 
 HEADERS += \
     view/mainwindow.h \
@@ -46,7 +47,5 @@ HEADERS += \
     model/cannolobox.h \
     model/branded.h \
     model/container.h \
-    model/deepptr.h
-
-FORMS += \
-    mainwindow.ui
+    model/deepptr.h \
+    view/menubar.h

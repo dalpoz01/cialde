@@ -2,21 +2,17 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include "view/menubar.h"
 
-namespace Ui {
-class MainWindow;
-}
-
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QWidget{
     Q_OBJECT
-
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
-
 private:
-    Ui::MainWindow *ui;
+    MenuBar *menu;
+public:
+    explicit MainWindow(QWidget * = nullptr);
+    ~MainWindow() override = default;
 };
 
 #endif // MAINWINDOW_H

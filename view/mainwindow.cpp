@@ -1,14 +1,12 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{
-    ui->setupUi(this);
-}
+MainWindow::MainWindow(QWidget *parent):
+    QWidget(parent),
+    menu(new MenuBar(this)){
+    setWindowTitle("Cialde Pro");
 
-MainWindow::~MainWindow()
-{
-    delete ui;
+    QVBoxLayout* qv=new QVBoxLayout;
+    qv->addWidget(menu);
+
+    setLayout(qv);
 }
