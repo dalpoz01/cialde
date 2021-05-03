@@ -5,9 +5,16 @@ MenuBar::MenuBar(QWidget *parent) :
     menu(new QMenu("File",this)),
     load(new QAction("Carica", menu)),
     save(new QAction("Salva", menu)),
-    searchProduct(new QAction("Cerca prodotto", this)){
+    catalog(new QAction("Catalogo", this)),
+    addProduct(new QAction("Aggiungi Prodotto", this)),
+    carrello(new QAction("Carrello", this)){
     menu->addAction(load);
     menu->addAction(save);
     addMenu(menu);
-    addAction(searchProduct);
+    addAction(catalog);
+    addAction(addProduct);
+    addAction(carrello);
+}
+QAction* MenuBar::getCarrello(){
+    return carrello;
 }

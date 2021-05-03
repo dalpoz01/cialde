@@ -10,9 +10,12 @@ private:
     QMenu *menu;
     QAction *load;
     QAction *save;
-    QAction *searchProduct;
+    QAction *catalog;
+    QAction *addProduct;
+    QAction *carrello;
 public:
     explicit MenuBar(QWidget * = nullptr);
+    QAction *getCarrello();
 };
 
 #endif // MENUBAR_H

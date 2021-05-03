@@ -34,7 +34,8 @@ SOURCES += \
     model/ventagliobox.cpp \
     model/cannolobox.cpp \
     model/branded.cpp \
-    view/menubar.cpp
+    view/menubar.cpp \
+    view/catalog.cpp
 
 HEADERS += \
     view/mainwindow.h \
@@ -48,4 +49,7 @@ HEADERS += \
     model/branded.h \
     model/container.h \
     model/deepptr.h \
-    view/menubar.h
+    view/menubar.h \
+    view/catalog.h
+RESOURCES *= \
+    Data/res.qrc

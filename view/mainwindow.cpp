@@ -2,11 +2,27 @@
 
 MainWindow::MainWindow(QWidget *parent):
     QWidget(parent),
-    menu(new MenuBar(this)){
+    menu(new MenuBar(this)),
+    catalogo(new catalog(this)){
     setWindowTitle("Cialde Pro");
+    //Centro la finestra sullo schermo
+    QSize size = sizeHint();
+    QDesktopWidget* desktop = QApplication::desktop();
+    int width = desktop->width();
+    int height = desktop->height();
+    int mw = size.width();
+    int mh = size.height();
+    int centerW = (width/2) - (mw/2);
+    int centerH = (height/2) - (mh/2);
+    move(centerW, centerH);
 
-    QVBoxLayout* qv=new QVBoxLayout;
-    qv->addWidget(menu);
+    QHBoxLayout* qv=new QHBoxLayout;
+    menu->getCarrello()->setVisible(false);
+    qv->setMenuBar(menu);
+    qv->addWidget(catalogo);
 
     setLayout(qv);
+}
+QSize MainWindow::sizeHint() const {
+    return QSize(1024, 468);
 }

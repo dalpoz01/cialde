@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/MyRes">
+        <file>Photo/image-not-found.jpg</file>
+    </qresource>
+    <qresource prefix="/"/>
+</RCC>
