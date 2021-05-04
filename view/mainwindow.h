@@ -8,12 +8,14 @@
 #include <QApplication>
 #include "view/menubar.h"
 #include "view/catalog.h"
+#include "view/addproduct.h"
 
 class MainWindow : public QWidget{
     Q_OBJECT
 private:
     MenuBar *menu;
     catalog *catalogo;
+    addproduct *aggiungiProdotto;
 public:
     explicit MainWindow(QWidget * = nullptr);
     ~MainWindow() override = default;

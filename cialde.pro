@@ -35,7 +35,8 @@ SOURCES += \
     model/cannolobox.cpp \
     model/branded.cpp \
     view/menubar.cpp \
-    view/catalog.cpp
+    view/catalog.cpp \
+    view/addproduct.cpp
 
 HEADERS += \
     view/mainwindow.h \
@@ -50,6 +51,7 @@ HEADERS += \
     model/container.h \
     model/deepptr.h \
     view/menubar.h \
-    view/catalog.h
+    view/catalog.h \
+    view/addproduct.h
 RESOURCES *= \
     Data/res.qrc
