@@ -36,7 +36,8 @@ SOURCES += \
     model/branded.cpp \
     view/menubar.cpp \
     view/catalog.cpp \
-    view/addproduct.cpp
+    view/addproduct.cpp \
+    view/modifyproduct.cpp
 
 HEADERS += \
     view/mainwindow.h \
@@ -52,6 +53,7 @@ HEADERS += \
     model/deepptr.h \
     view/menubar.h \
     view/catalog.h \
-    view/addproduct.h
+    view/addproduct.h \
+    view/modifyproduct.h
 RESOURCES *= \
     Data/res.qrc

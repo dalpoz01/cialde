@@ -12,6 +12,7 @@ private:
     QAction *save;
     QAction *catalog;
     QAction *addProduct;
+    QAction *modProduct;
     QAction *carrello;
 public:
     explicit MenuBar(QWidget * = nullptr);

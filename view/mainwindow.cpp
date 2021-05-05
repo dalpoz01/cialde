@@ -4,7 +4,8 @@ MainWindow::MainWindow(QWidget *parent):
     QWidget(parent),
     menu(new MenuBar(this)),
     catalogo(new catalog(this)),
-    aggiungiProdotto(new addproduct(this))
+    aggiungiProdotto(new addproduct(this)),
+    modificaProdotto(new modifyProduct(this))
 {
     setWindowTitle("Cialde Pro");
     //Centro la finestra sullo schermo
@@ -21,9 +22,11 @@ MainWindow::MainWindow(QWidget *parent):
     QHBoxLayout* qv=new QHBoxLayout;
     menu->getCarrello()->setVisible(false);
     qv->setMenuBar(menu);
+    aggiungiProdotto->hide();
     catalogo->hide();
     qv->addWidget(catalogo);
     qv->addWidget(aggiungiProdotto);
+    qv->addWidget(modificaProdotto);
 
     setLayout(qv);
 }

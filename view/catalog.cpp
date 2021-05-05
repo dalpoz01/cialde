@@ -12,7 +12,7 @@ catalog::catalog(QWidget(*parent)):QWidget(parent),
     acquista(new QPushButton("Acquista")),
     prec(new QPushButton("Precedente")),
     succ(new QPushButton("Successivo")),
-    formLayout(new QFormLayout(this))
+    formLayout(new QFormLayout())
 {
     itemTypeCombobox->addItem("Cialda");
     itemTypeCombobox->addItem("Cono");
@@ -32,17 +32,17 @@ catalog::catalog(QWidget(*parent)):QWidget(parent),
 
     formLayout->addRow(nome,editNome);
     formLayout->addRow(disponibilita,editDisponibilta);
-    right->addLayout(formLayout);
+
     prec->setEnabled(false);
-    right->addWidget(acquista);
     button->addWidget(prec);
     button->addWidget(succ);
+    right->addLayout(formLayout);
+    right->addWidget(acquista);    
     right->addLayout(button);
 
     base->addLayout(left);
     base->addLayout(right);
 
-    mainLayout->setAlignment(Qt::AlignTop);
     mainLayout->addLayout(ricerca);
     mainLayout->addLayout(base);
 }
