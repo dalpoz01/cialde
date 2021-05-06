@@ -2,21 +2,29 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QDesktopWidget>
+#include <QApplication>
+#include "view/menubar.h"
+#include "view/catalog.h"
+#include "view/addproduct.h"
+#include "view/modifyproduct.h"
+#include "view/searchinventory.h"
 
-namespace Ui {
-class MainWindow;
-}
-
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QWidget{
     Q_OBJECT
+private:
+    MenuBar *menu;
+    catalog *catalogo;
+    addproduct *aggiungiProdotto;
+    modifyProduct *modificaProdotto;
+    SearchInventory* ricercaProdotto;
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
-
-private:
-    Ui::MainWindow *ui;
+    explicit MainWindow(QWidget * = nullptr);
+    ~MainWindow() override = default;
+    virtual QSize sizeHint() const override;
 };
 
 #endif // MAINWINDOW_H

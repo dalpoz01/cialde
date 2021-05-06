@@ -1,14 +1,34 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{
-    ui->setupUi(this);
+MainWindow::MainWindow(QWidget *parent): QWidget(parent) ,menu(new MenuBar(this)), catalogo(new catalog(this)), aggiungiProdotto(new addproduct(this)), modificaProdotto(new modifyProduct(this)), ricercaProdotto(new SearchInventory(this)) {
+    setWindowTitle("Cialde Pro");
+    //Centro la finestra sullo schermo
+    QSize size = sizeHint();
+    QDesktopWidget* desktop = QApplication::desktop();
+    int width = desktop->width();
+    int height = desktop->height();
+    int mw = size.width();
+    int mh = size.height();
+    int centerW = (width/2) - (mw/2);
+    int centerH = (height/2) - (mh/2);
+    move(centerW, centerH);
+
+    QVBoxLayout* qv=new QVBoxLayout;
+
+    qv->setMenuBar(menu);
+    menu->getCarrello()->setVisible(false);
+    aggiungiProdotto->hide();
+    catalogo->hide();
+    qv->addWidget(ricercaProdotto);
+    qv->addWidget(catalogo);
+    qv->addWidget(aggiungiProdotto);
+    qv->addWidget(modificaProdotto);
+
+    //qv->addWidget(ricercaProdotto);
+
+    setLayout(qv);
+
 }
-
-MainWindow::~MainWindow()
-{
-    delete ui;
+QSize MainWindow::sizeHint() const {
+    return QSize(1024, 468);
 }
