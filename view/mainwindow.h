@@ -31,11 +31,11 @@ public:
     ~MainWindow() override = default;
     virtual QSize sizeHint() const override;
     void setController(Controller *c);
-private slots:
     void showAddProduct() const;
     void showCatalog() const;
     void showModifyProduct() const;
 
+    MenuBar *getMenu() const;
 };
 
 #endif // MAINWINDOW_H

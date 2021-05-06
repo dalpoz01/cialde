@@ -13,18 +13,12 @@ private:
     QAction *addProduct;
     QAction *modProduct;
     QAction *carrello;
-    QAction *showCatalog;
-    QAction *showAddProduct;
-    QAction *showModProduct;
-    QAction *showCarrello;
 public:
     explicit MenuBar(QWidget * = nullptr);
     QAction *getCarrello();
-signals:
-    void showCatalogSig() const;
-    void showAddProductSig() const;
-    void showModProductSig() const;
-    void showCarrelloSig() const;
+    QAction *getCatalog() const;
+    QAction *getAddProduct() const;
+    QAction *getModProduct() const;
 };
 
 #endif // MENUBAR_H

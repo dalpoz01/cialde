@@ -17,41 +17,47 @@ MainWindow::MainWindow(QWidget *parent): QWidget(parent) ,menu(new MenuBar(this)
     QVBoxLayout* qv=new QVBoxLayout;
 
     qv->setMenuBar(menu);
-    menu->getCarrello()->setVisible(false);
+    //menu->getCarrello()->setVisible(false);
     aggiungiProdotto->hide();
     catalogo->hide();
+    ricercaProdotto->hide();
+    modificaProdotto->hide();
     qv->addWidget(ricercaProdotto);
     qv->addWidget(catalogo);
     qv->addWidget(aggiungiProdotto);
     qv->addWidget(modificaProdotto);
 
-    //qv->addWidget(ricercaProdotto);
-
     setLayout(qv);
 
-    connect(menu, SIGNAL(showCatalogSig()), this, SLOT(showCatalog()));
 }
 QSize MainWindow::sizeHint() const {
     return QSize(1024, 468);
 }
 
-void MainWindow::setController(Controller *c)
-{
+void MainWindow::setController(Controller *c){
     controller=c;
+    connect(menu->getCatalog(),SIGNAL(triggered()),controller,SLOT(showCatalogo()));
+    connect(menu->getAddProduct(),SIGNAL(triggered()),controller,SLOT(showAddProduct()));
+    connect(menu->getModProduct(),SIGNAL(triggered()),controller,SLOT(showModProduct()));
 }
 void MainWindow::showAddProduct() const{
     aggiungiProdotto->show();
     catalogo->hide();
     modificaProdotto->hide();
+    ricercaProdotto->hide();
 }
 void MainWindow::showCatalog() const{
-    std::cout<<"Mostra catalogo"<<endl;
-    aggiungiProdotto->hide();
     catalogo->show();
+    aggiungiProdotto->hide();
     modificaProdotto->hide();
+    ricercaProdotto->hide();
 }
 void MainWindow::showModifyProduct() const{
-    aggiungiProdotto->hide();
-    catalogo->hide();
     modificaProdotto->show();
+    aggiungiProdotto->hide();
+    catalogo->hide();    
+    ricercaProdotto->hide();
+}
+MenuBar *MainWindow::getMenu() const{
+    return menu;
 }
