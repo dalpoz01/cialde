@@ -10,9 +10,11 @@ public:
     DeepPtr(const DeepPtr&);
     ~DeepPtr();
 
-    T& operator =(const DeepPtr&);
-    T& operator *() const;
-    T* operator ->() const;
+    DeepPtr& operator =(const DeepPtr&); //assegnazione
+    T& operator *() const;  //dereferenziazione
+    T* operator ->() const; //accesso a membro
+    bool operator==(const DeepPtr&) const;
+    bool operator!=(const DeepPtr&) const;
 };
 
 template<class T>
@@ -32,11 +34,11 @@ DeepPtr<T>::DeepPtr(const DeepPtr& ptr){
 }
 
 template<class T>
-DeepPtr::~DeepPtr(){if(p) delete p;}
+DeepPtr<T>::~DeepPtr(){if(p) delete p;}
 
 template<class T>
-T& DeepPtr<T>::operator =(const DeepPtr& ptr){
-    if(ptr != this){
+DeepPtr<T>& DeepPtr<T>::operator =(const DeepPtr& ptr){
+    if(&ptr != this){
         if(p) delete p;
         if(ptr.p == nullptr)
             p = nullptr;
@@ -51,4 +53,11 @@ T& DeepPtr<T>::operator *() const{ if(p != nullptr) return *p;}
 
 template<class T>
 T* DeepPtr<T>::operator ->() const{ if(p != nullptr) return p;}
+
+template<class T>
+bool DeepPtr<T>::operator ==(const DeepPtr& ptr) const{ return p == ptr.p ? true : false;}
+
+template<class T>
+bool DeepPtr<T>::operator !=(const DeepPtr& ptr) const{ return p != ptr.p ? true : false;}
+
 #endif // DEEPPTR_H

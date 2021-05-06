@@ -10,9 +10,10 @@ private:
     u_int capacity;
     u_int weight;
     double price;
+    u_int discount;
     u_int stockavailability;
 public:
-    WaffleBox(const std::string& id=" ", u_int = 0, u_int = 0, double = 0, u_int = 0);
+    WaffleBox(const std::string& id=" ", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0);
     WaffleBox(const WaffleBox& w);
     virtual ~WaffleBox() = default;
 
@@ -22,6 +23,7 @@ public:
     u_int getWeight() const;
     double getPrice() const;
     u_int getStockAvailability() const;
+    u_int getDiscount() const;
 
     //SETTER
     void setID(const std::string&);
@@ -29,6 +31,7 @@ public:
     void setWeight(u_int);
     void setPrice(double);
     void setStockAvailability(u_int);
+    void setDiscount(u_int);
 
     //OPERATORI VARI
     virtual bool operator==(const WaffleBox&) const;

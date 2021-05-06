@@ -34,6 +34,7 @@ SOURCES += \
     model/ventagliobox.cpp \
     model/cannolobox.cpp \
     model/branded.cpp \
+    model/model.cpp \
     view/menubar.cpp \
     view/catalog.cpp \
     view/addproduct.cpp \
@@ -53,6 +54,7 @@ HEADERS += \
     model/branded.h \
     model/container.h \
     model/deepptr.h \
+    model/model.h \
     view/menubar.h \
     view/catalog.h \
     view/addproduct.h \

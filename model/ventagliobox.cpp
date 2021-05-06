@@ -1,7 +1,7 @@
 #include "ventagliobox.h"
 
-VentaglioBox::VentaglioBox(const std::string &id, u_int c, u_int w, double p, u_int s, u_int h, u_int wd) : HeightProviderBox(id, c, w, p, s, h), width(wd) {}
-VentaglioBox::VentaglioBox(const VentaglioBox &v) : HeightProviderBox(v.getID(), v.getCapacity(), v.getWeight(), v.getPrice(), v.getStockAvailability(), v.getHeight()), width(v.getWidth()) {}
+VentaglioBox::VentaglioBox(const std::string &id, u_int c, u_int w, double p, u_int d, u_int s, u_int h, u_int wd) : HeightProviderBox(id, c, w, p, d, s, h), width(wd) {}
+VentaglioBox::VentaglioBox(const VentaglioBox &v) : HeightProviderBox(v.getID(), v.getCapacity(), v.getWeight(), v.getPrice(), v.getDiscount(), v.getStockAvailability(), v.getHeight()), width(v.getWidth()) {}
 
 //GETTER, SETTER
 u_int VentaglioBox::getWidth() const {return width;}
