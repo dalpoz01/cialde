@@ -39,7 +39,8 @@ SOURCES += \
     view/catalog.cpp \
     view/addproduct.cpp \
     view/modifyproduct.cpp \
-    view/searchinventory.cpp
+    view/searchinventory.cpp \
+    controller.cpp
 
 HEADERS += \
     view/mainwindow.h \
@@ -58,7 +59,8 @@ HEADERS += \
     view/catalog.h \
     view/addproduct.h \
     view/modifyproduct.h \
-    view/searchinventory.h
+    view/searchinventory.h \
+    controller.h
 
 RESOURCES *= \
     Data/res.qrc

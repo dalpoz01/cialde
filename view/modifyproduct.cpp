@@ -12,7 +12,7 @@ modifyProduct::modifyProduct(QWidget(*parent)):QWidget(parent),
     itemTypeCombobox->addItem("Cialda");
     itemTypeCombobox->addItem("Cono");
 
-    //editNameProduct->placeholderText("Prova");
+    editNameProduct->setPlaceholderText("Nome prodotto");
 
     ricerca->addWidget(editNameProduct);
     ricerca->addWidget(itemTypeCombobox);
