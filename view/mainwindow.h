@@ -10,6 +10,7 @@
 #include "view/catalog.h"
 #include "view/addproduct.h"
 #include "view/modifyproduct.h"
+#include "view/searchinventory.h"
 
 class MainWindow : public QWidget{
     Q_OBJECT
@@ -18,6 +19,7 @@ private:
     catalog *catalogo;
     addproduct *aggiungiProdotto;
     modifyProduct *modificaProdotto;
+    SearchInventory* ricercaProdotto;
 
 public:
     explicit MainWindow(QWidget * = nullptr);

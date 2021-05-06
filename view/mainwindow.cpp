@@ -1,12 +1,6 @@
 #include "mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent):
-    QWidget(parent),
-    menu(new MenuBar(this)),
-    catalogo(new catalog(this)),
-    aggiungiProdotto(new addproduct(this)),
-    modificaProdotto(new modifyProduct(this))
-{
+MainWindow::MainWindow(QWidget *parent): QWidget(parent) ,menu(new MenuBar(this)), catalogo(new catalog(this)), aggiungiProdotto(new addproduct(this)), modificaProdotto(new modifyProduct(this)), ricercaProdotto(new SearchInventory(this)) {
     setWindowTitle("Cialde Pro");
     //Centro la finestra sullo schermo
     QSize size = sizeHint();
@@ -19,16 +13,21 @@ MainWindow::MainWindow(QWidget *parent):
     int centerH = (height/2) - (mh/2);
     move(centerW, centerH);
 
-    QHBoxLayout* qv=new QHBoxLayout;
-    menu->getCarrello()->setVisible(false);
+    QVBoxLayout* qv=new QVBoxLayout;
+
     qv->setMenuBar(menu);
+    menu->getCarrello()->setVisible(false);
     aggiungiProdotto->hide();
     catalogo->hide();
+    qv->addWidget(ricercaProdotto);
     qv->addWidget(catalogo);
     qv->addWidget(aggiungiProdotto);
     qv->addWidget(modificaProdotto);
 
+    //qv->addWidget(ricercaProdotto);
+
     setLayout(qv);
+
 }
 QSize MainWindow::sizeHint() const {
     return QSize(1024, 468);
