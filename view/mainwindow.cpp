@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "controller.h"
 
 MainWindow::MainWindow(QWidget *parent): QWidget(parent) ,menu(new MenuBar(this)), catalogo(new catalog(this)), aggiungiProdotto(new addproduct(this)), modificaProdotto(new modifyProduct(this)), ricercaProdotto(new SearchInventory(this)) {
     setWindowTitle("Cialde Pro");
@@ -28,7 +29,29 @@ MainWindow::MainWindow(QWidget *parent): QWidget(parent) ,menu(new MenuBar(this)
 
     setLayout(qv);
 
+    connect(menu, SIGNAL(showCatalogSig()), this, SLOT(showCatalog()));
 }
 QSize MainWindow::sizeHint() const {
     return QSize(1024, 468);
+}
+
+void MainWindow::setController(Controller *c)
+{
+    controller=c;
+}
+void MainWindow::showAddProduct() const{
+    aggiungiProdotto->show();
+    catalogo->hide();
+    modificaProdotto->hide();
+}
+void MainWindow::showCatalog() const{
+    std::cout<<"Mostra catalogo"<<endl;
+    aggiungiProdotto->hide();
+    catalogo->show();
+    modificaProdotto->hide();
+}
+void MainWindow::showModifyProduct() const{
+    aggiungiProdotto->hide();
+    catalogo->hide();
+    modificaProdotto->show();
 }

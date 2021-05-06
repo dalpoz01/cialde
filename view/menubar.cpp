@@ -8,7 +8,11 @@ MenuBar::MenuBar(QWidget *parent) :
     catalog(new QAction("Catalogo", this)),
     addProduct(new QAction("Aggiungi Prodotto", this)),
     modProduct(new QAction("Modifica prodotto",this)),
-    carrello(new QAction("Carrello", this)){
+    carrello(new QAction("Carrello", this)),
+    showCatalog(new QAction("showCatalog",this)),
+    showAddProduct(new QAction("showAddProduct",this)),
+    showModProduct(new QAction("showModProduct",this)),
+    showCarrello(new QAction("showCarrello",this)){
     menu->addAction(load);
     menu->addAction(save);
     addMenu(menu);
@@ -16,6 +20,8 @@ MenuBar::MenuBar(QWidget *parent) :
     addAction(addProduct);
     addAction(modProduct);
     addAction(carrello);
+
+    connect(showCatalog, SIGNAL(triggered()), this, SIGNAL(showCatalogSig()));
 }
 QAction* MenuBar::getCarrello(){
     return carrello;
