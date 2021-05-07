@@ -5,6 +5,7 @@
         <capacity>50</capacity>
         <weight>5</weight>
         <price>25</price>
+	<discount>5</discount>
         <stockavailability>10</stockavailability>
         <radius>3</radius>
     </WaffleBox>
@@ -13,6 +14,7 @@
         <capacity>100</capacity>
         <weight>30</weight>
         <price>27</price>
+	<discount>5</discount>
         <stockavailability>5</stockavailability>
         <height>5</height>
         <width>2</width>
@@ -22,6 +24,7 @@
         <capacity>70</capacity>
         <weight>20</weight>
         <price>50</price>
+	<discount>5</discount>
         <stockavailability>20</stockavailability>
         <height>8</height>
         <int_diameter>0.9</int_diameter>
@@ -31,6 +34,7 @@
         <capacity>50</capacity>
         <weight>15</weight>
         <price>40</price>
+	<discount>5</discount>
         <stockavailability>50</stockavailability>
         <height>8</height>
         <ext_diameter>4</ext_diameter>
@@ -40,6 +44,7 @@
         <capacity>50</capacity>
         <weight>20</weight>
         <price>50</price>
+	<discount>5</discount>
         <stockavailability>5</stockavailability>
         <height>8</height>
         <ext_diameter>4</ext_diameter>
@@ -51,6 +56,7 @@
         <capacity>50</capacity>
         <weight>50</weight>
         <price>70</price>
+	<discount>5</discount>
         <stockavailability>10</stockavailability>
         <height>8</height>
         <ext_diameter>4</ext_diameter>
