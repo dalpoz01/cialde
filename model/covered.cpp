@@ -16,3 +16,5 @@ bool Covered::operator !=(const Covered&c) {return ConeBox::operator !=(c) || ta
 
 //Clone
 Covered* Covered::clone() const {return new Covered(*this);}
+
+std::string Covered::getItemType() const{return "CoveredBox";}

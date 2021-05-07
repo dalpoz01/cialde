@@ -39,6 +39,7 @@ public:
 
     //CLONE
     virtual WaffleBox *clone() const = 0;
+    virtual std::string getItemType() const = 0;
 
 };
 

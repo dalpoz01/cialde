@@ -33,11 +33,6 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                         if(reader.name() == "capacity")
                             capacity = reader.readElementText().toUInt();
                         if(reader.name() == "weight")std::string ID;
-                        u_int capacity;
-                        u_int weight;
-                        double price;
-                        u_int discount;
-                        u_int stockavailability;
                             weight = reader.readElementText().toUInt();
                         if(reader.name() == "price")
                             price = reader.readElementText().toDouble();
@@ -88,7 +83,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                             ConeBox* co = new ConeBox(ID,capacity,weight,price,discount,stockAva,height,ext_diam);
                             temp.push_back(DeepPtr<WaffleBox>(co));
                             delete co;
-                        }else if(itemType == "Branded"){
+                        }else if(itemType == "BrandedBox"){
                             unsigned int height;
                             unsigned int ext_diam;
                             std::string princ;
@@ -105,7 +100,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                             Branded* b = new Branded(ID,capacity,weight,price,discount,stockAva,height,ext_diam,princ,seco);
                             temp.push_back(DeepPtr<WaffleBox>(b));
                             delete b;
-                        }else if(itemType == "Covered"){
+                        }else if(itemType == "CoveredBox"){
                             unsigned int height;
                             unsigned int ext_diam;
                             std::string taste;
@@ -134,3 +129,98 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
     }
     return temp;
 }
+
+void XmlManagement::write(const Container<DeepPtr<WaffleBox>> &cont) const{
+    QDir directory;
+    //verifico che esista la directory, altrimento la creo
+    if(!directory.exists(QString::fromStdString(path))) directory.mkdir(QString::fromStdString(path));
+
+    QFile xmlFile(QString::fromStdString(path+fileName)); //Prendo il file XML
+    //verifico che sia presente anche il file dove scrivere
+    if(xmlFile.exists() && xmlFile.open(QIODevice::WriteOnly)){
+         QXmlStreamWriter writer(&xmlFile);
+         writer.writeStartDocument();
+         writer.writeStartElement("element");
+         for(Container<DeepPtr<WaffleBox>>::const_iterator it = cont.begin(); it != cont.end(); ++it){
+             const WaffleBox* wb;
+             wb = it->operator ->(); //Ottengo l'oggetto puntato dall'iteratore costante
+             writer.writeStartElement("WaffleBox");
+             writer.writeAttribute("type", QString::fromStdString(wb->getItemType()));
+
+             writer.writeStartElement("ID");
+             writer.writeCharacters(QString::fromStdString(wb->getID()));
+             writer.writeEndElement();
+
+             writer.writeStartElement("capacity");
+             writer.writeCharacters(QString::fromStdString(UIntToString(wb->getCapacity())));
+             writer.writeEndElement();
+
+             writer.writeStartElement("weight");
+             writer.writeCharacters(QString::fromStdString(UIntToString(wb->getWeight())));
+             writer.writeEndElement();
+
+             writer.writeStartElement("price");
+             writer.writeCharacters(QString::fromStdString(DoubleToString(wb->getPrice())));
+             writer.writeEndElement();
+
+             writer.writeStartElement("discount");
+             writer.writeCharacters(QString::fromStdString(UIntToString(wb->getDiscount())));
+             writer.writeEndElement();
+
+             writer.writeStartElement("stockavailability");
+             writer.writeCharacters(QString::fromStdString(UIntToString(wb->getStockAvailability())));
+             writer.writeEndElement();
+
+             if(wb->getItemType() == "CircleBox"){
+                 writer.writeStartElement("radius");
+                 writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const CircleBox*>(wb)->getRadius())));
+                 writer.writeEndElement();
+             }else if(wb->getItemType() == "VentaglioBox"){
+                 writer.writeStartElement("height");
+                 writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const VentaglioBox*>(wb)->getHeight())));
+                 writer.writeEndElement();
+                 writer.writeStartElement("width");
+                 writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const VentaglioBox*>(wb)->getWidth())));
+                 writer.writeEndElement();
+             }else if(wb->getItemType() == "CannoloBox"){
+                 writer.writeStartElement("height");
+                 writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const CannoloBox*>(wb)->getHeight())));
+                 writer.writeEndElement();
+                 writer.writeStartElement("int_diameter");
+                 writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const CannoloBox*>(wb)->getIntDiameter())));
+                 writer.writeEndElement();
+             }else if(wb->getItemType() == "ConeBox"){
+                 writer.writeStartElement("height");
+                 writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const ConeBox*>(wb)->getHeight())));
+                 writer.writeEndElement();
+                 writer.writeStartElement("ext_diameter");
+                 writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const ConeBox*>(wb)->getExtDiameter())));
+                 writer.writeEndElement();
+             }else if(wb->getItemType() == "CoveredBox"){
+                 writer.writeStartElement("height");
+                 writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const Covered*>(wb)->getHeight())));
+                 writer.writeEndElement();
+                 writer.writeStartElement("taste");
+                 writer.writeCharacters(QString::fromStdString(static_cast<const Covered*>(wb)->getTaste()));
+                 writer.writeEndElement();
+             }else if(wb->getItemType() == "BrandedBox"){
+                 writer.writeStartElement("height");
+                 writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const Branded*>(wb)->getHeight())));
+                 writer.writeEndElement();
+                 writer.writeStartElement("principal_color");
+                 writer.writeCharacters(QString::fromStdString(static_cast<const Branded*>(wb)->getPrincipalColor()));
+                 writer.writeEndElement();
+                 writer.writeStartElement("secondary_color");
+                 writer.writeCharacters(QString::fromStdString(static_cast<const Branded*>(wb)->getSecundaryColor()));
+                 writer.writeEndElement();
+             }
+             writer.writeEndElement();  //</WaffleBox>
+         }
+         writer.writeEndElement();  //</element>
+         writer.writeEndDocument();
+    }
+}
+
+std::string XmlManagement::DoubleToString(double d){std::stringstream stream; stream << d; return stream.str();}
+
+std::string XmlManagement::UIntToString(unsigned int i){std::stringstream stream; stream << i; return stream.str();}

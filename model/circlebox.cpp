@@ -18,3 +18,5 @@ bool CircleBox::operator !=(const CircleBox &c) {return WaffleBox::operator !=(c
 
 //Clone
 CircleBox* CircleBox::clone() const {return new CircleBox(*this);}
+
+std::string CircleBox::getItemType() const{return "CircleBox";}

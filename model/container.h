@@ -131,12 +131,12 @@ public:
     iterator erase(iterator, iterator);
     iterator insert(iterator, const T&);
 
-    /*
-     * const_iterator cbegin() const;   //ritorna iteratore costante che punta al primo elemento (non modificabile essendo const_iterator)
-     * const_iterator cend() const; //ritorna const_iterator che punta past-the-end del container
-     * const_iterator begin() const;    //ritorna iteratore costante al primo elemento del container
-     * const_iterator end() const;  //ritorna const_iterator past-the-end
-     */
+
+     //const_iterator cbegin() const;   //ritorna iteratore costante che punta al primo elemento (non modificabile essendo const_iterator)
+    // const_iterator cend() const; //ritorna const_iterator che punta past-the-end del container
+     const_iterator begin() const;    //ritorna iteratore costante al primo elemento del container
+     const_iterator end() const;  //ritorna const_iterator past-the-end
+
 
 };
 
@@ -435,6 +435,12 @@ template<class T>
 typename Container<T>::iterator Container<T>::iterator::operator -(const const_iterator& cit) const{return iterator(cit-p - p);}
 
 /*********************** CLASSE const_iterator ***************************/
+
+template <class T>
+typename Container<T>::const_iterator Container<T>::begin() const {return const_iterator(p);}
+
+template <class T>
+typename Container<T>::const_iterator Container<T>::end() const {return const_iterator(p+size);}
 
 template<class T>
 Container<T>::const_iterator::const_iterator(T* t) : p(t) {}

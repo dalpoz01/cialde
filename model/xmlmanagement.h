@@ -3,7 +3,9 @@
 
 #include<QFile>
 #include<QXmlStreamReader>
-#include <QMessageBox>
+#include<QXmlStreamWriter>
+#include<QMessageBox>
+#include<QDir>
 
 #include <iostream>
 #include <string>
@@ -24,10 +26,14 @@ class XmlManagement {
 private:
     std::string path;
     std::string fileName;
+
+    static std::string DoubleToString(double);
+    static std::string UIntToString(unsigned int);
 public:
     XmlManagement(const std::string&, const std::string&);
     //Metodo per leggere Xml
     Container<DeepPtr<WaffleBox>> read() const;
+    void write(const Container<DeepPtr<WaffleBox>>&) const;
 };
 
 #endif // XMLMANAGEMENT_H
