@@ -41,7 +41,8 @@ SOURCES += \
     view/modifyproduct.cpp \
     view/searchinventory.cpp \
     model/xmlmanagement.cpp \
-    controller.cpp
+    controller.cpp \
+    view/table.cpp
     
 
 
@@ -64,7 +65,8 @@ HEADERS += \
     view/modifyproduct.h \
     view/searchinventory.h \
     model/xmlmanagement.h \
-    controller.h
+    controller.h \
+    view/table.h
 
 RESOURCES *= \
     Data/res.qrc
