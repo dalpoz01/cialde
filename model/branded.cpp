@@ -18,3 +18,5 @@ bool Branded::operator !=(const Branded& b) {return ConeBox::operator !=(b) || p
 
 //Clone
 Branded* Branded::clone() const {return new Branded(*this);}
+
+std::string Branded::getItemType() const{return "BrandedBox";}

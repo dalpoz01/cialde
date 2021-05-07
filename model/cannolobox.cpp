@@ -15,4 +15,4 @@ bool CannoloBox::operator !=(const CannoloBox& c) const {return HeightProviderBo
 //Clone
 CannoloBox* CannoloBox::clone() const{return new CannoloBox(*this);}
 
-
+std::string CannoloBox::getItemType() const{return "CannoloBox";}

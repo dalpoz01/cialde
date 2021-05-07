@@ -24,6 +24,8 @@ public:
     //Clone
     virtual Branded *clone() const;
 
+    std::string getItemType() const;
+
 };
 
 #endif // BRANDED_H

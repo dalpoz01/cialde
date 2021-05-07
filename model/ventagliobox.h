@@ -21,6 +21,7 @@ public:
 
     //CLONE
     virtual VentaglioBox *clone() const;
+    std::string getItemType() const;
 };
 
 #endif // VENTAGLIOBOX_H

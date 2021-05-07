@@ -40,7 +40,10 @@ SOURCES += \
     view/addproduct.cpp \
     view/modifyproduct.cpp \
     view/searchinventory.cpp \
+    model/xmlmanagement.cpp \
     controller.cpp
+    
+
 
 HEADERS += \
     view/mainwindow.h \
@@ -60,6 +63,7 @@ HEADERS += \
     view/addproduct.h \
     view/modifyproduct.h \
     view/searchinventory.h \
+    model/xmlmanagement.h \
     controller.h
 
 RESOURCES *= \

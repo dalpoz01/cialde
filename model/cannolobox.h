@@ -21,6 +21,8 @@ public:
 
     //CLONE
     virtual CannoloBox *clone() const;
+
+    std::string getItemType() const;
 };
 
 #endif // CANNOLOBOX_H
