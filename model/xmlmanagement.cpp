@@ -12,7 +12,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
     }else{
         QXmlStreamReader reader(&xmlFile);
         if(reader.readNextStartElement()){ //Reads until the next start element within the current element.
-            if(reader.name() == "elemento"){
+            if(reader.name() == "element"){
                 while(reader.readNextStartElement()){ //Inizio a leggere i WaffleBox
 
                     try{
@@ -32,7 +32,12 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                             ID = reader.readElementText().toStdString();
                         if(reader.name() == "capacity")
                             capacity = reader.readElementText().toUInt();
-                        if(reader.name() == "weight")
+                        if(reader.name() == "weight")std::string ID;
+                        u_int capacity;
+                        u_int weight;
+                        double price;
+                        u_int discount;
+                        u_int stockavailability;
                             weight = reader.readElementText().toUInt();
                         if(reader.name() == "price")
                             price = reader.readElementText().toDouble();
