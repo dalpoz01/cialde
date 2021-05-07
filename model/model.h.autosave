@@ -17,6 +17,7 @@ public:
     void removeBox(u_int);
     void removeBox(DeepPtr<WaffleBox>&);
     void loadXMl(); //Carico i dati dal file
+    int getSize() const;
 
 };
 

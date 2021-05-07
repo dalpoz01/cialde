@@ -42,7 +42,8 @@ SOURCES += \
     view/searchinventory.cpp \
     model/xmlmanagement.cpp \
     controller.cpp \
-    view/table.cpp
+    view/table.cpp \
+    model/tablemanagement.cpp
     
 
 
@@ -66,7 +67,8 @@ HEADERS += \
     view/searchinventory.h \
     model/xmlmanagement.h \
     controller.h \
-    view/table.h
+    view/table.h \
+    model/tablemanagement.h
 
 RESOURCES *= \
     Data/res.qrc
