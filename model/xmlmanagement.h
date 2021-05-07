@@ -33,6 +33,7 @@ public:
     XmlManagement(const std::string&, const std::string&);
     //Metodo per leggere Xml
     Container<DeepPtr<WaffleBox>> read() const;
+    //Metodo per leggere xml
     void write(const Container<DeepPtr<WaffleBox>>&) const;
 };
 

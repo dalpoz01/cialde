@@ -11,3 +11,5 @@ void Model::removeBox(DeepPtr<WaffleBox>& ptr){container.erase(ptr);}
 void Model::loadXMl(){XmlManagement loader(path,fileName); container = loader.read();}
 
 int Model::getSize() const{return container.getSize();}
+
+WaffleBox* Model::getItem(unsigned int i) const{return container[i].operator ->();}

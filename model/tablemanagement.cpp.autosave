@@ -19,6 +19,7 @@ int TableManagement::rowCount(const QModelIndex&) const{return model->getSize();
 //Metodo che ritorna il numero di colonne (attributi del WaffleBox)
 int TableManagement::columnCount(const QModelIndex&) const{return 6;}
 
+//Metodo che ritorna uno degli attributi di un WaffleBox
 QVariant TableManagement::data(const QModelIndex &modelIndex, int role) const{
     if(role != Qt::DisplayRole) return QVariant(); //Qt::DisplayRole è una costante == 0, indica che i dati vengono presi in QString
     switch(modelIndex.column()){
@@ -40,6 +41,7 @@ QVariant TableManagement::data(const QModelIndex &modelIndex, int role) const{
     return QVariant();
 }
 
+//Metodo 
 QVariant TableManagement::headerData(int section, Qt::Orientation orientation, int role) const{
     if(role != Qt::DisplayRole) return QVariant();
     if(orientation == Qt::Horizontal){

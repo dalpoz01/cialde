@@ -4,9 +4,9 @@
 #include"model.h"
 class TableManagement : public QAbstractTableModel{
 private:
-    std::string path;
-    std::string fileName;
     Model* model;
+    WaffleBox* wbToInsert;
+
 public:
     TableManagement(QObject * = nullptr,const std::string& = "../cialde-test/Data/Xml/", const std::string& = "product.xml");
     ~TableManagement();
@@ -15,6 +15,8 @@ public:
     int columnCount(const QModelIndex& = QModelIndex()) const override;
     QVariant data(const QModelIndex&, int = Qt::DisplayRole) const override;
     QVariant headerData(int, Qt::Orientation, int) const override;
+    bool insertRows(int, int, const QModelIndex&);
+    bool removeRows(int, int, const QModelIndex&);
 };
 
 #endif // TABLEMANAGEMENT_H
