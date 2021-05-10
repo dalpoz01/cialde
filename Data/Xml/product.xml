@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<element>
+<radix>
     <WaffleBox type="CircleBox">
         <ID>CIB03</ID>
         <capacity>50</capacity>
@@ -62,4 +62,4 @@
         <ext_diameter>4</ext_diameter>
         <taste>Choco</taste>
     </WaffleBox>
-</element>
+</radix>
