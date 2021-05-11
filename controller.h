@@ -19,6 +19,7 @@ public slots:
     void showCatalogo() const;
     void showAddProduct() const;
     void showModProduct() const;
+    void Aggiungi() const;
 };
 
 #endif // CONTROLLER_H

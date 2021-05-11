@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent):
 
     qv->setMenuBar(menu);
     //menu->getCarrello()->setVisible(false);
-    aggiungiProdotto->hide();
+    //aggiungiProdotto->hide();
     catalogo->hide();
     ricercaProdotto->hide();
     modificaProdotto->hide();
@@ -47,6 +47,7 @@ QSize MainWindow::sizeHint() const {
 void MainWindow::setController(Controller *c){
     controller=c;
     connect(menu->getCatalog(),SIGNAL(triggered()),controller,SLOT(showCatalogo()));
+    connect(aggiungiProdotto->getAdd(),SIGNAL(clicked()),controller,SLOT(Aggiungi()));
     connect(menu->getAddProduct(),SIGNAL(triggered()),controller,SLOT(showAddProduct()));
     connect(menu->getModProduct(),SIGNAL(triggered()),controller,SLOT(showModProduct()));
 }
@@ -55,6 +56,10 @@ void MainWindow::showAddProduct() const{
     catalogo->hide();
     modificaProdotto->hide();
     ricercaProdotto->hide();
+}
+void MainWindow::Aggiungi() const {
+    std::cout<<"Aggiunto"<<endl;
+
 }
 void MainWindow::showCatalog() const{
     catalogo->show();

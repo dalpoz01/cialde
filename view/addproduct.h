@@ -16,11 +16,12 @@ private:
     QHBoxLayout *base;
     QVBoxLayout *left,*right;
     QComboBox *item;
-    QLabel *imgLabel,*tipo,*nome,*id,*nPezzi,*prezzo;
+    QLabel *imgLabel,*tipoLabel,*nomeLabel,*idLabel,*nPezziLabel,*prezzoLabel;
     QPushButton *addPhoto,*add,*cancel;
     QLineEdit *editNome,*editID,*editNPezzi,*editPrezzo;
 public:
     explicit addproduct(QWidget * = nullptr);
+    QPushButton* getAdd();
 };
 
 #endif // ADDPRODUCT_H

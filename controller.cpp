@@ -19,3 +19,6 @@ void Controller::showAddProduct() const{
 void Controller::showModProduct() const{
     view->showModifyProduct();
 }
+void Controller::Aggiungi() const{
+    view->Aggiungi();
+}

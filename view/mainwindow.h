@@ -40,6 +40,7 @@ public:
     void showAddProduct() const;
     void showCatalog() const;
     void showModifyProduct() const;
+    void Aggiungi() const;
 
     MenuBar *getMenu() const;
 };
