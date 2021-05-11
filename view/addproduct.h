@@ -13,12 +13,11 @@
 class addproduct : public QWidget{
     Q_OBJECT
 private:
-    QHBoxLayout *base;
-    QVBoxLayout *left,*right;
-    QComboBox *item;
+
+    QComboBox *itemComboBox;
     QLabel *imgLabel,*tipoLabel,*nomeLabel,*idLabel,*nPezziLabel,*prezzoLabel;
-    QPushButton *addPhoto,*add,*cancel;
-    QLineEdit *editNome,*editID,*editNPezzi,*editPrezzo;
+    QPushButton *addPhoto,*addButton,*cancelButton;
+    QLineEdit *nomeLine,*idLine,*npezziLine,*prezzoLine;
 public:
     explicit addproduct(QWidget * = nullptr);
     QPushButton* getAdd();
