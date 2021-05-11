@@ -6,12 +6,13 @@
 #include<QXmlStreamWriter>
 #include<QMessageBox>
 #include<QDir>
+#include<QSaveFile>
+#include<QIODevice>
 
 #include <iostream>
 #include <string>
 #include <sstream>
 
-#include<string>
 #include "container.h"
 #include "deepptr.h"
 #include "wafflebox.h"
@@ -30,10 +31,10 @@ private:
     static std::string DoubleToString(double);
     static std::string UIntToString(unsigned int);
 public:
-    XmlManagement(const std::string&, const std::string&);
+    XmlManagement(const std::string& = "../Data/Xml/", const std::string& = "products.xml");
     //Metodo per leggere Xml
     Container<DeepPtr<WaffleBox>> read() const;
-    //Metodo per leggere xml
+    //Metodo per scrivere xml
     void write(const Container<DeepPtr<WaffleBox>>&) const;
 };
 

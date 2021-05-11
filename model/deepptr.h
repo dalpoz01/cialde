@@ -52,7 +52,7 @@ template<class T>
 T& DeepPtr<T>::operator *() const{ if(p != nullptr) return *p;}
 
 template<class T>
-T* DeepPtr<T>::operator ->() const{ if(p != nullptr) return p;}
+T* DeepPtr<T>::operator ->() const{ /*if(p != nullptr)*/ return p;}
 
 template<class T>
 bool DeepPtr<T>::operator ==(const DeepPtr& ptr) const{ return p == ptr.p ? true : false;}

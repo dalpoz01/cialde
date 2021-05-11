@@ -43,7 +43,8 @@ SOURCES += \
     model/xmlmanagement.cpp \
     controller.cpp \
     view/table.cpp \
-    model/tablemanagement.cpp
+    model/tablemodel.cpp \
+    view/tablezone.cpp
     
 
 
@@ -68,7 +69,8 @@ HEADERS += \
     model/xmlmanagement.h \
     controller.h \
     view/table.h \
-    model/tablemanagement.h
+    model/tablemodel.h \
+    view/tablezone.h
 
-RESOURCES *= \
+RESOURCES += \
     Data/res.qrc

@@ -1,7 +1,16 @@
 #include "mainwindow.h"
 #include "controller.h"
 
-MainWindow::MainWindow(QWidget *parent): QWidget(parent) ,menu(new MenuBar(this)), catalogo(new catalog(this)), aggiungiProdotto(new addproduct(this)), modificaProdotto(new modifyProduct(this)), ricercaProdotto(new SearchInventory(this)) {
+MainWindow::MainWindow(QWidget *parent):
+    QWidget(parent),
+    menu(new MenuBar(this)),
+    catalogo(new catalog(this)),
+    aggiungiProdotto(new addproduct(this)),
+    modificaProdotto(new modifyProduct(this)),
+    ricercaProdotto(new SearchInventory(this))/*,
+    absModel(new TableModel(this)),
+    tabella(new TableZone(this,absModel))*/{
+
     setWindowTitle("Cialde Pro");
     //Centro la finestra sullo schermo
     QSize size = sizeHint();
@@ -26,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent): QWidget(parent) ,menu(new MenuBar(this)
     qv->addWidget(catalogo);
     qv->addWidget(aggiungiProdotto);
     qv->addWidget(modificaProdotto);
+    //qv->addWidget(tabella);
 
     setLayout(qv);
 

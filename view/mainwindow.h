@@ -11,6 +11,8 @@
 #include "view/addproduct.h"
 #include "view/modifyproduct.h"
 #include "view/searchinventory.h"
+#include "view/tablezone.h"
+#include "model/tablemodel.h"
 
 class Controller;
 using namespace std;
@@ -24,6 +26,10 @@ private:
     addproduct *aggiungiProdotto;
     modifyProduct *modificaProdotto;
     SearchInventory* ricercaProdotto;
+
+   /* TableModel* absModel;
+    TableZone* tabella;*/
+
     Controller *controller;
 
 public:

@@ -1,15 +1,17 @@
-#ifndef TABLEMANAGEMENT_H
-#define TABLEMANAGEMENT_H
+#ifndef TABLEMODEL_H
+#define TABLEMODEL_H
+
 #include<QAbstractTableModel>
 #include"model.h"
-class TableManagement : public QAbstractTableModel{
+
+class TableModel : public QAbstractTableModel{
 private:
     Model* model;
     WaffleBox* wbToInsert;
 
 public:
-    TableManagement(QObject * = nullptr,const std::string& = "../cialde-test/Data/Xml/", const std::string& = "product.xml");
-    ~TableManagement();
+    TableModel(QObject * = nullptr, const std::string& = "../cialde-test/Data/Xml/", const std::string& = "products.xml");
+    ~TableModel();
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override; //Metodo di QAbstractTableModel che ritorna numero di righe per la view
     int columnCount(const QModelIndex& = QModelIndex()) const override; //Metodo di QAbstractTableModel che ritorna numero di colonne per la view
@@ -19,4 +21,4 @@ public:
     bool removeRows(int, int, const QModelIndex&); //Metodo di QAbstractTableModel che rimuove una riga dalla tabella
 };
 
-#endif // TABLEMANAGEMENT_H
+#endif // TABLEMODEL_H
