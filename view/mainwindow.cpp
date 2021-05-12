@@ -47,7 +47,6 @@ QSize MainWindow::sizeHint() const {
 void MainWindow::setController(Controller *c){
     controller=c;
     connect(menu->getCatalog(),SIGNAL(triggered()),controller,SLOT(showCatalogo()));
-    connect(aggiungiProdotto->getAdd(),SIGNAL(clicked()),controller,SLOT(Aggiungi()));
     connect(menu->getAddProduct(),SIGNAL(triggered()),controller,SLOT(showAddProduct()));
     connect(menu->getModProduct(),SIGNAL(triggered()),controller,SLOT(showModProduct()));
 }
