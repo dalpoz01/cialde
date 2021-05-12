@@ -6,6 +6,8 @@
 #include <QHBoxLayout>
 #include <QDesktopWidget>
 #include <QApplication>
+#include <QMessageBox>
+
 #include "view/menubar.h"
 #include "view/catalog.h"
 #include "view/addproduct.h"
@@ -40,7 +42,7 @@ public:
     void showAddProduct() const;
     void showCatalog() const;
     void showModifyProduct() const;
-    void Aggiungi() const;
+    void insertItemView(WaffleBox*);
 
     MenuBar *getMenu() const;
 };

@@ -5,6 +5,8 @@
 #include "view/mainwindow.h"
 #include "model/model.h"
 
+class MainWindow;
+
 class Controller : public QObject
 {
     Q_OBJECT
@@ -13,13 +15,13 @@ private:
     Model *model;
 public:
     explicit Controller(QObject *parent = nullptr);
-    void setView(MainWindow* m);
-    void setModel(Model *m);
+    void setView(MainWindow*);
+    void setModel(Model*);
 public slots:
     void showCatalogo() const;
     void showAddProduct() const;
     void showModProduct() const;
-    void Aggiungi() const;
+    void insertItemController(WaffleBox*) const;
 };
 
 #endif // CONTROLLER_H

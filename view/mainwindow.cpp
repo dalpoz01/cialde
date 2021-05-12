@@ -49,6 +49,7 @@ void MainWindow::setController(Controller *c){
     connect(menu->getCatalog(),SIGNAL(triggered()),controller,SLOT(showCatalogo()));
     connect(menu->getAddProduct(),SIGNAL(triggered()),controller,SLOT(showAddProduct()));
     connect(menu->getModProduct(),SIGNAL(triggered()),controller,SLOT(showModProduct()));
+    connect(aggiungiProdotto,SIGNAL(insertItemController()),controller,SLOT(insertItemController()));
 }
 void MainWindow::showAddProduct() const{
     aggiungiProdotto->show();
@@ -56,7 +57,11 @@ void MainWindow::showAddProduct() const{
     modificaProdotto->hide();
     ricercaProdotto->hide();
 }
-void MainWindow::Aggiungi() const {
+
+void MainWindow::insertItemView(WaffleBox* wb){
+
+    controller->insertItemController(wb);
+    QMessageBox::information(this,"DONE IT!", "Inserimento avvenuto con successo");
     std::cout<<"Aggiunto"<<endl;
 
 }

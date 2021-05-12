@@ -14,6 +14,17 @@
 #include <QButtonGroup>
 #include <QMessageBox>
 
+#include "model/wafflebox.h"
+#include "model/circlebox.h"
+#include "model/ventagliobox.h"
+#include "model/heightproviderbox.h"
+#include "model/cannolobox.h"
+#include "model/conebox.h"
+#include "model/branded.h"
+#include "model/covered.h"
+
+#include "controller.h"
+
 class addproduct : public QWidget{
     Q_OBJECT
 private:
@@ -97,6 +108,7 @@ public:
 private slots:
     void resetFields();    //Metodo per resettare a " " tutti i campi.
     void showItemTypeField(const QString&) const;
+    void insert();
 };
 
 #endif // ADDPRODUCT_H
