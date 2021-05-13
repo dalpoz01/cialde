@@ -9,8 +9,9 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     Controller c;
-    /*Model m(2);
-    c.setModel(&m);*/
+
+    c.setModel(c.getModel());
+
     c.setView(&w);
     w.setController(&c);
     w.show();

@@ -395,7 +395,7 @@ void AddProduct::insert(){
           QMessageBox::critical(this,"Errore","Campi essenziali errati o vuoti",QMessageBox::Ok);
     }
 
-    if(temp){
+    if(temp != nullptr){
         emit signalToInsert(temp);
         resetFields();
         delete temp;

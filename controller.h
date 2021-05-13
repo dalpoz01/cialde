@@ -4,6 +4,8 @@
 #include <QObject>
 #include "view/mainwindow.h"
 #include "model/model.h"
+#include "model/container.h"
+
 
 class MainWindow;
 
@@ -17,6 +19,7 @@ public:
     explicit Controller(QObject *parent = nullptr);
     void setView(MainWindow*);
     void setModel(Model*);
+    Model* getModel() const;
 public slots:
     void showCatalogo() const;
     void showAddProduct() const;

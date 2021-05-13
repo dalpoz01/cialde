@@ -16,7 +16,7 @@ private:
     void resize();
 public:
     //Costruttore standard
-    Container(u_int = 1, u_int = 0);
+    Container(u_int = 5, u_int = 10);
     //Fill constructor, cioè crea il contenitore avente n copie di t.
     Container(const T&, u_int);
     //costruttore di copia
@@ -295,7 +295,13 @@ template<class T>
 bool Container<T>::empty() const{return size==0;}
 
 template<class T>
-void Container<T>::push_back(const T& t){if(size == capacity) resize(); p[size] = t; size++;} //size è l'ultimo elemento
+void Container<T>::push_back(const T& t){
+    if(size == capacity){
+        resize();
+    }
+    p[size] = t;
+    size++;
+} //size è l'ultimo elemento
 
 template<class T>
 void Container<T>::pop_back(){if(size > 0) size--;}
