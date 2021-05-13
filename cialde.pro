@@ -23,9 +23,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 
-SOURCES += \
-    main.cpp \
-    view/mainwindow.cpp \
+SOURCES +=\
+        main.cpp \
     model/covered.cpp \
     model/wafflebox.cpp \
     model/circlebox.cpp \
@@ -34,22 +33,20 @@ SOURCES += \
     model/ventagliobox.cpp \
     model/cannolobox.cpp \
     model/branded.cpp \
+    model/xmlmanagement.cpp \
+    model/tablemodel.cpp \
     model/model.cpp \
     view/menubar.cpp \
     view/catalog.cpp \
     view/addproduct.cpp \
     view/modifyproduct.cpp \
     view/searchinventory.cpp \
-    model/xmlmanagement.cpp \
-    controller.cpp \
     view/table.cpp \
-    model/tablemodel.cpp \
-    view/tablezone.cpp
-    
+    view/tablezone.cpp \
+    view/mainwindow.cpp \
+    controller.cpp
 
-
-HEADERS += \
-    view/mainwindow.h \
+HEADERS +=\
     model/covered.h \
     model/wafflebox.h \
     model/circlebox.h \
@@ -59,18 +56,19 @@ HEADERS += \
     model/cannolobox.h \
     model/branded.h \
     model/container.h \
-    model/deepptr.h \
+    model/xmlmanagement.h \
+    model/tablemodel.h \
     model/model.h \
+    model/deepptr.h \
     view/menubar.h \
     view/catalog.h \
     view/addproduct.h \
     view/modifyproduct.h \
     view/searchinventory.h \
-    model/xmlmanagement.h \
-    controller.h \
     view/table.h \
-    model/tablemodel.h \
-    view/tablezone.h
+    view/tablezone.h \
+    view/mainwindow.h \
+    controller.h
 
 RESOURCES += \
     Data/res.qrc

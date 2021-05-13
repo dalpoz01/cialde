@@ -1,6 +1,6 @@
 #include "addproduct.h"
 
-addproduct::addproduct(QWidget(*parent)):QWidget(parent),
+AddProduct::AddProduct(QWidget(*parent)): QWidget(parent),
 
     itemComboBox(new QComboBox(this)),
     capacityBox(new QComboBox(this)),
@@ -111,41 +111,44 @@ addproduct::addproduct(QWidget(*parent)):QWidget(parent),
 
     //Listener
     connect(itemComboBox,SIGNAL(currentIndexChanged(const QString&)),this,SLOT(showItemTypeField(const QString&)));
-    connect(addButton,SIGNAL(clicked()),this,SLOT(insert()));
     connect(cancelButton,SIGNAL(clicked()),this,SLOT(resetFields()));
 
 }
 
-QPushButton* addproduct::getAdd(){
+QPushButton* AddProduct::getAdd(){
     return addButton;
 }
 
-void addproduct::showCircle(bool flag) const{
+void AddProduct::showCircle(bool flag) const{
     radiusLabel->setVisible(flag);
     radiusSpin->setVisible(flag);
 }
 
-void addproduct::showHeight(bool flag) const{
+void AddProduct::showHeight(bool flag) const{
     heightLabel->setVisible(flag);
     heightLine->setVisible(flag);
 }
 
-void addproduct::showVentaglio(bool flag) const{
+void AddProduct::showVentaglio(bool flag) const{
+
     widthLabel->setVisible(flag);
     widthLine->setVisible(flag);
 }
 
-void addproduct::showCannolo(bool flag) const{
+void AddProduct::showCannolo(bool flag) const{
+
     intdiamLabel->setVisible(flag);
     intdiamLine->setVisible(flag);
 }
 
-void addproduct::showCone(bool flag) const{
+void AddProduct::showCone(bool flag) const{
+
     extdiamLabel->setVisible(flag);
     extdiamLine->setVisible(flag);
 }
 
-void addproduct::showBranded(bool flag) const{
+void AddProduct::showBranded(bool flag) const{
+
     prncolorLabel->setVisible(flag);
     seccolorLabel->setVisible(flag);
     prncolorLine->setVisible(flag);
@@ -153,12 +156,13 @@ void addproduct::showBranded(bool flag) const{
     colorLabel->setVisible(flag);
 }
 
-void addproduct::showCovered(bool flag) const{
+void AddProduct::showCovered(bool flag) const{
+
     tasteLabel->setVisible(flag);
     tasteLine->setVisible(flag);
 }
 
-void addproduct::showCommon() const{
+void AddProduct::showCommon() const{
     showCircle(false);
     showHeight(false);
     showVentaglio(false);
@@ -169,7 +173,7 @@ void addproduct::showCommon() const{
 }
 
 
-void addproduct::createRadioLayout(QHBoxLayout* radioLayoutDown, QVBoxLayout* radioLayout, QHBoxLayout* radioLayoutUp)
+void AddProduct::createRadioLayout(QHBoxLayout* radioLayoutDown, QVBoxLayout* radioLayout, QHBoxLayout* radioLayoutUp)
 {
     radioLayoutUp->addWidget(dim1Radio);
     radioLayoutUp->addWidget(dim2Radio);
@@ -179,7 +183,7 @@ void addproduct::createRadioLayout(QHBoxLayout* radioLayoutDown, QVBoxLayout* ra
     radioLayout->addLayout(radioLayoutDown);
 }
 
-void addproduct::resetCommon() const{
+void AddProduct::resetCommon() const{
     itemComboBox->setCurrentIndex(0);
     capacityBox->setCurrentIndex(0);
     nomeLine->setText(" ");
@@ -192,40 +196,40 @@ void addproduct::resetCommon() const{
 }
 
 
-void addproduct::resetCircle() const{
+void AddProduct::resetCircle() const{
     radiusSpin->setValue(0);
 }
 
-void addproduct::resetHeight() const{
+void AddProduct::resetHeight() const{
     heightLine->setText(" ");
 }
 
-void addproduct::resetVentaglio() const{
+void AddProduct::resetVentaglio() const{
     widthLine->setText(" ");
 }
 
-void addproduct::resetCannolo() const{
+void AddProduct::resetCannolo() const{
 
     intdiamLine->setText(" ");
 }
 
-void addproduct::resetCone() const{
+void AddProduct::resetCone() const{
 
     extdiamLine->setText(" ");
 }
 
-void addproduct::resetBranded() const{
+void AddProduct::resetBranded() const{
 
     prncolorLine->setText(" ");
     seccolorLine->setText(" ");
 }
 
-void addproduct::resetCovered() const{
+void AddProduct::resetCovered() const{
 
     tasteLine->setText(" ");
 }
 
-void addproduct::resetFields(){
+void AddProduct::resetFields(){
 
     if(QMessageBox::question(this, "Attenzione" ,"Vuoi annullare l'inserimento e resettare i campi?", QMessageBox::Ok, QMessageBox::Close) == QMessageBox::Ok){
             resetCommon();
@@ -240,7 +244,7 @@ void addproduct::resetFields(){
      }
 }
 
-void addproduct::showItemTypeField(const QString& selection) const{
+void AddProduct::showItemTypeField(const QString& selection) const{
 
     if(selection == " - "){
 
@@ -264,7 +268,7 @@ void addproduct::showItemTypeField(const QString& selection) const{
     }else if(selection =="Ventaglio Box"){
 
         showCircle(false);
-        showHeight(false);
+        showHeight(true);
         showVentaglio(true);
         showCannolo(false);
         showCone(false);
@@ -274,7 +278,7 @@ void addproduct::showItemTypeField(const QString& selection) const{
     }else if(selection == "Cannolo Box"){
 
         showCircle(false);
-        showHeight(false);
+        showHeight(true);
         showVentaglio(false);
         showCannolo(true);
         showCone(false);
@@ -283,8 +287,8 @@ void addproduct::showItemTypeField(const QString& selection) const{
 
     }else if(selection  == "Cone Box"){
 
-        showCircle(true);
-        showHeight(false);
+        showCircle(false);
+        showHeight(true);
         showVentaglio(false);
         showCannolo(false);
         showCone(true);
@@ -293,8 +297,8 @@ void addproduct::showItemTypeField(const QString& selection) const{
 
     }else if(selection == "Covered Box"){
 
-        showCircle(true);
-        showHeight(false);
+        showCircle(false);
+        showHeight(true);
         showVentaglio(false);
         showCannolo(false);
         showCone(true);
@@ -303,7 +307,8 @@ void addproduct::showItemTypeField(const QString& selection) const{
 
     }else if(selection == "Branded Box"){
 
-        showCircle(true);
+        showCircle(false);
+        showHeight(true);
         showVentaglio(false);
         showCannolo(false);
         showCone(true);
@@ -312,7 +317,7 @@ void addproduct::showItemTypeField(const QString& selection) const{
     }
 }
 
-void addproduct::insert(){
+void AddProduct::insert(){
     WaffleBox* temp = nullptr;
     int typeIndex = itemComboBox->currentIndex();
     if(itemComboBox->currentText().toStdString() != " - " && nomeLine->text().toStdString() != " " && capacityBox->currentText().toUInt() != 0){
@@ -348,15 +353,19 @@ void addproduct::insert(){
                 break;
         case 1: radius = radiusSpin->text().toUInt(); //Tipo "Circle Box"
                 temp = new CircleBox(id,capa,peso,prezzo,disc,stockAva,radius);
+            break;
         case 2: height = heightLine->text().toUInt();
                 width = widthLine->text().toUInt();   //Tipo "Ventaglio Box"
                 temp = new VentaglioBox(id,capa,peso,prezzo,disc,stockAva,height,width);
+            break;
         case 3: height = heightLine->text().toUInt();
                 intDiam = intdiamLine->text().toUInt();   //Tipo "Cannolo Box"
                 temp = new CannoloBox(id,capa,peso,prezzo,disc,stockAva,height,intDiam);
+            break;
         case 4: height = heightLine->text().toUInt();
                 extDiam = extdiamLine->text().toUInt();   //Tipo "Cone Box"
                 temp = new ConeBox(id,capa,peso,prezzo,disc,stockAva,height,extDiam);
+            break;
         case 5: if(tasteLine->text().toStdString() == " "){
                     if(QMessageBox::question(this,"Ops","Hai dimenticato il gusto! \nIntendevi un ConeBox senza gusto?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
                         height = heightLine->text().toUInt();
@@ -368,6 +377,7 @@ void addproduct::insert(){
                 extDiam = extdiamLine->text().toUInt();
                 taste = tasteLine->text().toStdString(); //Tipo "Covered Box"
                 temp = new Covered(id,capa,peso,prezzo,disc,stockAva,height,extDiam,taste);
+            break;
         case 6: height = heightLine->text().toUInt();
                 extDiam = extdiamLine->text().toUInt();
                 if((prncolorLine->text().toStdString() == " " || seccolorLine->text().toStdString() == " ") ||
@@ -378,15 +388,16 @@ void addproduct::insert(){
                 princ = (prncolorLine->text().toStdString() == " " ? "White" : prncolorLine->text().toStdString());
                 seco = (seccolorLine->text().toStdString() == " " ? "White" : seccolorLine->text().toStdString());  //Tipo "Branded Box"
                 temp = new Branded(id,capa,peso,prezzo,disc,stockAva,height,extDiam,princ,seco);
-
+             break;
             }
 
     }else{
           QMessageBox::critical(this,"Errore","Campi essenziali errati o vuoti",QMessageBox::Ok);
     }
 
-    if(temp)
-        emit insertItemView(temp);  //Emetto segnale che indica al controller che ho l'oggetto pronto per essere inserito nel model
-        delete temp;    //ELimino l'oggetto, non serve più.
-
+    if(temp){
+        emit signalToInsert(temp);
+        resetFields();
+        delete temp;
+    }
 }

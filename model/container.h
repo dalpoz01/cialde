@@ -124,6 +124,7 @@ public:
     void erase(u_int,u_int); //rimuove elementi tra due indici
     void erase(u_int);  //rimuove elemento in quell'indice
     void erase(const T&);  //rimuove elemento T
+    bool find(const T&) const;
 
     iterator begin();
     iterator end();
@@ -331,6 +332,14 @@ void Container<T>::erase(const T& obj){
             erase(i);
 }
 
+template<class T>
+bool Container<T>::find(const T& obj) const{
+    bool flag = false;
+    for(u_int i = 0; i<size; ++i)
+        if(p[i] == obj)
+            flag=true;
+    return flag;
+}
 /*********************** CLASSE iterator ***************************/
 
 template<class T>

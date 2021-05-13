@@ -13,6 +13,7 @@ private:
 public:
 
     Model(const std::string& = "..cialde-test/Data/Xml", const std::string& = "products.xml", u_int = 10);
+    bool findItem(WaffleBox*) const;
     void addBox(WaffleBox*);
     void removeBox(u_int);
     void removeBox(DeepPtr<WaffleBox>&);
@@ -20,6 +21,7 @@ public:
     void writeXml() const;
     int getSize() const;
     WaffleBox* getItem(unsigned int i) const; //Metodo per ottenere l'obj nel container
+
 
 };
 

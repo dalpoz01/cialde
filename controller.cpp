@@ -19,7 +19,7 @@ void Controller::showAddProduct() const{
 void Controller::showModProduct() const{
     view->showModifyProduct();
 }
-void Controller::insertItemController(WaffleBox* wb) const{
+void Controller::insertItemController(WaffleBox* wb){
     model->addBox(wb);
-    view->insertItemView();
+    view->insertItemInfo();
 }

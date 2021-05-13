@@ -5,7 +5,7 @@ MainWindow::MainWindow(QWidget *parent):
     QWidget(parent),
     menu(new MenuBar(this)),
     catalogo(new catalog(this)),
-    aggiungiProdotto(new addproduct(this)),
+    aggiungiProdotto(new AddProduct(this)),
     modificaProdotto(new modifyProduct(this)),
     ricercaProdotto(new SearchInventory(this))/*,
     absModel(new TableModel(this)),
@@ -49,8 +49,9 @@ void MainWindow::setController(Controller *c){
     connect(menu->getCatalog(),SIGNAL(triggered()),controller,SLOT(showCatalogo()));
     connect(menu->getAddProduct(),SIGNAL(triggered()),controller,SLOT(showAddProduct()));
     connect(menu->getModProduct(),SIGNAL(triggered()),controller,SLOT(showModProduct()));
-    connect(aggiungiProdotto,SIGNAL(insertItemController()),controller,SLOT(insertItemController()));
+    connect(aggiungiProdotto->getAdd(),SIGNAL(insert()),controller,SLOT(insertItemController(WaffleBox*)));
 }
+
 void MainWindow::showAddProduct() const{
     aggiungiProdotto->show();
     catalogo->hide();
@@ -58,25 +59,27 @@ void MainWindow::showAddProduct() const{
     ricercaProdotto->hide();
 }
 
-void MainWindow::insertItemView(WaffleBox* wb){
+void MainWindow::insertItemInfo(){
 
-    controller->insertItemController(wb);
     QMessageBox::information(this,"DONE IT!", "Inserimento avvenuto con successo");
     std::cout<<"Aggiunto"<<endl;
 
 }
+
 void MainWindow::showCatalog() const{
     catalogo->show();
     aggiungiProdotto->hide();
     modificaProdotto->hide();
     ricercaProdotto->hide();
 }
+
 void MainWindow::showModifyProduct() const{
     modificaProdotto->show();
     aggiungiProdotto->hide();
     catalogo->hide();    
     ricercaProdotto->hide();
 }
+
 MenuBar *MainWindow::getMenu() const{
     return menu;
 }

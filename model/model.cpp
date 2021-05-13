@@ -7,7 +7,11 @@ Model::Model(const std::string& p, const std::string& fn, u_int n) : path(p), fi
     cout << "N Model: " << n << endl;
 }
 
-void Model::addBox(WaffleBox* waffleb){container.push_back(DeepPtr<WaffleBox>(waffleb));}
+bool Model::findItem(WaffleBox* obj) const{return container.find(DeepPtr<WaffleBox>(obj));}
+
+void Model::addBox(WaffleBox* waffleb){
+    if(!findItem(waffleb)) container.push_back(DeepPtr<WaffleBox>(waffleb));   //Se l'oggetto viene trovato all'interno del container, non inserisco ma lancio un avviso
+}
 
 void Model::removeBox(u_int index){container.erase(index);}
 
@@ -20,3 +24,4 @@ void Model::writeXml() const {XmlManagement writer(path,fileName); writer.write(
 int Model::getSize() const{return container.getSize();}
 
 WaffleBox* Model::getItem(unsigned int i) const{return container[i].operator ->();}
+

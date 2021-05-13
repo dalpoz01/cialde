@@ -22,13 +22,11 @@
 #include "model/conebox.h"
 #include "model/branded.h"
 #include "model/covered.h"
-
 #include "controller.h"
 
-class addproduct : public QWidget{
+class AddProduct : public QWidget{
     Q_OBJECT
 private:
-
     //Common Field
     QComboBox *itemComboBox, *capacityBox;
     QLabel *imgLabel;
@@ -50,37 +48,22 @@ private:
     QRadioButton *dim2Radio;
     QRadioButton *dim3Radio;
     QRadioButton *dim4Radio;
-
-    //Circle Field
-    QLabel *radiusLabel;
+    QLabel *radiusLabel; //Circle Field
     QSpinBox *radiusSpin;
-
-    //Height Field
-    QLabel *heightLabel;
+    QLabel *heightLabel; //Height Field
     QLineEdit *heightLine;
-
-    //Ventaglio Field
-    QLabel *widthLabel;
+    QLabel *widthLabel; //Ventaglio Field
     QLineEdit *widthLine;
-
-
-    //Cannolo Field
-    QLabel *intdiamLabel;
-    QLineEdit *intdiamLine;
-
-    //Cone Field
-    QLabel *extdiamLabel;
+    QLabel *intdiamLabel; //Cannolo Field
+    QLineEdit *intdiamLine; 
+    QLabel *extdiamLabel; //Cone Field
     QLineEdit *extdiamLine;
-
-    //Branded Field
-    QLabel *prncolorLabel;
+    QLabel *prncolorLabel;  //Branded Field
     QLabel *seccolorLabel;
     QLineEdit *prncolorLine;
     QLineEdit *seccolorLine;
     QLabel *colorLabel;
-
-    //Covered Field
-    QLabel *tasteLabel;
+    QLabel *tasteLabel; //Covered Field
     QLineEdit *tasteLine;
 
     void showCircle(bool) const; //Metodo per mostrare o meno i campi per determinato tipo
@@ -102,13 +85,17 @@ private:
     void resetBranded() const;
     void resetCovered() const;
 public:
-    explicit addproduct(QWidget * = nullptr);
+    explicit AddProduct(QWidget * = nullptr);
     QPushButton* getAdd();
 
 private slots:
     void resetFields();    //Metodo per resettare a " " tutti i campi.
     void showItemTypeField(const QString&) const;
-    void insert();
+    void insert();    //Metodo che crea un oggetto in base ai campi inseriti
+
+signals:
+    void signalToInsert(WaffleBox*) const;
+
 };
 
 #endif // ADDPRODUCT_H

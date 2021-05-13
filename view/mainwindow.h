@@ -6,17 +6,14 @@
 #include <QHBoxLayout>
 #include <QDesktopWidget>
 #include <QApplication>
-#include <QMessageBox>
-
 #include "view/menubar.h"
 #include "view/catalog.h"
 #include "view/addproduct.h"
 #include "view/modifyproduct.h"
 #include "view/searchinventory.h"
-#include "view/tablezone.h"
-#include "model/tablemodel.h"
 
 class Controller;
+class AddProduct;
 using namespace std;
 
 
@@ -25,7 +22,7 @@ class MainWindow : public QWidget{
 private:
     MenuBar *menu;
     catalog *catalogo;
-    addproduct *aggiungiProdotto;
+    AddProduct* aggiungiProdotto;
     modifyProduct *modificaProdotto;
     SearchInventory* ricercaProdotto;
 
@@ -42,9 +39,9 @@ public:
     void showAddProduct() const;
     void showCatalog() const;
     void showModifyProduct() const;
-    void insertItemView(WaffleBox*);
-
     MenuBar *getMenu() const;
+public slots:
+      void insertItemInfo();
 };
 
 #endif // MAINWINDOW_H
