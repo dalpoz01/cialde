@@ -49,7 +49,8 @@ void MainWindow::setController(Controller *c){
     connect(menu->getCatalog(),SIGNAL(triggered()),controller,SLOT(showCatalogo()));
     connect(menu->getAddProduct(),SIGNAL(triggered()),controller,SLOT(showAddProduct()));
     connect(menu->getModProduct(),SIGNAL(triggered()),controller,SLOT(showModProduct()));
-    connect(aggiungiProdotto->getAdd(),SIGNAL(insert()),controller,SLOT(insertItemController(WaffleBox*)));
+    connect(aggiungiProdotto->getAdd(),SIGNAL(clicked()),aggiungiProdotto,SLOT(insert()));
+    connect(aggiungiProdotto,SIGNAL(signalToInsert(WaffleBox*)),controller,SLOT(insertItemController(WaffleBox*)));
 }
 
 void MainWindow::showAddProduct() const{
