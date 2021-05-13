@@ -23,3 +23,16 @@ void WaffleBox::setDiscount(u_int dis) {discount = dis;}
 bool WaffleBox::operator ==(const WaffleBox &w) const {return ID == w.ID && capacity == w.capacity && weight == w.weight && price == w.price && discount == w.discount && stockavailability == w.stockavailability;}
 bool WaffleBox::operator !=(const WaffleBox &w) const {return ID != w.ID || capacity != w.capacity || weight != w.weight || price != w.price || discount != w.discount || stockavailability != w.stockavailability;;}
 
+//STAMPA INFO
+std::string WaffleBox::printItem() const{
+    std::stringstream stream;
+    stream <<
+              "------------------------------------" << std::endl
+             << "ID: " << ID << std::endl
+             << "Capacità: " << capacity << std::endl
+             << "Peso: " << weight << std::endl
+             << "Prezzo: " << price << std::endl
+             << "Sconto: " << discount << std::endl
+             << "Stock: " << stockavailability << std::endl;
+    return stream.str();
+}

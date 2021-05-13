@@ -20,3 +20,12 @@ bool CircleBox::operator !=(const CircleBox &c) {return WaffleBox::operator !=(c
 CircleBox* CircleBox::clone() const {return new CircleBox(*this);}
 
 std::string CircleBox::getItemType() const{return "CircleBox";}
+
+//STAMPA INFO
+std::string CircleBox::printItem() const{
+    std::stringstream stream;
+    stream <<
+              WaffleBox::printItem() << std::endl
+             << "Raggio (mm): " << radius << std::endl;
+    return stream.str();
+}

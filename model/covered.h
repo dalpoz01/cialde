@@ -27,6 +27,8 @@ public:
     virtual Covered *clone() const;
 
     std::string getItemType() const;
+
+    virtual std::string printItem() const;
 };
 
 #endif // COVERED_H

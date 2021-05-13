@@ -12,3 +12,12 @@ void HeightProviderBox::setHeight(u_int h) {height = h;}
 //Operatori
 bool HeightProviderBox::operator ==(const HeightProviderBox& hp) const { return WaffleBox::operator ==(hp) && height == hp.height;}
 bool HeightProviderBox::operator !=(const HeightProviderBox& hp) const { return WaffleBox::operator !=(hp) || height != hp.height;}
+
+//STAMPA INFO
+std::string HeightProviderBox::printItem() const{
+    std::stringstream stream;
+    stream <<
+              WaffleBox::printItem() << std::endl
+             << "Altezza: " << height << std::endl;
+    return stream.str();
+}

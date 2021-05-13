@@ -26,6 +26,8 @@ public:
 
     std::string getItemType() const;
 
+    virtual std::string printItem() const;
+
 };
 
 #endif // BRANDED_H

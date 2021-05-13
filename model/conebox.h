@@ -27,6 +27,8 @@ class ConeBox : public HeightProviderBox {
         virtual ConeBox *clone() const;
 
         std::string getItemType() const;
+
+        virtual std::string printItem() const;
 };
 
 #endif // CONEBOX_H

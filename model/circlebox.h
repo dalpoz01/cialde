@@ -26,6 +26,8 @@ class CircleBox : public WaffleBox {
         virtual CircleBox *clone() const;
 
         std::string getItemType() const;
+
+        virtual std::string printItem() const;
 };
 
 #endif // CIRCLEBOX_H

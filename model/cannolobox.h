@@ -23,6 +23,8 @@ public:
     virtual CannoloBox *clone() const;
 
     std::string getItemType() const;
+
+    virtual std::string printItem() const;
 };
 
 #endif // CANNOLOBOX_H

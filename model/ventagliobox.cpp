@@ -14,5 +14,14 @@ bool VentaglioBox::operator ==(const VentaglioBox& v) const {return HeightProvid
 //CLONE
 VentaglioBox* VentaglioBox::clone() const {return new VentaglioBox(*this);}
 
-
 std::string VentaglioBox::getItemType() const{return "VentaglioBox";}
+
+//STAMPA INFO
+std::string VentaglioBox::printItem() const{
+    std::stringstream stream;
+    stream <<
+              HeightProviderBox::printItem() << std::endl
+             << "Larghezza: " << width << std::endl;
+    return stream.str();
+}
+

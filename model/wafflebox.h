@@ -1,6 +1,8 @@
 #ifndef WAFFLEBOX_H
 #define WAFFLEBOX_H
 #include<string>
+#include <sstream>
+
 typedef unsigned int u_int;
 
 //Classe BASE ASTRATTA POLIMORFA
@@ -40,6 +42,9 @@ public:
     //CLONE
     virtual WaffleBox *clone() const = 0;
     virtual std::string getItemType() const = 0;
+
+    //STAMPA INFO
+    virtual std::string printItem() const;
 
 };
 

@@ -16,3 +16,12 @@ bool CannoloBox::operator !=(const CannoloBox& c) const {return HeightProviderBo
 CannoloBox* CannoloBox::clone() const{return new CannoloBox(*this);}
 
 std::string CannoloBox::getItemType() const{return "CannoloBox";}
+
+//STAMPA INFO
+std::string CannoloBox::printItem() const{
+    std::stringstream stream;
+    stream <<
+              HeightProviderBox::printItem() << std::endl
+             << "Diametro interno: " << int_diameter << std::endl;
+    return stream.str();
+}

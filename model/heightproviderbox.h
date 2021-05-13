@@ -21,6 +21,8 @@ public:
     virtual bool operator !=(const HeightProviderBox&) const;
     //CLONE
     virtual HeightProviderBox* clone() const = 0;
+
+    virtual std::string printItem() const;
 };
 
 #endif // HEIGHTPROVIDERBOX_H
