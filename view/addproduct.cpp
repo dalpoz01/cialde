@@ -108,6 +108,7 @@ AddProduct::AddProduct(QWidget(*parent)): QWidget(parent),
     base->addLayout(right);
 
     showCommon();
+    enableFields(false);
 
     //Listener
     connect(itemComboBox,SIGNAL(currentIndexChanged(const QString&)),this,SLOT(showItemTypeField(const QString&)));
@@ -244,9 +245,33 @@ void AddProduct::resetFields(){
      }
 }
 
+void AddProduct::enableFields(bool flag) const
+{
+    capacityBox->setEditable(flag);
+    nomeLine->setEnabled(flag);
+    idLine->setEnabled(flag);
+    capacityBox->setEnabled(flag);
+    prezzoLine->setEnabled(flag);
+    dim1Radio->setChecked(flag);
+    dim1Radio->setEnabled(flag);
+
+    dim2Radio->setChecked(flag);
+    dim2Radio->setEnabled(flag);
+
+    dim3Radio->setChecked(flag);
+    dim3Radio->setEnabled(flag);
+
+    dim4Radio->setChecked(flag);
+    dim4Radio->setEnabled(flag);
+
+    discountBox->setEnabled(flag);
+}
+
 void AddProduct::showItemTypeField(const QString& selection) const{
 
     if(selection == " - "){
+
+        enableFields(false);
 
         showCircle(false);
         showHeight(false);
@@ -258,6 +283,8 @@ void AddProduct::showItemTypeField(const QString& selection) const{
 
     }else if(selection == "Circle Box"){
 
+        enableFields(true);
+
         showCircle(true);
         showVentaglio(false);
         showCannolo(false);
@@ -266,6 +293,8 @@ void AddProduct::showItemTypeField(const QString& selection) const{
         showBranded(false);
 
     }else if(selection =="Ventaglio Box"){
+
+        enableFields(true);
 
         showCircle(false);
         showHeight(true);
@@ -277,6 +306,8 @@ void AddProduct::showItemTypeField(const QString& selection) const{
 
     }else if(selection == "Cannolo Box"){
 
+        enableFields(true);
+
         showCircle(false);
         showHeight(true);
         showVentaglio(false);
@@ -286,6 +317,8 @@ void AddProduct::showItemTypeField(const QString& selection) const{
         showBranded(false);
 
     }else if(selection  == "Cone Box"){
+
+        enableFields(true);
 
         showCircle(false);
         showHeight(true);
@@ -297,6 +330,8 @@ void AddProduct::showItemTypeField(const QString& selection) const{
 
     }else if(selection == "Covered Box"){
 
+        enableFields(true);
+
         showCircle(false);
         showHeight(true);
         showVentaglio(false);
@@ -306,6 +341,8 @@ void AddProduct::showItemTypeField(const QString& selection) const{
         showBranded(false);
 
     }else if(selection == "Branded Box"){
+
+        enableFields(true);
 
         showCircle(false);
         showHeight(true);

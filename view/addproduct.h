@@ -87,7 +87,8 @@ private:
 public:
     explicit AddProduct(QWidget * = nullptr);
     QPushButton* getAdd();
-
+    void enableFields(bool) const;
+    
 private slots:
     void resetFields();    //Metodo per resettare a " " tutti i campi.
     void showItemTypeField(const QString&) const;
