@@ -1,18 +1,21 @@
 #include "xmlmanagement.h"
 
-XmlManagement::XmlManagement(const std::string& p, const std::string& fn) : path(p), fileName(fn) {}
+XmlManagement::XmlManagement(const std::string& p, const std::string& fn) : path(p), fileName(fn) {cout << "Creato con successo LoaderXml" << endl;}
 
 Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
+
     Container<DeepPtr<WaffleBox>> temp;
 
-    QFile xmlFile(QString::fromStdString(path+fileName)); //Prendo il file XML
+    QFile xFile(QString::fromStdString(path+fileName));
 
-    if(!xmlFile.open(QFile::ReadOnly | QFile::Text)){
-           //ERRORE
+    //Prendo il file XML
+    if(xFile.open(QIODevice::ReadOnly)==false){ //Se il file non si può aprire in lettura
+        QMessageBox openMsg(QMessageBox::Warning, "ERRORE DI APERTURA", "Errore! Impossibile aprire il file in lettura", QMessageBox::Ok);
+        openMsg.exec();
     }else{
-        QXmlStreamReader reader(&xmlFile);
+        QXmlStreamReader reader(&xFile);
         if(reader.readNextStartElement()){ //Reads until the next start element within the current element.
-            if(reader.name() == "element"){
+            if(reader.name() == "radix"){
                 while(reader.readNextStartElement()){ //Inizio a leggere i WaffleBox
 
                     try{
@@ -38,7 +41,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                             price = reader.readElementText().toDouble();
                         if(reader.name() == "discount")
                             discount = reader.readElementText().toUInt();
-                        if(reader.name() == "stockAvailability")
+                        if(reader.name() == "stockavailability")
                             stockAva = reader.readElementText().toUInt();
 
                         //Leggo gli attributi degli oggetti concreti.
@@ -116,15 +119,15 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                             delete c;
                         }
 
-                   }catch(string e){
+                   }catch(string exc){
                    //Exception
                     QMessageBox readXmlExc(QMessageBox::Warning, "Errore lettura Xml.", "il file potrebbe esser stato letto male" , QMessageBox::Ok);
                     readXmlExc.exec();
                    }
 
                 }
-                xmlFile.close();
-            }
+                xFile.close();
+             }
         }
     }
     return temp;
@@ -134,6 +137,11 @@ void XmlManagement::write(const Container<DeepPtr<WaffleBox>> &cont) const{
     QDir directory;
     //verifico che esista la directory, altrimento la creo
     if(!directory.exists(QString::fromStdString(path))) directory.mkdir(QString::fromStdString(path));
+    QSaveFile savedFile(QString::fromStdString(path+fileName));
+        if(savedFile.open(QIODevice::WriteOnly)==false){
+            std::cerr << path;
+            throw std::exception();
+        }
 
     QFile xmlFile(QString::fromStdString(path+fileName)); //Prendo il file XML
     //verifico che sia presente anche il file dove scrivere

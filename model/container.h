@@ -8,9 +8,9 @@ typedef unsigned int u_int;
 template<class T>
 class Container {
 private:
+    T *p;
     u_int size; //Quanti elementi sono memorizzati
     u_int capacity; //Quanti elementi posso memorizzare
-    T *p;
 
     void reduce();
     void resize();
@@ -124,6 +124,7 @@ public:
     void erase(u_int,u_int); //rimuove elementi tra due indici
     void erase(u_int);  //rimuove elemento in quell'indice
     void erase(const T&);  //rimuove elemento T
+    bool find(const T&) const;
 
     iterator begin();
     iterator end();
@@ -144,17 +145,17 @@ public:
 
 //Costruttore standard
 template<class T>
-Container<T>::Container(u_int s, u_int c) : size(s), capacity(c), p(new T[c]) {}
+Container<T>::Container(u_int s, u_int c) :  p(new T[c]), size(s), capacity(c) {}
 
 //Costruttore di copia
 template<class T>
-Container<T>::Container(const Container<T>& c) : size(c.size), capacity(c.capacity), p(new T[c.capacity])
-    {for(u_int i= 0; i<size; ++i) p[i] = c.p[i];}
+Container<T>::Container(const Container<T>& c) :  p(new T[c.capacity]), size(c.size), capacity(c.capacity)
+    {for(u_int i= 0; i<size; ++i) {p[i] = c.p[i];}}
 
 //FIll constructor
 template<class T>
 Container<T>::Container(const T& t, u_int n) : size(n), capacity(n), p(new T[n])
-    {for(u_int i = 0; i<n; ++i) p[i] = t;}
+    {for(u_int i = 0; i<n; ++i) {p[i] = t;}}
 
 //Distruttore
 template<class T>
@@ -190,11 +191,15 @@ Container<T>& Container<T>::operator =(const Container<T>& ctr){
         size = ctr.size;
         capacity = ctr.capacity;
         //Devo eliminare il puntatore corrente
-        delete [] p;
+        delete[] p;
         //Creo il puntatore ad array con CAPACITA'(effettiva memoria occupata) del container passato per parametro, non la size!
         p = new T[ctr.capacity];
-        for(u_int i = 0; i<ctr.size; ++i) {p[i] = ctr.p[i];}
+
+        for(u_int i = 0; i<ctr.size; ++i) {
+            p[i] = ctr.p[i];
+        }
     }
+    return *this;
 }
 
 //operator[]
@@ -327,6 +332,14 @@ void Container<T>::erase(const T& obj){
             erase(i);
 }
 
+template<class T>
+bool Container<T>::find(const T& obj) const{
+    bool flag = false;
+    for(u_int i = 0; i<size; ++i)
+        if(p[i] == obj)
+            flag=true;
+    return flag;
+}
 /*********************** CLASSE iterator ***************************/
 
 template<class T>

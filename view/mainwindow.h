@@ -13,6 +13,7 @@
 #include "view/searchinventory.h"
 
 class Controller;
+class AddProduct;
 using namespace std;
 
 
@@ -21,9 +22,13 @@ class MainWindow : public QWidget{
 private:
     MenuBar *menu;
     catalog *catalogo;
-    addproduct *aggiungiProdotto;
+    AddProduct* aggiungiProdotto;
     modifyProduct *modificaProdotto;
     SearchInventory* ricercaProdotto;
+
+   /* TableModel* absModel;
+    TableZone* tabella;*/
+
     Controller *controller;
 
 public:
@@ -34,8 +39,9 @@ public:
     void showAddProduct() const;
     void showCatalog() const;
     void showModifyProduct() const;
-
     MenuBar *getMenu() const;
+public slots:
+      void insertItemInfo();
 };
 
 #endif // MAINWINDOW_H
