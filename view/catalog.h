@@ -13,13 +13,8 @@
 class catalog : public QWidget{
     Q_OBJECT
 private:
-    QComboBox *itemTypeCombobox;
-    QPushButton *search;
-    QLabel *imgLabel;
-    QLabel *nome;
-    QLabel *disponibilita;
     QVBoxLayout *mainLayout;
-    QComboBox *itemCombobox;
+    QComboBox *itemTypeCombobox;
     QPushButton *btnSearch;
     QPushButton *btnSee;
     QPushButton *btnGo;
@@ -27,7 +22,6 @@ private:
     QLabel *nomeLabel;
     QLineEdit *editNome;
     QFormLayout *formLayout;
-
 public:
     explicit catalog(QWidget * = nullptr);
     void showSearch() const;
