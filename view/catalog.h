@@ -18,14 +18,21 @@ private:
     QLabel *imgLabel;
     QLabel *nome;
     QLabel *disponibilita;
+    QVBoxLayout *mainLayout;
+    QComboBox *itemCombobox;
+    QPushButton *btnSearch;
+    QPushButton *btnSee;
+    QPushButton *btnGo;
+    QLabel *tipoLabel;
+    QLabel *nomeLabel;
     QLineEdit *editNome;
-    QLineEdit *editDisponibilta;
-    QPushButton *acquista;
-    QPushButton *prec;
-    QPushButton *succ;
     QFormLayout *formLayout;
+
 public:
     explicit catalog(QWidget * = nullptr);
+    void showSearch() const;
+    QPushButton* getBtnSearch();
+    virtual QSize sizeHint() const override;
 };
 
 #endif // CATALOG_H

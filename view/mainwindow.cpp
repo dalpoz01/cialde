@@ -27,8 +27,8 @@ MainWindow::MainWindow(QWidget *parent):
 
     qv->setMenuBar(menu);
     //menu->getCarrello()->setVisible(false);
-    //aggiungiProdotto->hide();
-    catalogo->hide();
+    aggiungiProdotto->hide();
+    //catalogo->hide();
     ricercaProdotto->hide();
     modificaProdotto->hide();
     qv->addWidget(ricercaProdotto);
@@ -52,6 +52,9 @@ void MainWindow::setController(Controller *c){
     connect(aggiungiProdotto->getAdd(),SIGNAL(clicked()),aggiungiProdotto,SLOT(insert())); //Connessione per aggiungiProdotto
     connect(aggiungiProdotto,SIGNAL(signalToInsert(WaffleBox*)),controller,SLOT(insertItemController(WaffleBox*))); //Connessione per il segnale emesso da aggiuniProdotto
     connect(menu->getLoad(),SIGNAL(triggered()),controller,SLOT(loadingXmlController()));
+    connect(aggiungiProdotto->getAdd(),SIGNAL(clicked()),aggiungiProdotto,SLOT(insert()));
+    connect(aggiungiProdotto,SIGNAL(signalToInsert(WaffleBox*)),controller,SLOT(insertItemController(WaffleBox*)));
+    connect(catalogo->getBtnSearch(),SIGNAL(clicked()),controller,SLOT(showSearch()));
 }
 
 void MainWindow::showAddProduct() const{
@@ -84,7 +87,7 @@ void MainWindow::showCatalog() const{
 void MainWindow::showModifyProduct() const{
     modificaProdotto->show();
     aggiungiProdotto->hide();
-    catalogo->hide();    
+    catalogo->hide();
     ricercaProdotto->hide();
 }
 
@@ -92,3 +95,6 @@ MenuBar *MainWindow::getMenu() const{
     return menu;
 }
 
+void MainWindow::showSearch() const{
+    catalogo->showSearch();
+}

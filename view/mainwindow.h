@@ -40,6 +40,7 @@ public:
     void showCatalog() const;
     void showModifyProduct() const;
     MenuBar *getMenu() const;
+    void showSearch() const;
 public slots:
       void insertItemInfo();
       void loadingXmlInfo();

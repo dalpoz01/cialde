@@ -24,6 +24,7 @@ public slots:
     void showCatalogo() const;
     void showAddProduct() const;
     void showModProduct() const;
+    void showSearch() const;
     void insertItemController(WaffleBox*);
     void loadingXmlController();
 };
