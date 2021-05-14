@@ -26,9 +26,11 @@ private:
     QLabel* priceLabel;
     QLineEdit* priceLine;
     QPushButton* searchButton;
-
+    QPushButton* annullaButton;
 public:
     explicit SearchInventory(QWidget * = nullptr);
+    QPushButton* getSearchButton() const;
+    QPushButton* getAnnullaButton() const;
 };
 
 #endif // SEARCHINVENTORY_H

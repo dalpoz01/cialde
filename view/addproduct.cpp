@@ -95,7 +95,6 @@ AddProduct::AddProduct(QWidget(*parent)): QWidget(parent),
     form->addRow(colorLabel,colorLayout);
     form->addRow(tasteLabel,tasteLine);
 
-
     imgLabel->setPixmap(QPixmap(QString::fromStdString(":/MyRes/Photo/image-not-found.jpg")).scaled(QSize(400, 400)));
     left->addWidget(imgLabel);
     left->addWidget(addPhoto);
@@ -106,10 +105,10 @@ AddProduct::AddProduct(QWidget(*parent)): QWidget(parent),
 
     base->addLayout(left);
     base->addLayout(right);
+    base->setAlignment(Qt::AlignTop);
 
     showCommon();
     enableFields(false);
-
 }
 
 QPushButton* AddProduct::getAdd(){

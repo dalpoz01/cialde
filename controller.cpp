@@ -1,25 +1,62 @@
 #include "controller.h"
 
 Controller::Controller(QObject *parent) : QObject(parent){
-    //connect(view->getMenu()->getCatalog(),SIGNAL(triggered()),this,SLOT(showCatalogo()));
+
 }
 
-void Controller::setView(MainWindow *v){ view=v; }
+void Controller::setView(MainWindow *v){
+    view=v;
+    //Menu
+    connect(view->getMenu()->getCatalog(),SIGNAL(triggered()),this,SLOT(showCatalogo()));
+    connect(view->getMenu()->getAddProduct(),SIGNAL(triggered()),this,SLOT(showAddProduct()));
+    connect(view->getMenu()->getModProduct(),SIGNAL(triggered()),this,SLOT(showModProduct()));
+    connect(view->getMenu()->getLoad(),SIGNAL(triggered()),this,SLOT(loadingXmlController()));
+    connect(view->getMenu()->getSave(),SIGNAL(triggered()),this,SLOT(savingXmlController()));
+
+    //Aggiungi Prodotto
+    connect(view->getAddProduct()->getItemCombo(),SIGNAL(currentIndexChanged(const QString&)),view->getAddProduct(),SLOT(showItemTypeField(const QString&)));
+    connect(view->getAddProduct()->getCancel(),SIGNAL(clicked()),view->getAddProduct(),SLOT(resetFields()));
+    connect(view->getAddProduct()->getAdd(),SIGNAL(clicked()),view->getAddProduct(),SLOT(insert())); //Connessione per aggiungiProdotto
+    connect(view->getAddProduct(),SIGNAL(signalToInsert(WaffleBox*)),this,SLOT(insertItemController(WaffleBox*))); //Connessione per il segnale emesso da aggiuniProdotto
+
+    //Catalogo
+    connect(view->getCatalog()->getBtnSearch(),SIGNAL(clicked()),this,SLOT(showSearch()));
+    connect(view->getCatalog()->getRicercaProdotto()->getSearchButton(),SIGNAL(clicked()),this,SLOT(showSearch()));
+    connect(view->getCatalog()->getRicercaProdotto()->getAnnullaButton(),SIGNAL(clicked()),this,SLOT(hideSearch()));
+
+    /*connect(view->getMenu()->getCatalog(),SIGNAL(triggered()),this,SLOT(showCatalogo()));
+    connect(view->getMenu()->getAddProduct(),SIGNAL(triggered()),this,SLOT(showAddProduct()));
+    connect(view->getMenu()->getModProduct(),SIGNAL(triggered()),this,SLOT(showModProduct()));
+    connect(view->getAddProduct()->getAdd(),SIGNAL(clicked()),view->getAddProduct(),SLOT(insert())); //Connessione per aggiungiProdotto
+    connect(view->getAddProduct(),SIGNAL(signalToInsert(WaffleBox*)),this,SLOT(insertItemController(WaffleBox*))); //Connessione per il segnale emesso da aggiuniProdotto
+    connect(view->getMenu()->getLoad(),SIGNAL(triggered()),this,SLOT(loadingXmlController()));
+    connect(view->getAddProduct()->getAdd(),SIGNAL(clicked()),view->getAddProduct(),SLOT(insert()));
+    connect(view->getAddProduct(),SIGNAL(signalToInsert(WaffleBox*)),this,SLOT(insertItemController(WaffleBox*)));
+    connect(view->getCatalog()->getBtnSearch(),SIGNAL(clicked()),this,SLOT(showSearch()));
+    connect(view->getCatalog()->getRicercaProdotto()->getSearchButton(),SIGNAL(clicked()),this,SLOT(showSearch()));
+    connect(view->getCatalog()->getRicercaProdotto()->getAnnullaButton(),SIGNAL(clicked()),this,SLOT(hideSearch()));*/
+}
 
 void Controller::setModel(Model *m){ model=m; }
 
 Model* Controller::getModel() const{return model;}
 
 void Controller::showCatalogo() const{
-    view->showCatalog();
+    view->getCatalog()->show();
+    view->getAddProduct()->hide();
+    view->getModifyProduct()->hide();
 }
 
 void Controller::showAddProduct() const{
-    view->showAddProduct();
+    view->getCatalog()->hide();
+    view->getAddProduct()->show();
+    view->getModifyProduct()->hide();
 }
 
 void Controller::showModProduct() const{
-    view->showModifyProduct();
+    view->getCatalog()->hide();
+    view->getAddProduct()->hide();
+    view->getModifyProduct()->show();
 }
 void Controller::insertItemController(WaffleBox* wb){
     //cout << to_string(model->getSize()) << endl;
@@ -36,5 +73,14 @@ void Controller::savingXmlController(){
     view->savingXmlInfo();
 }
 void Controller::showSearch() const{
-    view->showSearch();
+    view->getCatalog()->getRicercaProdotto()->show();
+    view->getCatalog()->showSearch();
+}
+void Controller::hideSearch() const{
+    view->getCatalog()->getRicercaProdotto()->hide();
+    view->getCatalog()->showSearch();
+}
+void Controller::avoidSearch() const{
+    //std:cout<<"In inplementazione..."<<endl;
+    //view->getCatalog()->getRicercaProdotto()->show();
 }

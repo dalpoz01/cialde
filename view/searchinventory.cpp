@@ -14,8 +14,9 @@ SearchInventory::SearchInventory(QWidget *parent) :
     capacityLine(new QLineEdit(this)),
     priceLabel(new QLabel("Prezzo",this)),
     priceLine(new QLineEdit(this)),
-    searchButton(new QPushButton("Cerca",this)){
-
+    searchButton(new QPushButton("Cerca",this)),
+    annullaButton(new QPushButton("Annulla",this))
+{
     QVBoxLayout* main = new QVBoxLayout(this);
     QHBoxLayout* bottom = new QHBoxLayout();
     QVBoxLayout* srcLayout = new QVBoxLayout();
@@ -26,6 +27,8 @@ SearchInventory::SearchInventory(QWidget *parent) :
     itemtypeComboBox->addItem("Ventaglio Box");
     itemtypeComboBox->addItem("Cannolo Box");
     itemtypeComboBox->addItem("Cone Box");
+    itemtypeComboBox->addItem("Covered Box");
+    itemtypeComboBox->addItem("Branded Box");
 
     form->addRow(title);
     form->addRow(idLabel,idLine);   //Da impl. controlli per ID
@@ -36,8 +39,15 @@ SearchInventory::SearchInventory(QWidget *parent) :
 
     srcLayout->addLayout(form);
     bottom->addWidget(searchButton);
-    bottom->setAlignment(Qt::AlignLeft);
+    bottom->addWidget(annullaButton);
+    bottom->setAlignment(Qt::AlignTop);
     main->addLayout(srcLayout);
     main->addLayout(bottom);
+}
+QPushButton* SearchInventory::getSearchButton() const{
+    return searchButton;
+}
+QPushButton* SearchInventory::getAnnullaButton() const{
+    return annullaButton;
 }
 

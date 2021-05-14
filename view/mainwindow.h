@@ -26,10 +26,8 @@ private:
     catalog *catalogo;
     AddProduct* aggiungiProdotto;
     modifyProduct *modificaProdotto;
-    SearchInventory* ricercaProdotto;
     TableModel* absModel;
     TableZone* tabella;
-
     Controller *controller;
 
 public:
@@ -37,11 +35,10 @@ public:
     ~MainWindow() override = default;
     virtual QSize sizeHint() const override;
     void setController(Controller *c);
-    void showAddProduct() const;
-    void showCatalog() const;
-    void showModifyProduct() const;
+    AddProduct* getAddProduct() const;
+    catalog* getCatalog() const;
+    modifyProduct* getModifyProduct() const;
     MenuBar *getMenu() const;
-    void showSearch() const;
 public slots:
       void insertItemInfo();
       void loadingXmlInfo();

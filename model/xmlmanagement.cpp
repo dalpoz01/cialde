@@ -14,8 +14,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
         cout << "Non esisto" << endl;
 
     //Prendo il file XML
-    if(xFile.open(QIODevice::ReadOnly | QIODevice::Text)==false
-            ){ //Se il file non si può aprire in lettura
+    if(xFile.open(QIODevice::ReadOnly | QIODevice::Text)==false){ //Se il file non si può aprire in lettura
         QMessageBox openMsg(QMessageBox::Warning, "ERRORE DI APERTURA", "Errore! Impossibile aprire il file in lettura", QMessageBox::Ok);
         openMsg.exec();
         xFile.close();

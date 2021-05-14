@@ -1,67 +1,33 @@
 #include "catalog.h"
 
 catalog::catalog(QWidget(*parent)):QWidget(parent),
+    ricercaProdotto(new SearchInventory(this)),
     mainLayout(new QVBoxLayout(this)),
-    itemTypeCombobox(new QComboBox(this)),
     btnSearch(new QPushButton("Cerca prodotto",this)),
-    btnSee(new QPushButton("Visualizza prodotto",this)),
-    btnGo(new QPushButton("Vai",this)),
-    tipoLabel(new QLabel("TIPO",this)),
-    nomeLabel(new QLabel("NOME")),
-    editNome(new QLineEdit(this)),
-    formLayout(new QFormLayout())
+    btnSee(new QPushButton("Visualizza prodotti",this))
 {
-    QHBoxLayout *first=new QHBoxLayout();
-    QHBoxLayout *btn=new QHBoxLayout();
-    QVBoxLayout *left=new QVBoxLayout();
-    QVBoxLayout *right=new QVBoxLayout();
+    ricercaProdotto->hide();
+    mainLayout->addWidget(btnSearch);
+    mainLayout->addWidget(btnSee);
+    mainLayout->addWidget(ricercaProdotto);
+    mainLayout->setAlignment(Qt::AlignTop);
+    setLayout(mainLayout);
 
-    itemTypeCombobox->addItem(" - ");
-    itemTypeCombobox->addItem("Circle Box");
-    itemTypeCombobox->addItem("Ventaglio Box");
-    itemTypeCombobox->addItem("Cannolo Box");
-    itemTypeCombobox->addItem("Cone Box");
-    itemTypeCombobox->addItem("Covered Box");
-    itemTypeCombobox->addItem("Branded Box");
-
-    formLayout->addRow(tipoLabel,itemTypeCombobox);
-    formLayout->addRow(nomeLabel,editNome);
-
-    btn->addWidget(btnGo);
-    btn->setAlignment(Qt::AlignTop);
-    left->setAlignment(Qt::AlignTop);
-    right->setAlignment(Qt::AlignTop);
-
-    this->showSearch();
-
-    left->addWidget(btnSearch);
-    left->addWidget(btnSee);
-    right->addLayout(formLayout);
-    right->addLayout(btn);
-
-    first->addLayout(left);
-    first->addLayout(right);
-
-    mainLayout->addLayout(first);
 }
-QPushButton* catalog::getBtnSearch(){
+QPushButton* catalog::getBtnSearch() const{
     return btnSearch;
 }
-void catalog::showSearch() const{
-    bool f=!(tipoLabel->isVisible());
-    tipoLabel->setVisible(f);
-    itemTypeCombobox->setVisible(f);
-    nomeLabel->setVisible(f);
-    editNome->setVisible(f);
-    btnGo->setVisible(f);
-    btnSee->setVisible(!f);
-    if(f){
-        btnSearch->setText("Annulla");
-    }else{
-        btnSearch->setText("Cerca prodotto");
-    }
-
+SearchInventory* catalog::getRicercaProdotto() const{
+    return ricercaProdotto;
 }
-QSize catalog::sizeHint() const{
-    return QSize(500, 300);
+void catalog::showSearch() const{
+    if(ricercaProdotto->isVisible()){
+        ricercaProdotto->show();
+        btnSearch->hide();
+        btnSee->hide();
+    }else{
+        ricercaProdotto->hide();
+        btnSearch->show();
+        btnSee->show();
+    }
 }

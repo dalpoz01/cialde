@@ -1,6 +1,6 @@
 #include "model.h"
 
-Model::Model(const std::string& p, const std::string& fn, u_int n) : path(p), fileName(fn), container(n), xmlManager(p,fn) {
+Model::Model(const std::string& p, const std::string& fn, u_int n) : path(p), fileName(fn), xmlManager(p,fn), container(n) {
 
     cout << "FILENAME Model: " << fileName << endl;
     cout << "PATH Model: " << path << endl;

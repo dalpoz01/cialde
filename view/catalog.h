@@ -9,24 +9,20 @@
 #include <QLabel>
 #include <QFormLayout>
 #include <QLineEdit>
+#include "view/searchinventory.h"
 
 class catalog : public QWidget{
     Q_OBJECT
 private:
+    SearchInventory *ricercaProdotto;
     QVBoxLayout *mainLayout;
-    QComboBox *itemTypeCombobox;
     QPushButton *btnSearch;
     QPushButton *btnSee;
-    QPushButton *btnGo;
-    QLabel *tipoLabel;
-    QLabel *nomeLabel;
-    QLineEdit *editNome;
-    QFormLayout *formLayout;
 public:
     explicit catalog(QWidget * = nullptr);
     void showSearch() const;
-    QPushButton* getBtnSearch();
-    virtual QSize sizeHint() const override;
+    QPushButton* getBtnSearch() const;
+    SearchInventory* getRicercaProdotto() const;
 };
 
 #endif // CATALOG_H
