@@ -11,6 +11,8 @@
 #include "view/addproduct.h"
 #include "view/modifyproduct.h"
 #include "view/searchinventory.h"
+#include "view/tablezone.h"
+#include "model/tablemodel.h"
 
 class Controller;
 class AddProduct;
@@ -25,9 +27,8 @@ private:
     AddProduct* aggiungiProdotto;
     modifyProduct *modificaProdotto;
     SearchInventory* ricercaProdotto;
-
-   /* TableModel* absModel;
-    TableZone* tabella;*/
+    TableModel* absModel;
+    TableZone* tabella;
 
     Controller *controller;
 
@@ -44,6 +45,7 @@ public:
 public slots:
       void insertItemInfo();
       void loadingXmlInfo();
+      void savingXmlInfo();
 };
 
 #endif // MAINWINDOW_H

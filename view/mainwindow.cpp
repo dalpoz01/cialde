@@ -7,9 +7,8 @@ MainWindow::MainWindow(QWidget *parent):
     catalogo(new catalog(this)),
     aggiungiProdotto(new AddProduct(this)),
     modificaProdotto(new modifyProduct(this)),
-    ricercaProdotto(new SearchInventory(this))/*,
-    absModel(new TableModel(this)),
-    tabella(new TableZone(this,absModel))*/{
+    ricercaProdotto(new SearchInventory(this))
+    {
 
     setWindowTitle("Cialde Pro");
     //Centro la finestra sullo schermo
@@ -35,7 +34,6 @@ MainWindow::MainWindow(QWidget *parent):
     qv->addWidget(catalogo);
     qv->addWidget(aggiungiProdotto);
     qv->addWidget(modificaProdotto);
-    //qv->addWidget(tabella);
 
     setLayout(qv);
 
@@ -46,14 +44,19 @@ QSize MainWindow::sizeHint() const {
 
 void MainWindow::setController(Controller *c){
     controller=c;
+    //MenuBar
     connect(menu->getCatalog(),SIGNAL(triggered()),controller,SLOT(showCatalogo()));
     connect(menu->getAddProduct(),SIGNAL(triggered()),controller,SLOT(showAddProduct()));
     connect(menu->getModProduct(),SIGNAL(triggered()),controller,SLOT(showModProduct()));
+    connect(menu->getLoad(),SIGNAL(triggered()),controller,SLOT(loadingXmlController()));
+    connect(menu->getSave(),SIGNAL(triggered()),controller,SLOT(savingXmlController()));
+
+    //Aggiungi Prodotto
+    connect(aggiungiProdotto->getItemCombo(),SIGNAL(currentIndexChanged(const QString&)),aggiungiProdotto,SLOT(showItemTypeField(const QString&)));
+    connect(aggiungiProdotto->getCancel(),SIGNAL(clicked()),aggiungiProdotto,SLOT(resetFields()));
     connect(aggiungiProdotto->getAdd(),SIGNAL(clicked()),aggiungiProdotto,SLOT(insert())); //Connessione per aggiungiProdotto
     connect(aggiungiProdotto,SIGNAL(signalToInsert(WaffleBox*)),controller,SLOT(insertItemController(WaffleBox*))); //Connessione per il segnale emesso da aggiuniProdotto
-    connect(menu->getLoad(),SIGNAL(triggered()),controller,SLOT(loadingXmlController()));
-    connect(aggiungiProdotto->getAdd(),SIGNAL(clicked()),aggiungiProdotto,SLOT(insert()));
-    connect(aggiungiProdotto,SIGNAL(signalToInsert(WaffleBox*)),controller,SLOT(insertItemController(WaffleBox*)));
+
     connect(catalogo->getBtnSearch(),SIGNAL(clicked()),controller,SLOT(showSearch()));
 }
 
@@ -74,6 +77,12 @@ void MainWindow::insertItemInfo(){
 void MainWindow::loadingXmlInfo(){
 
     QMessageBox::information(this,"DONE IT!", "Caricamento avvenuto con successo");
+
+}
+
+void MainWindow::savingXmlInfo(){
+
+    QMessageBox::information(this,"DONE IT!", "XML creato con successo");
 
 }
 

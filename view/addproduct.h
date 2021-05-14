@@ -87,7 +87,10 @@ private:
 public:
     explicit AddProduct(QWidget * = nullptr);
     QPushButton* getAdd();
+    QPushButton* getCancel();
+    QComboBox* getItemCombo();
     void enableFields(bool) const;
+    void resetAllFields();
     
 private slots:
     void resetFields();    //Metodo per resettare a " " tutti i campi.

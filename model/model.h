@@ -18,7 +18,7 @@ public:
     void addBox(WaffleBox*);
     void removeBox(u_int);
     void removeBox(DeepPtr<WaffleBox>&);
-    void loadXMl(); //Carico i dati dal file
+    void loadXml(); //Carico i dati dal file
     void writeXml() const;
     u_int getSize() const;
     WaffleBox* getItem(unsigned int i) const; //Metodo per ottenere l'obj nel container

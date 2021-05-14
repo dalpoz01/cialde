@@ -27,8 +27,13 @@ void Controller::insertItemController(WaffleBox* wb){
     view->insertItemInfo();
 }
 void Controller::loadingXmlController(){
-    model->loadXMl();
+    model->loadXml();
     view->loadingXmlInfo();
+}
+
+void Controller::savingXmlController(){
+    model->writeXml();
+    view->savingXmlInfo();
 }
 void Controller::showSearch() const{
     view->showSearch();

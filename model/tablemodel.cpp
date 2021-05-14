@@ -5,7 +5,7 @@ TableModel::TableModel(QObject *parent, const std::string& path, const std::stri
     QAbstractTableModel(parent),
     model(new Model(path,file)) {
 
-    model->loadXMl();   //Carico i dati da Xml
+    model->loadXml();   //Carico i dati da Xml
 }
 
 //Distruttore

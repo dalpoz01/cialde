@@ -18,6 +18,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
             ){ //Se il file non si può aprire in lettura
         QMessageBox openMsg(QMessageBox::Warning, "ERRORE DI APERTURA", "Errore! Impossibile aprire il file in lettura", QMessageBox::Ok);
         openMsg.exec();
+        xFile.close();
     }else{
         QXmlStreamReader reader(&xFile);
         if(reader.readNextStartElement()==true && reader.name() == "radix"){
@@ -134,7 +135,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                 }
                 xFile.close();
              }
-        }
+    }
     return temp;
 }
 
@@ -143,7 +144,7 @@ void XmlManagement::write(const Container<DeepPtr<WaffleBox>> &cont) const{
     //verifico che esista la directory, altrimento la creo
     if(!directory.exists(QString::fromStdString(path))) directory.mkdir(QString::fromStdString(path));
     QSaveFile savedFile(QString::fromStdString(path+fileName));
-        if(savedFile.open(QIODevice::WriteOnly)==false){
+        if(savedFile.open(QIODevice::WriteOnly) == false){
             std::cerr << path;
             throw std::exception();
         }

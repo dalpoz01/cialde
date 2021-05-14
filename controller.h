@@ -27,6 +27,7 @@ public slots:
     void showSearch() const;
     void insertItemController(WaffleBox*);
     void loadingXmlController();
+    void savingXmlController();
 };
 
 #endif // CONTROLLER_H

@@ -25,9 +25,11 @@ public:
 
 private slots:
     void loadXmlFile();
+    void saveXmlFile();
 
 signals:
     void signalToLoad() const;
+    void signalToSave() const;
 };
 
 #endif // MENUBAR_H

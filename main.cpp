@@ -10,9 +10,9 @@ int main(int argc, char *argv[])
     MainWindow w;
     Controller c;
     Model* m = new Model();
-    m->loadXMl();
+
+    m->loadXml();
     c.setModel(m);
-    //c.setModel(/*c.getModel()*/&m);
 
     c.setView(&w);
     w.setController(&c);

@@ -110,14 +110,18 @@ AddProduct::AddProduct(QWidget(*parent)): QWidget(parent),
     showCommon();
     enableFields(false);
 
-    //Listener
-    connect(itemComboBox,SIGNAL(currentIndexChanged(const QString&)),this,SLOT(showItemTypeField(const QString&)));
-    connect(cancelButton,SIGNAL(clicked()),this,SLOT(resetFields()));
-
 }
 
 QPushButton* AddProduct::getAdd(){
     return addButton;
+}
+
+QPushButton* AddProduct::getCancel(){
+    return cancelButton;
+}
+
+QComboBox* AddProduct::getItemCombo(){
+    return itemComboBox;
 }
 
 void AddProduct::showCircle(bool flag) const{
@@ -230,19 +234,23 @@ void AddProduct::resetCovered() const{
     tasteLine->setText(" ");
 }
 
+void AddProduct::resetAllFields(){
+    resetCommon();
+    resetCircle();
+    resetHeight();
+    resetVentaglio();
+    resetCannolo();
+    resetCone();
+    resetBranded();
+    resetCovered();
+    showCommon();
+}
+
 void AddProduct::resetFields(){
 
     if(QMessageBox::question(this, "Attenzione" ,"Vuoi annullare l'inserimento e resettare i campi?", QMessageBox::Ok, QMessageBox::Close) == QMessageBox::Ok){
-            resetCommon();
-            resetCircle();
-            resetHeight();
-            resetVentaglio();
-            resetCannolo();
-            resetCone();
-            resetBranded();
-            resetCovered();
-            showCommon();
-     }
+            resetAllFields();
+    }
 }
 
 void AddProduct::enableFields(bool flag) const
@@ -434,7 +442,7 @@ void AddProduct::insert(){
 
     if(temp != nullptr){
         emit signalToInsert(temp);
-        resetFields();
+        resetAllFields();
         delete temp;
     }
 }

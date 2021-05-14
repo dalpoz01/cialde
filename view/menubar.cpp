@@ -19,6 +19,7 @@ MenuBar::MenuBar(QWidget *parent) :
     addAction(carrello);
 
     connect(load,SIGNAL(changed()),this,SLOT(loadXmlFile()));
+    connect(save,SIGNAL(changed()),this,SLOT(saveXmlFile()));
 }
 
 QAction* MenuBar::getLoad() const{ return load;}
@@ -41,4 +42,8 @@ QAction *MenuBar::getModProduct() const{
 
 void MenuBar::loadXmlFile(){
     emit signalToLoad();
+}
+
+void MenuBar::saveXmlFile(){
+    emit signalToSave();
 }
