@@ -155,8 +155,8 @@ void XmlManagement::write(const Container<DeepPtr<WaffleBox>> &cont) const{
          writer.writeStartDocument();
          writer.writeStartElement("element");
          for(Container<DeepPtr<WaffleBox>>::const_iterator it = cont.begin(); it != cont.end(); ++it){
-             const WaffleBox* wb;
-             wb = it->operator ->(); //Ottengo l'oggetto puntato dall'iteratore costante
+             const WaffleBox* wb = it->operator ->();
+            // wb ; //Ottengo l'oggetto puntato dall'iteratore costante
              writer.writeStartElement("WaffleBox");
              writer.writeAttribute("type", QString::fromStdString(wb->getItemType()));
 
@@ -231,6 +231,9 @@ void XmlManagement::write(const Container<DeepPtr<WaffleBox>> &cont) const{
          }
          writer.writeEndElement();  //</element>
          writer.writeEndDocument();
+         savedFile.commit();
+    }else{
+        cout << "File non esistente per scrivere" << endl;
     }
 }
 

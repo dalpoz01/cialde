@@ -12,13 +12,11 @@ private:
     QAction *catalog;
     QAction *addProduct;
     QAction *modProduct;
-    QAction *carrello;
 
 public:
     explicit MenuBar(QWidget * = nullptr);
     QAction* getLoad() const;
     QAction* getSave() const;
-    QAction *getCarrello();
     QAction *getCatalog() const;
     QAction *getAddProduct() const;
     QAction *getModProduct() const;
