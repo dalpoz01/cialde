@@ -1,12 +1,13 @@
 #include "modifyproduct.h"
 
 modifyProduct::modifyProduct(QWidget(*parent)):QWidget(parent),
-    mainLayout(new QVBoxLayout(this)),
+
     editNameProduct(new QLineEdit(this)),
     itemTypeCombobox(new QComboBox(this)),
     search(new QPushButton("Cerca",this)),
-    imgLabel(new QLabel(this)){
+    imgLabel(new QLabel(this)) {
 
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
     QHBoxLayout *ricerca = new QHBoxLayout();
 
     itemTypeCombobox->addItem("Cialda");

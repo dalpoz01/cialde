@@ -13,7 +13,6 @@
 class catalog : public QWidget{
     Q_OBJECT
 private:
-    QVBoxLayout *mainLayout;
     QComboBox *itemTypeCombobox;
     QPushButton *search;
     QLabel *imgLabel;

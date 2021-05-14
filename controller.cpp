@@ -26,3 +26,8 @@ void Controller::insertItemController(WaffleBox* wb){
     model->addBox(wb);
     view->insertItemInfo();
 }
+
+void Controller::loadingXmlController(){
+    model->loadXMl();
+    view->loadingXmlInfo();
+}

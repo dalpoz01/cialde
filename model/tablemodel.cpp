@@ -4,8 +4,6 @@
 TableModel::TableModel(QObject *parent, const std::string& path, const std::string& file) :
     QAbstractTableModel(parent),
     model(new Model(path,file)) {
-    cout << "PATH Model: " << path << endl;
-    cout << "FILENAME Model: " << file << endl;
 
     model->loadXMl();   //Carico i dati da Xml
 }

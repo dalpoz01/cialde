@@ -42,6 +42,7 @@ public:
     MenuBar *getMenu() const;
 public slots:
       void insertItemInfo();
+      void loadingXmlInfo();
 };
 
 #endif // MAINWINDOW_H

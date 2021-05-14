@@ -1,7 +1,7 @@
 #include "catalog.h"
 
 catalog::catalog(QWidget(*parent)):QWidget(parent),
-    mainLayout(new QVBoxLayout(this)),
+
     itemTypeCombobox(new QComboBox(this)),
     search(new QPushButton("Cerca",this)),
     imgLabel(new QLabel(this)),
@@ -14,6 +14,8 @@ catalog::catalog(QWidget(*parent)):QWidget(parent),
     succ(new QPushButton("Successivo")),
     formLayout(new QFormLayout())
 {
+    QVBoxLayout *mainLayout=new QVBoxLayout(this);
+
     itemTypeCombobox->addItem("Cialda");
     itemTypeCombobox->addItem("Cono");
 

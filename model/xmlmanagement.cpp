@@ -1,22 +1,27 @@
 #include "xmlmanagement.h"
 
-XmlManagement::XmlManagement(const std::string& p, const std::string& fn) : path(p), fileName(fn) {cout << "Creato con successo LoaderXml" << endl;}
+XmlManagement::XmlManagement(const std::string& p, const std::string& fn) : path(p), fileName(fn) {cout << "XMLMANAGEMENT :: " << path+fileName << endl;}
 
 Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
 
     Container<DeepPtr<WaffleBox>> temp;
-
+    cout << "XMLMANAGEMENT :: read(): " << path+fileName << endl;
     QFile xFile(QString::fromStdString(path+fileName));
 
+    if(xFile.exists())
+        cout << "Esisto" << endl;
+    else
+        cout << "Non esisto" << endl;
+
     //Prendo il file XML
-    if(xFile.open(QIODevice::ReadOnly)==false){ //Se il file non si può aprire in lettura
+    if(xFile.open(QIODevice::ReadOnly | QIODevice::Text)){ //Se il file non si può aprire in lettura
         QMessageBox openMsg(QMessageBox::Warning, "ERRORE DI APERTURA", "Errore! Impossibile aprire il file in lettura", QMessageBox::Ok);
         openMsg.exec();
     }else{
         QXmlStreamReader reader(&xFile);
-        if(reader.readNextStartElement()){ //Reads until the next start element within the current element.
-            if(reader.name() == "radix"){
-                while(reader.readNextStartElement()){ //Inizio a leggere i WaffleBox
+        if(reader.readNextStartElement()==true && reader.name() == "radix"){
+            cout << "Sono dentro <radix>" << endl;//Reads until the next start element within the current element.
+                while(reader.readNextStartElement()==true){ //Inizio a leggere i WaffleBox
 
                     try{
                         if(reader.name() != "WaffleBox") throw std::string("Xml not valid.");
@@ -129,7 +134,6 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                 xFile.close();
              }
         }
-    }
     return temp;
 }
 
@@ -232,3 +236,7 @@ void XmlManagement::write(const Container<DeepPtr<WaffleBox>> &cont) const{
 std::string XmlManagement::DoubleToString(double d){std::stringstream stream; stream << d; return stream.str();}
 
 std::string XmlManagement::UIntToString(unsigned int i){std::stringstream stream; stream << i; return stream.str();}
+
+std::string XmlManagement::getXmlPath() const{return path;}
+
+std::string XmlManagement::getXmlFileName() const{return fileName;}

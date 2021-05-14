@@ -8,9 +8,9 @@
 #include<QDir>
 #include<QSaveFile>
 #include<QIODevice>
+#include <QtXml>
 
 #include <iostream>
-#include <string>
 #include <sstream>
 
 #include "container.h"
@@ -31,11 +31,14 @@ private:
     static std::string DoubleToString(double);
     static std::string UIntToString(unsigned int);
 public:
-    XmlManagement(const std::string& = "../Data/Xml/", const std::string& = "products.xml");
+    XmlManagement(const std::string& = "../cialde-test/Data/Xml/", const std::string& = "products.xml");
     //Metodo per leggere Xml
     Container<DeepPtr<WaffleBox>> read() const;
     //Metodo per scrivere xml
     void write(const Container<DeepPtr<WaffleBox>>&) const;
+
+    std::string getXmlPath() const;
+    std::string getXmlFileName() const;
 };
 
 #endif // XMLMANAGEMENT_H

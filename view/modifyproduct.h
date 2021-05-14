@@ -12,7 +12,6 @@
 class modifyProduct : public QWidget{
     Q_OBJECT
 private:
-    QVBoxLayout *mainLayout;
     QLineEdit *editNameProduct;
     QComboBox *itemTypeCombobox;
     QPushButton *search;

@@ -49,8 +49,9 @@ void MainWindow::setController(Controller *c){
     connect(menu->getCatalog(),SIGNAL(triggered()),controller,SLOT(showCatalogo()));
     connect(menu->getAddProduct(),SIGNAL(triggered()),controller,SLOT(showAddProduct()));
     connect(menu->getModProduct(),SIGNAL(triggered()),controller,SLOT(showModProduct()));
-    connect(aggiungiProdotto->getAdd(),SIGNAL(clicked()),aggiungiProdotto,SLOT(insert()));
-    connect(aggiungiProdotto,SIGNAL(signalToInsert(WaffleBox*)),controller,SLOT(insertItemController(WaffleBox*)));
+    connect(aggiungiProdotto->getAdd(),SIGNAL(clicked()),aggiungiProdotto,SLOT(insert())); //Connessione per aggiungiProdotto
+    connect(aggiungiProdotto,SIGNAL(signalToInsert(WaffleBox*)),controller,SLOT(insertItemController(WaffleBox*))); //Connessione per il segnale emesso da aggiuniProdotto
+    connect(menu->getLoad(),SIGNAL(triggered()),controller,SLOT(loadingXmlController()));
 }
 
 void MainWindow::showAddProduct() const{
@@ -64,6 +65,12 @@ void MainWindow::insertItemInfo(){
 
     QMessageBox::information(this,"DONE IT!", "Inserimento avvenuto con successo");
     std::cout<<"Aggiunto"<<endl;
+
+}
+
+void MainWindow::loadingXmlInfo(){
+
+    QMessageBox::information(this,"DONE IT!", "Caricamento avvenuto con successo");
 
 }
 
@@ -84,3 +91,4 @@ void MainWindow::showModifyProduct() const{
 MenuBar *MainWindow::getMenu() const{
     return menu;
 }
+

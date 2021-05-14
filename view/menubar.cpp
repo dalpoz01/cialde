@@ -18,7 +18,13 @@ MenuBar::MenuBar(QWidget *parent) :
     addAction(modProduct);
     addAction(carrello);
 
+    connect(load,SIGNAL(changed()),this,SLOT(loadXmlFile()));
 }
+
+QAction* MenuBar::getLoad() const{ return load;}
+
+QAction* MenuBar::getSave() const{return save;}
+
 QAction* MenuBar::getCarrello(){
     return carrello;
 }
@@ -31,4 +37,8 @@ QAction *MenuBar::getAddProduct() const{
 
 QAction *MenuBar::getModProduct() const{
     return modProduct;
+}
+
+void MenuBar::loadXmlFile(){
+    emit signalToLoad();
 }
