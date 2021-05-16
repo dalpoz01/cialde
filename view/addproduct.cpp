@@ -366,7 +366,8 @@ void AddProduct::insert(){
     int typeIndex = itemComboBox->currentIndex();
     if(itemComboBox->currentText().toStdString() != " - " && nomeLine->text().toStdString() != " " && capacityBox->currentText().toUInt() != 0){
         //Creo attributi e assegno loro il valore presente nei campi
-
+        std::cout<<"Nome del prodotto:"<<nomeLine->text().toStdString()<<endl;
+        std::string nome = nomeLine->text().toStdString();
         std::string id = idLine->text().toStdString();
         u_int capa = capacityBox->currentText().toUInt();
         u_int peso = (capa)*(0.8);
@@ -396,31 +397,31 @@ void AddProduct::insert(){
         case 0: QMessageBox::critical(this,"Impossibile inserire!","Tipo Box mancante.", QMessageBox::Ok, QMessageBox::Close);  //Tipo item = " - ".
                 break;
         case 1: radius = radiusSpin->text().toUInt(); //Tipo "Circle Box"
-                temp = new CircleBox(id,capa,peso,prezzo,disc,stockAva,radius);
+                temp = new CircleBox(nome,id,capa,peso,prezzo,disc,stockAva,radius);
             break;
         case 2: height = heightLine->text().toUInt();
                 width = widthLine->text().toUInt();   //Tipo "Ventaglio Box"
-                temp = new VentaglioBox(id,capa,peso,prezzo,disc,stockAva,height,width);
+                temp = new VentaglioBox(nome,id,capa,peso,prezzo,disc,stockAva,height,width);
             break;
         case 3: height = heightLine->text().toUInt();
                 intDiam = intdiamLine->text().toUInt();   //Tipo "Cannolo Box"
-                temp = new CannoloBox(id,capa,peso,prezzo,disc,stockAva,height,intDiam);
+                temp = new CannoloBox(nome,id,capa,peso,prezzo,disc,stockAva,height,intDiam);
             break;
         case 4: height = heightLine->text().toUInt();
                 extDiam = extdiamLine->text().toUInt();   //Tipo "Cone Box"
-                temp = new ConeBox(id,capa,peso,prezzo,disc,stockAva,height,extDiam);
+                temp = new ConeBox(nome,id,capa,peso,prezzo,disc,stockAva,height,extDiam);
             break;
         case 5: if(tasteLine->text().toStdString() == " "){
                     if(QMessageBox::question(this,"Ops","Hai dimenticato il gusto! \nIntendevi un ConeBox senza gusto?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
                         height = heightLine->text().toUInt();
                         extDiam = extdiamLine->text().toUInt();   //Tipo "Cone Box"
-                        temp = new ConeBox(id,capa,peso,prezzo,disc,stockAva,height,extDiam);
+                        temp = new ConeBox(nome,id,capa,peso,prezzo,disc,stockAva,height,extDiam);
                     }
                 }
                 height = heightLine->text().toUInt();
                 extDiam = extdiamLine->text().toUInt();
                 taste = tasteLine->text().toStdString(); //Tipo "Covered Box"
-                temp = new Covered(id,capa,peso,prezzo,disc,stockAva,height,extDiam,taste);
+                temp = new Covered(nome,id,capa,peso,prezzo,disc,stockAva,height,extDiam,taste);
             break;
         case 6: height = heightLine->text().toUInt();
                 extDiam = extdiamLine->text().toUInt();
@@ -431,7 +432,7 @@ void AddProduct::insert(){
 
                 princ = (prncolorLine->text().toStdString() == " " ? "White" : prncolorLine->text().toStdString());
                 seco = (seccolorLine->text().toStdString() == " " ? "White" : seccolorLine->text().toStdString());  //Tipo "Branded Box"
-                temp = new Branded(id,capa,peso,prezzo,disc,stockAva,height,extDiam,princ,seco);
+                temp = new Branded(nome,id,capa,peso,prezzo,disc,stockAva,height,extDiam,princ,seco);
              break;
             }
 

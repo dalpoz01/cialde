@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<element>
+    <WaffleBox type="CircleBox">
+        <Nome>prova</Nome>
+        <ID>1234</ID>
+        <capacity>150</capacity>
+        <weight>120</weight>
+        <price>12</price>
+        <discount>2</discount>
+        <stockavailability>50</stockavailability>
+        <radius>2</radius>
+    </WaffleBox>
+</element>

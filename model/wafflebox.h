@@ -8,6 +8,7 @@ typedef unsigned int u_int;
 //Classe BASE ASTRATTA POLIMORFA
 class WaffleBox {
 private:
+    std::string Name;
     std::string ID;
     u_int capacity;
     u_int weight;
@@ -15,11 +16,12 @@ private:
     u_int discount;
     u_int stockavailability;
 public:
-    WaffleBox(const std::string& id=" ", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0);
+    WaffleBox(const std::string& nome=" ",const std::string& id=" ", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0);
     WaffleBox(const WaffleBox& w);
     virtual ~WaffleBox() = default;
 
     //GETTER
+    std::string getName() const;
     std::string getID() const;
     u_int getCapacity() const;
     u_int getWeight() const;
@@ -28,6 +30,7 @@ public:
     u_int getDiscount() const;
 
     //SETTER
+    void setName(const std::string &);
     void setID(const std::string&);
     void setCapacity(u_int);
     void setWeight(u_int);
@@ -45,7 +48,6 @@ public:
 
     //STAMPA INFO
     virtual std::string printItem() const;
-
 };
 
 #endif // WAFFLEBOX_H

@@ -28,6 +28,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                         if(reader.name() != "WaffleBox") throw std::string("Xml not valid.");
                         //Attributi comuni
                         std::string itemType = reader.attributes().value("type").toString().toStdString();
+                        std::string name = "";
                         std::string ID = "";
                         unsigned int capacity;
                         unsigned int weight;
@@ -37,6 +38,8 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
 
                         //Leggo gli attributi comuni con readElementText()
 
+                        if(reader.name() == "Nome")
+                            name = reader.readElementText().toStdString();
                         if(reader.name() == "ID")
                             ID = reader.readElementText().toStdString();
                         if(reader.name() == "capacity")
@@ -56,7 +59,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                             if(reader.name() == "radius")
                                 radius = reader.readElementText().toUInt();
                             reader.skipCurrentElement();    //Skippo all'elemento successivo perchè ho finito quello corrente e devo continuare il ciclo
-                            CircleBox* cb = new CircleBox(ID,capacity,weight,price,discount,stockAva,radius);
+                            CircleBox* cb = new CircleBox(name,ID,capacity,weight,price,discount,stockAva,radius);
                             temp.push_back(DeepPtr<WaffleBox>(cb));
                             delete cb;
                         }else if(itemType == "VentaglioBox"){
@@ -67,7 +70,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                             if(reader.name() == "width")
                                 width = reader.readElementText().toUInt();
                             reader.skipCurrentElement();
-                            VentaglioBox* vb = new VentaglioBox(ID,capacity,weight,price,discount,stockAva,height,width);
+                            VentaglioBox* vb = new VentaglioBox(name,ID,capacity,weight,price,discount,stockAva,height,width);
                             temp.push_back(DeepPtr<WaffleBox>(vb));
                             delete vb;
                         }else if(itemType == "CannoloBox"){
@@ -78,7 +81,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                             if(reader.name() == "int_diameter")
                                 int_diam = reader.readElementText().toUInt();
                             reader.skipCurrentElement();
-                            CannoloBox* c = new CannoloBox(ID,capacity,weight,price,discount,stockAva,height,int_diam);
+                            CannoloBox* c = new CannoloBox(name,ID,capacity,weight,price,discount,stockAva,height,int_diam);
                             temp.push_back(DeepPtr<WaffleBox>(c));
                             delete c;
                         }else if(itemType == "ConeBox"){
@@ -89,7 +92,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                             if(reader.name() == "ext_diameter")
                                 ext_diam = reader.readElementText().toUInt();
                             reader.skipCurrentElement();
-                            ConeBox* co = new ConeBox(ID,capacity,weight,price,discount,stockAva,height,ext_diam);
+                            ConeBox* co = new ConeBox(name,ID,capacity,weight,price,discount,stockAva,height,ext_diam);
                             temp.push_back(DeepPtr<WaffleBox>(co));
                             delete co;
                         }else if(itemType == "BrandedBox"){
@@ -106,7 +109,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                             if(reader.name() == "secondary_color")
                                 seco = reader.readElementText().toStdString();
                             reader.skipCurrentElement();
-                            Branded* b = new Branded(ID,capacity,weight,price,discount,stockAva,height,ext_diam,princ,seco);
+                            Branded* b = new Branded(name,ID,capacity,weight,price,discount,stockAva,height,ext_diam,princ,seco);
                             temp.push_back(DeepPtr<WaffleBox>(b));
                             delete b;
                         }else if(itemType == "CoveredBox"){
@@ -120,7 +123,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                             if(reader.name() == "taste")
                                 taste = reader.readElementText().toStdString();
                             reader.skipCurrentElement();
-                            Covered* c = new Covered(ID,capacity,weight,price,discount,stockAva,height,ext_diam,taste);
+                            Covered* c = new Covered(name,ID,capacity,weight,price,discount,stockAva,height,ext_diam,taste);
                             temp.push_back(DeepPtr<WaffleBox>(c));
                             delete c;
                         }
@@ -151,6 +154,7 @@ void XmlManagement::write(const Container<DeepPtr<WaffleBox>> &cont) const{
     //verifico che sia presente anche il file dove scrivere
     if(/*xmlFile.exists() &&*/ xmlFile.open(QIODevice::WriteOnly)){
          QXmlStreamWriter writer(&xmlFile);
+         writer.setAutoFormatting(true);
          writer.writeStartDocument();
          writer.writeStartElement("element");
          for(Container<DeepPtr<WaffleBox>>::const_iterator it = cont.begin(); it != cont.end(); ++it){
@@ -158,6 +162,11 @@ void XmlManagement::write(const Container<DeepPtr<WaffleBox>> &cont) const{
             // wb ; //Ottengo l'oggetto puntato dall'iteratore costante
              writer.writeStartElement("WaffleBox");
              writer.writeAttribute("type", QString::fromStdString(wb->getItemType()));
+
+             writer.writeStartElement("Nome");
+             std::cout<<"Nome del prodotto in XML"<<wb->getName();
+             writer.writeCharacters(QString::fromStdString(wb->getName()));
+             writer.writeEndElement();
 
              writer.writeStartElement("ID");
              writer.writeCharacters(QString::fromStdString(wb->getID()));
@@ -230,6 +239,7 @@ void XmlManagement::write(const Container<DeepPtr<WaffleBox>> &cont) const{
          }
          writer.writeEndElement();  //</element>
          writer.writeEndDocument();
+         xmlFile.close();
     }else{
         cout << "File non esistente per scrivere" << endl;
     }

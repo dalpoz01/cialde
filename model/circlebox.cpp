@@ -1,10 +1,10 @@
 #include "circlebox.h"
 
 //Costruttore
-CircleBox::CircleBox(const std::string &id, u_int c, u_int w, double p, u_int dis, u_int s, u_int d): WaffleBox(id, c, w, p, dis, s), radius(d) {}
+CircleBox::CircleBox(const std::string &nome,const std::string &id, u_int c, u_int w, double p, u_int dis, u_int s, u_int d): WaffleBox(nome, id, c, w, p, dis, s), radius(d) {}
 
 //Costruttore di copia
-CircleBox::CircleBox(const CircleBox& c): WaffleBox(c.getID(), c.getCapacity(), c.getWeight(), c.getPrice(), c.getDiscount(), c.getStockAvailability()), radius(c.getRadius()){}
+CircleBox::CircleBox(const CircleBox& c): WaffleBox(c.getName(),c.getID(), c.getCapacity(), c.getWeight(), c.getPrice(), c.getDiscount(), c.getStockAvailability()), radius(c.getRadius()){}
 
 //Getter
 u_int CircleBox::getRadius() const{return radius;}

@@ -77,6 +77,7 @@ void MainWindow::loadingXmlInfo(){
 void MainWindow::savingXmlInfo(){
 
     QMessageBox::information(this,"DONE IT!", "XML creato con successo");
+    std::cout<<"Salvato"<<endl;
 
 }
 
