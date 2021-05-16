@@ -16,7 +16,7 @@ private:
     void resize();
 public:
     //Costruttore standard
-    Container(u_int = 5, u_int = 10);
+    Container(u_int = 0, u_int = 10);
     //Fill constructor, cioè crea il contenitore avente n copie di t.
     Container(const T&, u_int);
     //costruttore di copia

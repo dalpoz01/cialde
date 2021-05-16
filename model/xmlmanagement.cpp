@@ -147,10 +147,9 @@ void XmlManagement::write(const Container<DeepPtr<WaffleBox>> &cont) const{
             std::cerr << path;
             throw std::exception();
         }
-
     QFile xmlFile(QString::fromStdString(path+fileName)); //Prendo il file XML
     //verifico che sia presente anche il file dove scrivere
-    if(xmlFile.exists() && xmlFile.open(QIODevice::WriteOnly)){
+    if(/*xmlFile.exists() &&*/ xmlFile.open(QIODevice::WriteOnly)){
          QXmlStreamWriter writer(&xmlFile);
          writer.writeStartDocument();
          writer.writeStartElement("element");
@@ -231,7 +230,6 @@ void XmlManagement::write(const Container<DeepPtr<WaffleBox>> &cont) const{
          }
          writer.writeEndElement();  //</element>
          writer.writeEndDocument();
-         savedFile.commit();
     }else{
         cout << "File non esistente per scrivere" << endl;
     }
