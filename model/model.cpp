@@ -20,7 +20,7 @@ void Model::removeBox(DeepPtr<WaffleBox>& ptr){container.erase(ptr);}
 
 void Model::loadXml(){container = xmlManager.read();}
 
-void Model::writeXml() const { xmlManager.write(container);}
+void Model::writeXml() const { if(container.getSize()>0){xmlManager.write(container);}else{std::cout<<"Container vuoto"<<endl;}}
 
 u_int Model::getSize() const{return container.getSize();}
 

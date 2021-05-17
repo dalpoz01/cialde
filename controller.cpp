@@ -66,6 +66,7 @@ void Controller::insertItemController(WaffleBox* wb){
     view->insertItemInfo();
 }
 void Controller::loadingXmlController(){
+    std::cout<<"Vado in lettura dal controller"<<endl;
     model->loadXml();
     view->loadingXmlInfo();
 }
