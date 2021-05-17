@@ -10,19 +10,21 @@ class WaffleBox {
 private:
     std::string Name;
     std::string ID;
+    std::string photo;
     u_int capacity;
     u_int weight;
     double price;
     u_int discount;
     u_int stockavailability;
 public:
-    WaffleBox(const std::string& nome=" ",const std::string& id=" ", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0);
+    WaffleBox(const std::string& nome=" ", const std::string& id=" ", const std::string& foto=" ", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0);
     WaffleBox(const WaffleBox& w);
     virtual ~WaffleBox() = default;
 
     //GETTER
     std::string getName() const;
     std::string getID() const;
+    std::string getPhoto() const;
     u_int getCapacity() const;
     u_int getWeight() const;
     double getPrice() const;
@@ -32,6 +34,7 @@ public:
     //SETTER
     void setName(const std::string &);
     void setID(const std::string&);
+    void setPhoto(const std::string &);
     void setCapacity(u_int);
     void setWeight(u_int);
     void setPrice(double);
@@ -48,6 +51,8 @@ public:
 
     //STAMPA INFO
     virtual std::string printItem() const;
+
+
 };
 
 #endif // WAFFLEBOX_H

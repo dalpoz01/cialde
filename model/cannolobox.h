@@ -8,7 +8,7 @@ private:
     u_int int_diameter;
 public:
     //Costruttore, costruttore di copia, distruttore
-    CannoloBox(const std::string& nome=" ", const std::string& id=" ", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0, u_int = 0, u_int = 0);
+    CannoloBox(const std::string& nome=" ", const std::string& id=" ", const std::string& foto=" ", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0, u_int = 0, u_int = 0);
     CannoloBox(const CannoloBox&);
     virtual ~CannoloBox() = default;
 

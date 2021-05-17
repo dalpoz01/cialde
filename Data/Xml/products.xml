@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <element>
     <WaffleBox type="CircleBox">
-        <Nome>prova</Nome>
-        <ID>1234</ID>
+        <Nome>Provafoto senza ins</Nome>
+        <ID>1233</ID>
+        <Foto>:/MyRes/Photo/image-not-found.jpg</Foto>
+        <capacity>100</capacity>
+        <weight>80</weight>
+        <price>2</price>
+        <discount>3</discount>
+        <stockavailability>50</stockavailability>
+        <radius>2</radius>
+    </WaffleBox>
+    <WaffleBox type="CircleBox">
+        <Nome>provafoto con ins</Nome>
+        <ID> 1234</ID>
+        <Foto>:/MyRes/Photo/image-not-found.jpg</Foto>
         <capacity>150</capacity>
         <weight>120</weight>
-        <price>12</price>
-        <discount>2</discount>
+        <price>22</price>
+        <discount>5</discount>
         <stockavailability>50</stockavailability>
         <radius>2</radius>
     </WaffleBox>

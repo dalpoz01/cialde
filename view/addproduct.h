@@ -13,6 +13,7 @@
 #include <QRadioButton>
 #include <QButtonGroup>
 #include <QMessageBox>
+#include <QFileDialog>
 
 #include "model/wafflebox.h"
 #include "model/circlebox.h"
@@ -27,6 +28,8 @@
 class AddProduct : public QWidget{
     Q_OBJECT
 private:
+    std::string imgpath;
+    QString currentPath;
     //Common Field
     QComboBox *itemComboBox, *capacityBox;
     QLabel *imgLabel;
@@ -88,14 +91,16 @@ public:
     explicit AddProduct(QWidget * = nullptr);
     QPushButton* getAdd();
     QPushButton* getCancel();
+    QPushButton *getAddPhoto() const;
     QComboBox* getItemCombo();
     void enableFields(bool) const;
     void resetAllFields();
-    
+
 private slots:
     void resetFields();    //Metodo per resettare a " " tutti i campi.
     void showItemTypeField(const QString&) const;
     void insert();    //Metodo che crea un oggetto in base ai campi inseriti
+    void addFoto();   //Metodo per aggiungere foto
 
 signals:
     void signalToInsert(WaffleBox*) const;

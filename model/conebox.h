@@ -9,7 +9,7 @@ class ConeBox : public HeightProviderBox {
         u_int ext_diameter;
     public:
         //Costruttore, costruttore di copia e distruttore
-        ConeBox(const std::string& ="",const std::string& = "", u_int = 0, u_int = 0, double = 0, u_int = 0,  u_int = 0, u_int = 0, u_int = 0);
+        ConeBox(const std::string& = "", const std::string& = "", const std::string& = "", u_int = 0, u_int = 0, double = 0, u_int = 0,  u_int = 0, u_int = 0, u_int = 0);
         ConeBox(const ConeBox&);
         virtual ~ConeBox() = default;
 
