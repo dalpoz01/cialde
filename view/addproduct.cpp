@@ -193,7 +193,9 @@ void AddProduct::createRadioLayout(QHBoxLayout* radioLayoutDown, QVBoxLayout* ra
     radioLayout->addLayout(radioLayoutDown);
 }
 
-void AddProduct::resetCommon() const{
+void AddProduct::resetCommon() {
+    imgpath = ":/cialde-test/Data/Photo/image-not-found.jpg";
+    imgLabel->setPixmap(QPixmap(QString::fromStdString(":/MyRes/Photo/image-not-found.jpg")).scaled(QSize(400, 400)));
     itemComboBox->setCurrentIndex(0);
     capacityBox->setCurrentIndex(0);
     nomeLine->setText(" ");
@@ -467,8 +469,10 @@ void AddProduct::addFoto(){
                         height /= 1.01;
                     }
                     imgLabel->setPixmap(qpm.scaled(QSize(width, height)));
+                    imgpath = QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)).toStdString();
                 }else{
                     imgLabel->setPixmap(qpm.scaled(QSize(qpm.width(), qpm.height())));
+                    imgpath = QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)).toStdString();
                 }
             }
         }else{

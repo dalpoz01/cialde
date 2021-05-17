@@ -40,21 +40,6 @@ QSize MainWindow::sizeHint() const {
 
 void MainWindow::setController(Controller *c){
     controller=c;
-   /* connect(menu->getCatalog(),SIGNAL(triggered()),controller,SLOT(showCatalogo()));
-    connect(menu->getAddProduct(),SIGNAL(triggered()),controller,SLOT(showAddProduct()));
-    connect(menu->getModProduct(),SIGNAL(triggered()),controller,SLOT(showModProduct()));
-    connect(menu->getLoad(),SIGNAL(triggered()),controller,SLOT(loadingXmlController()));
-    connect(menu->getSave(),SIGNAL(triggered()),controller,SLOT(savingXmlController()));
-
-    //Aggiungi Prodotto
-    connect(aggiungiProdotto->getItemCombo(),SIGNAL(currentIndexChanged(const QString&)),aggiungiProdotto,SLOT(showItemTypeField(const QString&)));
-    connect(aggiungiProdotto->getCancel(),SIGNAL(clicked()),aggiungiProdotto,SLOT(resetFields()));
-    connect(aggiungiProdotto->getAdd(),SIGNAL(clicked()),aggiungiProdotto,SLOT(insert())); //Connessione per aggiungiProdotto
-    connect(aggiungiProdotto,SIGNAL(signalToInsert(WaffleBox*)),controller,SLOT(insertItemController(WaffleBox*))); //Connessione per il segnale emesso da aggiuniProdotto
-
-    connect(catalogo->getBtnSearch(),SIGNAL(clicked()),controller,SLOT(showSearch()));
-    connect(catalogo->getRicercaProdotto()->getSearchButton(),SIGNAL(clicked()),controller,SLOT(showSearch()));
-    connect(catalogo->getRicercaProdotto()->getAnnullaButton(),SIGNAL(clicked()),controller,SLOT(showSearch()));*/
 }
 
 AddProduct* MainWindow::getAddProduct() const{

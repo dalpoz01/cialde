@@ -79,7 +79,7 @@ private:
     void showCommon() const;
     void createRadioLayout(QHBoxLayout* radioLayoutDown, QVBoxLayout* radioLayout, QHBoxLayout* radioLayoutUp);
 
-    void resetCommon() const;
+    void resetCommon();
     void resetCircle() const;
     void resetHeight() const;
     void resetVentaglio() const;
