@@ -1,8 +1,8 @@
 #include "cannolobox.h"
 
 //Costruttore, costruttore di copia
-CannoloBox::CannoloBox(const std::string& nome, const std::string &id, u_int c, u_int w, double p, u_int d, u_int s, u_int h, u_int int_d) : HeightProviderBox(nome, id, c, w, p, d, s, h), int_diameter(int_d) {}
-CannoloBox::CannoloBox(const CannoloBox& c) : HeightProviderBox(c.getName(), c.getID(), c.getCapacity(), c.getWeight(), c.getPrice(), c.getDiscount(), c.getStockAvailability(), c.getHeight()), int_diameter(c.getIntDiameter()) {}
+CannoloBox::CannoloBox(const std::string& nome, const std::string &id, const std::string &foto, u_int c, u_int w, double p, u_int d, u_int s, u_int h, u_int int_d) : HeightProviderBox(nome, id, foto, c, w, p, d, s, h), int_diameter(int_d) {}
+CannoloBox::CannoloBox(const CannoloBox& c) : HeightProviderBox(c.getName(), c.getID(), c.getPhoto(), c.getCapacity(), c.getWeight(), c.getPrice(), c.getDiscount(), c.getStockAvailability(), c.getHeight()), int_diameter(c.getIntDiameter()) {}
 
 //Getter, Setter
 u_int CannoloBox::getIntDiameter() const {return int_diameter;}

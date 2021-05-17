@@ -8,7 +8,7 @@ class CircleBox : public WaffleBox {
         u_int radius;
     public:
         //Costruttore, costruttore di copia e distruttore
-        CircleBox(const std::string& nome=" ",const std::string& id=" ", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0, u_int = 0);
+        CircleBox(const std::string& nome=" ",const std::string& id=" ", const std::string &foto=" ", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0, u_int = 0);
         CircleBox(const CircleBox&);
         virtual ~CircleBox() = default;
 

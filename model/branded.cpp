@@ -1,8 +1,8 @@
 #include "branded.h"
 
 //Costruttore, costruttore di copia
-Branded::Branded(const std::string& nome,const std::string &id, u_int c, u_int w, double p, u_int dis, u_int s, u_int h, u_int d, const std::string& princ, const std::string& sec) : ConeBox(nome, id, c, w, p, dis, s, h, d), principal_color(princ), secondary_color(sec) {}
-Branded::Branded(const Branded& b): ConeBox(b.getName(),b.getID(), b.getCapacity(), b.getWeight(), b.getPrice(), b.getDiscount(), b.getStockAvailability(), b.getHeight(), b.getExtDiameter()), principal_color(b.getPrincipalColor()), secondary_color(b.getSecundaryColor()) {}
+Branded::Branded(const std::string& nome, const std::string &id, const std::string &foto, u_int c, u_int w, double p, u_int dis, u_int s, u_int h, u_int d, const std::string& princ, const std::string& sec) : ConeBox(nome, id, foto, c, w, p, dis, s, h, d), principal_color(princ), secondary_color(sec) {}
+Branded::Branded(const Branded& b): ConeBox(b.getName(), b.getID(), b.getPhoto(), b.getCapacity(), b.getWeight(), b.getPrice(), b.getDiscount(), b.getStockAvailability(), b.getHeight(), b.getExtDiameter()), principal_color(b.getPrincipalColor()), secondary_color(b.getSecundaryColor()) {}
 
 //Getter
 std::string Branded::getPrincipalColor() const{return principal_color;}
