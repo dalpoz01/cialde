@@ -2,8 +2,8 @@
 
 AddProduct::AddProduct(QWidget(*parent)): QWidget(parent),
 
-    imgpath(":/MyRes/Photo/image-not-found.jpg"),
-    currentPath("../"),
+    imgpath(":/cialde-test/Data/Photo/image-not-found.jpg"),
+    currentPath("../cialde-test/Data/Photo"),
     itemComboBox(new QComboBox(this)),
     capacityBox(new QComboBox(this)),
     imgLabel(new QLabel(this)),
@@ -458,7 +458,7 @@ void AddProduct::addFoto(){
         currentPath = path;
         currentPath.remove(QRegExp(currentPath.section("/", -1, -1)));
         if(!QFile::exists("../cialde-test/Data/Photo/" + path.section("/", -1, -1))){
-            if(QFile::copy(path, QString("../MusicStore/Data/Photo/" + path.section("/", -1, -1)))) {
+            if(QFile::copy(path, QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)))) {
                 QPixmap qpm(QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)));
                 if(qpm.width()>700||qpm.height()>500){
                     int width= qpm.width(), height = qpm.height();
