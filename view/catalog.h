@@ -22,6 +22,7 @@ public:
     explicit catalog(QWidget * = nullptr);
     void showSearch() const;
     QPushButton* getBtnSearch() const;
+    QPushButton* getBtnSee() const;
     SearchInventory* getRicercaProdotto() const;
 };
 

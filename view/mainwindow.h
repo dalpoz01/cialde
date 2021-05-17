@@ -28,7 +28,7 @@ private:
     modifyProduct *modificaProdotto;
     TableModel* absModel;
     TableZone* tabella;
-    Controller *controller;
+    Controller* controller;
 
 public:
     explicit MainWindow(QWidget * = nullptr);
@@ -43,6 +43,8 @@ public slots:
       void insertItemInfo();
       void loadingXmlInfo();
       void savingXmlInfo();
+      void seeInfo();
+
 };
 
 #endif // MAINWINDOW_H

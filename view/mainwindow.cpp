@@ -81,6 +81,10 @@ void MainWindow::savingXmlInfo(){
 
 }
 
+void MainWindow::seeInfo(){
+        QMessageBox::information(this,"Forse", "Ho stampato gli oggetti.");
+}
+
 catalog* MainWindow::getCatalog() const{
     return catalogo;
 }

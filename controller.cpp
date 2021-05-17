@@ -23,6 +23,7 @@ void Controller::setView(MainWindow *v){
     connect(view->getCatalog()->getBtnSearch(),SIGNAL(clicked()),this,SLOT(showSearch()));
     connect(view->getCatalog()->getRicercaProdotto()->getSearchButton(),SIGNAL(clicked()),this,SLOT(showSearch()));
     connect(view->getCatalog()->getRicercaProdotto()->getAnnullaButton(),SIGNAL(clicked()),this,SLOT(hideSearch()));
+    connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeItems()));
 
     /*connect(view->getMenu()->getCatalog(),SIGNAL(triggered()),this,SLOT(showCatalogo()));
     connect(view->getMenu()->getAddProduct(),SIGNAL(triggered()),this,SLOT(showAddProduct()));
@@ -80,6 +81,12 @@ void Controller::hideSearch() const{
     view->getCatalog()->getRicercaProdotto()->hide();
     view->getCatalog()->showSearch();
 }
+
+void Controller::seeItems() const{
+    model->printAll();
+    view->seeInfo();
+}
+
 void Controller::avoidSearch() const{
     //std:cout<<"In inplementazione..."<<endl;
     //view->getCatalog()->getRicercaProdotto()->show();

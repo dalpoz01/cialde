@@ -26,6 +26,7 @@ public slots:
     void showModProduct() const;
     void showSearch() const;
     void hideSearch() const;
+    void seeItems() const;
     void avoidSearch() const;
     void insertItemController(WaffleBox*);
     void loadingXmlController();

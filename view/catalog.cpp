@@ -17,6 +17,9 @@ catalog::catalog(QWidget(*parent)):QWidget(parent),
 QPushButton* catalog::getBtnSearch() const{
     return btnSearch;
 }
+QPushButton* catalog::getBtnSee() const{
+    return btnSee;
+}
 SearchInventory* catalog::getRicercaProdotto() const{
     return ricercaProdotto;
 }

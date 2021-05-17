@@ -1,17 +1,17 @@
 #include "xmlmanagement.h"
 
-XmlManagement::XmlManagement(const std::string& p, const std::string& fn) : path(p), fileName(fn) {cout << "XMLMANAGEMENT :: " << path+fileName << endl;}
+XmlManagement::XmlManagement(const std::string& p, const std::string& fn) : path(p), fileName(fn) {}
 
 Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
 
     Container<DeepPtr<WaffleBox>> temp;
-    cout << "XMLMANAGEMENT :: read(): " << path+fileName << endl;
+    //cout << "XMLMANAGEMENT :: read(): " << path+fileName << endl;
     QFile xFile(QString::fromStdString(path+fileName));
 
-    if(xFile.exists())
+   /* if(xFile.exists())
         cout << "Esisto" << endl;
     else
-        cout << "Non esisto" << endl;
+        cout << "Non esisto" << endl;*/
 
     //Prendo il file XML
     if(xFile.open(QIODevice::ReadOnly | QIODevice::Text)==false){ //Se il file non si può aprire in lettura
@@ -21,7 +21,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
     }else{
         QXmlStreamReader reader(&xFile);
         if(reader.readNextStartElement()==true && reader.name() == "radix"){
-            cout << "Sono dentro <radix>" << endl;//Reads until the next start element within the current element.
+            //cout << "Sono dentro <radix>" << endl;//Reads until the next start element within the current element.
                 while(reader.readNextStartElement()==true){ //Inizio a leggere i WaffleBox
 
                     try{
