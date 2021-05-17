@@ -6,7 +6,8 @@ MainWindow::MainWindow(QWidget *parent):
     menu(new MenuBar(this)),
     catalogo(new catalog(this)),
     aggiungiProdotto(new AddProduct(this)),
-    modificaProdotto(new modifyProduct(this))
+    modificaProdotto(new modifyProduct(this)),
+    tabella(new Table(this))
 {
     setWindowTitle("Cialde Pro");
 
@@ -28,56 +29,32 @@ MainWindow::MainWindow(QWidget *parent):
     qv->addWidget(catalogo);
     qv->addWidget(aggiungiProdotto);
     qv->addWidget(modificaProdotto);
+    qv->addWidget(tabella);
 
     aggiungiProdotto->hide();
     modificaProdotto->hide();
     setLayout(qv);
 
 }
-QSize MainWindow::sizeHint() const {
-    return QSize(1024, 468);
-}
 
-void MainWindow::setController(Controller *c){
-    controller=c;
-}
+QSize MainWindow::sizeHint() const {return QSize(1024, 468);}
 
-AddProduct* MainWindow::getAddProduct() const{
-    return aggiungiProdotto;
-}
+void MainWindow::setController(Controller *c){controller=c;}
 
-void MainWindow::insertItemInfo(){
+AddProduct* MainWindow::getAddProduct() const{return aggiungiProdotto;}
 
-    QMessageBox::information(this,"DONE IT!", "Inserimento avvenuto con successo");
-    std::cout<<"Aggiunto"<<endl;
+void MainWindow::insertItemInfo(){QMessageBox::information(this,"DONE IT!", "Inserimento avvenuto con successo");}
 
-}
+void MainWindow::loadingXmlInfo(){QMessageBox::information(this,"DONE IT!", "Caricamento avvenuto con successo");}
 
-void MainWindow::loadingXmlInfo(){
+void MainWindow::savingXmlInfo(){QMessageBox::information(this,"DONE IT!", "XML creato con successo");}
 
-    QMessageBox::information(this,"DONE IT!", "Caricamento avvenuto con successo");
+void MainWindow::seeInfo(){QMessageBox::information(this,"Forse", "Ho stampato gli oggetti.");}
 
-}
+catalog* MainWindow::getCatalog() const{return catalogo;}
 
-void MainWindow::savingXmlInfo(){
+modifyProduct* MainWindow::getModifyProduct() const{return modificaProdotto;}
 
-    QMessageBox::information(this,"DONE IT!", "XML creato con successo");
-    std::cout<<"Salvato"<<endl;
+MenuBar *MainWindow::getMenu() const{return menu;}
 
-}
-
-void MainWindow::seeInfo(){
-        QMessageBox::information(this,"Forse", "Ho stampato gli oggetti.");
-}
-
-catalog* MainWindow::getCatalog() const{
-    return catalogo;
-}
-
-modifyProduct* MainWindow::getModifyProduct() const{
-    return modificaProdotto;
-}
-
-MenuBar *MainWindow::getMenu() const{
-    return menu;
-}
+Table* MainWindow::getTabella() const{ return tabella; }

@@ -6,6 +6,7 @@ Controller::Controller(QObject *parent) : QObject(parent){
 
 void Controller::setView(MainWindow *v){
     view=v;
+
     //Menu
     connect(view->getMenu()->getCatalog(),SIGNAL(triggered()),this,SLOT(showCatalogo()));
     connect(view->getMenu()->getAddProduct(),SIGNAL(triggered()),this,SLOT(showAddProduct()));
@@ -25,26 +26,32 @@ void Controller::setView(MainWindow *v){
     connect(view->getCatalog()->getRicercaProdotto()->getSearchButton(),SIGNAL(clicked()),this,SLOT(showSearch()));
     connect(view->getCatalog()->getRicercaProdotto()->getAnnullaButton(),SIGNAL(clicked()),this,SLOT(hideSearch()));
     connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeItems()));
+
 }
 
-void Controller::setModel(Model *m){ model=m; }
+void Controller::setModel(Model *m){
+    model = m;
+}
 
 Model* Controller::getModel() const{return model;}
 
 void Controller::showCatalogo() const{
     view->getCatalog()->show();
+    view->getTabella()->show();
     view->getAddProduct()->hide();
     view->getModifyProduct()->hide();
 }
 
 void Controller::showAddProduct() const{
     view->getCatalog()->hide();
+    view->getTabella()->hide();
     view->getAddProduct()->show();
     view->getModifyProduct()->hide();
 }
 
 void Controller::showModProduct() const{
     view->getCatalog()->hide();
+    view->getTabella()->hide();
     view->getAddProduct()->hide();
     view->getModifyProduct()->show();
 }
@@ -65,10 +72,12 @@ void Controller::savingXmlController(){
 void Controller::showSearch() const{
     view->getCatalog()->getRicercaProdotto()->show();
     view->getCatalog()->showSearch();
+    view->getTabella()->show();
 }
 void Controller::hideSearch() const{
     view->getCatalog()->getRicercaProdotto()->hide();
     view->getCatalog()->showSearch();
+
 }
 
 void Controller::seeItems() const{

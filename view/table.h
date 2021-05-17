@@ -2,14 +2,18 @@
 #define TABLE_H
 #include <QWidget>
 #include<QTableView>
-#include<QHeaderView>
+#include <QBoxLayout>
+
+#include "model/tablemodel.h"
 
 class Table : public QTableView {
     Q_OBJECT
 private:
-    QHeaderView* header;
+    TableModel* mymodel;
 public:
-    Table(QWidget* = nullptr);
+    explicit Table(QWidget* = nullptr);
+
+    TableModel* getMyModel() const;
 };
 
 #endif // TABLE_H

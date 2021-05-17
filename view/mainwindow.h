@@ -11,7 +11,7 @@
 #include "view/addproduct.h"
 #include "view/modifyproduct.h"
 #include "view/searchinventory.h"
-#include "view/tablezone.h"
+#include "view/table.h"
 #include "model/tablemodel.h"
 
 class Controller;
@@ -27,7 +27,7 @@ private:
     AddProduct* aggiungiProdotto;
     modifyProduct *modificaProdotto;
     TableModel* absModel;
-    TableZone* tabella;
+    Table* tabella;
     Controller* controller;
 
 public:
@@ -39,6 +39,7 @@ public:
     catalog* getCatalog() const;
     modifyProduct* getModifyProduct() const;
     MenuBar *getMenu() const;
+    Table* getTabella() const;
 public slots:
       void insertItemInfo();
       void loadingXmlInfo();

@@ -26,15 +26,17 @@ QVariant TableModel::data(const QModelIndex &modelIndex, int role) const{
     switch(modelIndex.column()){
     case 0: return QString::fromStdString(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getID()); //getItem() ritorna l'obj ad un determinato indice
             break;
-    case 1: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getCapacity();
+    case 1: return QString::fromStdString(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getName());
             break;
-    case 2: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getWeight();
+    case 2: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getCapacity();
             break;
-    case 3: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getPrice();
+    case 3: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getWeight();
             break;
-    case 4: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getDiscount();
+    case 4: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getPrice();
             break;
-    case 5: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getStockAvailability();
+    case 5: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getDiscount();
+            break;
+    case 6: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getStockAvailability();
             break;
     //Ho definito le colonne
     default: return QVariant();
@@ -49,15 +51,17 @@ QVariant TableModel::headerData(int section, Qt::Orientation orientation, int ro
         switch(section){
         case 0: return QString("ID");
                 break;
-        case 1: return QString("Capacity");
+        case 1: return QString("Nome");
                 break;
-        case 2: return QString("Weight");
+        case 2: return QString("Capacità");
                 break;
-        case 3: return QString("Price");
+        case 3: return QString("Peso");
                 break;
-        case 4: return QString("Discount");
+        case 4: return QString("Prezzo");
                 break;
-        case 5: return QString("StockAvailability");
+        case 5: return QString("Sconto");
+                break;
+        case 6: return QString("Disponibilità");
                 break;
         default: return QVariant();
                 break;

@@ -43,7 +43,6 @@ SOURCES +=\
     view/modifyproduct.cpp \
     view/searchinventory.cpp \
     view/table.cpp \
-    view/tablezone.cpp \
     view/mainwindow.cpp \
     controller.cpp
 
@@ -67,7 +66,6 @@ HEADERS +=\
     view/modifyproduct.h \
     view/searchinventory.h \
     view/table.h \
-    view/tablezone.h \
     view/mainwindow.h \
     controller.h
 
