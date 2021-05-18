@@ -2,11 +2,11 @@
 
 Model::Model(const std::string& p, const std::string& fn, u_int n) : path(p), fileName(fn), xmlManager(p,fn), container(n) {
 
-    cout << "FILENAME Model: " << fileName << endl;
+    /*cout << "FILENAME Model: " << fileName << endl;
     cout << "PATH Model: " << path << endl;
     cout << "FILENAME Xml: " << xmlManager.getXmlFileName() << endl;
     cout << "PATH Xml: " << xmlManager.getXmlPath() << endl;
-    cout << "N Model: " << n << endl;
+    cout << "N Model: " << n << endl;*/
 
 }
 

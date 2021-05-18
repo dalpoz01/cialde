@@ -26,8 +26,6 @@ private:
     catalog *catalogo;
     AddProduct* aggiungiProdotto;
     modifyProduct *modificaProdotto;
-    TableModel* absModel;
-    Table* tabella;
     Controller* controller;
 
 public:
@@ -39,7 +37,6 @@ public:
     catalog* getCatalog() const;
     modifyProduct* getModifyProduct() const;
     MenuBar *getMenu() const;
-    Table* getTabella() const;
 public slots:
       void insertItemInfo();
       void loadingXmlInfo();

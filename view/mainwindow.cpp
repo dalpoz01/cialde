@@ -6,8 +6,7 @@ MainWindow::MainWindow(QWidget *parent):
     menu(new MenuBar(this)),
     catalogo(new catalog(this)),
     aggiungiProdotto(new AddProduct(this)),
-    modificaProdotto(new modifyProduct(this)),
-    tabella(new Table(this))
+    modificaProdotto(new modifyProduct(this))
 {
     setWindowTitle("Cialde Pro");
 
@@ -22,17 +21,16 @@ MainWindow::MainWindow(QWidget *parent):
     int centerH = (height/2) - (mh/2);
     move(centerW, centerH);
 
-    QVBoxLayout* qv=new QVBoxLayout;
+    QVBoxLayout* qv=new QVBoxLayout();
 
     qv->setMenuBar(menu);
-
     qv->addWidget(catalogo);
     qv->addWidget(aggiungiProdotto);
     qv->addWidget(modificaProdotto);
-    qv->addWidget(tabella);
 
     aggiungiProdotto->hide();
     modificaProdotto->hide();
+
     setLayout(qv);
 
 }
@@ -57,4 +55,3 @@ modifyProduct* MainWindow::getModifyProduct() const{return modificaProdotto;}
 
 MenuBar *MainWindow::getMenu() const{return menu;}
 
-Table* MainWindow::getTabella() const{ return tabella; }

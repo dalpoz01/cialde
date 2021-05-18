@@ -2,7 +2,8 @@
 #define TABLEMODEL_H
 
 #include<QAbstractTableModel>
-#include"model.h"
+#include <QPushButton>
+#include "model.h"
 
 class TableModel : public QAbstractTableModel{
 private:

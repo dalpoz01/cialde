@@ -2,14 +2,17 @@
 
 catalog::catalog(QWidget(*parent)):QWidget(parent),
     ricercaProdotto(new SearchInventory(this)),
-    mainLayout(new QVBoxLayout(this)),
+    table(new Table(this)),
     btnSearch(new QPushButton("Cerca prodotto",this)),
     btnSee(new QPushButton("Visualizza prodotti",this))
 {
+    QVBoxLayout* mainLayout = new QVBoxLayout(this);
+
     ricercaProdotto->hide();
     mainLayout->addWidget(btnSearch);
     mainLayout->addWidget(btnSee);
     mainLayout->addWidget(ricercaProdotto);
+    mainLayout->addWidget(table);
     mainLayout->setAlignment(Qt::AlignTop);
     setLayout(mainLayout);
 

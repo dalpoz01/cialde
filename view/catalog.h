@@ -10,12 +10,13 @@
 #include <QFormLayout>
 #include <QLineEdit>
 #include "view/searchinventory.h"
+#include "view/table.h"
 
 class catalog : public QWidget{
     Q_OBJECT
 private:
     SearchInventory *ricercaProdotto;
-    QVBoxLayout *mainLayout;
+    Table* table;
     QPushButton *btnSearch;
     QPushButton *btnSee;
 public:

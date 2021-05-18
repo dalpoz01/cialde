@@ -1,7 +1,8 @@
 #ifndef TABLE_H
 #define TABLE_H
 #include <QWidget>
-#include<QTableView>
+#include <QHeaderView>
+#include <QTableView>
 #include <QBoxLayout>
 
 #include "model/tablemodel.h"

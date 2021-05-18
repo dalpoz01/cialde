@@ -37,26 +37,23 @@ Model* Controller::getModel() const{return model;}
 
 void Controller::showCatalogo() const{
     view->getCatalog()->show();
-    view->getTabella()->show();
     view->getAddProduct()->hide();
     view->getModifyProduct()->hide();
 }
 
 void Controller::showAddProduct() const{
     view->getCatalog()->hide();
-    view->getTabella()->hide();
     view->getAddProduct()->show();
     view->getModifyProduct()->hide();
 }
 
 void Controller::showModProduct() const{
     view->getCatalog()->hide();
-    view->getTabella()->hide();
     view->getAddProduct()->hide();
     view->getModifyProduct()->show();
 }
 void Controller::insertItemController(WaffleBox* wb){
-    //cout << to_string(model->getSize()) << endl;
+
     model->addBox(wb);
     view->insertItemInfo();
 }
@@ -72,7 +69,6 @@ void Controller::savingXmlController(){
 void Controller::showSearch() const{
     view->getCatalog()->getRicercaProdotto()->show();
     view->getCatalog()->showSearch();
-    view->getTabella()->show();
 }
 void Controller::hideSearch() const{
     view->getCatalog()->getRicercaProdotto()->hide();

@@ -18,7 +18,7 @@ TableModel::~TableModel() {
 int TableModel::rowCount(const QModelIndex&) const{return model->getSize();}
 
 //Metodo che ritorna il numero di colonne (attributi del WaffleBox)
-int TableModel::columnCount(const QModelIndex&) const{return 15;} //16 con la foto
+int TableModel::columnCount(const QModelIndex&) const{return 7;} //7 con la foto e senza gli specifici
 
 //Metodo che ritorna uno degli attributi di un WaffleBox
 QVariant TableModel::data(const QModelIndex &modelIndex, int role) const{
@@ -38,7 +38,8 @@ QVariant TableModel::data(const QModelIndex &modelIndex, int role) const{
             break;
     case 6: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getStockAvailability();
             break;
-    case 7: if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "CircleBox")
+    //CASI SPECIFICI
+    /*case 7: if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "CircleBox")
                 return QString::number(static_cast<CircleBox*>(model->getItem(static_cast<unsigned int>(modelIndex.row())))->getRadius()) + QString(" mm");
             break;
     case 8: //Ci sono 5 casi --> Ventaglio, Cannolo, Cono, Cono ricoperto, Cono brandizzato
@@ -76,7 +77,7 @@ QVariant TableModel::data(const QModelIndex &modelIndex, int role) const{
              break;
     case 14: if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "BrandedBox")
                 return QString::fromStdString(static_cast<Branded*>(model->getItem(static_cast<unsigned int>(modelIndex.row())))->getSecundaryColor());
-             break;
+             break;*/
     //Ho definito le colonne
     default: return QVariant();
     }
@@ -102,7 +103,7 @@ QVariant TableModel::headerData(int section, Qt::Orientation orientation, int ro
                 break;
         case 6: return QString("Disponibilità");
                 break;
-        case 7: return QString("Raggio");
+        /*case 7: return QString("Raggio");
                 break;
         case 8: return QString("Altezza");
                 break;
@@ -117,7 +118,7 @@ QVariant TableModel::headerData(int section, Qt::Orientation orientation, int ro
         case 13: return QString("Colore principale");
                 break;
         case 14: return QString("Colore secondario");
-                break;
+                break;*/
         default: return QVariant();
                 break;
         }
