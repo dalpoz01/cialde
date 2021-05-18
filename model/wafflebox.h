@@ -8,7 +8,7 @@ typedef unsigned int u_int;
 //Classe BASE ASTRATTA POLIMORFA
 class WaffleBox {
 private:
-    std::string Name;
+    std::string name;
     std::string ID;
     std::string photo;
     u_int capacity;

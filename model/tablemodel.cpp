@@ -18,7 +18,7 @@ TableModel::~TableModel() {
 int TableModel::rowCount(const QModelIndex&) const{return model->getSize();}
 
 //Metodo che ritorna il numero di colonne (attributi del WaffleBox)
-int TableModel::columnCount(const QModelIndex&) const{return 6;}
+int TableModel::columnCount(const QModelIndex&) const{return 15;} //16 con la foto
 
 //Metodo che ritorna uno degli attributi di un WaffleBox
 QVariant TableModel::data(const QModelIndex &modelIndex, int role) const{
@@ -32,12 +32,51 @@ QVariant TableModel::data(const QModelIndex &modelIndex, int role) const{
             break;
     case 3: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getWeight();
             break;
-    case 4: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getPrice();
+    case 4: return QString::number(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getPrice()) + QString(" €");
             break;
-    case 5: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getDiscount();
+    case 5: return QString::number(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getDiscount()) + QString(" %");
             break;
     case 6: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getStockAvailability();
             break;
+    case 7: if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "CircleBox")
+                return QString::number(static_cast<CircleBox*>(model->getItem(static_cast<unsigned int>(modelIndex.row())))->getRadius()) + QString(" mm");
+            break;
+    case 8: //Ci sono 5 casi --> Ventaglio, Cannolo, Cono, Cono ricoperto, Cono brandizzato
+        if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "VentaglioBox")
+            return static_cast<VentaglioBox*>(model->getItem(static_cast<unsigned int>(modelIndex.row())))->getHeight() + QString(" mm");
+        if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "CannoloBox")
+            return static_cast<CannoloBox*>(model->getItem(static_cast<unsigned int>(modelIndex.row())))->getHeight()+ QString(" mm");
+        if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "ConeBox")
+            return static_cast<ConeBox*>(model->getItem(static_cast<unsigned int>(modelIndex.row())))->getHeight()+ QString(" mm");
+        if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "CoveredBox")
+            return static_cast<Covered*>(model->getItem(static_cast<unsigned int>(modelIndex.row())))->getHeight()+ QString(" mm");
+        if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "BrandedBox")
+            return static_cast<Branded*>(model->getItem(static_cast<unsigned int>(modelIndex.row())))->getHeight()+ QString(" mm");
+        return QString("Non disponibile");
+            break;
+    case 9: if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "VentaglioBox")
+                return static_cast<VentaglioBox*>(model->getItem(static_cast<unsigned int>(modelIndex.row())))->getWidth()+ QString(" mm");
+            break;
+    case 10: if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "CannoloBox")
+                return static_cast<CannoloBox*>(model->getItem(static_cast<unsigned int>(modelIndex.row())))->getIntDiameter()+ QString(" mm");
+             break;
+    case 11: //Ci sono 3 casi --> Cono, Cono ricoperto, Cono brandizzato
+             if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "ConeBox")
+                return static_cast<ConeBox*>(model->getItem(static_cast<unsigned int>(modelIndex.row())))->getExtDiameter()+ QString(" mm");
+             if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "CoveredBox")
+                return static_cast<Covered*>(model->getItem(static_cast<unsigned int>(modelIndex.row())))->getExtDiameter()+ QString(" mm");
+             if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "BrandedBox")
+                return static_cast<Branded*>(model->getItem(static_cast<unsigned int>(modelIndex.row())))->getExtDiameter()+ QString(" mm");
+             break;
+    case 12: if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "CoveredBox")
+                return QString::fromStdString(static_cast<Covered*>(model->getItem(static_cast<unsigned int>(modelIndex.row())))->getTaste());
+             break;
+    case 13: if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "BrandedBox")
+                return QString::fromStdString(static_cast<Branded*>(model->getItem(static_cast<unsigned int>(modelIndex.row())))->getPrincipalColor());
+             break;
+    case 14: if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "BrandedBox")
+                return QString::fromStdString(static_cast<Branded*>(model->getItem(static_cast<unsigned int>(modelIndex.row())))->getSecundaryColor());
+             break;
     //Ho definito le colonne
     default: return QVariant();
     }
@@ -62,6 +101,22 @@ QVariant TableModel::headerData(int section, Qt::Orientation orientation, int ro
         case 5: return QString("Sconto");
                 break;
         case 6: return QString("Disponibilità");
+                break;
+        case 7: return QString("Raggio");
+                break;
+        case 8: return QString("Altezza");
+                break;
+        case 9: return QString("Larghezza");
+                break;
+        case 10: return QString("Diametro interno");
+                break;
+        case 11: return QString("Diametro esterno");
+                break;
+        case 12: return QString("Gusto");
+                break;
+        case 13: return QString("Colore principale");
+                break;
+        case 14: return QString("Colore secondario");
                 break;
         default: return QVariant();
                 break;
