@@ -30,6 +30,7 @@ public:
     double getPrice() const;
     u_int getStockAvailability() const;
     u_int getDiscount() const;
+    double getRealPrice() const;
 
     //SETTER
     void setName(const std::string &);

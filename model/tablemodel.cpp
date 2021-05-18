@@ -18,7 +18,7 @@ TableModel::~TableModel() {
 int TableModel::rowCount(const QModelIndex&) const{return model->getSize();}
 
 //Metodo che ritorna il numero di colonne (attributi del WaffleBox)
-int TableModel::columnCount(const QModelIndex&) const{return 7;} //7 con la foto e senza gli specifici
+int TableModel::columnCount(const QModelIndex&) const{return 6;} //7 con la foto e senza gli specifici
 
 //Metodo che ritorna uno degli attributi di un WaffleBox
 QVariant TableModel::data(const QModelIndex &modelIndex, int role) const{
@@ -32,11 +32,13 @@ QVariant TableModel::data(const QModelIndex &modelIndex, int role) const{
             break;
     case 3: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getWeight();
             break;
-    case 4: return QString::number(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getPrice()) + QString(" €");
+    case 4: if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getDiscount() != 0)
+                return (QString::number(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getRealPrice()))
+                        + QString(" €")
+                        + QString(" (-")
+                        + QString::number(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getDiscount()) + QString("%)");
             break;
-    case 5: return QString::number(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getDiscount()) + QString(" %");
-            break;
-    case 6: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getStockAvailability();
+    case 5: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getStockAvailability();
             break;
     //CASI SPECIFICI
     /*case 7: if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getItemType() == "CircleBox")
@@ -99,9 +101,7 @@ QVariant TableModel::headerData(int section, Qt::Orientation orientation, int ro
                 break;
         case 4: return QString("Prezzo");
                 break;
-        case 5: return QString("Sconto");
-                break;
-        case 6: return QString("Disponibilità");
+        case 5: return QString("Disponibilità");
                 break;
         /*case 7: return QString("Raggio");
                 break;
