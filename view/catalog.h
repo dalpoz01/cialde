@@ -20,13 +20,17 @@ private:
     QPushButton *btnSearch;
     QPushButton *btnSee;
     QPushButton* btnModify;
+    QPushButton* btnViewItem;
 public:
     explicit catalog(QWidget * = nullptr);
     void showSearch() const;
     QPushButton* getBtnSearch() const;
     QPushButton* getBtnSee() const;
+    QPushButton* getBtnModifiy() const;
+    QPushButton* getBtnViewItem() const;
     SearchInventory* getRicercaProdotto() const;
     Table* getTable() const;
+
 };
 
 #endif // CATALOG_H

@@ -50,6 +50,11 @@ void MainWindow::savingXmlInfo(){QMessageBox::information(this,"DONE IT!", "XML 
 
 void MainWindow::seeInfo(){catalogo->getTable()->show();}
 
+void MainWindow::enableBtnTable(bool flag){
+    catalogo->getBtnModifiy()->setEnabled(flag);
+    catalogo->getBtnViewItem()->setEnabled(flag);
+}
+
 catalog* MainWindow::getCatalog() const{return catalogo;}
 
 modifyProduct* MainWindow::getModifyProduct() const{return modificaProdotto;}

@@ -1,6 +1,6 @@
 #include "modifyproduct.h"
 
-modifyProduct::modifyProduct(QWidget(*parent)):QWidget(parent),
+modifyProduct::modifyProduct(QWidget(*parent)) : QWidget(parent),
 
     editNameProduct(new QLineEdit(this)),
     itemTypeCombobox(new QComboBox(this)),

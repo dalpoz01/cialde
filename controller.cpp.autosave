@@ -24,13 +24,7 @@ void Controller::setView(MainWindow *v){
     connect(view->getCatalog()->getRicercaProdotto()->getSearchButton(),SIGNAL(clicked()),this,SLOT(showSearch())); //connessione per il bottone Cerca in Ricerca
     connect(view->getCatalog()->getRicercaProdotto()->getAnnullaButton(),SIGNAL(clicked()),this,SLOT(hideSearch()));    //connessione per il bottone Annulla in Ricerca, che nasconde la scheda
     connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeItems()));   //connessione per bottone Visualizza in Catalogo per visualizzare la tabella.
-    //connect(view->getCatalog()->getTable()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),this,SLOT(enableBtnTableController(true));  //connessione per bottone Visualizza prodotto nella parte inferiore
-    //connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeItems()));
-
-    //Visualizza dettagli
-    connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(showDetails())); //connessione per mostrare un oggetto in dettaglio
-
-
+    connect(view->getCatalog()->getTable()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),this,SLOT(enableBtn(true)));  //connessione per bottone Visualizza prodotto nella parte inferiore
 
 }
 
@@ -60,12 +54,13 @@ void Controller::showModProduct() const{
     view->getAddProduct()->hide();
     view->getModifyProduct()->show();
 }
-
 void Controller::insertItemController(WaffleBox* wb){
+
     model->addBox(wb);  //Aggiunge al model dell'applicazione dopo aver preso i dati dalla view
     view->getCatalog()->getTable()->getMyModel()->setWBToinsert(wb);    //Aggiorna l'oggetto da inserire nel model della tabella, perchè è stato appena inserito
     view->getCatalog()->getTable()->getMyModel()->insertRows(view->getCatalog()->getTable()->getMyModel()->rowCount(), 1);  //Inserisce la riga per il nuovo oggetto, partendo dall'ultima riga inserita.
     view->insertItemInfo(); //Stampa finestra di successo
+
 }
 void Controller::loadingXmlController(){
     model->loadXml();
@@ -76,15 +71,14 @@ void Controller::savingXmlController(){
     model->writeXml();
     view->savingXmlInfo();
 }
-
 void Controller::showSearch() const{
     view->getCatalog()->getRicercaProdotto()->show();
     view->getCatalog()->showSearch();
 }
-
 void Controller::hideSearch() const{
     view->getCatalog()->getRicercaProdotto()->hide();
     view->getCatalog()->showSearch();
+
 }
 void Controller::seeItems() const{
     //model->printAll();
@@ -94,16 +88,8 @@ void Controller::seeItems() const{
     view->seeInfo();
 }
 
-
-void Controller::showDetails(){
-    details *d=new details(nullptr,model->getItem(0));
-    d->setAttribute(Qt::WA_DeleteOnClose);
-    d->show();
-}
-
-void Controller::enableBtnTableController(bool flag){
-    view->enableBtnTable(flag);
-
+void Controller::enableBtnTableController(){
+    view->enableBtnTable();
 }
 
 void Controller::avoidSearch() const{

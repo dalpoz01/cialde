@@ -42,6 +42,7 @@ public slots:
       void loadingXmlInfo();
       void savingXmlInfo();
       void seeInfo();
+      void enableBtnTable(bool);
 
 };
 

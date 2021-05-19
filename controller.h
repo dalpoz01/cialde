@@ -33,6 +33,7 @@ public slots:
     void insertItemController(WaffleBox*);
     void loadingXmlController();
     void savingXmlController();
+    void enableBtnTableController(bool);
 };
 
 #endif // CONTROLLER_H
