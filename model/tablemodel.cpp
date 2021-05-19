@@ -32,11 +32,14 @@ QVariant TableModel::data(const QModelIndex &modelIndex, int role) const{
             break;
     case 3: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getWeight();
             break;
-    case 4: if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getDiscount() != 0)
+    case 4: if(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getDiscount() != 0){
                 return (QString::number(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getRealPrice()))
                         + QString(" €")
                         + QString(" (-")
                         + QString::number(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getDiscount()) + QString("%)");
+            }else{
+                return QString::number(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getPrice()) + QString(" €");
+            }
             break;
     case 5: return model->getItem(static_cast<unsigned int>(modelIndex.row()))->getStockAvailability();
             break;
