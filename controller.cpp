@@ -25,7 +25,10 @@ void Controller::setView(MainWindow *v){
     connect(view->getCatalog()->getBtnSearch(),SIGNAL(clicked()),this,SLOT(showSearch()));
     connect(view->getCatalog()->getRicercaProdotto()->getSearchButton(),SIGNAL(clicked()),this,SLOT(showSearch()));
     connect(view->getCatalog()->getRicercaProdotto()->getAnnullaButton(),SIGNAL(clicked()),this,SLOT(hideSearch()));
-    connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeItems()));
+    //connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeItems()));
+
+    //Visualizza dettagli
+    connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(showDetails()));
 
 }
 
@@ -52,8 +55,8 @@ void Controller::showModProduct() const{
     view->getAddProduct()->hide();
     view->getModifyProduct()->show();
 }
-void Controller::insertItemController(WaffleBox* wb){
 
+void Controller::insertItemController(WaffleBox* wb){
     model->addBox(wb);
     view->insertItemInfo();
 }
@@ -66,19 +69,26 @@ void Controller::savingXmlController(){
     model->writeXml();
     view->savingXmlInfo();
 }
+
 void Controller::showSearch() const{
     view->getCatalog()->getRicercaProdotto()->show();
     view->getCatalog()->showSearch();
 }
+
 void Controller::hideSearch() const{
     view->getCatalog()->getRicercaProdotto()->hide();
     view->getCatalog()->showSearch();
-
 }
 
 void Controller::seeItems() const{
     model->printAll();
     view->seeInfo();
+}
+
+void Controller::showDetails(){
+    details *d=new details(nullptr,model->getItem(0));
+    d->setAttribute(Qt::WA_DeleteOnClose);
+    d->show();
 }
 
 void Controller::avoidSearch() const{

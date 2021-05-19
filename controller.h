@@ -5,6 +5,7 @@
 #include "view/mainwindow.h"
 #include "model/model.h"
 #include "model/container.h"
+#include "view/details.h"
 
 
 class MainWindow;
@@ -27,6 +28,7 @@ public slots:
     void showSearch() const;
     void hideSearch() const;
     void seeItems() const;
+    void showDetails();
     void avoidSearch() const;
     void insertItemController(WaffleBox*);
     void loadingXmlController();
