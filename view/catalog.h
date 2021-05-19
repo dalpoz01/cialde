@@ -19,6 +19,7 @@ private:
     Table* table;
     QPushButton *btnSearch;
     QPushButton *btnSee;
+    QPushButton* btnModify;
 public:
     explicit catalog(QWidget * = nullptr);
     void showSearch() const;

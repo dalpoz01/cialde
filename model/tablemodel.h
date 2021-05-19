@@ -18,8 +18,9 @@ public:
     int columnCount(const QModelIndex& = QModelIndex()) const override; //Metodo di QAbstractTableModel che ritorna numero di colonne per la view
     QVariant data(const QModelIndex&, int = Qt::DisplayRole) const override; //Metodo di QAbstractTableModel che serve per rappresentare i dati nella cella
     QVariant headerData(int, Qt::Orientation, int) const override;  //Metodo di QAbstractTableModel che inserisce i giusti nomi nelle colonne della tabella
-    bool insertRows(int, int, const QModelIndex&);  //Metodo di QAbstractTableModel che inserisce una riga sulla tabella
-    bool removeRows(int, int, const QModelIndex&); //Metodo di QAbstractTableModel che rimuove una riga dalla tabella
+    bool insertRows(int, int = 1, const QModelIndex& = QModelIndex()) override;  //Metodo di QAbstractTableModel che inserisce una riga sulla tabella
+    bool removeRows(int, int = 1, const QModelIndex& = QModelIndex()) override; //Metodo di QAbstractTableModel che rimuove una riga dalla tabella
+    void setWBToinsert(WaffleBox*);
 };
 
 #endif // TABLEMODEL_H

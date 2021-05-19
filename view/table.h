@@ -15,6 +15,7 @@ public:
     explicit Table(QWidget* = nullptr);
 
     TableModel* getMyModel() const;
+
 };
 
 #endif // TABLE_H

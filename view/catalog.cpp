@@ -9,6 +9,7 @@ catalog::catalog(QWidget(*parent)):QWidget(parent),
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
 
     ricercaProdotto->hide();
+    table->hide();
     mainLayout->addWidget(btnSearch);
     mainLayout->addWidget(btnSee);
     mainLayout->addWidget(ricercaProdotto);
@@ -34,9 +35,11 @@ void catalog::showSearch() const{
         ricercaProdotto->show();
         btnSearch->hide();
         btnSee->hide();
+        table->hide();
     }else{
         ricercaProdotto->hide();
         btnSearch->show();
         btnSee->show();
+        table->hide();
     }
 }

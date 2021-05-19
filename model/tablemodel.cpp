@@ -140,7 +140,9 @@ bool TableModel::insertRows(int afterRow, int n, const QModelIndex &modelIndex){
 //Metodo per rimuovere n righe dalla tabella dopo la riga afterRow
 bool TableModel::removeRows(int startRow, int n, const QModelIndex &modelIndex){
     beginRemoveRows(modelIndex,startRow,(startRow+n-1));
-    model->removeBox(static_cast<unsigned int>(startRow));
+    //model->removeBox(static_cast<unsigned int>(startRow));
     endRemoveRows();
     return true;
 }
+
+void TableModel::setWBToinsert(WaffleBox* wb){ wbToInsert = wb; }

@@ -1,31 +1,29 @@
 #include "controller.h"
 
-Controller::Controller(QObject *parent) : QObject(parent){
-
-}
+Controller::Controller(QObject *parent) : QObject(parent){}
 
 void Controller::setView(MainWindow *v){
     view=v;
 
     //Menu
-    connect(view->getMenu()->getCatalog(),SIGNAL(triggered()),this,SLOT(showCatalogo()));
-    connect(view->getMenu()->getAddProduct(),SIGNAL(triggered()),this,SLOT(showAddProduct()));
-    connect(view->getMenu()->getModProduct(),SIGNAL(triggered()),this,SLOT(showModProduct()));
-    connect(view->getMenu()->getLoad(),SIGNAL(triggered()),this,SLOT(loadingXmlController()));
-    connect(view->getMenu()->getSave(),SIGNAL(triggered()),this,SLOT(savingXmlController()));
+    connect(view->getMenu()->getCatalog(),SIGNAL(triggered()),this,SLOT(showCatalogo()));   //connessione per visualizzare Catalogo selezionando la voce dal menubar
+    connect(view->getMenu()->getAddProduct(),SIGNAL(triggered()),this,SLOT(showAddProduct()));  //connessione per visualizzare Aggiungi prodotto selezionando la voce dal menubar
+    connect(view->getMenu()->getModProduct(),SIGNAL(triggered()),this,SLOT(showModProduct()));  //connessione per visualizzare MOdifica prodotto selezionando la voce dal menubar
+    connect(view->getMenu()->getLoad(),SIGNAL(triggered()),this,SLOT(loadingXmlController()));  //connessione per caricare i dati da un file.xml selezionando la voce dal menubar
+    connect(view->getMenu()->getSave(),SIGNAL(triggered()),this,SLOT(savingXmlController()));   //connessione per salvare i dati in un file.xml selezionando la voce dal menubar
 
     //Aggiungi Prodotto
-    connect(view->getAddProduct()->getItemCombo(),SIGNAL(currentIndexChanged(const QString&)),view->getAddProduct(),SLOT(showItemTypeField(const QString&)));
-    connect(view->getAddProduct()->getCancel(),SIGNAL(clicked()),view->getAddProduct(),SLOT(resetFields()));
-    connect(view->getAddProduct()->getAddPhoto(),SIGNAL(clicked()),view->getAddProduct(),SLOT(addFoto()));
-    connect(view->getAddProduct()->getAdd(),SIGNAL(clicked()),view->getAddProduct(),SLOT(insert())); //Connessione per aggiungiProdotto
-    connect(view->getAddProduct(),SIGNAL(signalToInsert(WaffleBox*)),this,SLOT(insertItemController(WaffleBox*))); //Connessione per il segnale emesso da aggiuniProdotto
+    connect(view->getAddProduct()->getItemCombo(),SIGNAL(currentIndexChanged(const QString&)),view->getAddProduct(),SLOT(showItemTypeField(const QString&))); //connessione alla QComboBox del tipo di box da inserire, per visualizzare i campi corretti
+    connect(view->getAddProduct()->getCancel(),SIGNAL(clicked()),view->getAddProduct(),SLOT(resetFields())); //connessione per bottone Cancella, che resetta i campi di inserimento
+    connect(view->getAddProduct()->getAddPhoto(),SIGNAL(clicked()),view->getAddProduct(),SLOT(addFoto()));  //connessione per bottone Aggiungi foto, che inserisce una foto al prodotto
+    connect(view->getAddProduct()->getAdd(),SIGNAL(clicked()),view->getAddProduct(),SLOT(insert())); //Connessione per bottone Aggiungi, richiama il metodo insert() che preleva i dati dai campi e crea l'oggetto
+    connect(view->getAddProduct(),SIGNAL(signalToInsert(WaffleBox*)),this,SLOT(insertItemController(WaffleBox*))); //Connessione per il segnale emesso da insert(), se l'inserimento avviene correttamente lo aggiunge al container
 
     //Catalogo
-    connect(view->getCatalog()->getBtnSearch(),SIGNAL(clicked()),this,SLOT(showSearch()));
-    connect(view->getCatalog()->getRicercaProdotto()->getSearchButton(),SIGNAL(clicked()),this,SLOT(showSearch()));
-    connect(view->getCatalog()->getRicercaProdotto()->getAnnullaButton(),SIGNAL(clicked()),this,SLOT(hideSearch()));
-    connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeItems()));
+    connect(view->getCatalog()->getBtnSearch(),SIGNAL(clicked()),this,SLOT(showSearch()));  //connessione per bottone in Catalogo per mostrare la view di Ricerca
+    connect(view->getCatalog()->getRicercaProdotto()->getSearchButton(),SIGNAL(clicked()),this,SLOT(showSearch())); //connessione per il bottone Cerca in Ricerca
+    connect(view->getCatalog()->getRicercaProdotto()->getAnnullaButton(),SIGNAL(clicked()),this,SLOT(hideSearch()));    //connessione per il bottone Annulla in Ricerca, che nasconde la scheda
+    connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeItems()));   //connessione per bottone Visualizza in Catalogo per visualizzare la tabella.
 
 }
 
@@ -37,6 +35,7 @@ Model* Controller::getModel() const{return model;}
 
 void Controller::showCatalogo() const{
     view->getCatalog()->show();
+    view->getCatalog()->getTable()->hide();
     view->getAddProduct()->hide();
     view->getModifyProduct()->hide();
 }
@@ -55,9 +54,8 @@ void Controller::showModProduct() const{
 void Controller::insertItemController(WaffleBox* wb){
 
     model->addBox(wb);
-    /*TableModel* tbm = view->getCatalog()->getTable()->getMyModel();
-    tbm->insertRow(model->getSize());
-    view->getCatalog()->getTable()->setModel(tbm);*/
+    view->getCatalog()->getTable()->getMyModel()->setWBToinsert(wb);
+    view->getCatalog()->getTable()->getMyModel()->insertRows(view->getCatalog()->getTable()->getMyModel()->rowCount(), 1);
     view->insertItemInfo();
 
 }
@@ -80,7 +78,8 @@ void Controller::hideSearch() const{
 
 }
 void Controller::seeItems() const{
-    model->printAll();
+    //model->printAll();
+    view->getCatalog()->getTable()->show();
     view->seeInfo();
 }
 

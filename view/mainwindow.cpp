@@ -47,7 +47,7 @@ void MainWindow::loadingXmlInfo(){QMessageBox::information(this,"DONE IT!", "Car
 
 void MainWindow::savingXmlInfo(){QMessageBox::information(this,"DONE IT!", "XML creato con successo");}
 
-void MainWindow::seeInfo(){QMessageBox::information(this,"Forse", "Ho stampato gli oggetti.");}
+void MainWindow::seeInfo(){catalogo->getTable()->show();}
 
 catalog* MainWindow::getCatalog() const{return catalogo;}
 
