@@ -55,7 +55,11 @@ void Controller::showModProduct() const{
 void Controller::insertItemController(WaffleBox* wb){
 
     model->addBox(wb);
+    /*TableModel* tbm = view->getCatalog()->getTable()->getMyModel();
+    tbm->insertRow(model->getSize());
+    view->getCatalog()->getTable()->setModel(tbm);*/
     view->insertItemInfo();
+
 }
 void Controller::loadingXmlController(){
     model->loadXml();
@@ -75,7 +79,6 @@ void Controller::hideSearch() const{
     view->getCatalog()->showSearch();
 
 }
-
 void Controller::seeItems() const{
     model->printAll();
     view->seeInfo();

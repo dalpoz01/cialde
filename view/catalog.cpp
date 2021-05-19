@@ -26,6 +26,9 @@ QPushButton* catalog::getBtnSee() const{
 SearchInventory* catalog::getRicercaProdotto() const{
     return ricercaProdotto;
 }
+
+Table* catalog::getTable() const{return table;}
+
 void catalog::showSearch() const{
     if(ricercaProdotto->isVisible()){
         ricercaProdotto->show();

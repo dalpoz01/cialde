@@ -22,4 +22,28 @@
         <stockavailability>50</stockavailability>
         <radius>2</radius>
     </WaffleBox>
+    <WaffleBox type="CannoloBox">
+        <Nome>Cannolo cannoloso</Nome>
+        <ID>00000</ID>
+        <Foto>../cialde-test/Data/Photo/cannolo.jpg</Foto>
+        <capacity>300</capacity>
+        <weight>240</weight>
+        <price>50</price>
+        <discount>10</discount>
+        <stockavailability>100</stockavailability>
+        <height>100</height>
+        <int_diameter>10</int_diameter>
+    </WaffleBox>
+    <WaffleBox type="ConeBox">
+        <Nome>cono conoso</Nome>
+        <ID>777</ID>
+        <Foto>:/cialde-test/Data/Photo/image-not-found.jpg</Foto>
+        <capacity>250</capacity>
+        <weight>200</weight>
+        <price>500</price>
+        <discount>0</discount>
+        <stockavailability>150</stockavailability>
+        <height>50</height>
+        <ext_diameter>22</ext_diameter>
+    </WaffleBox>
 </element>

@@ -25,6 +25,7 @@ public:
     QPushButton* getBtnSearch() const;
     QPushButton* getBtnSee() const;
     SearchInventory* getRicercaProdotto() const;
+    Table* getTable() const;
 };
 
 #endif // CATALOG_H
