@@ -7,39 +7,26 @@ MenuBar::MenuBar(QWidget *parent) :
     load(new QAction("Carica", menu)),
     save(new QAction("Salva", menu)),
     catalog(new QAction("Catalogo", this)),
-    addProduct(new QAction("Aggiungi Prodotto", this)),
-    modProduct(new QAction("Modifica prodotto",this))
+    addProduct(new QAction("Aggiungi Prodotto", this))
 {
     menu->addAction(load);
     menu->addAction(save);
     addMenu(menu);
     addAction(catalog);
     addAction(addProduct);
-    addAction(modProduct);
 
     connect(load,SIGNAL(changed()),this,SLOT(loadXmlFile()));
     connect(save,SIGNAL(changed()),this,SLOT(saveXmlFile()));
 }
 
-QAction* MenuBar::getLoad() const{ return load;}
+QAction* MenuBar::getLoad() const{ return load; }
 
-QAction* MenuBar::getSave() const{return save;}
+QAction* MenuBar::getSave() const{ return save; }
 
-QAction* MenuBar::getCatalog() const{
-    return catalog;
-}
-QAction *MenuBar::getAddProduct() const{
-    return addProduct;
-}
+QAction* MenuBar::getCatalog() const{ return catalog; }
 
-QAction *MenuBar::getModProduct() const{
-    return modProduct;
-}
+QAction *MenuBar::getAddProduct() const{ return addProduct; }
 
-void MenuBar::loadXmlFile(){
-    emit signalToLoad();
-}
+void MenuBar::loadXmlFile(){ emit signalToLoad(); }
 
-void MenuBar::saveXmlFile(){
-    emit signalToSave();
-}
+void MenuBar::saveXmlFile(){ emit signalToSave(); }
