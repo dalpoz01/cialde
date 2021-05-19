@@ -44,7 +44,8 @@ SOURCES +=\
     view/searchinventory.cpp \
     view/table.cpp \
     view/mainwindow.cpp \
-    controller.cpp
+    controller.cpp \
+    view/details.cpp
 
 HEADERS +=\
     model/covered.h \
@@ -67,7 +68,8 @@ HEADERS +=\
     view/searchinventory.h \
     view/table.h \
     view/mainwindow.h \
-    controller.h
+    controller.h \
+    view/details.h
 
 RESOURCES += \
     Data/res.qrc

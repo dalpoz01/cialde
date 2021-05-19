@@ -2,7 +2,7 @@
 
 AddProduct::AddProduct(QWidget(*parent)): QWidget(parent),
 
-    imgpath(":/cialde-test/Data/Photo/image-not-found.jpg"),
+    imgpath("../cialde-test/Data/Photo/image-not-found.jpg"),
     currentPath("../cialde-test/Data/Photo"),
     itemComboBox(new QComboBox(this)),
     capacityBox(new QComboBox(this)),

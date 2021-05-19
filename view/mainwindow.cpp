@@ -24,12 +24,13 @@ MainWindow::MainWindow(QWidget *parent):
     QVBoxLayout* qv=new QVBoxLayout();
 
     qv->setMenuBar(menu);
-    qv->addWidget(catalogo);
-    qv->addWidget(aggiungiProdotto);
-    qv->addWidget(modificaProdotto);
 
     aggiungiProdotto->hide();
     modificaProdotto->hide();
+
+    qv->addWidget(catalogo);
+    qv->addWidget(aggiungiProdotto);
+    qv->addWidget(modificaProdotto);
 
     setLayout(qv);
 
