@@ -23,8 +23,8 @@ void Controller::setView(MainWindow *v){
     connect(view->getCatalog()->getBtnSearch(),SIGNAL(clicked()),this,SLOT(showSearch()));  //connessione per bottone in Catalogo per mostrare la view di Ricerca
     connect(view->getCatalog()->getRicercaProdotto()->getSearchButton(),SIGNAL(clicked()),this,SLOT(showSearch())); //connessione per il bottone Cerca in Ricerca
     connect(view->getCatalog()->getRicercaProdotto()->getAnnullaButton(),SIGNAL(clicked()),this,SLOT(hideSearch()));    //connessione per il bottone Annulla in Ricerca, che nasconde la scheda
-    connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeItems()));   //connessione per bottone Visualizza in Catalogo per visualizzare la tabella.
-    //connect(view->getCatalog()->getTable()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),this,SLOT(enableBtnTableController(true));  //connessione per bottone Visualizza prodotto nella parte inferiore
+    connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeTableItem()));   //connessione per bottone Visualizza in Catalogo per visualizzare la tabella.
+    connect(view->getCatalog()->getTable()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(enableBtnTableController()));  //connessione per bottone Visualizza prodotto nella parte inferiore
     //connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeItems()));
 
     //Visualizza dettagli
@@ -86,11 +86,12 @@ void Controller::hideSearch() const{
     view->getCatalog()->getRicercaProdotto()->hide();
     view->getCatalog()->showSearch();
 }
-void Controller::seeItems() const{
+void Controller::seeTableItem() const{
     //model->printAll();
     view->getCatalog()->getTable()->show();
     view->getCatalog()->getBtnModifiy()->show();
     view->getCatalog()->getBtnViewItem()->show();
+    view->enableBtnTable(false);
     view->seeInfo();
 }
 
@@ -101,9 +102,11 @@ void Controller::showDetails(){
     d->show();
 }
 
-void Controller::enableBtnTableController(bool flag){
-    view->enableBtnTable(flag);
-
+void Controller::enableBtnTableController(){
+    view->enableBtnTable(true);
+}
+void Controller::disableBtnTableController(){
+    view->enableBtnTable(false);
 }
 
 void Controller::avoidSearch() const{

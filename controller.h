@@ -27,13 +27,14 @@ public slots:
     void showModProduct() const;
     void showSearch() const;
     void hideSearch() const;
-    void seeItems() const;
+    void seeTableItem() const;
     void showDetails();
     void avoidSearch() const;
     void insertItemController(WaffleBox*);
     void loadingXmlController();
     void savingXmlController();
-    void enableBtnTableController(bool);
+    void enableBtnTableController();
+    void disableBtnTableController();
 };
 
 #endif // CONTROLLER_H
