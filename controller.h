@@ -6,7 +6,7 @@
 #include "model/model.h"
 #include "model/container.h"
 #include "view/details.h"
-
+#include "view/modifyproduct.h"
 
 class MainWindow;
 
@@ -24,11 +24,11 @@ public:
 public slots:
     void showCatalogo() const;
     void showAddProduct() const;
-    void showModProduct() const;
     void showSearch() const;
     void hideSearch() const;
     void seeTableItem() const;
     void showDetails();
+    void modificaProdotto();
     void avoidSearch() const;
     void insertItemController(WaffleBox*);
     void loadingXmlController();

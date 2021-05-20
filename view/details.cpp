@@ -3,7 +3,7 @@
 details::details(QWidget *parent, WaffleBox *wf): QWidget(parent),
     w(wf)
 {
-    setWindowTitle("Wafflebox details");
+    setWindowTitle("Wafflebox - Dettagli prodotto");
 
     tipoLabel=new QLabel("Tipo: ",this);
     nomeLabel=new QLabel("Nome: ",this);

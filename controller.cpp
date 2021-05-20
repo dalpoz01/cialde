@@ -8,7 +8,6 @@ void Controller::setView(MainWindow *v){
     //Menu
     connect(view->getMenu()->getCatalog(),SIGNAL(triggered()),this,SLOT(showCatalogo()));   //connessione per visualizzare Catalogo selezionando la voce dal menubar
     connect(view->getMenu()->getAddProduct(),SIGNAL(triggered()),this,SLOT(showAddProduct()));  //connessione per visualizzare Aggiungi prodotto selezionando la voce dal menubar
-    connect(view->getMenu()->getModProduct(),SIGNAL(triggered()),this,SLOT(showModProduct()));  //connessione per visualizzare MOdifica prodotto selezionando la voce dal menubar
     connect(view->getMenu()->getLoad(),SIGNAL(triggered()),this,SLOT(loadingXmlController()));  //connessione per caricare i dati da un file.xml selezionando la voce dal menubar
     connect(view->getMenu()->getSave(),SIGNAL(triggered()),this,SLOT(savingXmlController()));   //connessione per salvare i dati in un file.xml selezionando la voce dal menubar
 
@@ -30,8 +29,8 @@ void Controller::setView(MainWindow *v){
     //Visualizza dettagli
     connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(showDetails())); //connessione per mostrare un oggetto in dettaglio
 
-
-
+    //Modifica prodotto
+    connect(view->getCatalog()->getBtnModifiy(),SIGNAL(clicked()),this,SLOT(modificaProdotto()));
 }
 
 void Controller::setModel(Model *m){
@@ -46,19 +45,11 @@ void Controller::showCatalogo() const{
     view->getCatalog()->getBtnModifiy()->hide();
     view->getCatalog()->getBtnViewItem()->hide();
     view->getAddProduct()->hide();
-    view->getModifyProduct()->hide();
 }
 
 void Controller::showAddProduct() const{
     view->getCatalog()->hide();
     view->getAddProduct()->show();
-    view->getModifyProduct()->hide();
-}
-
-void Controller::showModProduct() const{
-    view->getCatalog()->hide();
-    view->getAddProduct()->hide();
-    view->getModifyProduct()->show();
 }
 
 void Controller::insertItemController(WaffleBox* wb){
@@ -100,6 +91,15 @@ void Controller::showDetails(){
     details *d=new details(nullptr,model->getItem(0));
     d->setAttribute(Qt::WA_DeleteOnClose);
     d->show();
+}
+
+void Controller::modificaProdotto(){
+    modifyProduct *mp=new modifyProduct(nullptr,model->getItem(0));
+    mp->setAttribute(Qt::WA_DeleteOnClose);
+    connect(mp->getModifyPhotoButton(),SIGNAL(clicked()),mp,SLOT(changePhoto()));
+    connect(mp->getOkButton(),SIGNAL(clicked()),mp,SLOT(modifica()));
+    connect(mp->getCancelButton(),SIGNAL(clicked()),mp,SLOT(noModify()));
+    mp->show();
 }
 
 void Controller::enableBtnTableController(){

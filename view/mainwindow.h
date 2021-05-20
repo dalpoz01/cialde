@@ -25,7 +25,6 @@ private:
     MenuBar *menu;
     catalog *catalogo;
     AddProduct* aggiungiProdotto;
-    modifyProduct *modificaProdotto;
     Controller* controller;
 
 public:
@@ -35,7 +34,6 @@ public:
     void setController(Controller *c);
     AddProduct* getAddProduct() const;
     catalog* getCatalog() const;
-    modifyProduct* getModifyProduct() const;
     MenuBar *getMenu() const;
 public slots:
       void insertItemInfo();

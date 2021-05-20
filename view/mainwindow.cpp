@@ -5,8 +5,7 @@ MainWindow::MainWindow(QWidget *parent):
     QWidget(parent),
     menu(new MenuBar(this)),
     catalogo(new catalog(this)),
-    aggiungiProdotto(new AddProduct(this)),
-    modificaProdotto(new modifyProduct(this))
+    aggiungiProdotto(new AddProduct(this))
 {
     setWindowTitle("Cialde Pro");
 
@@ -26,11 +25,9 @@ MainWindow::MainWindow(QWidget *parent):
     qv->setMenuBar(menu);
 
     aggiungiProdotto->hide();
-    modificaProdotto->hide();
 
     qv->addWidget(catalogo);
     qv->addWidget(aggiungiProdotto);
-    qv->addWidget(modificaProdotto);
 
     setLayout(qv);
 
@@ -56,8 +53,6 @@ void MainWindow::enableBtnTable(bool flag){
 }
 
 catalog* MainWindow::getCatalog() const{return catalogo;}
-
-modifyProduct* MainWindow::getModifyProduct() const{return modificaProdotto;}
 
 MenuBar *MainWindow::getMenu() const{return menu;}
 
