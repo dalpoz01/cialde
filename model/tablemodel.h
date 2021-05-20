@@ -4,6 +4,7 @@
 #include<QAbstractTableModel>
 #include <QPushButton>
 #include "model.h"
+#include "model/wafflebox.h"
 
 class TableModel : public QAbstractTableModel{
 private:
@@ -21,6 +22,8 @@ public:
     bool insertRows(int, int = 1, const QModelIndex& = QModelIndex()) override;  //Metodo di QAbstractTableModel che inserisce una riga sulla tabella
     bool removeRows(int, int = 1, const QModelIndex& = QModelIndex()) override; //Metodo di QAbstractTableModel che rimuove una riga dalla tabella
     void setWBToinsert(WaffleBox*);
+
+    WaffleBox* getElementByIndex(unsigned int) const;
 };
 
 #endif // TABLEMODEL_H

@@ -2,6 +2,7 @@
 #define CONTROLLER_H
 
 #include <QObject>
+#include <QModelIndexList>
 #include "view/mainwindow.h"
 #include "model/model.h"
 #include "model/container.h"
@@ -20,7 +21,7 @@ public:
     explicit Controller(QObject *parent = nullptr);
     void setView(MainWindow*);
     void setModel(Model*);
-    Model* getModel() const;
+    Model *getModel() const;
 public slots:
     void showCatalogo() const;
     void showAddProduct() const;
@@ -35,6 +36,7 @@ public slots:
     void savingXmlController();
     void enableBtnTableController();
     void disableBtnTableController();
+    void removeItem();
 };
 
 #endif // CONTROLLER_H

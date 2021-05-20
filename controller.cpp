@@ -24,10 +24,11 @@ void Controller::setView(MainWindow *v){
     connect(view->getCatalog()->getRicercaProdotto()->getAnnullaButton(),SIGNAL(clicked()),this,SLOT(hideSearch()));    //connessione per il bottone Annulla in Ricerca, che nasconde la scheda
     connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeTableItem()));   //connessione per bottone Visualizza in Catalogo per visualizzare la tabella.
     connect(view->getCatalog()->getTable()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(enableBtnTableController()));  //connessione per bottone Visualizza prodotto nella parte inferiore
+    connect(view->getCatalog()->getBtnRemove(),SIGNAL(clicked()),this,SLOT(removeItem()));
     //connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeItems()));
 
     //Visualizza dettagli
-    connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(showDetails())); //connessione per mostrare un oggetto in dettaglio
+    connect(view->getCatalog()->getBtnViewItem(),SIGNAL(clicked()),this,SLOT(showDetails())); //connessione per mostrare un oggetto in dettaglio
 
     //Modifica prodotto
     connect(view->getCatalog()->getBtnModifiy(),SIGNAL(clicked()),this,SLOT(modificaProdotto()));
@@ -82,6 +83,7 @@ void Controller::seeTableItem() const{
     view->getCatalog()->getTable()->show();
     view->getCatalog()->getBtnModifiy()->show();
     view->getCatalog()->getBtnViewItem()->show();
+    view->getCatalog()->getBtnRemove()->show();
     view->enableBtnTable(false);
     view->seeInfo();
 }
@@ -94,12 +96,16 @@ void Controller::showDetails(){
 }
 
 void Controller::modificaProdotto(){
-    modifyProduct *mp=new modifyProduct(nullptr,model->getItem(0));
-    mp->setAttribute(Qt::WA_DeleteOnClose);
-    connect(mp->getModifyPhotoButton(),SIGNAL(clicked()),mp,SLOT(changePhoto()));
-    connect(mp->getOkButton(),SIGNAL(clicked()),mp,SLOT(modifica()));
-    connect(mp->getCancelButton(),SIGNAL(clicked()),mp,SLOT(noModify()));
-    mp->show();
+    const QModelIndexList selection = view->getCatalog()->getTable()->selectionModel()->selectedIndexes();
+    if(selection.size()>0){
+        modifyProduct *mp=new modifyProduct(nullptr, view->getCatalog()->getTable()->getMyModel()->getElementByIndex(view->getCatalog()->getTable()->getSf()->getIndexByQIndex(selection.at(0)))/*view->getTm()->getElementByIndex(view->getSm()->getIndexByQIndex(selection.at(0)))*/);
+        mp->setAttribute(Qt::WA_DeleteOnClose);
+        connect(mp->getModifyPhotoButton(),SIGNAL(clicked()),mp,SLOT(changePhoto()));
+        connect(mp->getOkButton(),SIGNAL(clicked()),mp,SLOT(modifica()));
+        connect(mp->getCancelButton(),SIGNAL(clicked()),mp,SLOT(noModify()));
+        mp->show();
+    }
+
 }
 
 void Controller::enableBtnTableController(){
@@ -107,6 +113,10 @@ void Controller::enableBtnTableController(){
 }
 void Controller::disableBtnTableController(){
     view->enableBtnTable(false);
+}
+
+void Controller::removeItem(){
+
 }
 
 void Controller::avoidSearch() const{

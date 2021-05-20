@@ -13,6 +13,7 @@
 #include "view/searchinventory.h"
 #include "view/table.h"
 #include "model/tablemodel.h"
+#include "model/sortfilterproxymodel.h"
 
 class Controller;
 class AddProduct;
@@ -35,8 +36,9 @@ public:
     AddProduct* getAddProduct() const;
     catalog* getCatalog() const;
     MenuBar *getMenu() const;
+
 public slots:
-      void insertItemInfo();
+    void insertItemInfo();
       void loadingXmlInfo();
       void savingXmlInfo();
       void seeInfo();

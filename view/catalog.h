@@ -16,20 +16,23 @@ class catalog : public QWidget{
     Q_OBJECT
 private:
     SearchInventory *ricercaProdotto;
-    Table* table;
+    Table *table;
     QPushButton *btnSearch;
     QPushButton *btnSee;
-    QPushButton* btnModify;
-    QPushButton* btnViewItem;
+    QPushButton *btnModify;
+    QPushButton *btnViewItem;
+    QPushButton *btnRemove;
 public:
     explicit catalog(QWidget * = nullptr);
     void showSearch() const;
-    QPushButton* getBtnSearch() const;
-    QPushButton* getBtnSee() const;
-    QPushButton* getBtnModifiy() const;
-    QPushButton* getBtnViewItem() const;
-    SearchInventory* getRicercaProdotto() const;
-    Table* getTable() const;
+    QPushButton *getBtnSearch() const;
+    QPushButton *getBtnSee() const;
+    QPushButton *getBtnModifiy() const;
+    QPushButton *getBtnViewItem() const;
+    QPushButton *getBtnRemove() const;
+    SearchInventory *getRicercaProdotto() const;
+    Table *getTable() const;
+
 
 };
 

@@ -1,7 +1,6 @@
 #include "modifyproduct.h"
 
 modifyProduct::modifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
-    imgpath("../cialde-test/Data/Photo/image-not-found.jpg"),
     w(wf)
 {
     setWindowTitle("Wafflebox - Modifica prodotto");
@@ -16,9 +15,9 @@ modifyProduct::modifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
     discountLabel=new QLabel("Sconto: ",this);
     stockLabel=new QLabel("Disponibilità: ",this);
     imgLabel=new QLabel(this);
-
+    imgpath=w->getPhoto();
+    //recupero l'immagine del prodotto e la visualizzo
     QPixmap qpm = QPixmap(QString::fromStdString(w->getPhoto()));
-
     if(!qpm.isNull()){
         if(qpm.width()>700||qpm.height()>500){
             int width= qpm.width(), height = qpm.height();
@@ -59,6 +58,7 @@ modifyProduct::modifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
     formLayout->addRow(discountLabel,discountValueEdit);
     formLayout->addRow(stockLabel,stockValueEdit);
 
+    //Aggiungo e riempio i campi in base al tipo di prodotto
     if (w->getItemType()=="CircleBox") {
         CircleBox *ci=dynamic_cast<CircleBox*>(w);
         radiusLabel=new QLabel("Raggio: ",this);
@@ -124,7 +124,7 @@ std::string modifyProduct::doubleToString(double d){
 }
 
 QSize modifyProduct::sizeHint() const{
-    return QSize(800,500);
+    return QSize(900,500);
 }
 
 QPushButton *modifyProduct::getCancelButton() const{ return cancelButton; }
@@ -173,7 +173,6 @@ void modifyProduct::noModify(){
     QMessageBox::warning(nullptr, "Attenzione", "Operazione annullata", QMessageBox::Ok);
     close();
 }
-
 
 void modifyProduct::modifica() {
     w->setID(idValueEdit->text().toStdString());

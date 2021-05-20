@@ -1,12 +1,15 @@
 #include "catalog.h"
 
+
+
 catalog::catalog(QWidget(*parent)):QWidget(parent),
     ricercaProdotto(new SearchInventory(this)),
     table(new Table(this)),
     btnSearch(new QPushButton("Cerca prodotto",this)),
     btnSee(new QPushButton("Visualizza prodotti",this)),
     btnModify(new QPushButton("Modifica",this)),
-    btnViewItem(new QPushButton("Visualizza prodotto",this))
+    btnViewItem(new QPushButton("Visualizza prodotto",this)),
+    btnRemove(new QPushButton("Elimina",this))
 {
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     QVBoxLayout* topHalf = new QVBoxLayout();
@@ -18,6 +21,7 @@ catalog::catalog(QWidget(*parent)):QWidget(parent),
     btnViewItem->setEnabled(false);
     btnModify->hide();
     btnViewItem->hide();
+    btnRemove->hide();
 
     //Parte superiore della view, con i due bottoni in layout verticale
     topHalf->addWidget(btnSearch);
@@ -27,6 +31,7 @@ catalog::catalog(QWidget(*parent)):QWidget(parent),
     bottomHalf->addWidget(table);
     bottomHalf->addWidget(btnModify);
     bottomHalf->addWidget(btnViewItem);
+    bottomHalf->addWidget(btnRemove);
 
     mainLayout->addLayout(topHalf);
     mainLayout->addLayout(bottomHalf);
@@ -37,17 +42,20 @@ catalog::catalog(QWidget(*parent)):QWidget(parent),
     setLayout(mainLayout);
 
 }
-QPushButton* catalog::getBtnSearch() const{return btnSearch;}
 
-QPushButton* catalog::getBtnSee() const{ return btnSee; }
+QPushButton *catalog::getBtnSearch() const{ return btnSearch; }
 
-QPushButton* catalog::getBtnModifiy() const{ return btnModify; }
+QPushButton *catalog::getBtnSee() const{ return btnSee; }
 
-QPushButton* catalog::getBtnViewItem() const{ return btnViewItem; }
+QPushButton *catalog::getBtnModifiy() const{ return btnModify; }
 
-SearchInventory* catalog::getRicercaProdotto() const{ return ricercaProdotto; }
+QPushButton *catalog::getBtnViewItem() const{ return btnViewItem; }
 
-Table* catalog::getTable() const{ return table; }
+QPushButton *catalog::getBtnRemove() const{ return btnRemove; }
+
+SearchInventory *catalog::getRicercaProdotto() const{ return ricercaProdotto; }
+
+Table *catalog::getTable() const{ return table; }
 
 void catalog::showSearch() const{
     if(ricercaProdotto->isVisible()){
@@ -57,6 +65,7 @@ void catalog::showSearch() const{
         table->hide();
         btnViewItem->hide();
         btnModify->hide();
+        btnRemove->hide();
 
     }else{
         ricercaProdotto->hide();
@@ -65,6 +74,7 @@ void catalog::showSearch() const{
         table->hide();
         btnViewItem->hide();
         btnModify->hide();
+        btnRemove->show();
 
     }
 }

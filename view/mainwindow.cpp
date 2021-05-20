@@ -50,9 +50,10 @@ void MainWindow::seeInfo(){catalogo->getTable()->show();}
 void MainWindow::enableBtnTable(bool flag){
     catalogo->getBtnModifiy()->setEnabled(flag);
     catalogo->getBtnViewItem()->setEnabled(flag);
+    catalogo->getBtnRemove()->setEnabled(flag);
 }
 
-catalog* MainWindow::getCatalog() const{return catalogo;}
+catalog* MainWindow::getCatalog() const{ return catalogo; }
 
-MenuBar *MainWindow::getMenu() const{return menu;}
+MenuBar *MainWindow::getMenu() const{ return menu; }
 
