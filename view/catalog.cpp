@@ -19,6 +19,7 @@ catalog::catalog(QWidget(*parent)):QWidget(parent),
     table->hide();
     btnModify->setEnabled(false);
     btnViewItem->setEnabled(false);
+    btnRemove->setEnabled(false);
     btnModify->hide();
     btnViewItem->hide();
     btnRemove->hide();
@@ -74,7 +75,7 @@ void catalog::showSearch() const{
         table->hide();
         btnViewItem->hide();
         btnModify->hide();
-        btnRemove->show();
+        btnRemove->hide();
 
     }
 }

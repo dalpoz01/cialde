@@ -4,7 +4,7 @@ Controller::Controller(QObject *parent) : QObject(parent){}
 
 void Controller::setView(MainWindow *v){
     view=v;
-
+    view->getCatalog()->getTable()->getMyModel()->setModel(model);
     //Menu
     connect(view->getMenu()->getCatalog(),SIGNAL(triggered()),this,SLOT(showCatalogo()));   //connessione per visualizzare Catalogo selezionando la voce dal menubar
     connect(view->getMenu()->getAddProduct(),SIGNAL(triggered()),this,SLOT(showAddProduct()));  //connessione per visualizzare Aggiungi prodotto selezionando la voce dal menubar
@@ -45,6 +45,7 @@ void Controller::showCatalogo() const{
     view->getCatalog()->getTable()->hide();
     view->getCatalog()->getBtnModifiy()->hide();
     view->getCatalog()->getBtnViewItem()->hide();
+    view->getCatalog()->getBtnRemove()->hide();
     view->getAddProduct()->hide();
 }
 
@@ -98,16 +99,12 @@ void Controller::showDetails(){
 }
 
 void Controller::modificaProdotto(){
-    const QModelIndexList selection = view->getCatalog()->getTable()->selectionModel()->selectedIndexes();
-    if(selection.size()>0){
-        modifyProduct *mp=new modifyProduct(nullptr, view->getCatalog()->getTable()->getMyModel()->getElementByIndex(view->getCatalog()->getTable()->getSf()->getIndexByQIndex(selection.at(0)))/*view->getTm()->getElementByIndex(view->getSm()->getIndexByQIndex(selection.at(0)))*/);
-        mp->setAttribute(Qt::WA_DeleteOnClose);
-        connect(mp->getModifyPhotoButton(),SIGNAL(clicked()),mp,SLOT(changePhoto()));
-        connect(mp->getOkButton(),SIGNAL(clicked()),mp,SLOT(modifica()));
-        connect(mp->getCancelButton(),SIGNAL(clicked()),mp,SLOT(noModify()));
-        mp->show();
-    }
-
+    modifyProduct *mp=new modifyProduct(nullptr, model->getItem(view->getCatalog()->getTable()->selectionModel()->currentIndex().row()));
+    mp->setAttribute(Qt::WA_DeleteOnClose);
+    connect(mp->getModifyPhotoButton(),SIGNAL(clicked()),mp,SLOT(changePhoto()));
+    connect(mp->getOkButton(),SIGNAL(clicked()),mp,SLOT(modifica()));
+    connect(mp->getCancelButton(),SIGNAL(clicked()),mp,SLOT(noModify()));
+    mp->show();
 }
 
 void Controller::enableBtnTableController(){
@@ -118,7 +115,13 @@ void Controller::disableBtnTableController(){
 }
 
 void Controller::removeItem(){
-
+    if(QMessageBox::question(nullptr, "Attenzione", "Sei sicuro di voler eliminare questo prodotto?", QMessageBox::Yes, QMessageBox::No)==QMessageBox::Yes){
+        //ELIMINAZIONE DALLA TABELLA
+        view->getCatalog()->getTable()->getMyModel()->removeRows(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(),1);
+        QMessageBox::information(nullptr, "Messaggio", "Eliminazione effettuata con successo", QMessageBox::Ok);
+    }else{
+        QMessageBox::warning(nullptr, "Attenzione", "Operazione annullata", QMessageBox::Ok);
+    }
 }
 
 void Controller::avoidSearch() const{

@@ -17,9 +17,9 @@ details::details(QWidget *parent, WaffleBox *wf): QWidget(parent),
     QPixmap qpm = QPixmap(QString::fromStdString(w->getPhoto()));
 
     if(!qpm.isNull()){
-        if(qpm.width()>700||qpm.height()>500){
+        if(qpm.width()>500||qpm.height()>500){
             int width= qpm.width(), height = qpm.height();
-            while(width>700||height>500){
+            while(width>500||height>500){
                 width /=1.01;
                 height /= 1.01;
             }
@@ -28,7 +28,8 @@ details::details(QWidget *parent, WaffleBox *wf): QWidget(parent),
             imgLabel->setPixmap(qpm.scaled(QSize(qpm.width(), qpm.height())));
         }
     }else{
-        imgLabel->setText("Immagine non trovata");
+        imgLabel->setText("IMMAGINE NON TROVATA");
+        imgLabel->setMinimumSize(400,400);
         //imgLabel->setPixmap(QPixmap(QString::fromStdString("../cialde-test/Data/Photo/image-not-found.jpg")).scaled(QSize(400, 400)));
     }
     imgLabel->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);

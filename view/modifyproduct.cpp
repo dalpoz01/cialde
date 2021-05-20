@@ -17,11 +17,11 @@ modifyProduct::modifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
     imgLabel=new QLabel(this);
     imgpath=w->getPhoto();
     //recupero l'immagine del prodotto e la visualizzo
-    QPixmap qpm = QPixmap(QString::fromStdString(w->getPhoto()));
+    QPixmap qpm = QPixmap(QString::fromStdString(imgpath));
     if(!qpm.isNull()){
-        if(qpm.width()>700||qpm.height()>500){
+        if(qpm.width()>600||qpm.height()>500){
             int width= qpm.width(), height = qpm.height();
-            while(width>700||height>500){
+            while(width>600||height>500){
                 width /=1.01;
                 height /= 1.01;
             }
@@ -30,18 +30,27 @@ modifyProduct::modifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
             imgLabel->setPixmap(qpm.scaled(QSize(qpm.width(), qpm.height())));
         }
     }else{
-        imgLabel->setText("Immagine non trovata");
+        imgLabel->setText("IMMAGINE NON TROVATA");
+        imgLabel->setMinimumSize(400,400);
         //imgLabel->setPixmap(QPixmap(QString::fromStdString("../cialde-test/Data/Photo/image-not-found.jpg")).scaled(QSize(400, 400)));
     }
     imgLabel->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
+    int maxSizeEdit=400;
     nomeValueEdit=new QLineEdit(QString::fromStdString(w->getName()),this);
+    nomeValueEdit->setMaximumWidth(maxSizeEdit);
     idValueEdit=new QLineEdit(QString::fromStdString(w->getID()),this);
+    idValueEdit->setMaximumWidth(maxSizeEdit);
     nPezziValueEdit=new QLineEdit(QString::fromStdString(std::to_string(w->getCapacity())), this);
+    nPezziValueEdit->setMaximumWidth(maxSizeEdit);
     weightEdit=new QLineEdit(QString::fromStdString(std::to_string(w->getWeight())), this);
+    weightEdit->setMaximumWidth(maxSizeEdit);
     prezzoValueEdit=new QLineEdit(QString::fromStdString(doubleToString(w->getPrice())), this);
+    prezzoValueEdit->setMaximumWidth(maxSizeEdit);
     discountValueEdit=new QLineEdit(QString::fromStdString(std::to_string(w->getDiscount())), this);
+    discountValueEdit->setMaximumWidth(maxSizeEdit);
     stockValueEdit=new QLineEdit(QString::fromStdString(std::to_string(w->getStockAvailability())), this);
+    stockValueEdit->setMaximumWidth(maxSizeEdit);
 
     QHBoxLayout *main=new QHBoxLayout(this);
     QVBoxLayout *left=new QVBoxLayout();
@@ -63,37 +72,44 @@ modifyProduct::modifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
         CircleBox *ci=dynamic_cast<CircleBox*>(w);
         radiusLabel=new QLabel("Raggio: ",this);
         radiusValueEdit=new QLineEdit(QString::fromStdString(std::to_string(ci->getRadius())), this);
+        radiusValueEdit->setMaximumWidth(maxSizeEdit);
         formLayout->addRow(radiusLabel,radiusValueEdit);
     } else {
         if (w->getItemType()=="VentaglioBox"){
             VentaglioBox *v=dynamic_cast<VentaglioBox*>(w);
             widthLabel=new QLabel("Larghezza: ",this);
             widthValueEdit=new QLineEdit(QString::fromStdString(std::to_string(v->getWidth())), this);
+            widthValueEdit->setMaximumWidth(maxSizeEdit);
             formLayout->addRow(widthLabel,widthValueEdit);
         } else {
             if (w->getItemType()=="CannoloBox") {
                 CannoloBox *ca=dynamic_cast<CannoloBox*>(w);
                 intDiameterLabel=new QLabel("Diamentro interno: ",this);
                 intDiameterValueEdit=new QLineEdit(QString::fromStdString(std::to_string(ca->getIntDiameter())), this);
+                intDiameterValueEdit->setMaximumWidth(maxSizeEdit);
                 formLayout->addRow(intDiameterLabel,intDiameterValueEdit);
             } else {
                 if (w->getItemType()=="ConeBox") {
                     ConeBox *co=dynamic_cast<ConeBox*>(w);
                     externalRadiusLabel=new QLabel("Diametro esterno: ",this);
                     externalRadiusValueEdit=new QLineEdit(QString::fromStdString(std::to_string(co->getExtDiameter())), this);
+                    externalRadiusValueEdit->setMaximumWidth(maxSizeEdit);
                     formLayout->addRow(externalRadiusLabel,externalRadiusValueEdit);
                 } else {
                     if (w->getItemType()=="CoveredBox") {
                         Covered *cv=dynamic_cast<Covered*>(w);
                         tasteLabel=new QLabel("Gusto",this);
                         tasteValueEdit=new QLineEdit(QString::fromStdString(cv->getTaste()), this);
+                        tasteValueEdit->setMaximumWidth(maxSizeEdit);
                         formLayout->addRow(tasteLabel,tasteValueEdit);
                     } else {
                         Branded *br=dynamic_cast<Branded*>(w);
                         principalColorLabel=new QLabel("Colore principale: ",this);
                         principalColorValueEdit=new QLineEdit(QString::fromStdString(br->getPrincipalColor()), this);
+                        principalColorValueEdit->setMaximumWidth(maxSizeEdit);
                         secondaryColorLabel=new QLabel("Colore secondario: ",this);
                         secondaryColorValueEdit=new QLineEdit(QString::fromStdString(br->getSecundaryColor()), this);
+                        secondaryColorValueEdit->setMaximumWidth(maxSizeEdit);
                         formLayout->addRow(principalColorLabel,principalColorValueEdit);
                         formLayout->addRow(secondaryColorLabel,secondaryColorValueEdit);
                     }

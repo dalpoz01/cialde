@@ -13,7 +13,6 @@
 #include "view/searchinventory.h"
 #include "view/table.h"
 #include "model/tablemodel.h"
-#include "model/sortfilterproxymodel.h"
 
 class Controller;
 class AddProduct;

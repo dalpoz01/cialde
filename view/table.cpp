@@ -2,17 +2,14 @@
 
 
 
-Table::Table(QWidget *parent) : QTableView(parent), mymodel(new TableModel()), sf(new SortFilterProxyModel()) {
-
-    sf->setSourceModel(mymodel);
-    sf->setSortRole(Qt::UserRole);
-    setModel(sf);
-    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+Table::Table(QWidget *parent) : QTableView(parent), mymodel(new TableModel()) {
+    setModel(mymodel);
+    //setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setSelectionBehavior(QAbstractItemView::SelectRows);
+    horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    horizontalHeader()->setSectionResizeMode(1,QHeaderView::ResizeToContents);
     //setWordWrap(false);
     //horizontalHeader()->ResizeMode(QHeaderView::Stretch);
 }
 
 TableModel* Table::getMyModel() const{ return mymodel; }
-
-SortFilterProxyModel *Table::getSf() const{ return sf; }
