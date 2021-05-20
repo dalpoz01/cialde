@@ -89,7 +89,7 @@ QVariant TableModel::data(const QModelIndex &modelIndex, int role) const{
     return QVariant();
 }
 
-//Metodo 
+//Metodo
 QVariant TableModel::headerData(int section, Qt::Orientation orientation, int role) const{
     if(role != Qt::DisplayRole) return QVariant();
     if(orientation == Qt::Horizontal){
@@ -147,4 +147,6 @@ bool TableModel::removeRows(int startRow, int n, const QModelIndex &modelIndex){
 
 void TableModel::setWBToinsert(WaffleBox* wb){ wbToInsert = wb; }
 
-WaffleBox *TableModel::getElementByIndex(unsigned int i) const{ return model->getItem(i); }
+WaffleBox* TableModel::getItemByIndex(u_int index) const{ return model->getItem(index); }
+
+Model* TableModel::getModel() const{ return model;}

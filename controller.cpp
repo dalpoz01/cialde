@@ -88,9 +88,11 @@ void Controller::seeTableItem() const{
     view->seeInfo();
 }
 
-
 void Controller::showDetails(){
-    details *d=new details(nullptr,model->getItem(0));
+
+    //QItemSelectionModel *select = view->getCatalog()->getTable()->selectionModel();
+
+    details *d=new details(nullptr,model->getItem(view->getCatalog()->getTable()->selectionModel()->currentIndex().row()));
     d->setAttribute(Qt::WA_DeleteOnClose);
     d->show();
 }
