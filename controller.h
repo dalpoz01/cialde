@@ -2,6 +2,8 @@
 #define CONTROLLER_H
 
 #include <QObject>
+#include <QModelIndexList>
+#include <QItemSelectionModel>
 #include "view/mainwindow.h"
 #include "model/model.h"
 #include "model/container.h"

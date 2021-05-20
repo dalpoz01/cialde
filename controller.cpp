@@ -24,10 +24,11 @@ void Controller::setView(MainWindow *v){
     connect(view->getCatalog()->getRicercaProdotto()->getAnnullaButton(),SIGNAL(clicked()),this,SLOT(hideSearch()));    //connessione per il bottone Annulla in Ricerca, che nasconde la scheda
     connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeTableItem()));   //connessione per bottone Visualizza in Catalogo per visualizzare la tabella.
     connect(view->getCatalog()->getTable()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(enableBtnTableController()));  //connessione per bottone Visualizza prodotto nella parte inferiore
+
     //connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeItems()));
 
     //Visualizza dettagli
-    connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(showDetails())); //connessione per mostrare un oggetto in dettaglio
+    connect(view->getCatalog()->getBtnViewItem(),SIGNAL(clicked()),this,SLOT(showDetails())); //connessione per mostrare un oggetto in dettaglio
 
     //Modifica prodotto
     connect(view->getCatalog()->getBtnModifiy(),SIGNAL(clicked()),this,SLOT(modificaProdotto()));
@@ -86,9 +87,11 @@ void Controller::seeTableItem() const{
     view->seeInfo();
 }
 
-
 void Controller::showDetails(){
-    details *d=new details(nullptr,model->getItem(0));
+
+    //QItemSelectionModel *select = view->getCatalog()->getTable()->selectionModel();
+
+    details *d=new details(nullptr,model->getItem(view->getCatalog()->getTable()->selectionModel()->currentIndex().row()));
     d->setAttribute(Qt::WA_DeleteOnClose);
     d->show();
 }
