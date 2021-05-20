@@ -21,6 +21,8 @@ public:
     bool insertRows(int, int = 1, const QModelIndex& = QModelIndex()) override;  //Metodo di QAbstractTableModel che inserisce una riga sulla tabella
     bool removeRows(int, int = 1, const QModelIndex& = QModelIndex()) override; //Metodo di QAbstractTableModel che rimuove una riga dalla tabella
     void setWBToinsert(WaffleBox*);
+    WaffleBox* getItemByIndex(u_int) const;
+    Model* getModel() const;
 };
 
 #endif // TABLEMODEL_H
