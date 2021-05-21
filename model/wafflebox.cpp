@@ -12,7 +12,7 @@ u_int WaffleBox::getWeight() const {return weight;}
 double WaffleBox::getPrice() const {return price;}
 u_int WaffleBox::getStockAvailability() const {return stockavailability;}
 u_int WaffleBox::getDiscount() const{return discount;}
-double WaffleBox::getRealPrice() const{return (price*discount)/100;}
+double WaffleBox::getRealPrice() const{return (price-(price*discount)/100);}
 
 //SETTER
 void WaffleBox::setName(const std::string &value){name = value;}
