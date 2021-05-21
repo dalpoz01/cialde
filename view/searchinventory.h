@@ -9,6 +9,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
+#include "view/table.h"
 
 class SearchInventory: public QWidget{
      Q_OBJECT
@@ -27,10 +28,15 @@ private:
     QLineEdit* priceLine;
     QPushButton* searchButton;
     QPushButton* annullaButton;
+
+    Table* table;
 public:
     explicit SearchInventory(QWidget * = nullptr);
     QPushButton* getSearchButton() const;
     QPushButton* getAnnullaButton() const;
+    Table* getTable() const;
+
+    void setTable(Table*);
 };
 
 #endif // SEARCHINVENTORY_H
