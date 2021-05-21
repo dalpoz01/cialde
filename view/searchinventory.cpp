@@ -41,10 +41,11 @@ SearchInventory::SearchInventory(QWidget *parent) :
     srcLayout->addLayout(form);
     bottom->addWidget(searchButton);
     bottom->addWidget(annullaButton);
-    bottom->setAlignment(Qt::AlignTop);
+
+    srcLayout->addLayout(bottom);
     main->addLayout(srcLayout);
-    main->addLayout(bottom);
     main->addWidget(table);
+    main->setAlignment(Qt::AlignTop);
 }
 QPushButton* SearchInventory::getSearchButton() const{
     return searchButton;

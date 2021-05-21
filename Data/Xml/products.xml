@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <element>
-    <WaffleBox type="CircleBox">
-        <Nome>Provafoto senza ins</Nome>
-        <ID>1233</ID>
-        <Foto>:/MyRes/Photo/image-not-found.jpg</Foto>
-        <capacity>100</capacity>
-        <weight>80</weight>
-        <price>2</price>
-        <discount>3</discount>
+    <WaffleBox type="CannoloBox">
+        <Nome>Cannoloprova</Nome>
+        <ID>123</ID>
+        <Foto>../cialde-test/Data/Photo/image-not-found.jpg</Foto>
+        <capacity>200</capacity>
+        <weight>160</weight>
+        <price>1</price>
+        <discount>1</discount>
         <stockavailability>50</stockavailability>
-        <radius>2</radius>
-    </WaffleBox>
-    <WaffleBox type="CircleBox">
-        <Nome>provafoto con ins</Nome>
-        <ID> 1234</ID>
-        <Foto>:/MyRes/Photo/image-not-found.jpg</Foto>
-        <capacity>150</capacity>
-        <weight>120</weight>
-        <price>22</price>
-        <discount>5</discount>
-        <stockavailability>50</stockavailability>
-        <radius>2</radius>
+        <height>12</height>
+        <int_diameter>3</int_diameter>
     </WaffleBox>
     <WaffleBox type="CannoloBox">
         <Nome>Cannolo cannoloso</Nome>

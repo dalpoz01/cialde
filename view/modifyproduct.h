@@ -91,6 +91,8 @@ public slots:
     void modifica();
     void changePhoto();
     void noModify();
+signals:
+    void signalToModify(WaffleBox*) const;
 };
 
 #endif // MODIFYPRODUCT_H

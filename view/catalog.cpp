@@ -1,17 +1,15 @@
 #include "catalog.h"
 
-
-
 catalog::catalog(QWidget(*parent)):QWidget(parent),
-    ricercaProdotto(new SearchInventory(this)),
-    table(new Table(this)),
-    btnSearch(new QPushButton("Cerca prodotto",this)),
-    btnSee(new QPushButton("Visualizza prodotti",this)),
-    btnModify(new QPushButton("Modifica",this)),
-    btnViewItem(new QPushButton("Visualizza prodotto",this)),
-    btnRemove(new QPushButton("Elimina",this))
+    ricercaProdotto(new SearchInventory()),
+    table(new Table()),
+    btnSearch(new QPushButton("Cerca prodotto")),
+    btnSee(new QPushButton("Visualizza prodotti")),
+    btnModify(new QPushButton("Modifica")),
+    btnViewItem(new QPushButton("Visualizza prodotto")),
+    btnRemove(new QPushButton("Elimina"))
 {
-    QVBoxLayout* mainLayout = new QVBoxLayout(this);
+    QVBoxLayout* mainLayout = new QVBoxLayout();
     QVBoxLayout* topHalf = new QVBoxLayout();
     QVBoxLayout* bottomHalf = new QVBoxLayout();
     QHBoxLayout* btnBottom = new QHBoxLayout();
@@ -30,6 +28,7 @@ catalog::catalog(QWidget(*parent)):QWidget(parent),
     topHalf->addWidget(btnSee);
 
     //Parte inferiore della view in layout orizzontale, con a sinistra la tabella e a destra due bottoni, "Visualizza" e "Modifica" (rispettivamente in layout verticale)
+    mainLayout->addWidget(ricercaProdotto);
     bottomHalf->addWidget(table);
     btnBottom->addWidget(btnModify);
     btnBottom->addWidget(btnViewItem);
@@ -38,7 +37,6 @@ catalog::catalog(QWidget(*parent)):QWidget(parent),
 
     mainLayout->addLayout(topHalf);
     mainLayout->addLayout(bottomHalf);
-    mainLayout->addWidget(ricercaProdotto);
 
     topHalf->setAlignment(Qt::AlignTop);
     bottomHalf->setAlignment(Qt::AlignTop);

@@ -33,6 +33,7 @@ public slots:
     void modificaProdotto();
     void avoidSearch() const;
     void insertItemController(WaffleBox*);
+    void modifyItemController(WaffleBox*);
     void loadingXmlController();
     void savingXmlController();
     void enableBtnTableController();

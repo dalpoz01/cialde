@@ -45,6 +45,7 @@ Model* Controller::getModel() const{return model;}
 
 void Controller::showCatalogo() const{
     view->getCatalog()->show();
+    view->getCatalog()->showSearch();
     view->getCatalog()->getTable()->hide();
     view->getCatalog()->getBtnModifiy()->hide();
     view->getCatalog()->getBtnViewItem()->hide();
@@ -53,7 +54,8 @@ void Controller::showCatalogo() const{
 }
 
 void Controller::showAddProduct() const{
-    view->getCatalog()->hide();
+    view->getCatalog()->getRicercaProdotto()->hide();
+    view->getCatalog()->hide();    
     view->getAddProduct()->show();
 }
 
@@ -63,6 +65,12 @@ void Controller::insertItemController(WaffleBox* wb){
     //view->getCatalog()->getTable()->getMyModel()->getModel()->addBox(wb);
     view->getCatalog()->getTable()->getMyModel()->insertRows(view->getCatalog()->getTable()->getMyModel()->rowCount(), 1);  //Inserisce la riga per il nuovo oggetto, partendo dall'ultima riga inserita.
     view->insertItemInfo(); //Stampa finestra di successo
+}
+
+void Controller::modifyItemController(WaffleBox *wb){
+    view->getCatalog()->getTable()->getMyModel()->setWBToinsert(wb);
+    view->getCatalog()->getTable()->getMyModel()->removeRows(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(),1);
+    view->getCatalog()->getTable()->getMyModel()->insertRows(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(),1);
 }
 void Controller::loadingXmlController(){
     model->loadXml();
@@ -108,6 +116,7 @@ void Controller::modificaProdotto(){
     connect(mp->getModifyPhotoButton(),SIGNAL(clicked()),mp,SLOT(changePhoto()));
     connect(mp->getOkButton(),SIGNAL(clicked()),mp,SLOT(modifica()));
     connect(mp->getCancelButton(),SIGNAL(clicked()),mp,SLOT(noModify()));
+    connect(mp,SIGNAL(signalToModify(WaffleBox*)),this,SLOT(modifyItemController(WaffleBox*)));
     mp->show(); //prendo l'oggetto modificato dalla tabella //aggiungo la riga aggiornata
 }
 

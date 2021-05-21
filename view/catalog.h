@@ -34,8 +34,6 @@ public:
     QPushButton *getBtnRemove() const;
     SearchInventory* getRicercaProdotto() const;
     Table *getTable() const;
-
-
 };
 
 #endif // CATALOG_H

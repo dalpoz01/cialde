@@ -31,10 +31,10 @@ MainWindow::MainWindow(QWidget *parent):
     qv->addWidget(aggiungiProdotto);
 
     setLayout(qv);
-
+    setMaximumHeight(500);
 }
 
-QSize MainWindow::sizeHint() const {return QSize(1024, 468);}
+QSize MainWindow::sizeHint() const {return QSize(1024, 500);}
 
 void MainWindow::setController(Controller *c){controller=c;}
 
