@@ -78,7 +78,7 @@ AddProduct::AddProduct(QWidget(*parent)): QWidget(parent),
     prezzoLine->setValidator(new QDoubleValidator(0.00, 9999.00, 2, this));
     heightLine->setValidator((new QIntValidator(0, 200, this)));
     intdiamLine->setValidator(new QIntValidator(0, 10, this));
-    intdiamLine->setValidator(new QIntValidator(0, 90, this));
+    extdiamLine->setValidator(new QIntValidator(0, 90, this));
 
     radiusSpin->setMaximum(10);
 

@@ -37,16 +37,19 @@ modifyProduct::modifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
     imgLabel->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
     int maxSizeEdit=400;
+
     nomeValueEdit=new QLineEdit(QString::fromStdString(w->getName()),this);
     nomeValueEdit->setMaximumWidth(maxSizeEdit);
     idValueEdit=new QLineEdit(QString::fromStdString(w->getID()),this);
     idValueEdit->setMaximumWidth(maxSizeEdit);
     nPezziValueEdit=new QLineEdit(QString::fromStdString(std::to_string(w->getCapacity())), this);
     nPezziValueEdit->setMaximumWidth(maxSizeEdit);
+    nPezziValueEdit->setValidator(new QIntValidator(50,500,this));
     weightEdit=new QLineEdit(QString::fromStdString(std::to_string(w->getWeight())), this);
     weightEdit->setMaximumWidth(maxSizeEdit);
     prezzoValueEdit=new QLineEdit(QString::fromStdString(doubleToString(w->getPrice())), this);
     prezzoValueEdit->setMaximumWidth(maxSizeEdit);
+    prezzoValueEdit->setValidator(new QDoubleValidator(0.00, 9999.00, 2, this));
     discountValueEdit=new QLineEdit(QString::fromStdString(std::to_string(w->getDiscount())), this);
     discountValueEdit->setMaximumWidth(maxSizeEdit);
     stockValueEdit=new QLineEdit(QString::fromStdString(std::to_string(w->getStockAvailability())), this);
