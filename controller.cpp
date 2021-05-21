@@ -27,6 +27,9 @@ void Controller::setView(MainWindow *v){
     connect(view->getCatalog()->getBtnRemove(),SIGNAL(clicked()),this,SLOT(removeItem()));
     //connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeItems()));
 
+    //Ricerca
+    connect(view->getCatalog()->getRicercaProdotto()->getSearchButton(), SIGNAL(clicked()), this, SLOT(showSearchTable()));
+
     //Visualizza dettagli
     connect(view->getCatalog()->getBtnViewItem(),SIGNAL(clicked()),this,SLOT(showDetails())); //connessione per mostrare un oggetto in dettaglio
 
@@ -125,6 +128,10 @@ void Controller::removeItem(){
     }else{
         QMessageBox::warning(nullptr, "Attenzione", "Operazione annullata", QMessageBox::Ok);
     }
+}
+
+void Controller::showSearchTable(){
+    view->getCatalog()->getRicercaProdotto()->getTable()->setModel(view->getCatalog()->getTable()->getMyModel());
 }
 
 void Controller::avoidSearch() const{

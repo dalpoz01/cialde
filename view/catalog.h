@@ -9,13 +9,15 @@
 #include <QLabel>
 #include <QFormLayout>
 #include <QLineEdit>
-#include "view/searchinventory.h"
+#include "searchinventory.h"
 #include "view/table.h"
 
+
+class SearchInventory;
 class catalog : public QWidget{
     Q_OBJECT
 private:
-    SearchInventory *ricercaProdotto;
+    SearchInventory* ricercaProdotto;
     Table *table;
     QPushButton *btnSearch;
     QPushButton *btnSee;
@@ -30,7 +32,7 @@ public:
     QPushButton *getBtnModifiy() const;
     QPushButton *getBtnViewItem() const;
     QPushButton *getBtnRemove() const;
-    SearchInventory *getRicercaProdotto() const;
+    SearchInventory* getRicercaProdotto() const;
     Table *getTable() const;
 
 

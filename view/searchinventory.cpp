@@ -15,7 +15,8 @@ SearchInventory::SearchInventory(QWidget *parent) :
     priceLabel(new QLabel("Prezzo",this)),
     priceLine(new QLineEdit(this)),
     searchButton(new QPushButton("Cerca",this)),
-    annullaButton(new QPushButton("Annulla",this))
+    annullaButton(new QPushButton("Annulla",this)),
+    table(new Table(this))
 {
     QVBoxLayout* main = new QVBoxLayout(this);
     QHBoxLayout* bottom = new QHBoxLayout();
@@ -43,6 +44,7 @@ SearchInventory::SearchInventory(QWidget *parent) :
     bottom->setAlignment(Qt::AlignTop);
     main->addLayout(srcLayout);
     main->addLayout(bottom);
+    main->addWidget(table);
 }
 QPushButton* SearchInventory::getSearchButton() const{
     return searchButton;
@@ -51,3 +53,6 @@ QPushButton* SearchInventory::getAnnullaButton() const{
     return annullaButton;
 }
 
+Table* SearchInventory::getTable() const{ return table; }
+
+void SearchInventory::setTable(Table *tab){ table = tab; }

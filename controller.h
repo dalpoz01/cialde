@@ -38,6 +38,7 @@ public slots:
     void enableBtnTableController();
     void disableBtnTableController();
     void removeItem();
+    void showSearchTable();
 };
 
 #endif // CONTROLLER_H

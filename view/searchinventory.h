@@ -10,6 +10,7 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include "view/table.h"
+#include "view/catalog.h"
 
 class SearchInventory: public QWidget{
      Q_OBJECT
