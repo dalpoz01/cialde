@@ -57,6 +57,7 @@ void Controller::showAddProduct() const{
 void Controller::insertItemController(WaffleBox* wb){
     model->addBox(wb);  //Aggiunge al model dell'applicazione dopo aver preso i dati dalla view
     view->getCatalog()->getTable()->getMyModel()->setWBToinsert(wb);    //Aggiorna l'oggetto da inserire nel model della tabella, perchè è stato appena inserito
+    view->getCatalog()->getTable()->getMyModel()->getModel()->addBox(wb);
     view->getCatalog()->getTable()->getMyModel()->insertRows(view->getCatalog()->getTable()->getMyModel()->rowCount(), 1);  //Inserisce la riga per il nuovo oggetto, partendo dall'ultima riga inserita.
     view->insertItemInfo(); //Stampa finestra di successo
 }
