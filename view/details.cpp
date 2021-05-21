@@ -4,6 +4,7 @@ details::details(QWidget *parent, WaffleBox *wf): QWidget(parent),
     w(wf)
 {
     setWindowTitle("Wafflebox - Dettagli prodotto");
+    setWindowIcon(QIcon(QPixmap("../cialde-test/Data/Photo/icon.png")));
 
     tipoLabel=new QLabel("Tipo: ",this);
     nomeLabel=new QLabel("Nome: ",this);

@@ -7,7 +7,8 @@ MainWindow::MainWindow(QWidget *parent):
     catalogo(new catalog(this)),
     aggiungiProdotto(new AddProduct(this))
 {
-    setWindowTitle("Cialde Pro");
+    setWindowTitle("Wafflebox Store");
+    setWindowIcon(QIcon(QPixmap("../cialde-test/Data/Photo/icon.png")));
 
     //Centro la finestra sullo schermo
     QSize size = sizeHint();

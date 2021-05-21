@@ -4,7 +4,7 @@ Controller::Controller(QObject *parent) : QObject(parent){}
 
 void Controller::setView(MainWindow *v){
     view=v;
-    view->getCatalog()->getTable()->getMyModel()->setModel(model);
+    //view->getCatalog()->getTable()->getMyModel()->setModel(model);
     //Menu
     connect(view->getMenu()->getCatalog(),SIGNAL(triggered()),this,SLOT(showCatalogo()));   //connessione per visualizzare Catalogo selezionando la voce dal menubar
     connect(view->getMenu()->getAddProduct(),SIGNAL(triggered()),this,SLOT(showAddProduct()));  //connessione per visualizzare Aggiungi prodotto selezionando la voce dal menubar
@@ -57,7 +57,7 @@ void Controller::showAddProduct() const{
 void Controller::insertItemController(WaffleBox* wb){
     model->addBox(wb);  //Aggiunge al model dell'applicazione dopo aver preso i dati dalla view
     view->getCatalog()->getTable()->getMyModel()->setWBToinsert(wb);    //Aggiorna l'oggetto da inserire nel model della tabella, perchè è stato appena inserito
-    view->getCatalog()->getTable()->getMyModel()->getModel()->addBox(wb);
+    //view->getCatalog()->getTable()->getMyModel()->getModel()->addBox(wb);
     view->getCatalog()->getTable()->getMyModel()->insertRows(view->getCatalog()->getTable()->getMyModel()->rowCount(), 1);  //Inserisce la riga per il nuovo oggetto, partendo dall'ultima riga inserita.
     view->insertItemInfo(); //Stampa finestra di successo
 }
@@ -105,7 +105,7 @@ void Controller::modificaProdotto(){
     connect(mp->getModifyPhotoButton(),SIGNAL(clicked()),mp,SLOT(changePhoto()));
     connect(mp->getOkButton(),SIGNAL(clicked()),mp,SLOT(modifica()));
     connect(mp->getCancelButton(),SIGNAL(clicked()),mp,SLOT(noModify()));
-    mp->show();
+    mp->show(); //prendo l'oggetto modificato dalla tabella //aggiungo la riga aggiornata
 }
 
 void Controller::enableBtnTableController(){
@@ -119,6 +119,8 @@ void Controller::removeItem(){
     if(QMessageBox::question(nullptr, "Attenzione", "Sei sicuro di voler eliminare questo prodotto?", QMessageBox::Yes, QMessageBox::No)==QMessageBox::Yes){
         //ELIMINAZIONE DALLA TABELLA
         view->getCatalog()->getTable()->getMyModel()->removeRows(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(),1);
+        model->removeBox(view->getCatalog()->getTable()->selectionModel()->currentIndex().row());
+
         QMessageBox::information(nullptr, "Messaggio", "Eliminazione effettuata con successo", QMessageBox::Ok);
     }else{
         QMessageBox::warning(nullptr, "Attenzione", "Operazione annullata", QMessageBox::Ok);
