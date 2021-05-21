@@ -13,7 +13,7 @@ catalog::catalog(QWidget(*parent)):QWidget(parent),
 {
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     QVBoxLayout* topHalf = new QVBoxLayout();
-    QHBoxLayout* bottomHalf = new QHBoxLayout();
+    QVBoxLayout* bottomHalf = new QVBoxLayout();
 
     ricercaProdotto->hide();
     table->hide();
