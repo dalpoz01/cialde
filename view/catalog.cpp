@@ -14,6 +14,7 @@ catalog::catalog(QWidget(*parent)):QWidget(parent),
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     QVBoxLayout* topHalf = new QVBoxLayout();
     QVBoxLayout* bottomHalf = new QVBoxLayout();
+    QHBoxLayout* btnBottom = new QHBoxLayout();
 
     ricercaProdotto->hide();
     table->hide();
@@ -30,9 +31,10 @@ catalog::catalog(QWidget(*parent)):QWidget(parent),
 
     //Parte inferiore della view in layout orizzontale, con a sinistra la tabella e a destra due bottoni, "Visualizza" e "Modifica" (rispettivamente in layout verticale)
     bottomHalf->addWidget(table);
-    bottomHalf->addWidget(btnModify);
-    bottomHalf->addWidget(btnViewItem);
-    bottomHalf->addWidget(btnRemove);
+    btnBottom->addWidget(btnModify);
+    btnBottom->addWidget(btnViewItem);
+    btnBottom->addWidget(btnRemove);
+    bottomHalf->addLayout(btnBottom);
 
     mainLayout->addLayout(topHalf);
     mainLayout->addLayout(bottomHalf);
