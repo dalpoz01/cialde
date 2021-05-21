@@ -201,6 +201,7 @@ void AddProduct::resetCommon() {
     nomeLine->setText(" ");
     idLine->setText(" ");
     prezzoLine->setText(" ");
+    discountBox->setValue(0);
     dim1Radio->setChecked(false);
     dim2Radio->setChecked(false);
     dim3Radio->setCheckable(false);

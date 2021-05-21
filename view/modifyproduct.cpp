@@ -4,6 +4,7 @@ modifyProduct::modifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
     w(wf)
 {
     setWindowTitle("Wafflebox - Modifica prodotto");
+    setWindowIcon(QIcon(QPixmap("../cialde-test/Data/Photo/icon.png")));
 
     tipoLabel=new QLabel("Tipo: ",this);
     tipoValueEdit=new QLabel(QString::fromStdString(w->getItemType()));

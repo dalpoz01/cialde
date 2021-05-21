@@ -24,7 +24,7 @@ public:
     void setWBToinsert(WaffleBox*);
     WaffleBox* getItemByIndex(u_int) const;
     Model* getModel() const;
-    void setModel(Model *value);
+    void setModel(Model *);
 };
 
 #endif // TABLEMODEL_H
