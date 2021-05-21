@@ -8,6 +8,7 @@ Table::Table(QWidget *parent) : QTableView(parent), mymodel(new TableModel()) {
     setSelectionBehavior(QAbstractItemView::SelectRows);
     horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     horizontalHeader()->setSectionResizeMode(1,QHeaderView::ResizeToContents);
+    verticalHeader()->setMaximumHeight(300);
     //setWordWrap(false);
     //horizontalHeader()->ResizeMode(QHeaderView::Stretch);
 }
