@@ -302,6 +302,7 @@ void AddProduct::showItemTypeField(const QString& selection) const{
         enableFields(true);
 
         showCircle(true);
+        showHeight(false);
         showVentaglio(false);
         showCannolo(false);
         showCone(false);
