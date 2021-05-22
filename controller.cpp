@@ -21,7 +21,7 @@ void Controller::setView(MainWindow *v){
     //Catalogo
     connect(view->getCatalog()->getBtnSearch(),SIGNAL(clicked()),this,SLOT(showSearch()));  //connessione per bottone in Catalogo per mostrare la view di Ricerca
     connect(view->getCatalog()->getRicercaProdotto()->getSearchButton(),SIGNAL(clicked()),this,SLOT(showSearch())); //connessione per il bottone Cerca in Ricerca
-    connect(view->getCatalog()->getRicercaProdotto()->getAnnullaButton(),SIGNAL(clicked()),this,SLOT(hideSearch()));    //connessione per il bottone Annulla in Ricerca, che nasconde la scheda
+    connect(view->getCatalog()->getRicercaProdotto()->getAnnullaButton(),SIGNAL(clicked()),this,SLOT(avoidSearch()));    //connessione per il bottone Annulla in Ricerca, che nasconde la scheda
     connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeTableItem()));   //connessione per bottone Visualizza in Catalogo per visualizzare la tabella.
     connect(view->getCatalog()->getTable()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(enableBtnTableController()));  //connessione per bottone Visualizza prodotto nella parte inferiore
     connect(view->getCatalog()->getBtnRemove(),SIGNAL(clicked()),this,SLOT(removeItem()));
@@ -68,9 +68,15 @@ void Controller::insertItemController(WaffleBox* wb){
 }
 
 void Controller::modifyItemController(WaffleBox *wb){
-    view->getCatalog()->getTable()->getMyModel()->setWBToinsert(wb);
+    /*view->getCatalog()->getTable()->getMyModel()->setWBToinsert(wb);
     view->getCatalog()->getTable()->getMyModel()->removeRows(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(),1);
-    view->getCatalog()->getTable()->getMyModel()->insertRows(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(),1);
+    view->getCatalog()->getTable()->getMyModel()->insertRows(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(),1);*/
+    //Aggiorno l'oggetto nel modello dell'applicazione
+    model->updateItem(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(),wb);
+
+    //Aggiorno il model della vista (in Catalog e Ricerca)
+    view->getCatalog()->getTable()->getMyModel()->setModel(model);
+
 }
 void Controller::loadingXmlController(){
     model->loadXml();
@@ -140,10 +146,10 @@ void Controller::removeItem(){
 }
 
 void Controller::showSearchTable(){
-    view->getCatalog()->getRicercaProdotto()->getTable()->setModel(view->getCatalog()->getTable()->getMyModel());
+    view->getCatalog()->getRicercaProdotto()->getTable()->show();
 }
 
 void Controller::avoidSearch() const{
-    //std:cout<<"In inplementazione..."<<endl;
-    //view->getCatalog()->getRicercaProdotto()->show();
+    if(QMessageBox::question(nullptr, "Attenzione", "Annullare la ricerca?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+        view->getCatalog()->getRicercaProdotto()->resetField();
 }
