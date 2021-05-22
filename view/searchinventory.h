@@ -38,6 +38,7 @@ public:
     Table* getTable() const;
 
     void setTable(Table*);
+    void resetField();
 };
 
 #endif // SEARCHINVENTORY_H

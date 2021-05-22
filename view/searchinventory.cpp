@@ -45,6 +45,7 @@ SearchInventory::SearchInventory(QWidget *parent) :
     srcLayout->addLayout(bottom);
     main->addLayout(srcLayout);
     main->addWidget(table);
+    table->hide();
     main->setAlignment(Qt::AlignTop);
 }
 QPushButton* SearchInventory::getSearchButton() const{
@@ -57,3 +58,12 @@ QPushButton* SearchInventory::getAnnullaButton() const{
 Table* SearchInventory::getTable() const{ return table; }
 
 void SearchInventory::setTable(Table *tab){ table = tab; }
+
+void SearchInventory::resetField(){
+    idLine->setText("");
+    nameLine->setText("");
+    itemtypeComboBox->setCurrentIndex(0);
+    capacityLine->setText("");
+    priceLine->setText("");
+    table->hide();
+}
