@@ -14,6 +14,8 @@ catalog::catalog(QWidget(*parent)):QWidget(parent),
     QVBoxLayout* bottomHalf = new QVBoxLayout();
     QHBoxLayout* btnBottom = new QHBoxLayout();
 
+
+
     ricercaProdotto->hide();
     table->hide();
     btnModify->setEnabled(false);
@@ -34,6 +36,7 @@ catalog::catalog(QWidget(*parent)):QWidget(parent),
     btnBottom->addWidget(btnViewItem);
     btnBottom->addWidget(btnRemove);
     bottomHalf->addLayout(btnBottom);
+    ricercaProdotto->getTable()->setModel(table->getMyModel());
 
     mainLayout->addLayout(topHalf);
     mainLayout->addLayout(bottomHalf);
