@@ -25,6 +25,8 @@ public:
     WaffleBox* getItem(unsigned int i) const; //Metodo per ottenere l'obj nel container
     void printAll() const;
 
+    void updateItem(u_int, WaffleBox*);
+
     std::string getPath() const;
     std::string getFileName() const;
     Container<DeepPtr<WaffleBox>> getContainer() const;

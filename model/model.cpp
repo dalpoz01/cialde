@@ -36,5 +36,14 @@ WaffleBox* Model::getItem(unsigned int i) const{return container[i].operator ->(
 void Model::printAll() const{ for(u_int i=0; i < container.getSize(); ++i){ cout << container[i]->printItem() << endl; } }
 
 std::string Model::getPath() const{ return path; }
+
 std::string Model::getFileName() const{ return fileName; }
+
 Container<DeepPtr<WaffleBox>> Model::getContainer() const{ return container; }
+
+void Model::updateItem(u_int index, WaffleBox* wb){
+    for(u_int i = 0; i < container.getSize(); ++i){
+        if(i == index) //Ho trovato l'oggetto
+            container[i] = DeepPtr<WaffleBox>(wb);
+    }
+}
