@@ -148,23 +148,29 @@ void Controller::removeItem(){
     }
 }
 
-void Controller::showSearchTable(){
-    //Creo il QAAbstractTableModel filtrato per visualizzare la ricerca
-    TableModel* filterModel = new TableModel();
-    Model* tempModel = new Model();
-    for(u_int i=0; i<model->getSize(); ++i){
-        if(model->getItem(i)->getID() == view->getCatalog()->getRicercaProdotto()->getIdLine()->text().toStdString()  ||
-           model->getItem(i)->getName() == view->getCatalog()->getRicercaProdotto()->getNameLine()->text().toStdString()  ||
-           model->getItem(i)->getItemType() == view->getCatalog()->getRicercaProdotto()->getItemTypeComboBox()->currentText().toStdString() ||
-           model->getItem(i)->getCapacity() == view->getCatalog()->getRicercaProdotto()->getCapacityLine()->text().toUInt()  ||
-           model->getItem(i)->getPrice() == view->getCatalog()->getRicercaProdotto()->getIdLine()->text().toUInt()){
-
-            tempModel->addBox(model->getItem(i));
+void Controller::refreshSearchTable()
+{
+    if(view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->getModel()->getSize() != 0){
+        view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->removeRows(0, view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->rowCount());
+        for(u_int i = 0; i<  view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->getModel()->getSize(); ++i){
+            view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->getModel()->removeBox(i);
         }
     }
-    if(!tempModel){
-        filterModel->setModel(tempModel);
-        view->getCatalog()->getRicercaProdotto()->getTable()->setModel(filterModel);
+}
+
+void Controller::showSearchTable(){
+    refreshSearchTable();
+    for(u_int i=0; i<model->getSize(); ++i){
+        if(/*model->getItem(i)->getID() == view->getCatalog()->getRicercaProdotto()->getIdLine()->text().toStdString()  ||
+           model->getItem(i)->getName() == view->getCatalog()->getRicercaProdotto()->getNameLine()->text().toStdString()  ||*/
+           model->getItem(i)->getItemType() == view->getCatalog()->getRicercaProdotto()->getItemTypeComboBox()->currentText().toStdString() /*||
+           model->getItem(i)->getCapacity() == view->getCatalog()->getRicercaProdotto()->getCapacityLine()->text().toUInt()  ||
+           model->getItem(i)->getPrice() == view->getCatalog()->getRicercaProdotto()->getIdLine()->text().toUInt()*/){
+
+            view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->setWBToinsert(model->getItem(i));
+
+            view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->insertRows(view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->rowCount(), 1);
+        }
     }
     view->getCatalog()->getRicercaProdotto()->getTable()->show();
 }

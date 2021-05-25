@@ -24,6 +24,8 @@ public:
     void setView(MainWindow*);
     void setModel(Model*);
     Model *getModel() const;
+    void refreshSearchTable();
+
 public slots:
     void showCatalogo() const;
     void showAddProduct() const;

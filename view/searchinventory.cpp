@@ -48,6 +48,8 @@ SearchInventory::SearchInventory(QWidget *parent) :
     main->addLayout(srcLayout);
     main->addWidget(table);
     table->hide();
+    table->getMyModel()->removeRows(0,table->getMyModel()->rowCount());
+    for(u_int i = 0; i< table->getMyModel()->getModel()->getSize(); ++i){ table->getMyModel()->getModel()->removeBox(i); }
     main->setAlignment(Qt::AlignTop);
 }
 QPushButton* SearchInventory::getSearchButton() const{
