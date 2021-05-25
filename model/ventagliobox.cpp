@@ -14,7 +14,7 @@ bool VentaglioBox::operator ==(const VentaglioBox& v) const {return HeightProvid
 //CLONE
 VentaglioBox* VentaglioBox::clone() const {return new VentaglioBox(*this);}
 
-std::string VentaglioBox::getItemType() const{return "VentaglioBox";}
+std::string VentaglioBox::getItemType() const{return "Ventaglio Box";}
 
 //STAMPA INFO
 std::string VentaglioBox::printItem() const{

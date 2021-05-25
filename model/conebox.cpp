@@ -19,7 +19,7 @@ bool ConeBox::operator !=(const ConeBox& c) {return HeightProviderBox::operator 
 //Clone
 ConeBox* ConeBox::clone() const {return new ConeBox(*this);}
 
-std::string ConeBox::getItemType() const{return "ConeBox";}
+std::string ConeBox::getItemType() const{return "Cone Box";}
 
 std::string ConeBox::printItem() const{
     std::stringstream stream;

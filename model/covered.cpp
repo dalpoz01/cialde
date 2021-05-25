@@ -17,7 +17,7 @@ bool Covered::operator !=(const Covered&c) {return ConeBox::operator !=(c) || ta
 //Clone
 Covered* Covered::clone() const {return new Covered(*this);}
 
-std::string Covered::getItemType() const{return "CoveredBox";}
+std::string Covered::getItemType() const{return "Covered Box";}
 
 std::string Covered::printItem() const{
     std::stringstream stream;
