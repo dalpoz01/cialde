@@ -68,8 +68,10 @@ void Controller::modifyItemController(WaffleBox* wb){
     //Aggiorno l'oggetto nel modello dell'applicazione
     model->updateItem(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(), wb);
     //Aggiorno il model della vista (in Catalog e Ricerca)
-    view->getCatalog()->getTable()->getMyModel()->setModel(model);
-    view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->setModel(model);
+    view->getCatalog()->getTable()->getMyModel()->getModel()->updateItem(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(), wb);
+    view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->getModel()->updateItem(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(), wb);
+    //view->getCatalog()->getTable()->getMyModel()->setModel(model);
+    //view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->setModel(model);
 }
 
 void Controller::loadingXmlController(){
