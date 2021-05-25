@@ -205,23 +205,23 @@ void modifyProduct::modifica() {
     w->setPrice(prezzoValueEdit->text().toDouble());
     w->setDiscount(discountValueEdit->text().toUInt());
     w->setStockAvailability(stockValueEdit->text().toUInt());
-    if (w->getItemType()=="CircleBox") {
+    if (w->getItemType()=="Circle Box") {
         CircleBox *tmp=static_cast<CircleBox*>(w);
         tmp->setRadius(radiusValueEdit->text().toUInt());
     } else {
-        if (w->getItemType()=="VentaglioBox"){
+        if (w->getItemType()=="Ventaglio Box"){
             VentaglioBox *tmp=static_cast<VentaglioBox*>(w);
             tmp->setWidth(widthValueEdit->text().toUInt());
         } else {
-            if (w->getItemType()=="CannoloBox") {
+            if (w->getItemType()=="Cannolo Box") {
                 CannoloBox *tmp=static_cast<CannoloBox*>(w);
                 tmp->setIntDiameter(intDiameterValueEdit->text().toUInt());
             } else {
-                if (w->getItemType()=="ConeBox") {
+                if (w->getItemType()=="Cone Box") {
                     ConeBox *tmp=static_cast<ConeBox*>(w);
                     tmp->setExtDiameter(externalRadiusValueEdit->text().toUInt());
                 } else {
-                    if (w->getItemType()=="CoveredBox") {
+                    if (w->getItemType()=="Covered Box") {
                         Covered *tmp=static_cast<Covered*>(w);
                         tmp->setTaste(tasteValueEdit->text().toStdString());
                     } else {
