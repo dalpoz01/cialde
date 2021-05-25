@@ -4,7 +4,7 @@ Controller::Controller(QObject *parent) : QObject(parent){}
 
 void Controller::setView(MainWindow *v){
     view=v;
-    //view->getCatalog()->getTable()->getMyModel()->setModel(model);
+
     //Menu
     connect(view->getMenu()->getCatalog(),SIGNAL(triggered()),this,SLOT(showCatalogo()));   //connessione per visualizzare Catalogo selezionando la voce dal menubar
     connect(view->getMenu()->getAddProduct(),SIGNAL(triggered()),this,SLOT(showAddProduct()));  //connessione per visualizzare Aggiungi prodotto selezionando la voce dal menubar
@@ -26,16 +26,15 @@ void Controller::setView(MainWindow *v){
     connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeTableItem()));   //connessione per bottone Visualizza in Catalogo per visualizzare la tabella.
     connect(view->getCatalog()->getTable()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(enableBtnTableController()));  //connessione per bottone Visualizza prodotto nella parte inferiore
     connect(view->getCatalog()->getBtnRemove(),SIGNAL(clicked()),this,SLOT(removeItem()));
-    //connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeItems()));
 
     //Ricerca
-    connect(view->getCatalog()->getRicercaProdotto()->getSearchButton(), SIGNAL(clicked()), this, SLOT(showSearchTable()));
+    connect(view->getCatalog()->getRicercaProdotto()->getSearchButton(), SIGNAL(clicked()), this, SLOT(showSearchTable())); //connessione per mostrare i risultati della ricerca sottoforma di tabella
 
     //Visualizza dettagli
     connect(view->getCatalog()->getBtnViewItem(),SIGNAL(clicked()),this,SLOT(showDetails())); //connessione per mostrare un oggetto in dettaglio
 
     //Modifica prodotto
-    connect(view->getCatalog()->getBtnModifiy(),SIGNAL(clicked()),this,SLOT(modificaProdotto()));
+    connect(view->getCatalog()->getBtnModifiy(),SIGNAL(clicked()),this,SLOT(modificaProdotto())); //connessione per il bottone Modifica in catalogo, che apre una finestra di modifica dell'oggetto selezionato dalla tabella.
 }
 
 void Controller::setModel(Model *m){ model = m; }
@@ -61,23 +60,16 @@ void Controller::showAddProduct() const{
 void Controller::insertItemController(WaffleBox* wb){
     model->addBox(wb);  //Aggiunge al model dell'applicazione dopo aver preso i dati dalla view
     view->getCatalog()->getTable()->getMyModel()->setWBToinsert(wb);    //Aggiorna l'oggetto da inserire nel model della tabella, perchè è stato appena inserito
-    //view->getCatalog()->getTable()->getMyModel()->getModel()->addBox(wb);
     view->getCatalog()->getTable()->getMyModel()->insertRows(view->getCatalog()->getTable()->getMyModel()->rowCount(), 1);  //Inserisce la riga per il nuovo oggetto, partendo dall'ultima riga inserita.
     view->insertItemInfo(); //Stampa finestra di successo
 }
 
 void Controller::modifyItemController(WaffleBox* wb){
-
-    //view->getCatalog()->getTable()->getMyModel()->setWBToinsert(wb);
-    //view->getCatalog()->getTable()->getMyModel()->removeRows(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(),1);
-    //view->getCatalog()->getTable()->getMyModel()->insertRows(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(),1);
-
     //Aggiorno l'oggetto nel modello dell'applicazione
     model->updateItem(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(), wb);
     //Aggiorno il model della vista (in Catalog e Ricerca)
     view->getCatalog()->getTable()->getMyModel()->setModel(model);
     view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->setModel(model);
-
 }
 
 void Controller::loadingXmlController(){
@@ -101,7 +93,6 @@ void Controller::hideSearch() const{
 }
 
 void Controller::seeTableItem() const{
-    //model->printAll();
     view->getCatalog()->getTable()->show();
     view->getCatalog()->getBtnModifiy()->show();
     view->getCatalog()->getBtnViewItem()->show();
@@ -111,9 +102,6 @@ void Controller::seeTableItem() const{
 }
 
 void Controller::showDetails(){
-
-    //QItemSelectionModel *select = view->getCatalog()->getTable()->selectionModel();
-
     details *d=new details(nullptr,model->getItem(view->getCatalog()->getTable()->selectionModel()->currentIndex().row()));
     d->setAttribute(Qt::WA_DeleteOnClose);
     d->show();
@@ -129,12 +117,9 @@ void Controller::modificaProdotto(){
     mp->show(); //prendo l'oggetto modificato dalla tabella //aggiungo la riga aggiornata
 }
 
-void Controller::enableBtnTableController(){
-    view->enableBtnTable(true);
-}
-void Controller::disableBtnTableController(){
-    view->enableBtnTable(false);
-}
+void Controller::enableBtnTableController(){ view->enableBtnTable(true); }
+
+void Controller::disableBtnTableController(){ view->enableBtnTable(false); }
 
 void Controller::removeItem(){
     if(QMessageBox::question(nullptr, "Attenzione", "Sei sicuro di voler eliminare questo prodotto?", QMessageBox::Yes, QMessageBox::No)==QMessageBox::Yes){
@@ -148,10 +133,11 @@ void Controller::removeItem(){
     }
 }
 
-void Controller::refreshSearchTable()
-{
-    if(view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->getModel()->getSize() != 0){
+void Controller::refreshSearchTable(){
+    if(view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->getModel()->getSize() != 0){ //Se il modello di TableModel della tabella in ricerca non è vuoto
+        //Rimuovo tutte le righe perchè in costruzione il modello è uguale al principale presente in Catalog.
         view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->removeRows(0, view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->rowCount());
+        //Rimuovo tutti gli oggetti presenti nel modello presente in Ricerca.
         for(u_int i = 0; i<  view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->getModel()->getSize(); ++i){
             view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->getModel()->removeBox(i);
         }
@@ -159,20 +145,23 @@ void Controller::refreshSearchTable()
 }
 
 void Controller::showSearchTable(){
-    refreshSearchTable();
+    refreshSearchTable(); //Metodo per resettare la tabella come se fosse vuota
     for(u_int i=0; i<model->getSize(); ++i){
-        if(/*model->getItem(i)->getID() == view->getCatalog()->getRicercaProdotto()->getIdLine()->text().toStdString()  ||
-           model->getItem(i)->getName() == view->getCatalog()->getRicercaProdotto()->getNameLine()->text().toStdString()  ||*/
-           model->getItem(i)->getItemType() == view->getCatalog()->getRicercaProdotto()->getItemTypeComboBox()->currentText().toStdString() /*||
+        if(model->getItem(i)->getID() == view->getCatalog()->getRicercaProdotto()->getIdLine()->text().toStdString()  ||
+           model->getItem(i)->getName() == view->getCatalog()->getRicercaProdotto()->getNameLine()->text().toStdString()  ||
+           model->getItem(i)->getItemType() == view->getCatalog()->getRicercaProdotto()->getItemTypeComboBox()->currentText().toStdString() ||
            model->getItem(i)->getCapacity() == view->getCatalog()->getRicercaProdotto()->getCapacityLine()->text().toUInt()  ||
-           model->getItem(i)->getPrice() == view->getCatalog()->getRicercaProdotto()->getIdLine()->text().toUInt()*/){
+           model->getItem(i)->getPrice() == view->getCatalog()->getRicercaProdotto()->getIdLine()->text().toUInt()){
 
-            view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->setWBToinsert(model->getItem(i));
+            view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->setWBToinsert(model->getItem(i)); //Setto l'oggetto da inserire nel modello della tabella per l'inserimento come riga
 
-            view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->insertRows(view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->rowCount(), 1);
+            view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->insertRows(view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->rowCount(), 1); //Aggiungo la riga con l'oggetto filtrato
         }
     }
-    view->getCatalog()->getRicercaProdotto()->getTable()->show();
+    if(view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->getModel()->getSize() != 0)
+        view->getCatalog()->getRicercaProdotto()->getTable()->show();
+    else
+        QMessageBox::information(nullptr, "Sorry", "Non è stato trovato nessun prodotto con le caratteristiche inserite", QMessageBox::Ok);
 }
 
 void Controller::avoidSearch() const{

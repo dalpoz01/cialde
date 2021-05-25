@@ -90,7 +90,7 @@ public:
     WaffleBox* getWaffleBox() const;
 
 public slots:
-    void modifica();
+    void modifica();    //slot per modificare un oggetto, avvisa
     void changePhoto();
     void noModify();
 signals:

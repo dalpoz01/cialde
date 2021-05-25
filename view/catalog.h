@@ -27,6 +27,7 @@ private:
 public:
     explicit catalog(QWidget * = nullptr);
     void showSearch() const;
+
     QPushButton *getBtnSearch() const;
     QPushButton *getBtnSee() const;
     QPushButton *getBtnModifiy() const;

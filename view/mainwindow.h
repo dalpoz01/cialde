@@ -37,11 +37,11 @@ public:
     MenuBar *getMenu() const;
 
 public slots:
-    void insertItemInfo();
-      void loadingXmlInfo();
-      void savingXmlInfo();
-      void seeInfo();
-      void enableBtnTable(bool);
+    void insertItemInfo();  //slot che visualizza una finestra di successo
+    void loadingXmlInfo();
+    void savingXmlInfo();
+    void seeInfo();
+    void enableBtnTable(bool);  //slot che abilita/disabilita l'interazione con i bottoni della tabella Catalogo
 
 };
 

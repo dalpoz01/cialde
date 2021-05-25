@@ -68,6 +68,7 @@ private:
 
     static std::string doubleToString(double); //Metodo per convertire double in stringa con precisione prefissata
 public:
+
     explicit details(QWidget * = nullptr, WaffleBox * = nullptr);
     virtual QSize sizeHint() const override;
 
