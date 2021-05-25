@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <element>
     <WaffleBox type="CannoloBox">
-        <Nome>Cannoloprova</Nome>
+        <Nome>Cannoloprova123</Nome>
         <ID>123</ID>
         <Foto>../cialde-test/Data/Photo/image-not-found.jpg</Foto>
         <capacity>200</capacity>
@@ -24,16 +24,15 @@
         <height>100</height>
         <int_diameter>10</int_diameter>
     </WaffleBox>
-    <WaffleBox type="ConeBox">
-        <Nome>cono conoso</Nome>
-        <ID>777</ID>
-        <Foto>:/cialde-test/Data/Photo/image-not-found.jpg</Foto>
-        <capacity>250</capacity>
-        <weight>200</weight>
+    <WaffleBox type="CircleBox">
+        <Nome>cerchio</Nome>
+        <ID>8498</ID>
+        <Foto>../cialde-test/Data/Photo/image-not-found.jpg</Foto>
+        <capacity>150</capacity>
+        <weight>120</weight>
         <price>500</price>
-        <discount>0</discount>
-        <stockavailability>150</stockavailability>
-        <height>50</height>
-        <ext_diameter>22</ext_diameter>
+        <discount>10</discount>
+        <stockavailability>200</stockavailability>
+        <radius>2</radius>
     </WaffleBox>
 </element>

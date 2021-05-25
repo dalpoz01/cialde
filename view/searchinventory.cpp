@@ -16,6 +16,7 @@ SearchInventory::SearchInventory(QWidget *parent) :
     priceLine(new QLineEdit(this)),
     searchButton(new QPushButton("Cerca",this)),
     annullaButton(new QPushButton("Annulla",this)),
+    ritornaButton(new QPushButton("Indietro",this)),
     table(new Table(this))
 {
     QVBoxLayout* main = new QVBoxLayout(this);
@@ -41,6 +42,7 @@ SearchInventory::SearchInventory(QWidget *parent) :
     srcLayout->addLayout(form);
     bottom->addWidget(searchButton);
     bottom->addWidget(annullaButton);
+    bottom->addWidget(ritornaButton);
 
     srcLayout->addLayout(bottom);
     main->addLayout(srcLayout);
@@ -55,9 +57,19 @@ QPushButton* SearchInventory::getAnnullaButton() const{
     return annullaButton;
 }
 
+QPushButton* SearchInventory::getRitornaButton() const{
+    return ritornaButton;
+}
+
 Table* SearchInventory::getTable() const{ return table; }
 
 void SearchInventory::setTable(Table *tab){ table = tab; }
+
+QLineEdit* SearchInventory::getIdLine() const{return idLine;}
+QLineEdit* SearchInventory::getNameLine() const{return nameLine;}
+QComboBox* SearchInventory::getItemTypeComboBox() const{return itemtypeComboBox;}
+QLineEdit* SearchInventory::getCapacityLine() const{return capacityLine;}
+QLineEdit* SearchInventory::getPriceLine() const{return priceLine;}
 
 void SearchInventory::resetField(){
     idLine->setText("");

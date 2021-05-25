@@ -29,15 +29,21 @@ private:
     QLineEdit* priceLine;
     QPushButton* searchButton;
     QPushButton* annullaButton;
-
+    QPushButton* ritornaButton;
     Table* table;
+
 public:
     explicit SearchInventory(QWidget * = nullptr);
     QPushButton* getSearchButton() const;
     QPushButton* getAnnullaButton() const;
+    QPushButton* getRitornaButton() const;
     Table* getTable() const;
-
     void setTable(Table*);
+    QLineEdit* getIdLine() const;
+    QLineEdit* getNameLine() const;
+    QComboBox* getItemTypeComboBox() const;
+    QLineEdit* getCapacityLine() const;
+    QLineEdit* getPriceLine() const;
     void resetField();
 };
 

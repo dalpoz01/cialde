@@ -152,4 +152,4 @@ WaffleBox* TableModel::getItemByIndex(u_int index) const{ return model->getItem(
 
 Model* TableModel::getModel() const{ return model;}
 
-void TableModel::setModel(Model *value){model->~Model(); model = value; }
+void TableModel::setModel(Model *value){/*model->~Model();*/ model = value; }

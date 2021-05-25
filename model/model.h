@@ -15,6 +15,7 @@ public:
 
     Model(const std::string& = "../cialde-test/Data/Xml/", const std::string& = "products.xml", u_int = 10);
     Model(const Model&);
+
     //bool findItem(WaffleBox*) const;
     void addBox(WaffleBox*);
     void removeBox(u_int);

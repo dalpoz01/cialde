@@ -43,7 +43,8 @@ Container<DeepPtr<WaffleBox>> Model::getContainer() const{ return container; }
 
 void Model::updateItem(u_int index, WaffleBox* wb){
     for(u_int i = 0; i < container.getSize(); ++i){
-        if(i == index) //Ho trovato l'oggetto
+        if(i == index){ //Ho trovato l'oggettor
             container[i] = DeepPtr<WaffleBox>(wb);
+        }
     }
 }

@@ -87,6 +87,8 @@ public:
     QPushButton *getCancelButton() const;
     QPushButton *getModifyPhotoButton() const;
     QPushButton *getOkButton() const;
+    WaffleBox* getWaffleBox() const;
+
 public slots:
     void modifica();
     void changePhoto();

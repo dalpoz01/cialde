@@ -153,6 +153,8 @@ QPushButton *modifyProduct::getModifyPhotoButton() const { return modifyPhotoBut
 
 QPushButton *modifyProduct::getOkButton() const { return okButton; }
 
+WaffleBox* modifyProduct::getWaffleBox() const{ return w; }
+
 void modifyProduct::changePhoto(){
     QString path(QFileDialog::getOpenFileName(this, "Seleziona file", "../", "Immagine (*.png *.jpg *.jpeg)"));
     if (path.isNull()==false){
@@ -231,9 +233,9 @@ void modifyProduct::modifica() {
             }
         }
     }
-    if(w != nullptr){
+   if(w != nullptr){
         emit signalToModify(w);
-    }
+   }
     QMessageBox::information(nullptr, "Modifica", "Operazione avvenuta con successo", QMessageBox::Ok);
     close();
 }

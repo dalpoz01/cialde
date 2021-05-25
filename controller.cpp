@@ -21,7 +21,8 @@ void Controller::setView(MainWindow *v){
     //Catalogo
     connect(view->getCatalog()->getBtnSearch(),SIGNAL(clicked()),this,SLOT(showSearch()));  //connessione per bottone in Catalogo per mostrare la view di Ricerca
     connect(view->getCatalog()->getRicercaProdotto()->getSearchButton(),SIGNAL(clicked()),this,SLOT(showSearch())); //connessione per il bottone Cerca in Ricerca
-    connect(view->getCatalog()->getRicercaProdotto()->getAnnullaButton(),SIGNAL(clicked()),this,SLOT(avoidSearch()));    //connessione per il bottone Annulla in Ricerca, che nasconde la scheda
+    connect(view->getCatalog()->getRicercaProdotto()->getAnnullaButton(),SIGNAL(clicked()),this,SLOT(avoidSearch()));
+    connect(view->getCatalog()->getRicercaProdotto()->getRitornaButton(),SIGNAL(clicked()),this,SLOT(hideSearch()));//connessione per il bottone Annulla in Ricerca, che nasconde la scheda
     connect(view->getCatalog()->getBtnSee(),SIGNAL(clicked()),this,SLOT(seeTableItem()));   //connessione per bottone Visualizza in Catalogo per visualizzare la tabella.
     connect(view->getCatalog()->getTable()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(enableBtnTableController()));  //connessione per bottone Visualizza prodotto nella parte inferiore
     connect(view->getCatalog()->getBtnRemove(),SIGNAL(clicked()),this,SLOT(removeItem()));
@@ -37,9 +38,7 @@ void Controller::setView(MainWindow *v){
     connect(view->getCatalog()->getBtnModifiy(),SIGNAL(clicked()),this,SLOT(modificaProdotto()));
 }
 
-void Controller::setModel(Model *m){
-    model = m;
-}
+void Controller::setModel(Model *m){ model = m; }
 
 Model* Controller::getModel() const{return model;}
 
@@ -67,17 +66,20 @@ void Controller::insertItemController(WaffleBox* wb){
     view->insertItemInfo(); //Stampa finestra di successo
 }
 
-void Controller::modifyItemController(WaffleBox *wb){
-    /*view->getCatalog()->getTable()->getMyModel()->setWBToinsert(wb);
-    view->getCatalog()->getTable()->getMyModel()->removeRows(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(),1);
-    view->getCatalog()->getTable()->getMyModel()->insertRows(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(),1);*/
-    //Aggiorno l'oggetto nel modello dell'applicazione
-    model->updateItem(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(),wb);
+void Controller::modifyItemController(WaffleBox* wb){
 
+    //view->getCatalog()->getTable()->getMyModel()->setWBToinsert(wb);
+    //view->getCatalog()->getTable()->getMyModel()->removeRows(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(),1);
+    //view->getCatalog()->getTable()->getMyModel()->insertRows(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(),1);
+
+    //Aggiorno l'oggetto nel modello dell'applicazione
+    model->updateItem(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(), wb);
     //Aggiorno il model della vista (in Catalog e Ricerca)
     view->getCatalog()->getTable()->getMyModel()->setModel(model);
+    view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->setModel(model);
 
 }
+
 void Controller::loadingXmlController(){
     model->loadXml();
     view->loadingXmlInfo();
@@ -97,6 +99,7 @@ void Controller::hideSearch() const{
     view->getCatalog()->getRicercaProdotto()->hide();
     view->getCatalog()->showSearch();
 }
+
 void Controller::seeTableItem() const{
     //model->printAll();
     view->getCatalog()->getTable()->show();
@@ -146,6 +149,23 @@ void Controller::removeItem(){
 }
 
 void Controller::showSearchTable(){
+    //Creo il QAAbstractTableModel filtrato per visualizzare la ricerca
+    TableModel* filterModel = new TableModel();
+    Model* tempModel = new Model();
+    for(u_int i=0; i<model->getSize(); ++i){
+        if(model->getItem(i)->getID() == view->getCatalog()->getRicercaProdotto()->getIdLine()->text().toStdString()  ||
+           model->getItem(i)->getName() == view->getCatalog()->getRicercaProdotto()->getNameLine()->text().toStdString()  ||
+           model->getItem(i)->getItemType() == view->getCatalog()->getRicercaProdotto()->getItemTypeComboBox()->currentText().toStdString() ||
+           model->getItem(i)->getCapacity() == view->getCatalog()->getRicercaProdotto()->getCapacityLine()->text().toUInt()  ||
+           model->getItem(i)->getPrice() == view->getCatalog()->getRicercaProdotto()->getIdLine()->text().toUInt()){
+
+            tempModel->addBox(model->getItem(i));
+        }
+    }
+    if(!tempModel){
+        filterModel->setModel(tempModel);
+        view->getCatalog()->getRicercaProdotto()->getTable()->setModel(filterModel);
+    }
     view->getCatalog()->getRicercaProdotto()->getTable()->show();
 }
 

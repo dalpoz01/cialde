@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QModelIndexList>
+#include <QString>
 #include <QItemSelectionModel>
 #include "view/mainwindow.h"
 #include "model/model.h"
