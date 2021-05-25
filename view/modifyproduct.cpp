@@ -72,35 +72,35 @@ modifyProduct::modifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
     formLayout->addRow(stockLabel,stockValueEdit);
 
     //Aggiungo e riempio i campi in base al tipo di prodotto
-    if (w->getItemType()=="CircleBox") {
+    if (w->getItemType()=="Circle Box") {
         CircleBox *ci=dynamic_cast<CircleBox*>(w);
         radiusLabel=new QLabel("Raggio: ",this);
         radiusValueEdit=new QLineEdit(QString::fromStdString(std::to_string(ci->getRadius())), this);
         radiusValueEdit->setMaximumWidth(maxSizeEdit);
         formLayout->addRow(radiusLabel,radiusValueEdit);
     } else {
-        if (w->getItemType()=="VentaglioBox"){
+        if (w->getItemType()=="Ventaglio Box"){
             VentaglioBox *v=dynamic_cast<VentaglioBox*>(w);
             widthLabel=new QLabel("Larghezza: ",this);
             widthValueEdit=new QLineEdit(QString::fromStdString(std::to_string(v->getWidth())), this);
             widthValueEdit->setMaximumWidth(maxSizeEdit);
             formLayout->addRow(widthLabel,widthValueEdit);
         } else {
-            if (w->getItemType()=="CannoloBox") {
+            if (w->getItemType()=="Cannolo Box") {
                 CannoloBox *ca=dynamic_cast<CannoloBox*>(w);
                 intDiameterLabel=new QLabel("Diamentro interno: ",this);
                 intDiameterValueEdit=new QLineEdit(QString::fromStdString(std::to_string(ca->getIntDiameter())), this);
                 intDiameterValueEdit->setMaximumWidth(maxSizeEdit);
                 formLayout->addRow(intDiameterLabel,intDiameterValueEdit);
             } else {
-                if (w->getItemType()=="ConeBox") {
+                if (w->getItemType()=="Cone Box") {
                     ConeBox *co=dynamic_cast<ConeBox*>(w);
                     externalRadiusLabel=new QLabel("Diametro esterno: ",this);
                     externalRadiusValueEdit=new QLineEdit(QString::fromStdString(std::to_string(co->getExtDiameter())), this);
                     externalRadiusValueEdit->setMaximumWidth(maxSizeEdit);
                     formLayout->addRow(externalRadiusLabel,externalRadiusValueEdit);
                 } else {
-                    if (w->getItemType()=="CoveredBox") {
+                    if (w->getItemType()=="Covered Box") {
                         Covered *cv=dynamic_cast<Covered*>(w);
                         tasteLabel=new QLabel("Gusto",this);
                         tasteValueEdit=new QLineEdit(QString::fromStdString(cv->getTaste()), this);
