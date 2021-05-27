@@ -16,6 +16,10 @@ catalog::catalog(QWidget(*parent), TableModel *TM, filterProxyModel *FPM):QWidge
     QVBoxLayout* bottomHalf = new QVBoxLayout();
     QHBoxLayout* btnBottom = new QHBoxLayout();
 
+    QLabel *textSearch=new QLabel("Ricerca: ");
+    QLabel *textType=new QLabel("Tipo: ");
+    QLabel *textDetails=new QLabel("Campo: ");
+
     typeCombobox->addItem("Tutti");
     typeCombobox->addItem("Circle Box");
     typeCombobox->addItem("Ventaglio Box");
@@ -31,12 +35,17 @@ catalog::catalog(QWidget(*parent), TableModel *TM, filterProxyModel *FPM):QWidge
     detailsCombobox->addItem("Prezzo");
     detailsCombobox->addItem("Disponibilità");
 
+    searchEdit->setPlaceholderText("Parole o numeri chiave da cercare...");
+
     fpm->setSourceModel(Tm);
     fpm->setSortRole(Qt::UserRole);
     table->setModel(fpm);
 
+    topHalf->addWidget(textSearch);
     topHalf->addWidget(searchEdit);
+    topHalf->addWidget(textType);
     topHalf->addWidget(typeCombobox);
+    topHalf->addWidget(textDetails);
     topHalf->addWidget(detailsCombobox);
     topHalf->setAlignment(Qt::AlignTop);
 
