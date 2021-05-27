@@ -6,6 +6,7 @@
 #include <QHBoxLayout>
 #include <QDesktopWidget>
 #include <QApplication>
+#include <QCloseEvent>
 #include "view/menubar.h"
 #include "view/catalog.h"
 #include "view/addproduct.h"
@@ -46,6 +47,7 @@ public slots:
     void savingXmlInfo();
     void seeInfo();
     void enableBtnTable(bool);  //slot che abilita/disabilita l'interazione con i bottoni della tabella Catalogo
+    virtual void closeEvent(QCloseEvent*); //Chiusura finestra
 
 };
 

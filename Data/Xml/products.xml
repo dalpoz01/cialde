@@ -33,6 +33,32 @@
         <discount>5</discount>
         <stockavailability>150</stockavailability>
         <height>170</height>
-        <taste>Cioccolato</taste>
+        <taste></taste>
+    </WaffleBox>
+    <WaffleBox type="Branded Box">
+        <Nome>padovacone</Nome>
+        <ID>7854</ID>
+        <Foto>../cialde-test/Data/Photo/image-not-found.jpg</Foto>
+        <capacity>300</capacity>
+        <weight>240</weight>
+        <price>299.99</price>
+        <discount>5</discount>
+        <stockavailability>150</stockavailability>
+        <height>161</height>
+        <principal_color></principal_color>
+        <secondary_color>Rosso</secondary_color>
+    </WaffleBox>
+    <WaffleBox type="Branded Box">
+        <Nome>VeneziaCone</Nome>
+        <ID>4521</ID>
+        <Foto>../cialde-test/Data/Photo/image-not-found.jpg</Foto>
+        <capacity>300</capacity>
+        <weight>240</weight>
+        <price>299.99</price>
+        <discount>5</discount>
+        <stockavailability>150</stockavailability>
+        <height>161</height>
+        <principal_color></principal_color>
+        <secondary_color>Arancione</secondary_color>
     </WaffleBox>
 </element>

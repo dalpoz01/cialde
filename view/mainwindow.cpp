@@ -63,3 +63,10 @@ MenuBar *MainWindow::getMenu() const{ return menu; }
 TableModel* MainWindow::getTM() const{ return tm; }
 
 filterProxyModel* MainWindow::getFPM() const{ return fpm; }
+
+void MainWindow::closeEvent(QCloseEvent* event){
+    if(QMessageBox::question(this,"Sicuro?", "Salvare prima di uscire?", QMessageBox::Yes, QMessageBox::No, QMessageBox::Close) == QMessageBox::Yes){
+        tm->getModel()->writeXml();
+        event->accept();
+    }
+}

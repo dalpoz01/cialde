@@ -435,13 +435,15 @@ void AddProduct::insert(){
             break;
         case 6: height = heightLine->text().toUInt();
                 extDiam = extdiamLine->text().toUInt();
-                if((prncolorLine->text().toStdString() == " " || seccolorLine->text().toStdString() == " ") ||
-                   (prncolorLine->text().toStdString() == " " && seccolorLine->text().toStdString() == " ")){
-                    QMessageBox::warning(this,"Ops","Hai dimenticato uno o più colori! \nSe non inserisci un colore, verrà settato 'White' di default.", QMessageBox::Yes, QMessageBox::Close);
+                if((prncolorLine->text().toStdString() == "" || seccolorLine->text().toStdString() == "") ||
+                   (prncolorLine->text().toStdString() == "" && seccolorLine->text().toStdString() == "")){
+                    if(QMessageBox::question(this,"Ops","Hai dimenticato uno o più colori! \nSe non inserisci un colore, verrà settato 'Bianco' di default.", QMessageBox::Ok, QMessageBox::Ignore)==QMessageBox::Ignore){
+                        princ = prncolorLine->text().toStdString() == "" ? "Bianco" : prncolorLine->text().toStdString();
+                        seco = seccolorLine->text().toStdString() == "" ? "Bianco" : seccolorLine->text().toStdString();  //Tipo "Branded Box"
+                    }
                 }
+                cout<<prncolorLine->text().toStdString() << endl;
 
-                princ = (prncolorLine->text().toStdString() == " " ? "White" : prncolorLine->text().toStdString());
-                seco = (seccolorLine->text().toStdString() == " " ? "White" : seccolorLine->text().toStdString());  //Tipo "Branded Box"
                 temp = new Branded(nome,id,foto,capa,peso,prezzo,disc,stockAva,height,extDiam,princ,seco);
              break;
             }

@@ -62,8 +62,6 @@ public slots:
     void modifyItemController(WaffleBox*); //Aggiorna il modello e la vista per una modifica effettuata
 
 
-
-
 };
 
 #endif // CONTROLLER_H
