@@ -10,9 +10,9 @@
 #include "view/catalog.h"
 #include "view/addproduct.h"
 #include "view/modifyproduct.h"
-#include "view/searchinventory.h"
 #include "view/table.h"
 #include "model/tablemodel.h"
+#include "model/filterproxymodel.h"
 
 class Controller;
 class AddProduct;
@@ -23,9 +23,11 @@ class MainWindow : public QWidget{
     Q_OBJECT
 private:
     MenuBar *menu;
-    catalog *catalogo;
     AddProduct* aggiungiProdotto;
     Controller* controller;
+    TableModel *tm;
+    filterProxyModel *fpm;
+    catalog *catalogo;
 
 public:
     explicit MainWindow(QWidget * = nullptr);

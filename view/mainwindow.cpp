@@ -4,8 +4,10 @@
 MainWindow::MainWindow(QWidget *parent):
     QWidget(parent),
     menu(new MenuBar(this)),
-    catalogo(new catalog(this)),
-    aggiungiProdotto(new AddProduct(this))
+    aggiungiProdotto(new AddProduct(this)),
+    tm(new TableModel(this)),
+    fpm(new filterProxyModel(this)),
+    catalogo(new catalog(this,tm,fpm))
 {
     setWindowTitle("Wafflebox Store");
     setWindowIcon(QIcon(QPixmap("../cialde-test/Data/Photo/icon.png")));
@@ -21,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent):
     int centerH = (height/2) - (mh/2);
     move(centerW, centerH);
 
-    QVBoxLayout* qv=new QVBoxLayout();
+    QVBoxLayout* qv=new QVBoxLayout(this);
 
     qv->setMenuBar(menu);
 

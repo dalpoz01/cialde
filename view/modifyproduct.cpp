@@ -233,9 +233,9 @@ void modifyProduct::modifica() {
             }
         }
     }
-   if(w != nullptr){
+   /*if(w != nullptr){
         emit signalToModify(w);
-   }
+   }*/
     QMessageBox::information(nullptr, "Modifica", "Operazione avvenuta con successo", QMessageBox::Ok);
     close();
 }

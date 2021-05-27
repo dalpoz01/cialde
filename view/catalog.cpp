@@ -1,54 +1,59 @@
 #include "catalog.h"
 
-catalog::catalog(QWidget(*parent)):QWidget(parent),
-    ricercaProdotto(new SearchInventory()),
+catalog::catalog(QWidget(*parent), TableModel *TM, filterProxyModel *FPM):QWidget(parent),
     table(new Table()),
-    btnSearch(new QPushButton("Cerca prodotto")),
-    btnSee(new QPushButton("Visualizza prodotti")),
     btnModify(new QPushButton("Modifica")),
     btnViewItem(new QPushButton("Visualizza prodotto")),
-    btnRemove(new QPushButton("Elimina"))
+    btnRemove(new QPushButton("Elimina")),
+    searchEdit(new QLineEdit()),
+    typeCombobox(new QComboBox()),
+    detailsCombobox(new QComboBox()),
+    Tm(TM),
+    fpm(FPM)
 {
     QVBoxLayout* mainLayout = new QVBoxLayout();
-    QVBoxLayout* topHalf = new QVBoxLayout();
+    QHBoxLayout* topHalf = new QHBoxLayout();
     QVBoxLayout* bottomHalf = new QVBoxLayout();
     QHBoxLayout* btnBottom = new QHBoxLayout();
 
+    typeCombobox->addItem("Tutti");
+    typeCombobox->addItem("Circle Box");
+    typeCombobox->addItem("Ventaglio Box");
+    typeCombobox->addItem("Cannolo Box");
+    typeCombobox->addItem("Cone Box");
+    typeCombobox->addItem("Covered Box");
+    typeCombobox->addItem("Branded");
 
+    detailsCombobox->addItem("ID");
+    detailsCombobox->addItem("Nome");
+    detailsCombobox->addItem("Capacità");
+    detailsCombobox->addItem("Peso");
+    detailsCombobox->addItem("Prezzo");
+    detailsCombobox->addItem("Disponibilità");
 
-    ricercaProdotto->hide();
-    table->hide();
-    btnModify->setEnabled(false);
-    btnViewItem->setEnabled(false);
-    btnRemove->setEnabled(false);
-    btnModify->hide();
-    btnViewItem->hide();
-    btnRemove->hide();
+    fpm->setSourceModel(Tm);
+    fpm->setSortRole(Qt::UserRole);
+    table->setModel(fpm);
 
-    //Parte superiore della view, con i due bottoni in layout verticale
-    topHalf->addWidget(btnSearch);
-    topHalf->addWidget(btnSee);
+    topHalf->addWidget(searchEdit);
+    topHalf->addWidget(typeCombobox);
+    topHalf->addWidget(detailsCombobox);
+    topHalf->setAlignment(Qt::AlignTop);
 
     //Parte inferiore della view in layout orizzontale, con a sinistra la tabella e a destra due bottoni, "Visualizza" e "Modifica" (rispettivamente in layout verticale)
-    mainLayout->addWidget(ricercaProdotto);
     bottomHalf->addWidget(table);
     btnBottom->addWidget(btnModify);
     btnBottom->addWidget(btnViewItem);
     btnBottom->addWidget(btnRemove);
-    bottomHalf->addLayout(btnBottom);
+    btnBottom->setAlignment(Qt::AlignBottom);
 
     mainLayout->addLayout(topHalf);
     mainLayout->addLayout(bottomHalf);
+    mainLayout->addLayout(btnBottom);
 
-    topHalf->setAlignment(Qt::AlignTop);
-    bottomHalf->setAlignment(Qt::AlignTop);
     setLayout(mainLayout);
 
 }
-
-QPushButton *catalog::getBtnSearch() const{ return btnSearch; }
-
-QPushButton *catalog::getBtnSee() const{ return btnSee; }
 
 QPushButton *catalog::getBtnModifiy() const{ return btnModify; }
 
@@ -56,28 +61,16 @@ QPushButton *catalog::getBtnViewItem() const{ return btnViewItem; }
 
 QPushButton *catalog::getBtnRemove() const{ return btnRemove; }
 
-SearchInventory *catalog::getRicercaProdotto() const{ return ricercaProdotto; }
+//SearchInventory *catalog::getRicercaProdotto() const{ return ricercaProdotto; }
 
 Table *catalog::getTable() const{ return table; }
 
-void catalog::showSearch() const{
-    if(ricercaProdotto->isVisible()){
-        ricercaProdotto->show();
-        btnSearch->hide();
-        btnSee->hide();
-        table->hide();
-        btnViewItem->hide();
-        btnModify->hide();
-        btnRemove->hide();
+QComboBox *catalog::getTypeCombobox() const { return typeCombobox; }
 
-    }else{
-        ricercaProdotto->hide();
-        btnSearch->show();
-        btnSee->show();
-        table->hide();
-        btnViewItem->hide();
-        btnModify->hide();
-        btnRemove->hide();
+QComboBox *catalog::getDetailsCombobox() const { return detailsCombobox; }
 
-    }
-}
+QLineEdit *catalog::getSearchEdit() const { return searchEdit; }
+
+TableModel *catalog::getTm() const { return Tm; }
+
+filterProxyModel *catalog::getFpm() const { return fpm; }

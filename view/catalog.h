@@ -11,30 +11,32 @@
 #include <QLineEdit>
 #include "searchinventory.h"
 #include "view/table.h"
+#include "model/tablemodel.h"
+#include "model/filterproxymodel.h"
 
-
-class SearchInventory;
 class catalog : public QWidget{
     Q_OBJECT
 private:
-    SearchInventory* ricercaProdotto;
     Table *table;
-    QPushButton *btnSearch;
-    QPushButton *btnSee;
     QPushButton *btnModify;
     QPushButton *btnViewItem;
     QPushButton *btnRemove;
+    QLineEdit *searchEdit;
+    QComboBox *typeCombobox;
+    QComboBox *detailsCombobox;
+    TableModel *Tm;
+    filterProxyModel *fpm;
 public:
-    explicit catalog(QWidget * = nullptr);
-    void showSearch() const;
-
-    QPushButton *getBtnSearch() const;
-    QPushButton *getBtnSee() const;
+    explicit catalog(QWidget * = nullptr, TableModel * = nullptr, filterProxyModel * = nullptr);
     QPushButton *getBtnModifiy() const;
     QPushButton *getBtnViewItem() const;
     QPushButton *getBtnRemove() const;
-    SearchInventory* getRicercaProdotto() const;
     Table *getTable() const;
+    QComboBox *getTypeCombobox() const;
+    QComboBox *getDetailsCombobox() const;
+    QLineEdit *getSearchEdit() const;
+    TableModel *getTm() const;
+    filterProxyModel *getFpm() const;
 };
 
 #endif // CATALOG_H

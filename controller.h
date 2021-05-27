@@ -5,6 +5,7 @@
 #include <QModelIndexList>
 #include <QString>
 #include <QItemSelectionModel>
+#include <iostream>
 #include "view/mainwindow.h"
 #include "model/model.h"
 #include "model/container.h"
@@ -12,6 +13,8 @@
 #include "view/modifyproduct.h"
 
 class MainWindow;
+
+using namespace std;
 
 class Controller : public QObject
 {
@@ -37,6 +40,8 @@ public slots:
     void insertItemController(WaffleBox*); //Inserisce un nuovo oggetto nel modello e nella tabella, dopo aver preso i dati dalla vista
 
     //Catalogo
+    void changeType(const QString &);
+    void search() const;
     void showSearch() const;
     void hideSearch() const;
     void avoidSearch() const;
@@ -44,6 +49,7 @@ public slots:
     void enableBtnTableController();
     void disableBtnTableController();
     void removeItem();
+    void setCurrectColumnFpm(const QString &) const;
 
     //Ricerca
     void showSearchTable();

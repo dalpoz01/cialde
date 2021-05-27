@@ -45,7 +45,8 @@ SOURCES +=\
     view/table.cpp \
     view/mainwindow.cpp \
     controller.cpp \
-    view/details.cpp
+    view/details.cpp \
+    model/filterproxymodel.cpp
 
 HEADERS +=\
     model/covered.h \
@@ -69,7 +70,8 @@ HEADERS +=\
     view/table.h \
     view/mainwindow.h \
     controller.h \
-    view/details.h
+    view/details.h \
+    model/filterproxymodel.h
 
 RESOURCES += \
     Data/res.qrc
