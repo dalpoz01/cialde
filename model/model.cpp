@@ -1,14 +1,6 @@
 #include "model.h"
 
-Model::Model(const std::string& p, const std::string& fn, u_int n) : path(p), fileName(fn), xmlManager(p,fn), container(n) {
-
-    /*cout << "FILENAME Model: " << fileName << endl;
-    cout << "PATH Model: " << path << endl;
-    cout << "FILENAME Xml: " << xmlManager.getXmlFileName() << endl;
-    cout << "PATH Xml: " << xmlManager.getXmlPath() << endl;
-    cout << "N Model: " << n << endl;*/
-
-}
+Model::Model(const std::string& p, const std::string& fn, u_int n) : path(p), fileName(fn), xmlManager(p,fn), container(n) {}
 
 Model::Model(const Model& m) : Model(m.getPath(), m.getFileName(), m.getSize()) {
 
@@ -43,7 +35,7 @@ Container<DeepPtr<WaffleBox>> Model::getContainer() const{ return container; }
 
 void Model::updateItem(u_int index, WaffleBox* wb){
     for(u_int i = 0; i < container.getSize(); ++i){
-        if(i == index){ //Ho trovato l'oggettor
+        if(i == index){ //Ho trovato l'oggetto
             container[i] = DeepPtr<WaffleBox>(wb);
         }
     }

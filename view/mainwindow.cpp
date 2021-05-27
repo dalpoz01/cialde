@@ -27,10 +27,10 @@ MainWindow::MainWindow(QWidget *parent):
 
     qv->setMenuBar(menu);
 
-    aggiungiProdotto->hide();
-
     qv->addWidget(catalogo);
     qv->addWidget(aggiungiProdotto);
+
+    aggiungiProdotto->hide();
 
     setLayout(qv);
     setMaximumHeight(500);

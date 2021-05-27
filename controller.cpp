@@ -85,9 +85,6 @@ void Controller::modifyItemController(WaffleBox* wb){
     model->updateItem(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(), wb);
     //Aggiorno il model della vista (in Catalog e Ricerca)
     view->getCatalog()->getTable()->getMyModel()->getModel()->updateItem(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(), wb);
-   // view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->getModel()->updateItem(view->getCatalog()->getTable()->selectionModel()->currentIndex().row(), wb);
-    //view->getCatalog()->getTable()->getMyModel()->setModel(model);
-    //view->getCatalog()->getRicercaProdotto()->getTable()->getMyModel()->setModel(model);
 }
 
 void Controller::loadingXmlController(){
@@ -125,6 +122,8 @@ void Controller::showDetails(){
         details *d=new details(nullptr, view->getCatalog()->getTm()->getItemByIndex(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0))));
         d->setAttribute(Qt::WA_DeleteOnClose);
         d->show();
+    }else{
+        QMessageBox::warning(nullptr, "Attenzione", "Selezionare una riga per vedere in dettaglio un prodotto!", QMessageBox::Ok);
     }
 }
 
@@ -137,6 +136,8 @@ void Controller::modificaProdotto(){
         connect(mp->getOkButton(),SIGNAL(clicked()),mp,SLOT(modifica()));
         connect(mp->getCancelButton(),SIGNAL(clicked()),mp,SLOT(noModify()));
         mp->show(); //prendo l'oggetto modificato dalla tabella //aggiungo la riga aggiornata
+    }else{
+         QMessageBox::warning(nullptr, "Attenzione", "Selezionare una riga per procedere con la modifica!", QMessageBox::Ok);
     }
 
 }
@@ -147,12 +148,16 @@ void Controller::disableBtnTableController(){ view->enableBtnTable(false); }
 
 void Controller::removeItem(){
     const QModelIndexList selection = view->getCatalog()->getTable()->selectionModel()->selectedIndexes();
-    if(QMessageBox::question(nullptr, "Attenzione", "Sei sicuro di voler eliminare questo prodotto?", QMessageBox::Yes, QMessageBox::No)==QMessageBox::Yes){
-        //ELIMINAZIONE DALLA TABELLA
-        view->getCatalog()->getFpm()->removeRows(selection.at(0).row(), 1);
-        QMessageBox::information(nullptr, "Messaggio", "Eliminazione effettuata con successo", QMessageBox::Ok);
+    if(selection.size()>0){
+        if(QMessageBox::question(nullptr, "Attenzione", "Sei sicuro di voler eliminare questo prodotto?", QMessageBox::Yes, QMessageBox::No)==QMessageBox::Yes){
+            //ELIMINAZIONE DALLA TABELLA
+            view->getCatalog()->getFpm()->removeRows(selection.at(0).row(), 1);
+            QMessageBox::information(nullptr, "Messaggio", "Eliminazione effettuata con successo", QMessageBox::Ok);
+        }else{
+            QMessageBox::warning(nullptr, "Attenzione", "Operazione annullata", QMessageBox::Ok);
+        }
     }else{
-        QMessageBox::warning(nullptr, "Attenzione", "Operazione annullata", QMessageBox::Ok);
+        QMessageBox::warning(nullptr, "Attenzione", "Selezionare una riga per procedere con l'eliminazione!", QMessageBox::Ok);
     }
 }
 
