@@ -37,6 +37,8 @@ public:
     AddProduct* getAddProduct() const;
     catalog* getCatalog() const;
     MenuBar *getMenu() const;
+    TableModel* getTM() const;
+    filterProxyModel* getFPM() const;
 
 public slots:
     void insertItemInfo();  //slot che visualizza una finestra di successo

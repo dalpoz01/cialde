@@ -62,9 +62,12 @@ void Controller::showAddProduct() const{
 }
 
 void Controller::insertItemController(WaffleBox* wb){
-    model->addBox(wb);  //Aggiunge al model dell'applicazione dopo aver preso i dati dalla view
+
+    view->getTM()->setWBToinsert(wb); //Setto obj da inserire sia nel model che nella vista
+    view->getTM()->insertRows(view->getTM()->rowCount(), 1);    //inserisco l'obj
+    /*model->addBox(wb);  //Aggiunge al model dell'applicazione dopo aver preso i dati dalla view
     view->getCatalog()->getTable()->getMyModel()->setWBToinsert(wb);    //Aggiorna l'oggetto da inserire nel model della tabella, perchè è stato appena inserito
-    view->getCatalog()->getTable()->getMyModel()->insertRows(view->getCatalog()->getTable()->getMyModel()->rowCount(), 1);  //Inserisce la riga per il nuovo oggetto, partendo dall'ultima riga inserita.
+    view->getCatalog()->getTable()->getMyModel()->insertRows(view->getCatalog()->getTable()->getMyModel()->rowCount(), 1);  //Inserisce la riga per il nuovo oggetto, partendo dall'ultima riga inserita.*/
     view->insertItemInfo(); //Stampa finestra di successo
 }
 

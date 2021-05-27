@@ -60,3 +60,6 @@ catalog* MainWindow::getCatalog() const{ return catalogo; }
 
 MenuBar *MainWindow::getMenu() const{ return menu; }
 
+TableModel* MainWindow::getTM() const{ return tm; }
+
+filterProxyModel* MainWindow::getFPM() const{ return fpm; }
