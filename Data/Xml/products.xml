@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <element>
-    <WaffleBox type="CannoloBox">
+    <WaffleBox type="Cannolo Box">
         <Nome>Cannoloprova123</Nome>
         <ID>123</ID>
         <Foto>../cialde-test/Data/Photo/image-not-found.jpg</Foto>
@@ -9,22 +9,10 @@
         <price>1</price>
         <discount>1</discount>
         <stockavailability>50</stockavailability>
-        <height>12</height>
-        <int_diameter>3</int_diameter>
+        <height>0</height>
+        <int_diameter>0</int_diameter>
     </WaffleBox>
-    <WaffleBox type="CannoloBox">
-        <Nome>Cannolo cannoloso</Nome>
-        <ID>00000</ID>
-        <Foto>../cialde-test/Data/Photo/cannolo.jpg</Foto>
-        <capacity>300</capacity>
-        <weight>240</weight>
-        <price>50</price>
-        <discount>10</discount>
-        <stockavailability>100</stockavailability>
-        <height>100</height>
-        <int_diameter>10</int_diameter>
-    </WaffleBox>
-    <WaffleBox type="CircleBox">
+    <WaffleBox type="Circle Box">
         <Nome>cerchio</Nome>
         <ID>8498</ID>
         <Foto>../cialde-test/Data/Photo/image-not-found.jpg</Foto>
@@ -33,6 +21,18 @@
         <price>500</price>
         <discount>10</discount>
         <stockavailability>200</stockavailability>
-        <radius>2</radius>
+        <radius>667410195</radius>
+    </WaffleBox>
+    <WaffleBox type="Covered Box">
+        <Nome>CHOCO</Nome>
+        <ID>5632</ID>
+        <Foto>../cialde-test/Data/Photo/image-not-found.jpg</Foto>
+        <capacity>200</capacity>
+        <weight>160</weight>
+        <price>350</price>
+        <discount>5</discount>
+        <stockavailability>150</stockavailability>
+        <height>170</height>
+        <taste>Cioccolato</taste>
     </WaffleBox>
 </element>

@@ -50,7 +50,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                             stockAva = reader.readElementText().toUInt();
 
                         //Leggo gli attributi degli oggetti concreti.
-                        if(itemType == "CircleBox"){
+                        if(itemType == "Circle Box"){
                             unsigned int radius;
                             if(reader.readNextStartElement()==true && reader.name() == "radius")
                                 radius = reader.readElementText().toUInt();
@@ -58,7 +58,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                             CircleBox* cb = new CircleBox(name,ID,photo,capacity,weight,price,discount,stockAva,radius);
                             temp.push_back(DeepPtr<WaffleBox>(cb));
                             delete cb;
-                        }else if(itemType == "VentaglioBox"){
+                        }else if(itemType == "Ventaglio Box"){
                             unsigned int height;
                             unsigned int width;
                             if(reader.readNextStartElement()==true && reader.name() == "height")
@@ -69,7 +69,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                             VentaglioBox* vb = new VentaglioBox(name,ID,photo,capacity,weight,price,discount,stockAva,height,width);
                             temp.push_back(DeepPtr<WaffleBox>(vb));
                             delete vb;
-                        }else if(itemType == "CannoloBox"){
+                        }else if(itemType == "Cannolo Box"){
                             unsigned int height;
                             unsigned int int_diam;
                             if(reader.readNextStartElement()==true && reader.name() == "height")
@@ -80,7 +80,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                             CannoloBox* c = new CannoloBox(name,ID,photo,capacity,weight,price,discount,stockAva,height,int_diam);
                             temp.push_back(DeepPtr<WaffleBox>(c));
                             delete c;
-                        }else if(itemType == "ConeBox"){
+                        }else if(itemType == "Cone Box"){
                             unsigned int height;
                             unsigned int ext_diam;
                             if(reader.readNextStartElement()==true && reader.name() == "height")
@@ -91,7 +91,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                             ConeBox* co = new ConeBox(name,ID,photo,capacity,weight,price,discount,stockAva,height,ext_diam);
                             temp.push_back(DeepPtr<WaffleBox>(co));
                             delete co;
-                        }else if(itemType == "BrandedBox"){
+                        }else if(itemType == "Branded Box"){
                             unsigned int height;
                             unsigned int ext_diam;
                             std::string princ;
@@ -108,7 +108,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
                             Branded* b = new Branded(name,ID,photo,capacity,weight,price,discount,stockAva,height,ext_diam,princ,seco);
                             temp.push_back(DeepPtr<WaffleBox>(b));
                             delete b;
-                        }else if(itemType == "CoveredBox"){
+                        }else if(itemType == "Covered Box"){
                             unsigned int height;
                             unsigned int ext_diam;
                             std::string taste;
@@ -191,39 +191,39 @@ void XmlManagement::write(const Container<DeepPtr<WaffleBox>> &cont) const{
              writer.writeCharacters(QString::fromStdString(UIntToString(wb->getStockAvailability())));
              writer.writeEndElement();
 
-             if(wb->getItemType() == "CircleBox"){
+             if(wb->getItemType() == "Circle Box"){
                  writer.writeStartElement("radius");
                  writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const CircleBox*>(wb)->getRadius())));
                  writer.writeEndElement();
-             }else if(wb->getItemType() == "VentaglioBox"){
+             }else if(wb->getItemType() == "Ventaglio Box"){
                  writer.writeStartElement("height");
                  writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const VentaglioBox*>(wb)->getHeight())));
                  writer.writeEndElement();
                  writer.writeStartElement("width");
                  writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const VentaglioBox*>(wb)->getWidth())));
                  writer.writeEndElement();
-             }else if(wb->getItemType() == "CannoloBox"){
+             }else if(wb->getItemType() == "Cannolo Box"){
                  writer.writeStartElement("height");
                  writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const CannoloBox*>(wb)->getHeight())));
                  writer.writeEndElement();
                  writer.writeStartElement("int_diameter");
                  writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const CannoloBox*>(wb)->getIntDiameter())));
                  writer.writeEndElement();
-             }else if(wb->getItemType() == "ConeBox"){
+             }else if(wb->getItemType() == "Cone Box"){
                  writer.writeStartElement("height");
                  writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const ConeBox*>(wb)->getHeight())));
                  writer.writeEndElement();
                  writer.writeStartElement("ext_diameter");
                  writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const ConeBox*>(wb)->getExtDiameter())));
                  writer.writeEndElement();
-             }else if(wb->getItemType() == "CoveredBox"){
+             }else if(wb->getItemType() == "Covered Box"){
                  writer.writeStartElement("height");
                  writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const Covered*>(wb)->getHeight())));
                  writer.writeEndElement();
                  writer.writeStartElement("taste");
                  writer.writeCharacters(QString::fromStdString(static_cast<const Covered*>(wb)->getTaste()));
                  writer.writeEndElement();
-             }else if(wb->getItemType() == "BrandedBox"){
+             }else if(wb->getItemType() == "Branded Box"){
                  writer.writeStartElement("height");
                  writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const Branded*>(wb)->getHeight())));
                  writer.writeEndElement();

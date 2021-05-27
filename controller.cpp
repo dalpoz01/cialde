@@ -91,12 +91,15 @@ void Controller::modifyItemController(WaffleBox* wb){
 }
 
 void Controller::loadingXmlController(){
-    model->loadXml();
+    view->getTM()->getModel()->loadXml();
+    view->getFPM()->setSourceModel(view->getTM());
+    view->getCatalog()->getTable()->setModel(view->getFPM());
+
     view->loadingXmlInfo();
 }
 
 void Controller::savingXmlController(){
-    model->writeXml();
+    view->getTM()->getModel()->writeXml();
     view->savingXmlInfo();
 }
 
