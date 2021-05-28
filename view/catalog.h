@@ -9,6 +9,7 @@
 #include <QLabel>
 #include <QFormLayout>
 #include <QLineEdit>
+#include <QRadioButton>
 #include "view/table.h"
 #include "model/tablemodel.h"
 #include "model/filterproxymodel.h"
@@ -23,6 +24,8 @@ private:
     QLineEdit *searchEdit;
     QComboBox *typeCombobox;
     QComboBox *detailsCombobox;
+    /*QRadioButton *ordAsc;
+    QRadioButton *ordDesc;*/
     TableModel *Tm;
     filterProxyModel *fpm;
 public:
@@ -36,6 +39,11 @@ public:
     QLineEdit *getSearchEdit() const;
     TableModel *getTm() const;
     filterProxyModel *getFpm() const;
+    /*QRadioButton *getOrdAsc() const;
+    QRadioButton *getOrdDesc() const;*/
+    void sortHeaderClicked(int);
+/*public slots:
+    void setOrder();*/
 };
 
 #endif // CATALOG_H

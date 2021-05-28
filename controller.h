@@ -44,6 +44,7 @@ public slots:
     void disableBtnTableController();
     void removeItem();
     void setCurrectColumnFpm(const QString &) const;
+    void headerClicked(int);
 
     //Visualizza dettagli
     void showDetails(); //Visualizza la finestra con un oggetto preselezionato da tabella in dettaglio

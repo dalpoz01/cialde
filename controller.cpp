@@ -24,7 +24,13 @@ void Controller::setView(MainWindow *v){
     connect(view->getCatalog()->getSearchEdit(), SIGNAL(returnPressed()),this,SLOT(search()));
     connect(view->getCatalog()->getDetailsCombobox(), SIGNAL(currentIndexChanged(const QString &)), this, SLOT(setCurrectColumnFpm(const QString &)));
     connect(view->getCatalog()->getTable()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(enableBtnTableController()));  //connessione per bottone Visualizza prodotto nella parte inferiore
-    connect(view->getCatalog()->getBtnRemove(),SIGNAL(clicked()),this,SLOT(removeItem())); //connessione per l'eliminazione di un prodotto
+    connect(view->getCatalog()->getBtnRemove(),SIGNAL(clicked()),this,SLOT(removeItem()));
+    connect(view->getCatalog()->getTable()->getHeader(),SIGNAL(sectionClicked(int)),this,SLOT(headerClicked(int)));
+    //connect(view->getCatalog()->getOrdAsc(), SIGNAL(clicked()), view->getCatalog(), SLOT(setOrder()));
+    //connect(view->getCatalog()->getOrdDesc(), SIGNAL(clicked()), view->getCatalog(), SLOT(setOrder()));
+
+    //Ricerca
+    //connect(view->getCatalog()->getRicercaProdotto()->getSearchButton(), SIGNAL(clicked()), this, SLOT(showSearchTable())); //connessione per mostrare i risultati della ricerca sottoforma di tabella
 
     //Visualizza dettagli
     connect(view->getCatalog()->getBtnViewItem(),SIGNAL(clicked()),this,SLOT(showDetails())); //connessione per mostrare un oggetto in dettaglio
@@ -51,7 +57,7 @@ void Controller::showCatalogo() const{
 }
 
 void Controller::showAddProduct() const{
-    view->getCatalog()->hide();    
+    view->getCatalog()->hide();
     view->getAddProduct()->show();
 }
 
@@ -151,6 +157,9 @@ void Controller::setCurrectColumnFpm(const QString &a) const{
             }
         }
     }
+}
+void Controller::headerClicked(int n){
+    view->getCatalog()->sortHeaderClicked(n);
 }
 
 //UNUSED

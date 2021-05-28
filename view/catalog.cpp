@@ -1,24 +1,28 @@
 #include "catalog.h"
 
 catalog::catalog(QWidget(*parent), TableModel *TM, filterProxyModel *FPM):QWidget(parent),
-    table(new Table()),
+    table(new Table(this)),
     btnModify(new QPushButton("Modifica")),
     btnViewItem(new QPushButton("Visualizza prodotto")),
     btnRemove(new QPushButton("Elimina")),
     searchEdit(new QLineEdit()),
     typeCombobox(new QComboBox()),
     detailsCombobox(new QComboBox()),
+    /*ordAsc(new QRadioButton("Crescente",this)),
+    ordDesc(new QRadioButton("Decrescente",this)),*/
     Tm(TM),
     fpm(FPM)
 {
     QVBoxLayout* mainLayout = new QVBoxLayout();
     QHBoxLayout* topHalf = new QHBoxLayout();
+    //QHBoxLayout* radioHalf = new QHBoxLayout();
     QVBoxLayout* bottomHalf = new QVBoxLayout();
     QHBoxLayout* btnBottom = new QHBoxLayout();
 
     QLabel *textSearch=new QLabel("Ricerca: ");
     QLabel *textType=new QLabel("Tipo: ");
     QLabel *textDetails=new QLabel("Campo: ");
+    //QLabel *textOrder=new QLabel("Ordine di visualizzazione: ");
 
     typeCombobox->addItem("Tutti");
     typeCombobox->addItem("Circle Box");
@@ -38,7 +42,7 @@ catalog::catalog(QWidget(*parent), TableModel *TM, filterProxyModel *FPM):QWidge
     searchEdit->setPlaceholderText("Parole o numeri chiave da cercare...");
 
     fpm->setSourceModel(Tm);
-    fpm->setSortRole(Qt::UserRole);
+    //fpm->setSortRole(Qt::UserRole);
     table->setModel(fpm);
 
     topHalf->addWidget(textSearch);
@@ -49,6 +53,10 @@ catalog::catalog(QWidget(*parent), TableModel *TM, filterProxyModel *FPM):QWidge
     topHalf->addWidget(detailsCombobox);
     topHalf->setAlignment(Qt::AlignTop);
 
+    /*radioHalf->addWidget(textOrder);
+    radioHalf->addWidget(ordAsc);
+    radioHalf->addWidget(ordDesc);*/
+
     //Parte inferiore della view in layout orizzontale, con a sinistra la tabella e a destra due bottoni, "Visualizza" e "Modifica" (rispettivamente in layout verticale)
     bottomHalf->addWidget(table);
     btnBottom->addWidget(btnModify);
@@ -57,6 +65,7 @@ catalog::catalog(QWidget(*parent), TableModel *TM, filterProxyModel *FPM):QWidge
     btnBottom->setAlignment(Qt::AlignBottom);
 
     mainLayout->addLayout(topHalf);
+    //mainLayout->addLayout(radioHalf);
     mainLayout->addLayout(bottomHalf);
     mainLayout->addLayout(btnBottom);
 
@@ -81,3 +90,17 @@ QLineEdit *catalog::getSearchEdit() const { return searchEdit; }
 TableModel *catalog::getTm() const { return Tm; }
 
 filterProxyModel *catalog::getFpm() const { return fpm; }
+
+/*QRadioButton *catalog::getOrdAsc() const { return ordAsc; }
+
+QRadioButton *catalog::getOrdDesc() const { return ordDesc; }*/
+
+/*void catalog::setOrder(){
+    ordAsc->isChecked() ? table->setOrd(true) : table->setOrd(false);
+}*/
+
+void catalog::sortHeaderClicked(int a){
+    table->orderTable(a);
+}
+
+

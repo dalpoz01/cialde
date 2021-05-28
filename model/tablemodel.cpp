@@ -1,3 +1,4 @@
+#include "filterproxymodel.h"
 #include "tablemodel.h"
 
 //Costruttore
