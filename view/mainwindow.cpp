@@ -23,17 +23,15 @@ MainWindow::MainWindow(QWidget *parent):
     int centerH = (height/2) - (mh/2);
     move(centerW, centerH);
 
-    QVBoxLayout* qv=new QVBoxLayout(this);
-
-    qv->setMenuBar(menu);
-
-    qv->addWidget(catalogo);
-    qv->addWidget(aggiungiProdotto);
+    QHBoxLayout* qv=new QHBoxLayout(this);
 
     aggiungiProdotto->hide();
 
+    qv->setMenuBar(menu);
+    qv->addWidget(catalogo);
+    qv->addWidget(aggiungiProdotto);
+
     setLayout(qv);
-    setMaximumHeight(500);
 }
 
 QSize MainWindow::sizeHint() const {return QSize(1024, 500);}

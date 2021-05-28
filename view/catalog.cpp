@@ -68,7 +68,7 @@ catalog::catalog(QWidget(*parent), TableModel *TM, filterProxyModel *FPM):QWidge
     //mainLayout->addLayout(radioHalf);
     mainLayout->addLayout(bottomHalf);
     mainLayout->addLayout(btnBottom);
-
+    mainLayout->setAlignment(Qt::AlignTop);
     setLayout(mainLayout);
 
 }
