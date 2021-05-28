@@ -227,6 +227,9 @@ void XmlManagement::write(const Container<DeepPtr<WaffleBox>> &cont) const{
                  writer.writeStartElement("height");
                  writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const Branded*>(wb)->getHeight())));
                  writer.writeEndElement();
+                 writer.writeStartElement("ext_diameter");
+                 writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const Branded*>(wb)->getExtDiameter())));
+                 writer.writeEndElement();
                  writer.writeStartElement("principal_color");
                  writer.writeCharacters(QString::fromStdString(static_cast<const Branded*>(wb)->getPrincipalColor()));
                  writer.writeEndElement();
