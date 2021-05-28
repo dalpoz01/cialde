@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent):
     setLayout(qv);
 }
 
-QSize MainWindow::sizeHint() const {return QSize(1024, 500);}
+QSize MainWindow::sizeHint() const {return QSize(1124, 490);}
 
 void MainWindow::setController(Controller *c){controller=c;}
 

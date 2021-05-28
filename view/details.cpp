@@ -18,16 +18,7 @@ details::details(QWidget *parent, WaffleBox *wf): QWidget(parent),
     QPixmap qpm = QPixmap(QString::fromStdString(w->getPhoto()));
 
     if(!qpm.isNull()){
-        if(qpm.width()>500||qpm.height()>500){
-            int width= qpm.width(), height = qpm.height();
-            while(width>500||height>500){
-                width /=1.01;
-                height /= 1.01;
-            }
-            imgLabel->setPixmap(qpm.scaled(QSize(width, height)));
-        }else{
-            imgLabel->setPixmap(qpm.scaled(QSize(qpm.width(), qpm.height())));
-        }
+        imgLabel->setPixmap(qpm.scaled(QSize(400, 400)));
     }else{
         imgLabel->setText("IMMAGINE NON TROVATA");
         imgLabel->setMinimumSize(400,400);

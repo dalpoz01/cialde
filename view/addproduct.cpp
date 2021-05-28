@@ -463,32 +463,13 @@ void AddProduct::addFoto(){
         if(!QFile::exists("../cialde-test/Data/Photo/" + path.section("/", -1, -1))){
             if(QFile::copy(path, QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)))) {
                 QPixmap qpm(QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)));
-                if(qpm.width()>700||qpm.height()>500){
-                    int width= qpm.width(), height = qpm.height();
-                    while(width>700||height>500){
-                        width /= 1.01;
-                        height /= 1.01;
-                    }
-                    imgLabel->setPixmap(qpm.scaled(QSize(width, height)));
-                    imgpath = QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)).toStdString();
-                }else{
-                    imgLabel->setPixmap(qpm.scaled(QSize(qpm.width(), qpm.height())));
-                    imgpath = QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)).toStdString();
-                }
+                imgLabel->setPixmap(qpm.scaled(QSize(400, 400)));
+                imgpath = QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)).toStdString();
             }
         }else{
             QPixmap qpm(QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)));
                 imgpath = QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)).toStdString();
-                if(qpm.width()>700||qpm.height()>500){
-                    int width= qpm.width(), height = qpm.height();
-                    while(width>700||height>500){
-                        width /= 1.01;
-                        height /= 1.01;
-                    }
-                    imgLabel->setPixmap(qpm.scaled(QSize(width, height)));
-                }else{
-                    imgLabel->setPixmap(qpm.scaled(QSize(qpm.width(), qpm.height())));
-                }
+                imgLabel->setPixmap(qpm.scaled(QSize(400, 400)));
         }
     }
 }
