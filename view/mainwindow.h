@@ -43,9 +43,8 @@ public:
 
 public slots:
     void insertItemInfo();  //slot che visualizza una finestra di successo
-    void loadingXmlInfo();
-    void savingXmlInfo();
-    void seeInfo();
+    void loadingXmlInfo();  //slot che visualizza una finestra di successo
+    void savingXmlInfo();   //slot che visualizza una finestra di successo
     void enableBtnTable(bool);  //slot che abilita/disabilita l'interazione con i bottoni della tabella Catalogo
     virtual void closeEvent(QCloseEvent*); //Chiusura finestra
 

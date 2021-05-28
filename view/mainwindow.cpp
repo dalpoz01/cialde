@@ -42,20 +42,6 @@ void MainWindow::setController(Controller *c){controller=c;}
 
 AddProduct* MainWindow::getAddProduct() const{return aggiungiProdotto;}
 
-void MainWindow::insertItemInfo(){QMessageBox::information(this,"DONE IT!", "Inserimento avvenuto con successo");}
-
-void MainWindow::loadingXmlInfo(){QMessageBox::information(this,"DONE IT!", "Caricamento avvenuto con successo");}
-
-void MainWindow::savingXmlInfo(){QMessageBox::information(this,"DONE IT!", "XML creato con successo");}
-
-void MainWindow::seeInfo(){catalogo->getTable()->show();}
-
-void MainWindow::enableBtnTable(bool flag){
-    catalogo->getBtnModifiy()->setEnabled(flag);
-    catalogo->getBtnViewItem()->setEnabled(flag);
-    catalogo->getBtnRemove()->setEnabled(flag);
-}
-
 catalog* MainWindow::getCatalog() const{ return catalogo; }
 
 MenuBar *MainWindow::getMenu() const{ return menu; }
@@ -63,6 +49,18 @@ MenuBar *MainWindow::getMenu() const{ return menu; }
 TableModel* MainWindow::getTM() const{ return tm; }
 
 filterProxyModel* MainWindow::getFPM() const{ return fpm; }
+
+void MainWindow::insertItemInfo(){QMessageBox::information(this,"DONE IT!", "Inserimento avvenuto con successo");}
+
+void MainWindow::loadingXmlInfo(){QMessageBox::information(this,"DONE IT!", "Caricamento avvenuto con successo");}
+
+void MainWindow::savingXmlInfo(){QMessageBox::information(this,"DONE IT!", "XML creato con successo");}
+
+void MainWindow::enableBtnTable(bool flag){
+    catalogo->getBtnModifiy()->setEnabled(flag);
+    catalogo->getBtnViewItem()->setEnabled(flag);
+    catalogo->getBtnRemove()->setEnabled(flag);
+}
 
 void MainWindow::closeEvent(QCloseEvent* event){
     if(QMessageBox::question(this,"Sicuro?", "Salvare prima di uscire?", QMessageBox::Yes, QMessageBox::No, QMessageBox::Close) == QMessageBox::Yes){

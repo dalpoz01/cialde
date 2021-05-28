@@ -437,13 +437,10 @@ void AddProduct::insert(){
                 extDiam = extdiamLine->text().toUInt();
                 if((prncolorLine->text().toStdString() == "" || seccolorLine->text().toStdString() == "") ||
                    (prncolorLine->text().toStdString() == "" && seccolorLine->text().toStdString() == "")){
-                    if(QMessageBox::question(this,"Ops","Hai dimenticato uno o più colori! \nSe non inserisci un colore, verrà settato 'Bianco' di default.", QMessageBox::Ok, QMessageBox::Ignore)==QMessageBox::Ignore){
+                        QMessageBox::warning(this,"Ops","Hai dimenticato uno o più colori! \nSe non inserisci un colore, verrà settato 'Bianco' di default.", QMessageBox::Ok, QMessageBox::Close);
                         princ = prncolorLine->text().toStdString() == "" ? "Bianco" : prncolorLine->text().toStdString();
                         seco = seccolorLine->text().toStdString() == "" ? "Bianco" : seccolorLine->text().toStdString();  //Tipo "Branded Box"
-                    }
                 }
-                cout<<prncolorLine->text().toStdString() << endl;
-
                 temp = new Branded(nome,id,foto,capa,peso,prezzo,disc,stockAva,height,extDiam,princ,seco);
              break;
             }

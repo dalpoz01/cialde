@@ -70,8 +70,6 @@ QPushButton *catalog::getBtnViewItem() const{ return btnViewItem; }
 
 QPushButton *catalog::getBtnRemove() const{ return btnRemove; }
 
-//SearchInventory *catalog::getRicercaProdotto() const{ return ricercaProdotto; }
-
 Table *catalog::getTable() const{ return table; }
 
 QComboBox *catalog::getTypeCombobox() const { return typeCombobox; }

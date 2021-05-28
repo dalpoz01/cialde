@@ -41,7 +41,6 @@ SOURCES +=\
     view/catalog.cpp \
     view/addproduct.cpp \
     view/modifyproduct.cpp \
-    view/searchinventory.cpp \
     view/table.cpp \
     view/mainwindow.cpp \
     controller.cpp \
@@ -66,7 +65,6 @@ HEADERS +=\
     view/catalog.h \
     view/addproduct.h \
     view/modifyproduct.h \
-    view/searchinventory.h \
     view/table.h \
     view/mainwindow.h \
     controller.h \

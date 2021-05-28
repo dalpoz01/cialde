@@ -90,11 +90,9 @@ public:
     WaffleBox* getWaffleBox() const;
 
 public slots:
-    void modifica();    //slot per modificare un oggetto, avvisa
+    void modifica();    //slot per modificare un oggetto preso dalla vista
     void changePhoto();
     void noModify();
-signals:
-    void signalToModify(WaffleBox*) const;
 };
 
 #endif // MODIFYPRODUCT_H

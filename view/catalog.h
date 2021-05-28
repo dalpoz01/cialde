@@ -9,7 +9,6 @@
 #include <QLabel>
 #include <QFormLayout>
 #include <QLineEdit>
-#include "searchinventory.h"
 #include "view/table.h"
 #include "model/tablemodel.h"
 #include "model/filterproxymodel.h"
