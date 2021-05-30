@@ -24,10 +24,9 @@ private:
     QLineEdit *searchEdit;
     QComboBox *typeCombobox;
     QComboBox *detailsCombobox;
-    /*QRadioButton *ordAsc;
-    QRadioButton *ordDesc;*/
     TableModel *Tm;
     filterProxyModel *fpm;
+    bool ord;
 public:
     explicit catalog(QWidget * = nullptr, TableModel * = nullptr, filterProxyModel * = nullptr);
     QPushButton *getBtnModifiy() const;

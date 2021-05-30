@@ -1,5 +1,4 @@
 #include "menubar.h"
-#include <iostream>
 
 MenuBar::MenuBar(QWidget *parent) :
     QMenuBar(parent),

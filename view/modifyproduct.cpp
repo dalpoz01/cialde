@@ -6,6 +6,17 @@ modifyProduct::modifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
     setWindowTitle("Wafflebox - Modifica prodotto");
     setWindowIcon(QIcon(QPixmap("../cialde-test/Data/Photo/icon.png")));
 
+    //Centro la finestra sullo schermo
+    QSize size = sizeHint();
+    QDesktopWidget* desktop = QApplication::desktop();
+    int width = desktop->width();
+    int height = desktop->height();
+    int mw = size.width();
+    int mh = size.height();
+    int centerW = (width/2) - (mw/2);
+    int centerH = (height/2) - (mh/2);
+    move(centerW, centerH);
+
     tipoLabel=new QLabel("Tipo: ",this);
     tipoValueEdit=new QLabel(QString::fromStdString(w->getItemType()));
     nomeLabel=new QLabel("Nome: ",this);
@@ -93,18 +104,26 @@ modifyProduct::modifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
                 } else {
                     if (w->getItemType()=="Covered Box") {
                         Covered *cv=dynamic_cast<Covered*>(w);
+                        externalRadiusLabel=new QLabel("Diametro esterno: ",this);
+                        externalRadiusValueEdit=new QLineEdit(QString::fromStdString(std::to_string(cv->getExtDiameter())), this);
+                        externalRadiusValueEdit->setMaximumWidth(maxSizeEdit);
                         tasteLabel=new QLabel("Gusto",this);
                         tasteValueEdit=new QLineEdit(QString::fromStdString(cv->getTaste()), this);
                         tasteValueEdit->setMaximumWidth(maxSizeEdit);
+                        formLayout->addRow(externalRadiusLabel,externalRadiusValueEdit);
                         formLayout->addRow(tasteLabel,tasteValueEdit);
                     } else {
                         Branded *br=dynamic_cast<Branded*>(w);
+                        externalRadiusLabel=new QLabel("Diametro esterno: ",this);
+                        externalRadiusValueEdit=new QLineEdit(QString::fromStdString(std::to_string(br->getExtDiameter())), this);
+                        externalRadiusValueEdit->setMaximumWidth(maxSizeEdit);
                         principalColorLabel=new QLabel("Colore principale: ",this);
                         principalColorValueEdit=new QLineEdit(QString::fromStdString(br->getPrincipalColor()), this);
                         principalColorValueEdit->setMaximumWidth(maxSizeEdit);
                         secondaryColorLabel=new QLabel("Colore secondario: ",this);
                         secondaryColorValueEdit=new QLineEdit(QString::fromStdString(br->getSecundaryColor()), this);
                         secondaryColorValueEdit->setMaximumWidth(maxSizeEdit);
+                        formLayout->addRow(externalRadiusLabel,externalRadiusValueEdit);
                         formLayout->addRow(principalColorLabel,principalColorValueEdit);
                         formLayout->addRow(secondaryColorLabel,secondaryColorValueEdit);
                     }
@@ -177,6 +196,7 @@ void modifyProduct::modifica() {
     w->setPrice(prezzoValueEdit->text().toDouble());
     w->setDiscount(discountValueEdit->text().toUInt());
     w->setStockAvailability(stockValueEdit->text().toUInt());
+    //Valuto i vari tipi e aggiorno il wafflebox corrispondente
     if (w->getItemType()=="Circle Box") {
         CircleBox *tmp=static_cast<CircleBox*>(w);
         tmp->setRadius(radiusValueEdit->text().toUInt());
@@ -195,9 +215,11 @@ void modifyProduct::modifica() {
                 } else {
                     if (w->getItemType()=="Covered Box") {
                         Covered *tmp=static_cast<Covered*>(w);
+                        tmp->setExtDiameter(externalRadiusValueEdit->text().toUInt());
                         tmp->setTaste(tasteValueEdit->text().toStdString());
                     } else {
                         Branded *tmp=static_cast<Branded*>(w);
+                        tmp->setExtDiameter(externalRadiusValueEdit->text().toUInt());
                         tmp->setPrincipalColor(principalColorValueEdit->text().toStdString());
                         tmp->setSecundaryColor(secondaryColorValueEdit->text().toStdString());
                     }

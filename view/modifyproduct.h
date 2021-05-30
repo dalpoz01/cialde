@@ -11,6 +11,7 @@
 #include <QLineEdit>
 #include <QWidget>
 #include <QDesktopWidget>
+#include <QApplication>
 #include <QSize>
 #include <QPixmap>
 #include <QString>

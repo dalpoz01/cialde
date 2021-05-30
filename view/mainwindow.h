@@ -29,6 +29,7 @@ private:
     TableModel *tm;
     filterProxyModel *fpm;
     catalog *catalogo;
+    catalog *c;
 
 public:
     explicit MainWindow(QWidget * = nullptr);

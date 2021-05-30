@@ -12,6 +12,7 @@
 #include <QVBoxLayout>
 #include <QFormLayout>
 #include <QDesktopWidget>
+#include <QApplication>
 #include <QSize>
 
 #include "model/wafflebox.h"

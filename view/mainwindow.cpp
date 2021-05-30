@@ -23,18 +23,17 @@ MainWindow::MainWindow(QWidget *parent):
     int centerH = (height/2) - (mh/2);
     move(centerW, centerH);
 
-    QHBoxLayout* qv=new QHBoxLayout(this);
+    QHBoxLayout* main=new QHBoxLayout(this);
 
+    main->setMenuBar(menu);
     aggiungiProdotto->hide();
+    main->addWidget(catalogo);
+    main->addWidget(aggiungiProdotto);
 
-    qv->setMenuBar(menu);
-    qv->addWidget(catalogo);
-    qv->addWidget(aggiungiProdotto);
-
-    setLayout(qv);
+    setLayout(main);
 }
 
-QSize MainWindow::sizeHint() const {return QSize(1124, 490);}
+QSize MainWindow::sizeHint() const {return QSize(1024, 500);}
 
 void MainWindow::setController(Controller *c){controller=c;}
 

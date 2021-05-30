@@ -2,27 +2,24 @@
 
 catalog::catalog(QWidget(*parent), TableModel *TM, filterProxyModel *FPM):QWidget(parent),
     table(new Table(this)),
-    btnModify(new QPushButton("Modifica")),
-    btnViewItem(new QPushButton("Visualizza prodotto")),
-    btnRemove(new QPushButton("Elimina")),
-    searchEdit(new QLineEdit()),
-    typeCombobox(new QComboBox()),
-    detailsCombobox(new QComboBox()),
-    /*ordAsc(new QRadioButton("Crescente",this)),
-    ordDesc(new QRadioButton("Decrescente",this)),*/
+    btnModify(new QPushButton("Modifica",this)),
+    btnViewItem(new QPushButton("Visualizza prodotto",this)),
+    btnRemove(new QPushButton("Elimina",this)),
+    searchEdit(new QLineEdit(this)),
+    typeCombobox(new QComboBox(this)),
+    detailsCombobox(new QComboBox(this)),
     Tm(TM),
-    fpm(FPM)
+    fpm(FPM),
+    ord(false)
 {
-    QVBoxLayout* mainLayout = new QVBoxLayout();
+    QVBoxLayout* mainLayout = new QVBoxLayout(this);
     QHBoxLayout* topHalf = new QHBoxLayout();
-    //QHBoxLayout* radioHalf = new QHBoxLayout();
     QVBoxLayout* bottomHalf = new QVBoxLayout();
     QHBoxLayout* btnBottom = new QHBoxLayout();
 
-    QLabel *textSearch=new QLabel("Ricerca: ");
-    QLabel *textType=new QLabel("Tipo: ");
-    QLabel *textDetails=new QLabel("Campo: ");
-    //QLabel *textOrder=new QLabel("Ordine di visualizzazione: ");
+    QLabel *textSearch=new QLabel("Ricerca: ",this);
+    QLabel *textType=new QLabel("Tipo: ",this);
+    QLabel *textDetails=new QLabel("Campo: ",this);
 
     typeCombobox->addItem("Tutti");
     typeCombobox->addItem("Circle Box");
@@ -42,7 +39,6 @@ catalog::catalog(QWidget(*parent), TableModel *TM, filterProxyModel *FPM):QWidge
     searchEdit->setPlaceholderText("Parole o numeri chiave da cercare...");
 
     fpm->setSourceModel(Tm);
-    //fpm->setSortRole(Qt::UserRole);
     table->setModel(fpm);
 
     topHalf->addWidget(textSearch);
@@ -53,10 +49,6 @@ catalog::catalog(QWidget(*parent), TableModel *TM, filterProxyModel *FPM):QWidge
     topHalf->addWidget(detailsCombobox);
     topHalf->setAlignment(Qt::AlignTop);
 
-    /*radioHalf->addWidget(textOrder);
-    radioHalf->addWidget(ordAsc);
-    radioHalf->addWidget(ordDesc);*/
-
     //Parte inferiore della view in layout orizzontale, con a sinistra la tabella e a destra due bottoni, "Visualizza" e "Modifica" (rispettivamente in layout verticale)
     bottomHalf->addWidget(table);
     btnBottom->addWidget(btnModify);
@@ -65,12 +57,9 @@ catalog::catalog(QWidget(*parent), TableModel *TM, filterProxyModel *FPM):QWidge
     btnBottom->setAlignment(Qt::AlignBottom);
 
     mainLayout->addLayout(topHalf);
-    //mainLayout->addLayout(radioHalf);
     mainLayout->addLayout(bottomHalf);
     mainLayout->addLayout(btnBottom);
     mainLayout->setAlignment(Qt::AlignTop);
-    setLayout(mainLayout);
-
 }
 
 QPushButton *catalog::getBtnModifiy() const{ return btnModify; }
@@ -91,16 +80,15 @@ TableModel *catalog::getTm() const { return Tm; }
 
 filterProxyModel *catalog::getFpm() const { return fpm; }
 
-/*QRadioButton *catalog::getOrdAsc() const { return ordAsc; }
-
-QRadioButton *catalog::getOrdDesc() const { return ordDesc; }*/
-
-/*void catalog::setOrder(){
-    ordAsc->isChecked() ? table->setOrd(true) : table->setOrd(false);
-}*/
-
 void catalog::sortHeaderClicked(int a){
-    table->orderTable(a);
+    if(ord){
+        fpm->sort(a,Qt::DescendingOrder);
+        ord=false;
+    }else{
+        fpm->sort(a,Qt::AscendingOrder);
+        ord=true;
+    }
+
 }
 
 

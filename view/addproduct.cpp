@@ -107,7 +107,6 @@ AddProduct::AddProduct(QWidget(*parent)): QWidget(parent),
 
     base->addLayout(left);
     base->addLayout(right);
-    base->setAlignment(Qt::AlignTop);
 
     showCommon();
     enableFields(false);

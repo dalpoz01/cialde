@@ -6,6 +6,17 @@ details::details(QWidget *parent, WaffleBox *wf): QWidget(parent),
     setWindowTitle("Wafflebox - Dettagli prodotto");
     setWindowIcon(QIcon(QPixmap("../cialde-test/Data/Photo/icon.png")));
 
+    //Centro la finestra sullo schermo
+    QSize size = sizeHint();
+    QDesktopWidget* desktop = QApplication::desktop();
+    int width = desktop->width();
+    int height = desktop->height();
+    int mw = size.width();
+    int mh = size.height();
+    int centerW = (width/2) - (mw/2);
+    int centerH = (height/2) - (mh/2);
+    move(centerW, centerH);
+
     tipoLabel=new QLabel("Tipo: ",this);
     nomeLabel=new QLabel("Nome: ",this);
     idLabel=new QLabel("ID: ",this);
@@ -69,6 +80,9 @@ details::details(QWidget *parent, WaffleBox *wf): QWidget(parent),
             } else {
                 ConeBox *co=dynamic_cast<ConeBox*>(w);
                 if(co){
+                    externalRadiusLabel=new QLabel("Diametro esterno: ",this);
+                    externalRadiusValueLabel=new QLabel(QString::fromStdString(std::to_string(co->getExtDiameter())), this);
+                    formLayout->addRow(externalRadiusLabel,externalRadiusValueLabel);
                     Covered *cv=dynamic_cast<Covered*>(w);
                     if(cv){
                         tasteLabel=new QLabel("Gusto",this);
@@ -83,10 +97,6 @@ details::details(QWidget *parent, WaffleBox *wf): QWidget(parent),
                            secondaryColorValueLabel=new QLabel(QString::fromStdString(br->getSecundaryColor()), this);
                            formLayout->addRow(principalColorLabel,principalColorValueLabel);
                            formLayout->addRow(secondaryColorLabel,secondaryColorValueLabel);
-                       } else {
-                           externalRadiusLabel=new QLabel("Diametro esterno: ",this);
-                           externalRadiusValueLabel=new QLabel(QString::fromStdString(std::to_string(co->getExtDiameter())), this);
-                           formLayout->addRow(externalRadiusLabel,externalRadiusValueLabel);
                        }
                     }
                 }
