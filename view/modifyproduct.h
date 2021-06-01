@@ -47,6 +47,7 @@ private:
     QLabel *prezzoLabel;
     QLabel *discountLabel;
     QLabel *stockLabel;
+    QLabel *heightLabel;
     //Valori comuni
     QLineEdit *nomeValueEdit;
     QLineEdit *idValueEdit;
@@ -55,6 +56,7 @@ private:
     QLineEdit *prezzoValueEdit;
     QLineEdit *discountValueEdit;
     QLineEdit *stockValueEdit;
+    QLineEdit *heightValueEdit;
     //Branded
     QLabel *principalColorLabel;
     QLabel *secondaryColorLabel;

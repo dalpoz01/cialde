@@ -1,4 +1,6 @@
 #include "modifyproduct.h"
+#include <iostream>
+using namespace std;
 
 ModifyProduct::ModifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
     w(wf)
@@ -83,37 +85,51 @@ ModifyProduct::ModifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
     } else {
         if (w->getItemType()=="Ventaglio Box"){
             VentaglioBox *v=dynamic_cast<VentaglioBox*>(w);
+            heightLabel=new QLabel("Altezza: ",this);
+            heightValueEdit=new QLineEdit(QString::fromStdString(std::to_string(v->getHeight())), this);
             widthLabel=new QLabel("Larghezza: ",this);
             widthValueEdit=new QLineEdit(QString::fromStdString(std::to_string(v->getWidth())), this);
             widthValueEdit->setMaximumWidth(maxSizeEdit);
+            formLayout->addRow(heightLabel,heightValueEdit);
             formLayout->addRow(widthLabel,widthValueEdit);
         } else {
             if (w->getItemType()=="Cannolo Box") {
                 CannoloBox *ca=dynamic_cast<CannoloBox*>(w);
+                heightLabel=new QLabel("Altezza: ",this);
+                heightValueEdit=new QLineEdit(QString::fromStdString(std::to_string(ca->getHeight())), this);
                 intDiameterLabel=new QLabel("Diamentro interno: ",this);
                 intDiameterValueEdit=new QLineEdit(QString::fromStdString(std::to_string(ca->getIntDiameter())), this);
                 intDiameterValueEdit->setMaximumWidth(maxSizeEdit);
+                formLayout->addRow(heightLabel,heightValueEdit);
                 formLayout->addRow(intDiameterLabel,intDiameterValueEdit);
             } else {
                 if (w->getItemType()=="Cone Box") {
                     ConeBox *co=dynamic_cast<ConeBox*>(w);
+                    heightLabel=new QLabel("Altezza: ",this);
+                    heightValueEdit=new QLineEdit(QString::fromStdString(std::to_string(co->getHeight())), this);
                     externalRadiusLabel=new QLabel("Diametro esterno: ",this);
                     externalRadiusValueEdit=new QLineEdit(QString::fromStdString(std::to_string(co->getExtDiameter())), this);
                     externalRadiusValueEdit->setMaximumWidth(maxSizeEdit);
+                    formLayout->addRow(heightLabel,heightValueEdit);
                     formLayout->addRow(externalRadiusLabel,externalRadiusValueEdit);
                 } else {
                     if (w->getItemType()=="Covered Box") {
                         Covered *cv=dynamic_cast<Covered*>(w);
+                        heightLabel=new QLabel("Altezza: ",this);
+                        heightValueEdit=new QLineEdit(QString::fromStdString(std::to_string(cv->getHeight())), this);
                         externalRadiusLabel=new QLabel("Diametro esterno: ",this);
                         externalRadiusValueEdit=new QLineEdit(QString::fromStdString(std::to_string(cv->getExtDiameter())), this);
                         externalRadiusValueEdit->setMaximumWidth(maxSizeEdit);
                         tasteLabel=new QLabel("Gusto",this);
                         tasteValueEdit=new QLineEdit(QString::fromStdString(cv->getTaste()), this);
                         tasteValueEdit->setMaximumWidth(maxSizeEdit);
+                        formLayout->addRow(heightLabel,heightValueEdit);
                         formLayout->addRow(externalRadiusLabel,externalRadiusValueEdit);
                         formLayout->addRow(tasteLabel,tasteValueEdit);
                     } else {
                         Branded *br=dynamic_cast<Branded*>(w);
+                        heightLabel=new QLabel("Altezza: ",this);
+                        heightValueEdit=new QLineEdit(QString::fromStdString(std::to_string(br->getHeight())), this);
                         externalRadiusLabel=new QLabel("Diametro esterno: ",this);
                         externalRadiusValueEdit=new QLineEdit(QString::fromStdString(std::to_string(br->getExtDiameter())), this);
                         externalRadiusValueEdit->setMaximumWidth(maxSizeEdit);
@@ -123,6 +139,7 @@ ModifyProduct::ModifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
                         secondaryColorLabel=new QLabel("Colore secondario: ",this);
                         secondaryColorValueEdit=new QLineEdit(QString::fromStdString(br->getSecundaryColor()), this);
                         secondaryColorValueEdit->setMaximumWidth(maxSizeEdit);
+                        formLayout->addRow(heightLabel,heightValueEdit);
                         formLayout->addRow(externalRadiusLabel,externalRadiusValueEdit);
                         formLayout->addRow(principalColorLabel,principalColorValueEdit);
                         formLayout->addRow(secondaryColorLabel,secondaryColorValueEdit);
@@ -188,46 +205,87 @@ void ModifyProduct::noModify(){
 }
 
 void ModifyProduct::modifica() {
-    w->setID(idValueEdit->text().toStdString());
-    w->setName(nomeValueEdit->text().toStdString());
-    w->setPhoto(imgpath);
-    w->setCapacity(nPezziValueEdit->text().toUInt());
-    w->setWeight(weightEdit->text().toUInt());
-    w->setPrice(prezzoValueEdit->text().toDouble());
-    w->setDiscount(discountValueEdit->text().toUInt());
-    w->setStockAvailability(stockValueEdit->text().toUInt());
-    //Valuto i vari tipi e aggiorno il wafflebox corrispondente
-    if (w->getItemType()=="Circle Box") {
-        CircleBox *tmp=static_cast<CircleBox*>(w);
-        tmp->setRadius(radiusValueEdit->text().toUInt());
-    } else {
-        if (w->getItemType()=="Ventaglio Box"){
-            VentaglioBox *tmp=static_cast<VentaglioBox*>(w);
-            tmp->setWidth(widthValueEdit->text().toUInt());
+    bool isEdited=true;
+    if(nomeValueEdit->text().toStdString() != "" && idValueEdit->text().toStdString() != "" && nPezziValueEdit->text().toUInt() != 0 && weightEdit->text().toUInt() !=0 &&prezzoValueEdit->text().toDouble() != 0){
+        if (w->getItemType()=="Circle Box") {
+            if (radiusValueEdit->text().toUInt() == 0) {
+                isEdited=false;
+            }
         } else {
-            if (w->getItemType()=="Cannolo Box") {
-                CannoloBox *tmp=static_cast<CannoloBox*>(w);
-                tmp->setIntDiameter(intDiameterValueEdit->text().toUInt());
+            if (w->getItemType()=="Ventaglio Box"){
+                if (widthValueEdit->text().toUInt() == 0 || heightValueEdit->text().toUInt() == 0) {
+                    isEdited=false;
+                }
             } else {
-                if (w->getItemType()=="Cone Box") {
-                    ConeBox *tmp=static_cast<ConeBox*>(w);
-                    tmp->setExtDiameter(externalRadiusValueEdit->text().toUInt());
+                if (w->getItemType()=="Cannolo Box") {
+                    if(intDiameterValueEdit->text().toUInt() == 0 || heightValueEdit->text().toUInt() == 0){
+                        isEdited=false;
+                    }
                 } else {
-                    if (w->getItemType()=="Covered Box") {
-                        Covered *tmp=static_cast<Covered*>(w);
-                        tmp->setExtDiameter(externalRadiusValueEdit->text().toUInt());
-                        tmp->setTaste(tasteValueEdit->text().toStdString());
+                    if (w->getItemType()=="Cone Box") {
+                        if(externalRadiusValueEdit->text().toUInt() == 0 || heightValueEdit->text().toUInt() == 0){
+                            isEdited=false;
+                        }
                     } else {
-                        Branded *tmp=static_cast<Branded*>(w);
-                        tmp->setExtDiameter(externalRadiusValueEdit->text().toUInt());
-                        tmp->setPrincipalColor(principalColorValueEdit->text().toStdString());
-                        tmp->setSecundaryColor(secondaryColorValueEdit->text().toStdString());
+                        if (w->getItemType()=="Covered Box") {
+                            if(externalRadiusValueEdit->text().toUInt() == 0 || tasteValueEdit->text().toStdString() == " " || heightValueEdit->text().toUInt() == 0){
+                                isEdited=false;
+                            }
+                        } else {
+                            if(externalRadiusValueEdit->text().toUInt() == 0 || principalColorValueEdit->text().toStdString() == " " || secondaryColorValueEdit->text().toStdString() == " " || heightValueEdit->text().toUInt() == 0){
+                                isEdited=false;
+                            }
+                        }
                     }
                 }
             }
         }
+    }else{
+        isEdited=false;
     }
-
-    QMessageBox::information(nullptr, "Modifica", "Operazione avvenuta con successo", QMessageBox::Ok);
-    close();
+    if(isEdited){
+        w->setID(idValueEdit->text().toStdString());
+        w->setName(nomeValueEdit->text().toStdString());
+        w->setPhoto(imgpath);
+        w->setCapacity(nPezziValueEdit->text().toUInt());
+        w->setWeight(weightEdit->text().toUInt());
+        w->setPrice(prezzoValueEdit->text().toDouble());
+        w->setDiscount(discountValueEdit->text().toUInt());
+        w->setStockAvailability(stockValueEdit->text().toUInt());
+        //Valuto i vari tipi e aggiorno il wafflebox corrispondente
+        if (w->getItemType()=="Circle Box") {
+            CircleBox *tmp=static_cast<CircleBox*>(w);
+            tmp->setRadius(radiusValueEdit->text().toUInt());
+        } else {
+            if (w->getItemType()=="Ventaglio Box"){
+                VentaglioBox *tmp=static_cast<VentaglioBox*>(w);
+                tmp->setWidth(widthValueEdit->text().toUInt());
+            } else {
+                if (w->getItemType()=="Cannolo Box") {
+                    CannoloBox *tmp=static_cast<CannoloBox*>(w);
+                    tmp->setIntDiameter(intDiameterValueEdit->text().toUInt());
+                } else {
+                    if (w->getItemType()=="Cone Box") {
+                        ConeBox *tmp=static_cast<ConeBox*>(w);
+                        tmp->setExtDiameter(externalRadiusValueEdit->text().toUInt());
+                    } else {
+                        if (w->getItemType()=="Covered Box") {
+                            Covered *tmp=static_cast<Covered*>(w);
+                            tmp->setExtDiameter(externalRadiusValueEdit->text().toUInt());
+                            tmp->setTaste(tasteValueEdit->text().toStdString());
+                        } else {
+                            Branded *tmp=static_cast<Branded*>(w);
+                            tmp->setExtDiameter(externalRadiusValueEdit->text().toUInt());
+                            tmp->setPrincipalColor(principalColorValueEdit->text().toStdString());
+                            tmp->setSecundaryColor(secondaryColorValueEdit->text().toStdString());
+                        }
+                    }
+                }
+            }
+        }
+        QMessageBox::information(nullptr, "Modifica", "Operazione avvenuta con successo", QMessageBox::Ok);
+        close();
+    } else {
+        QMessageBox::critical(this,"Errore","Campi essenziali errati o non compilati o vuoti",QMessageBox::Ok);
+    }
 }

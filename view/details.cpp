@@ -65,33 +65,49 @@ Details::Details(QWidget *parent, WaffleBox *wf): QWidget(parent),
     }else{
         VentaglioBox *v=dynamic_cast<VentaglioBox*>(w);
         if (v) {
+            heightLabel=new QLabel("Altezza: ",this);
+            heightValueLabel=new QLabel(QString::fromStdString(std::to_string(v->getHeight())), this);
             widthLabel=new QLabel("Larghezza: ",this);
             widthValueLabel=new QLabel(QString::fromStdString(std::to_string(v->getWidth())), this);
+            formLayout->addRow(heightLabel,heightValueLabel);
             formLayout->addRow(widthLabel,widthValueLabel);
         } else {
             CannoloBox *ca=dynamic_cast<CannoloBox*>(w);
             if (ca) {
+                heightLabel=new QLabel("Altezza: ",this);
+                heightValueLabel=new QLabel(QString::fromStdString(std::to_string(ca->getHeight())), this);
                 intDiameterLabel=new QLabel("Diamentro interno: ",this);
                 intDiameterValueLabel=new QLabel(QString::fromStdString(std::to_string(ca->getIntDiameter())), this);
+                formLayout->addRow(heightLabel,heightValueLabel);
                 formLayout->addRow(intDiameterLabel,intDiameterValueLabel);
             } else {
                 ConeBox *co=dynamic_cast<ConeBox*>(w);
                 if(co){
+                    heightLabel=new QLabel("Altezza: ",this);
+                    heightValueLabel=new QLabel(QString::fromStdString(std::to_string(co->getHeight())), this);
                     externalRadiusLabel=new QLabel("Diametro esterno: ",this);
                     externalRadiusValueLabel=new QLabel(QString::fromStdString(std::to_string(co->getExtDiameter())), this);
+                    formLayout->addRow(heightLabel,heightValueLabel);
                     formLayout->addRow(externalRadiusLabel,externalRadiusValueLabel);
+                 }else{
                     Covered *cv=dynamic_cast<Covered*>(w);
                     if(cv){
+                        heightLabel=new QLabel("Altezza: ",this);
+                        heightValueLabel=new QLabel(QString::fromStdString(std::to_string(cv->getHeight())), this);
                         tasteLabel=new QLabel("Gusto",this);
                         tasteValueLabel=new QLabel(QString::fromStdString(cv->getTaste()), this);
+                        formLayout->addRow(heightLabel,heightValueLabel);
                         formLayout->addRow(tasteLabel,tasteValueLabel);
                     }else{
                        Branded *br=dynamic_cast<Branded*>(w);
                        if (br) {
+                           heightLabel=new QLabel("Altezza: ",this);
+                           heightValueLabel=new QLabel(QString::fromStdString(std::to_string(br->getHeight())), this);
                            principalColorLabel=new QLabel("Colore principale: ",this);
                            principalColorValueLabel=new QLabel(QString::fromStdString(br->getPrincipalColor()), this);
                            secondaryColorLabel=new QLabel("Colore secondario: ",this);
                            secondaryColorValueLabel=new QLabel(QString::fromStdString(br->getSecundaryColor()), this);
+                           formLayout->addRow(heightLabel,heightValueLabel);
                            formLayout->addRow(principalColorLabel,principalColorValueLabel);
                            formLayout->addRow(secondaryColorLabel,secondaryColorValueLabel);
                        }

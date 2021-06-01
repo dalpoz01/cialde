@@ -35,6 +35,7 @@ private:
     QLabel *prezzoLabel;
     QLabel *discountLabel;
     QLabel *stockLabel;
+    QLabel *heightLabel;
     //Valori comuni
     QLabel *tipoValueLabel;
     QLabel *nomeValueLabel;
@@ -43,6 +44,7 @@ private:
     QLabel *prezzoValueLabel;
     QLabel *discountValueLabel;
     QLabel *stockValueLabel;
+    QLabel *heightValueLabel;
     //Branded
     QLabel *principalColorLabel;
     QLabel *secondaryColorLabel;

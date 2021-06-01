@@ -342,7 +342,7 @@ void AddProduct::insert(){
     WaffleBox* temp = nullptr;
     bool isEdited=true;
     int typeIndex = itemComboBox->currentIndex();
-    if(itemComboBox->currentText().toStdString() != " - " && nomeLine->text().toStdString() != " " && idLine->text().toUInt() != 0 && capacityBox->currentText().toUInt() != 0 && prezzoLine->text().toUInt() != 0){
+    if(itemComboBox->currentText().toStdString() != " - " && nomeLine->text().toStdString() != "" && idLine->text().toStdString() != " " && capacityBox->currentText().toUInt() != 0 && prezzoLine->text().toUInt() != 0){
         switch(typeIndex){
         case 0: QMessageBox::critical(this,"Impossibile inserire!","Tipo Box mancante.", QMessageBox::Ok, QMessageBox::Close);  //Tipo item = " - ".
                 break;
@@ -416,7 +416,6 @@ void AddProduct::insert(){
                         temp = new CannoloBox(nome,id,foto,capa,peso,prezzo,disc,stockAva,height,intDiam);
                     break;
                 case 4: height = heightLine->text().toUInt();
-                        std::cout<<"Altezza"<<height<<endl;
                         extDiam = extdiamLine->text().toUInt();   //Tipo "Cone Box"
                         temp = new ConeBox(nome,id,foto,capa,peso,prezzo,disc,stockAva,height,extDiam);
                     break;
