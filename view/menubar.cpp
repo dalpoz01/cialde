@@ -18,8 +18,8 @@ MenuBar::MenuBar(QWidget *parent) :
     orderTab->setVisible(false);
     addAction(orderTab);
 
-    connect(load,SIGNAL(changed()),this,SLOT(loadXmlFile()));
-    connect(save,SIGNAL(changed()),this,SLOT(saveXmlFile()));
+    /*connect(load,SIGNAL(changed()),this,SLOT(loadXmlFile()));
+    connect(save,SIGNAL(changed()),this,SLOT(saveXmlFile()));*/
 
 }
 
@@ -29,7 +29,7 @@ QAction* MenuBar::getSave() const { return save; }
 
 QAction *MenuBar::getOrderTab() const{ return orderTab; }
 
-void MenuBar::loadXmlFile(){ emit signalToLoad(); }
+//void MenuBar::loadXmlFile(){ emit signalToLoad(); }
 
 QAction* MenuBar::getCatalog() const { return catalog; }
 

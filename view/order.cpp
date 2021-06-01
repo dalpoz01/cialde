@@ -4,7 +4,7 @@ Order::Order(QWidget *parent) :
     QWidget(parent),
     tableProduct(new Table(this)),
     om(new OrdersModel(this)),
-    fpm(new filterProxyModel(this)),
+    fpm(new FilterProxyModel(this)),
     title(new QLabel("Nuovo ordine",this)),
     cancelBtn(new QPushButton("Annulla",this)),
     emptyLabel(new QLabel("Nessun ordine..")),
@@ -31,7 +31,7 @@ Table* Order::getTableProduct() const{ return tableProduct; }
 
 OrdersModel* Order::getOm() const { return om; }
 
-filterProxyModel* Order::getFpm() const { return fpm; }
+FilterProxyModel* Order::getFpm() const { return fpm; }
 
 QPushButton* Order::getCancBtn() const {return cancelBtn;}
 

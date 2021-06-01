@@ -38,14 +38,12 @@ public:
     QComboBox *getDetailsCombobox() const;
     QLineEdit *getSearchEdit() const;
     TableModel *getTm() const;
-    filterProxyModel *getFpm() const;
+    FilterProxyModel *getFpm() const;
     /*QRadioButton *getOrdAsc() const;
     QRadioButton *getOrdDesc() const;*/
-    void sortHeaderClicked(int);
 /*public slots:
     void setOrder();*/
     QPushButton *getBtnBuy() const;
-    FilterProxyModel *getFpm() const;
     void sortHeaderClicked(int); //Metodo per gestire l'ordinamento della tabella in base alla colonna cliccata
 };
 

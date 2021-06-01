@@ -171,7 +171,6 @@ void Controller::setCurrectColumnFpm(const QString &a) const {
     }
 }
 
-void Controller::headerClicked(int n){ view->getCatalog()->sortHeaderClicked(n); }
 
 void Controller::enableBtnBuy(){view->getCatalog()->getBtnBuy()->setEnabled(true);}
 

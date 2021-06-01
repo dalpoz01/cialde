@@ -22,13 +22,13 @@ public:
     QAction *getOrderTab() const;
 
 
-private slots:
+/*private slots:
     void loadXmlFile();
     void saveXmlFile();
 
 signals:
     void signalToLoad() const;
-    void signalToSave() const;
+    void signalToSave() const;*/
 
 };
 

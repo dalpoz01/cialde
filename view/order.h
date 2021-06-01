@@ -22,7 +22,7 @@ private:
 
     Table* tableProduct;
     OrdersModel* om;
-    filterProxyModel *fpm;
+    FilterProxyModel *fpm;
 
     QLabel* title;
     QPushButton* cancelBtn;
@@ -36,7 +36,7 @@ public:
 
     Table* getTableProduct() const;
     OrdersModel* getOm() const;
-    filterProxyModel *getFpm() const;
+    FilterProxyModel *getFpm() const;
     QPushButton* getCancBtn() const;
     QPushButton* getSendOrderBtn() const;
 
