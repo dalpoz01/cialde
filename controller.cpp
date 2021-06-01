@@ -15,7 +15,7 @@ void Controller::setView(MainWindow *v){
     connect(view->getAddProduct()->getItemCombo(),SIGNAL(currentIndexChanged(const QString&)),view->getAddProduct(),SLOT(showItemTypeField(const QString&))); //connessione alla QComboBox del tipo di box da inserire, per visualizzare i campi corretti
     connect(view->getAddProduct()->getCancel(),SIGNAL(clicked()),view->getAddProduct(),SLOT(resetFields())); //connessione per bottone Cancella, che resetta i campi di inserimento
     connect(view->getAddProduct()->getAddPhoto(),SIGNAL(clicked()),view->getAddProduct(),SLOT(addFoto()));  //connessione per bottone Aggiungi foto, che inserisce una foto al prodotto
-    connect(view->getAddProduct()->getAdd(),SIGNAL(clicked()),view->getAddProduct(),SLOT(insert())); //Connessione per bottone Aggiungi, richiama il metodo insert() che preleva i dati dai campi e crea l'oggetto
+    connect(view->getAddProduct()->getAdd(),SIGNAL(clicked()),this,SLOT(existItem())); //Connessione per bottone Aggiungi, richiama il metodo insert() che preleva i dati dai campi e crea l'oggetto
     connect(view->getAddProduct(),SIGNAL(signalToInsert(WaffleBox*)),this,SLOT(insertItemController(WaffleBox*))); //Connessione per il segnale emesso da insert(), se l'inserimento avviene correttamente lo aggiunge al container
 
     //Catalogo
@@ -46,6 +46,14 @@ void Controller::showCatalogo() const{
 void Controller::showAddProduct() const{
     view->getCatalog()->hide();
     view->getAddProduct()->show();
+}
+
+void Controller::existItem() const{
+    if(model->findItem(view->getAddProduct()->getIdLineString())==true){
+        QMessageBox::warning(nullptr, "Attenzione", "Tipo di WaffleBox già esistente con questo ID, si consiglia di cambiare ID", QMessageBox::Ok);
+    }else{
+        view->getAddProduct()->insert();
+    }
 }
 
 void Controller::insertItemController(WaffleBox* wb){

@@ -35,6 +35,7 @@ public slots:
     void savingXmlController();     //slot che salva i dati in .xml
 
     //Aggiungi prodotto
+    void existItem() const;
     void insertItemController(WaffleBox*); //Inserisce un nuovo oggetto nel modello e nella tabella, dopo aver preso i dati dalla vista
 
     //Catalogo

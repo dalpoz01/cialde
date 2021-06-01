@@ -40,3 +40,12 @@ void Model::updateItem(u_int index, WaffleBox* wb){
         }
     }
 }
+
+bool Model::findItem(std::string s) {
+    for(u_int i = 0; i < container.getSize(); ++i){
+        if(container[i]->getID() == s ){ //Ho trovato l'oggetto
+            return true;
+        }
+    }
+    return false;
+}

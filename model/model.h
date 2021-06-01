@@ -27,6 +27,7 @@ public:
     void printAll() const;
 
     void updateItem(u_int, WaffleBox*);
+    bool findItem(std::string);
 
     std::string getPath() const;
     std::string getFileName() const;
