@@ -1,7 +1,7 @@
 #include "catalog.h"
 
+Catalog::Catalog(QWidget(*parent), TableModel *TM, FilterProxyModel *FPM):QWidget(parent),
 
-catalog::catalog(QWidget(*parent), TableModel *TM, filterProxyModel *FPM):QWidget(parent),
     table(new Table(this)),
     btnModify(new QPushButton("Modifica",this)),
     btnViewItem(new QPushButton("Visualizza prodotto",this)),
@@ -67,25 +67,25 @@ catalog::catalog(QWidget(*parent), TableModel *TM, filterProxyModel *FPM):QWidge
     mainLayout->setAlignment(Qt::AlignTop);
 }
 
-QPushButton *catalog::getBtnModifiy() const{ return btnModify; }
+QPushButton *Catalog::getBtnModifiy() const { return btnModify; }
 
-QPushButton *catalog::getBtnViewItem() const{ return btnViewItem; }
+QPushButton *Catalog::getBtnViewItem() const { return btnViewItem; }
 
-QPushButton *catalog::getBtnRemove() const{ return btnRemove; }
+QPushButton *Catalog::getBtnRemove() const { return btnRemove; }
 
-Table *catalog::getTable() const{ return table; }
+Table *Catalog::getTable() const { return table; }
 
-QComboBox *catalog::getTypeCombobox() const { return typeCombobox; }
+QComboBox *Catalog::getTypeCombobox() const { return typeCombobox; }
 
-QComboBox *catalog::getDetailsCombobox() const { return detailsCombobox; }
+QComboBox *Catalog::getDetailsCombobox() const { return detailsCombobox; }
 
-QLineEdit *catalog::getSearchEdit() const { return searchEdit; }
+QLineEdit *Catalog::getSearchEdit() const { return searchEdit; }
 
-TableModel *catalog::getTm() const { return Tm; }
+TableModel *Catalog::getTm() const { return Tm; }
 
-filterProxyModel *catalog::getFpm() const { return fpm; }
+FilterProxyModel *Catalog::getFpm() const { return fpm; }
 
-void catalog::sortHeaderClicked(int a){
+void Catalog::sortHeaderClicked(int a) {
     if(ord){
         fpm->sort(a,Qt::DescendingOrder);
         ord=false;
@@ -97,7 +97,7 @@ void catalog::sortHeaderClicked(int a){
 }
 
 
-QPushButton *catalog::getBtnBuy() const
+QPushButton *Catalog::getBtnBuy() const
 {
     return btnBuy;
 }

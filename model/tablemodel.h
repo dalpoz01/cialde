@@ -10,7 +10,6 @@ class TableModel : public QAbstractTableModel{
 private:
     Model* model;
     WaffleBox* wbToInsert;
-
 public:
     TableModel(QObject * = nullptr, const std::string& = "../cialde-test/Data/Xml/", const std::string& = "products.xml");
     ~TableModel();

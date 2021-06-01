@@ -1,5 +1,6 @@
 #include "heightproviderbox.h"
 
+//Costruttore, costruttore di copia
 HeightProviderBox::HeightProviderBox(const std::string& nome, const std::string &id, const std::string &foto, u_int c, u_int w, double p, u_int d, u_int s, u_int h) : WaffleBox(nome,id, foto, c, w, p, d, s), height(h) {}
 HeightProviderBox::HeightProviderBox(const HeightProviderBox &hp) : WaffleBox(hp.getName(), hp.getID(), hp.getPhoto(), hp.getCapacity(), hp.getWeight(), hp.getPrice(), hp.getDiscount(), hp.getStockAvailability()), height(hp.getHeight()) {}
 

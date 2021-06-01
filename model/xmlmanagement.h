@@ -10,7 +10,6 @@
 #include<QIODevice>
 #include <QtXml>
 
-#include <iostream>
 #include <sstream>
 
 #include "container.h"

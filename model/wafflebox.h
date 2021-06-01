@@ -52,8 +52,6 @@ public:
 
     //STAMPA INFO
     virtual std::string printItem() const;
-
-
 };
 
 #endif // WAFFLEBOX_H

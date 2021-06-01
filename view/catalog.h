@@ -14,7 +14,7 @@
 #include "model/tablemodel.h"
 #include "model/filterproxymodel.h"
 
-class catalog : public QWidget{
+class Catalog : public QWidget{
     Q_OBJECT
 private:
     Table *table;
@@ -26,10 +26,10 @@ private:
     QComboBox *typeCombobox;
     QComboBox *detailsCombobox;
     TableModel *Tm;
-    filterProxyModel *fpm;
-    bool ord;
+    FilterProxyModel *fpm;
+    bool ord;  //Variabile booleana per gestire l'ordinamento della tabella. Se falsa ordina in modo crescente, altrimenti in ordine decrescente
 public:
-    explicit catalog(QWidget * = nullptr, TableModel * = nullptr, filterProxyModel * = nullptr);
+    explicit Catalog(QWidget * = nullptr, TableModel * = nullptr, FilterProxyModel * = nullptr);
     QPushButton *getBtnModifiy() const;
     QPushButton *getBtnViewItem() const;
     QPushButton *getBtnRemove() const;
@@ -45,6 +45,8 @@ public:
 /*public slots:
     void setOrder();*/
     QPushButton *getBtnBuy() const;
+    FilterProxyModel *getFpm() const;
+    void sortHeaderClicked(int); //Metodo per gestire l'ordinamento della tabella in base alla colonna cliccata
 };
 
 #endif // CATALOG_H

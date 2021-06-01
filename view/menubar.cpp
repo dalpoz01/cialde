@@ -14,23 +14,23 @@ MenuBar::MenuBar(QWidget *parent) :
     addMenu(menu);
     addAction(catalog);
     addAction(addProduct);
+
     orderTab->setVisible(false);
     addAction(orderTab);
 
     connect(load,SIGNAL(changed()),this,SLOT(loadXmlFile()));
     connect(save,SIGNAL(changed()),this,SLOT(saveXmlFile()));
+
 }
 
-QAction* MenuBar::getLoad() const{ return load; }
+QAction* MenuBar::getLoad() const { return load; }
 
-QAction* MenuBar::getSave() const{ return save; }
-
-QAction* MenuBar::getCatalog() const{ return catalog; }
-
-QAction *MenuBar::getAddProduct() const{ return addProduct; }
+QAction* MenuBar::getSave() const { return save; }
 
 QAction *MenuBar::getOrderTab() const{ return orderTab; }
 
 void MenuBar::loadXmlFile(){ emit signalToLoad(); }
 
-void MenuBar::saveXmlFile(){ emit signalToSave(); }
+QAction* MenuBar::getCatalog() const { return catalog; }
+
+QAction *MenuBar::getAddProduct() const { return addProduct; }

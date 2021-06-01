@@ -28,29 +28,26 @@ private:
     AddProduct* aggiungiProdotto;
     Controller* controller;
     TableModel *tm;
-    filterProxyModel *fpm;
-    catalog *catalogo;
+    FilterProxyModel *fpm;
+    Catalog *catalogo;
     Order* ordini;
-
 public:
     explicit MainWindow(QWidget * = nullptr);
     ~MainWindow() override = default;
     virtual QSize sizeHint() const override;
     void setController(Controller *);
     AddProduct* getAddProduct() const;
-    catalog* getCatalog() const;
+    Catalog* getCatalog() const;
     MenuBar *getMenu() const;
     TableModel* getTM() const;
-    filterProxyModel* getFPM() const;
+    FilterProxyModel* getFPM() const;
     Order* getOrder() const;
-
 public slots:
     void insertItemInfo();  //slot che visualizza una finestra di successo
     void loadingXmlInfo();  //slot che visualizza una finestra di successo
     void savingXmlInfo();   //slot che visualizza una finestra di successo
     void enableBtnTable(bool);  //slot che abilita/disabilita l'interazione con i bottoni della tabella Catalogo
     virtual void closeEvent(QCloseEvent*) override; //Chiusura finestra
-
 };
 
 #endif // MAINWINDOW_H

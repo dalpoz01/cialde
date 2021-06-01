@@ -29,6 +29,7 @@ private slots:
 signals:
     void signalToLoad() const;
     void signalToSave() const;
+
 };
 
 #endif // MENUBAR_H

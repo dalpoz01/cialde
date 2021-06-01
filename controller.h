@@ -26,8 +26,6 @@ public:
     void setView(MainWindow*);
     void setModel(Model*);
     Model *getModel() const;
-    //void refreshSearchTable();
-
 public slots:
     //Menubar
     void showCatalogo() const;  //slot per visualizzare la scheda catalogo e nascondere le altre
@@ -67,9 +65,6 @@ public slots:
     //void showSearch() const;
     //void hideSearch() const;
     //void seeTableItem() const;  //Visualizza o meno la tabella e i suoi bottoni in Catalogo
-
-
-
 
 };
 

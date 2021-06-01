@@ -12,7 +12,6 @@ private:
     XmlManagement xmlManager;
     Container<DeepPtr<WaffleBox>> container;
 public:
-
     Model(const std::string& = "../cialde-test/Data/Xml/", const std::string& = "products.xml", u_int = 10);
     Model(const Model&);
 
@@ -27,14 +26,13 @@ public:
     void printAll() const;
 
     void updateItem(u_int, WaffleBox*);
-    bool findItem(std::string);
+    bool findItem(std::string); //Metodo per veificare la presenza dell'ID di un wafflebox data una stringa, ritorna true se trovato
 
     std::string getPath() const;
     std::string getFileName() const;
     void setPath(const std::string&);
     void setFileName(const std::string&);
     Container<DeepPtr<WaffleBox>> getContainer() const;
-
 };
 
 #endif // MODEL_H

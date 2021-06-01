@@ -1,4 +1,5 @@
 #include "conebox.h"
+
 //Costruttore
 ConeBox::ConeBox(const std::string& nome, const std::string &id, const std::string &foto, u_int c, u_int w, double p, u_int dis, u_int s, u_int h, u_int d): HeightProviderBox(nome, id, foto, c, w, p, dis, s, h), ext_diameter(d) {}
 
@@ -10,7 +11,6 @@ u_int ConeBox::getExtDiameter() const{return ext_diameter;}
 
 //Setter
 void ConeBox::setExtDiameter(u_int diam){ext_diameter = diam;}
-
 
 //Operatori
 bool ConeBox::operator ==(const ConeBox& c) {return HeightProviderBox::operator ==(c) && ext_diameter == c.ext_diameter;}
@@ -28,4 +28,3 @@ std::string ConeBox::printItem() const{
              << "Diametro esterno: " << ext_diameter << std::endl;
     return stream.str();
 }
-
