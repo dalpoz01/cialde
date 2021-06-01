@@ -11,15 +11,15 @@ Model::Model(const Model& m) : Model(m.getPath(), m.getFileName(), m.getSize()) 
 
 //bool Model::findItem(WaffleBox* obj) const{return container.find(DeepPtr<WaffleBox>(obj));}
 
-void Model::addBox(WaffleBox* waffleb){container.push_back(DeepPtr<WaffleBox>(waffleb));}
+void Model::addBox(WaffleBox* waffleb){ container.push_back(DeepPtr<WaffleBox>(waffleb)); }
 
-void Model::removeBox(u_int index){container.erase(index);}
+void Model::removeBox(u_int index){ container.erase(index); }
 
-void Model::removeBox(DeepPtr<WaffleBox>& ptr){container.erase(ptr);}
+void Model::removeBox(DeepPtr<WaffleBox>& ptr){ container.erase(ptr); }
 
-void Model::loadXml(){container = xmlManager.read();}
+void Model::loadXml(){ container = xmlManager.read(); }
 
-void Model::writeXml() const { if(container.getSize()>0){xmlManager.write(container);}else{std::cout<<"Container vuoto"<<endl;}}
+void Model::writeXml() const { if(container.getSize()>0){ xmlManager.write(container); }else{ std::cout<<"Container vuoto"<<endl; } }
 
 u_int Model::getSize() const{return container.getSize();}
 

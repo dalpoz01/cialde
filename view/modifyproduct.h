@@ -31,7 +31,7 @@
 #include "model/heightproviderbox.h"
 #include "model/ventagliobox.h"
 
-class modifyProduct : public QWidget{
+class ModifyProduct : public QWidget{
     Q_OBJECT
 private:
     std::string imgpath;
@@ -82,7 +82,7 @@ private:
 
     static std::string doubleToString(double); //Metodo per convertire double in stringa con precisione prefissata
 public:
-    explicit modifyProduct(QWidget * = nullptr, WaffleBox * = nullptr);
+    explicit ModifyProduct(QWidget * = nullptr, WaffleBox * = nullptr);
     virtual QSize sizeHint() const override;
 
     QPushButton *getCancelButton() const;

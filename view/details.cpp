@@ -1,6 +1,6 @@
 #include "details.h"
 
-details::details(QWidget *parent, WaffleBox *wf): QWidget(parent),
+Details::Details(QWidget *parent, WaffleBox *wf): QWidget(parent),
     w(wf)
 {
     setWindowTitle("Wafflebox - Dettagli prodotto");
@@ -27,13 +27,11 @@ details::details(QWidget *parent, WaffleBox *wf): QWidget(parent),
 
     imgLabel=new QLabel(this);
     QPixmap qpm = QPixmap(QString::fromStdString(w->getPhoto()));
-
     if(!qpm.isNull()){
         imgLabel->setPixmap(qpm.scaled(QSize(400, 400)));
     }else{
         imgLabel->setText("IMMAGINE NON TROVATA");
         imgLabel->setMinimumSize(400,400);
-        //imgLabel->setPixmap(QPixmap(QString::fromStdString("../cialde-test/Data/Photo/image-not-found.jpg")).scaled(QSize(400, 400)));
     }
     imgLabel->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
@@ -59,7 +57,6 @@ details::details(QWidget *parent, WaffleBox *wf): QWidget(parent),
     formLayout->addRow(stockLabel,stockValueLabel);
 
     //Distinzione in base ai vari prodotti
-
     CircleBox *ci=dynamic_cast<CircleBox*>(w);
     if(ci){
         radiusLabel=new QLabel("Raggio: ",this);
@@ -103,7 +100,6 @@ details::details(QWidget *parent, WaffleBox *wf): QWidget(parent),
             }
         }
     }
-
     left->addWidget(imgLabel);
     right->addLayout(formLayout);
     main->addLayout(left);
@@ -111,13 +107,13 @@ details::details(QWidget *parent, WaffleBox *wf): QWidget(parent),
     setLayout(main);
 }
 
-std::string details::doubleToString(double d){
+std::string Details::doubleToString(double d){
     std::stringstream s;
     s << std::fixed <<std::setprecision(2) << d;
     return s.str();
 }
 
-QSize details::sizeHint() const{
+QSize Details::sizeHint() const{
     return QSize(800,500);
 }
 

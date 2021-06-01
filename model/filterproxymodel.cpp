@@ -1,22 +1,22 @@
 #include "filterproxymodel.h"
 
-filterProxyModel::filterProxyModel(QObject *parent):
+FilterProxyModel::FilterProxyModel(QObject *parent):
     QSortFilterProxyModel(parent),
     itemType("Tutti"),
     columnCount(0)
 {
 }
 
-void filterProxyModel::setItemType(const QString &value){ itemType = value; }
+void FilterProxyModel::setItemType(const QString &value){ itemType = value; }
 
-void filterProxyModel::setColumnCount(int value){ columnCount = value; }
+void FilterProxyModel::setColumnCount(int value){ columnCount = value; }
 
-unsigned int filterProxyModel::getIndexByQIndex(const QModelIndex &i) const {
+unsigned int FilterProxyModel::getIndexByQIndex(const QModelIndex &i) const {
     QModelIndex index = mapToSource(i);
     return static_cast<unsigned int>(index.row());
 }
 
-bool filterProxyModel::filterAcceptsRow(int sr, const QModelIndex &sp) const {
+bool FilterProxyModel::filterAcceptsRow(int sr, const QModelIndex &sp) const {
     QModelIndex fieldDataModelIndex = sourceModel()->index(sr, columnCount, sp);
     QModelIndex itemTypeModelIndex = sourceModel()->index(sr, 1, sp);
     QString fieldDataString = sourceModel()->data(fieldDataModelIndex).toString();
@@ -31,4 +31,4 @@ bool filterProxyModel::filterAcceptsRow(int sr, const QModelIndex &sp) const {
     return (fieldDataString.contains(QRegExp(DetailsToSearchTemp, Qt::CaseInsensitive, QRegExp::Wildcard)) && itemTypeString.contains(itemToSearch));
 }
 
-void filterProxyModel::setDetailsToSearch(const QString &value) { detailsToSearch = value; }
+void FilterProxyModel::setDetailsToSearch(const QString &value) { detailsToSearch = value; }

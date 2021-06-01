@@ -1,7 +1,6 @@
 #include "addproduct.h"
 
 AddProduct::AddProduct(QWidget(*parent)): QWidget(parent),
-
     imgpath("../cialde-test/Data/Photo/image-not-found.jpg"),
     currentPath("../cialde-test/Data/Photo"),
     itemComboBox(new QComboBox(this)),
@@ -43,7 +42,6 @@ AddProduct::AddProduct(QWidget(*parent)): QWidget(parent),
     tasteLabel(new QLabel("Gusto",this)),
     tasteLine(new QLineEdit(this))
 {
-
     QHBoxLayout* base = new QHBoxLayout(this);
     QVBoxLayout* left = new QVBoxLayout();
     QVBoxLayout* right = new QVBoxLayout();
@@ -144,25 +142,21 @@ void AddProduct::showHeight(bool flag) const{
 }
 
 void AddProduct::showVentaglio(bool flag) const{
-
     widthLabel->setVisible(flag);
     widthLine->setVisible(flag);
 }
 
 void AddProduct::showCannolo(bool flag) const{
-
     intdiamLabel->setVisible(flag);
     intdiamLine->setVisible(flag);
 }
 
 void AddProduct::showCone(bool flag) const{
-
     extdiamLabel->setVisible(flag);
     extdiamLine->setVisible(flag);
 }
 
 void AddProduct::showBranded(bool flag) const{
-
     prncolorLabel->setVisible(flag);
     seccolorLabel->setVisible(flag);
     prncolorLine->setVisible(flag);
@@ -171,7 +165,6 @@ void AddProduct::showBranded(bool flag) const{
 }
 
 void AddProduct::showCovered(bool flag) const{
-
     tasteLabel->setVisible(flag);
     tasteLine->setVisible(flag);
 }
@@ -186,9 +179,7 @@ void AddProduct::showCommon() const{
     showBranded(false);
 }
 
-
-void AddProduct::createRadioLayout(QHBoxLayout* radioLayoutDown, QVBoxLayout* radioLayout, QHBoxLayout* radioLayoutUp)
-{
+void AddProduct::createRadioLayout(QHBoxLayout* radioLayoutDown, QVBoxLayout* radioLayout, QHBoxLayout* radioLayoutUp) {
     radioLayoutUp->addWidget(dim1Radio);
     radioLayoutUp->addWidget(dim2Radio);
     radioLayoutDown->addWidget(dim3Radio);
@@ -212,7 +203,6 @@ void AddProduct::resetCommon() {
     dim3Radio->setChecked(false);
 }
 
-
 void AddProduct::resetCircle() const{
     radiusSpin->setValue(0);
 }
@@ -226,23 +216,19 @@ void AddProduct::resetVentaglio() const{
 }
 
 void AddProduct::resetCannolo() const{
-
     intdiamLine->setText(" ");
 }
 
 void AddProduct::resetCone() const{
-
     extdiamLine->setText(" ");
 }
 
 void AddProduct::resetBranded() const{
-
     prncolorLine->setText(" ");
     seccolorLine->setText(" ");
 }
 
 void AddProduct::resetCovered() const{
-
     tasteLine->setText(" ");
 }
 
@@ -258,15 +244,13 @@ void AddProduct::resetAllFields(){
     showCommon();
 }
 
-void AddProduct::resetFields(){
-
+void AddProduct::resetFields() {
     if(QMessageBox::question(this, "Attenzione" ,"Vuoi annullare l'inserimento e resettare i campi?", QMessageBox::Ok, QMessageBox::Close) == QMessageBox::Ok){
-            resetAllFields();
+        resetAllFields();
     }
 }
 
-void AddProduct::enableFields(bool flag) const
-{
+void AddProduct::enableFields(bool flag) const {
     capacityBox->setEditable(flag);
     nomeLine->setEnabled(flag);
     idLine->setEnabled(flag);
@@ -287,12 +271,9 @@ void AddProduct::enableFields(bool flag) const
     discountBox->setEnabled(flag);
 }
 
-void AddProduct::showItemTypeField(const QString& selection) const{
-
+void AddProduct::showItemTypeField(const QString& selection) const {
     if(selection == " - "){
-
         enableFields(false);
-
         showCircle(false);
         showHeight(false);
         showVentaglio(false);
@@ -300,11 +281,8 @@ void AddProduct::showItemTypeField(const QString& selection) const{
         showCone(false);
         showCovered(false);
         showBranded(false);
-
     }else if(selection == "Circle Box"){
-
         enableFields(true);
-
         showCircle(true);
         showHeight(false);
         showVentaglio(false);
@@ -312,11 +290,8 @@ void AddProduct::showItemTypeField(const QString& selection) const{
         showCone(false);
         showCovered(false);
         showBranded(false);
-
     }else if(selection =="Ventaglio Box"){
-
         enableFields(true);
-
         showCircle(false);
         showHeight(true);
         showVentaglio(true);
@@ -324,11 +299,8 @@ void AddProduct::showItemTypeField(const QString& selection) const{
         showCone(false);
         showCovered(false);
         showBranded(false);
-
     }else if(selection == "Cannolo Box"){
-
         enableFields(true);
-
         showCircle(false);
         showHeight(true);
         showVentaglio(false);
@@ -336,11 +308,8 @@ void AddProduct::showItemTypeField(const QString& selection) const{
         showCone(false);
         showCovered(false);
         showBranded(false);
-
     }else if(selection  == "Cone Box"){
-
         enableFields(true);
-
         showCircle(false);
         showHeight(true);
         showVentaglio(false);
@@ -348,11 +317,8 @@ void AddProduct::showItemTypeField(const QString& selection) const{
         showCone(true);
         showCovered(false);
         showBranded(false);
-
     }else if(selection == "Covered Box"){
-
         enableFields(true);
-
         showCircle(false);
         showHeight(true);
         showVentaglio(false);
@@ -360,11 +326,8 @@ void AddProduct::showItemTypeField(const QString& selection) const{
         showCone(true);
         showCovered(true);
         showBranded(false);
-
     }else if(selection == "Branded Box"){
-
         enableFields(true);
-
         showCircle(false);
         showHeight(true);
         showVentaglio(false);
@@ -429,8 +392,6 @@ void AddProduct::insert(){
                 u_int peso = (capa)*(0.8);
                 double prezzo = prezzoLine->text().toDouble();
                 u_int disc = discountBox->text().toUInt();
-
-
                 u_int radius = 0;
                 u_int height = 0;
                 u_int width = 0;
@@ -481,7 +442,7 @@ void AddProduct::insert(){
                         }
                         temp = new Branded(nome,id,foto,capa,peso,prezzo,disc,stockAva,height,extDiam,princ,seco);
                      break;
-                    }
+                 }
             }
 
         }
@@ -499,6 +460,7 @@ void AddProduct::insert(){
         delete temp;
     }
 }
+
 void AddProduct::addFoto(){
     QString path(QFileDialog::getOpenFileName(this, "Seleziona file", currentPath, "Immagine (*.png *.jpg *.jpeg)"));
     if (path.isNull()==false){

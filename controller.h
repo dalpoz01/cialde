@@ -5,7 +5,6 @@
 #include <QModelIndexList>
 #include <QString>
 #include <QItemSelectionModel>
-#include <iostream>
 #include "view/mainwindow.h"
 #include "model/model.h"
 #include "model/container.h"
@@ -25,8 +24,6 @@ public:
     void setView(MainWindow*);
     void setModel(Model*);
     Model *getModel() const;
-    //void refreshSearchTable();
-
 public slots:
     //Menubar
     void showCatalogo() const;  //slot per visualizzare la scheda catalogo e nascondere le altre
@@ -52,18 +49,6 @@ public slots:
 
     //Modifica
     void modificaProdotto();    //Visualizza la finestra per modificare un oggetto preseleionato in tabella
-
-    //Unused
-    //void avoidSearch() const;
-    //void showSearchTable();
-    //void modifyItemController(WaffleBox*); //Aggiorna il modello e la vista per una modifica effettuata
-    //void showSearch() const;
-    //void hideSearch() const;
-    //void seeTableItem() const;  //Visualizza o meno la tabella e i suoi bottoni in Catalogo
-
-
-
-
 };
 
 #endif // CONTROLLER_H

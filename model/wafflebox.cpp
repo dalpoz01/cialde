@@ -1,5 +1,6 @@
 #include "wafflebox.h"
 
+//Costruttore, costruttore di copia
 WaffleBox::WaffleBox(const std::string &nome, const std::string &id, const std::string &foto, u_int c, u_int w, double p, u_int d, u_int s) : name(nome), ID(id), photo(foto), capacity(c), weight(w), price(p), discount(d), stockavailability(s) {}
 WaffleBox::WaffleBox(const WaffleBox &w) : name(w.getName()), ID(w.getID()), photo(w.getPhoto()), capacity(w.getCapacity()), weight(w.getWeight()), price(w.getPrice()), discount(w.getDiscount()), stockavailability(w.getStockAvailability()) {}
 

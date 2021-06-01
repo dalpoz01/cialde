@@ -6,7 +6,6 @@
 #include <QPixmap>
 #include <sstream>
 #include <iomanip>
-#include <iostream>
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -24,7 +23,7 @@
 #include "model/heightproviderbox.h"
 #include "model/ventagliobox.h"
 
-class details: public QWidget{
+class Details: public QWidget{
 private:
     WaffleBox  *w;
     //Etichetta valori comuni
@@ -68,9 +67,9 @@ private:
     QPushButton *cancelButton;
 
     static std::string doubleToString(double); //Metodo per convertire double in stringa con precisione prefissata
-public:
 
-    explicit details(QWidget * = nullptr, WaffleBox * = nullptr);
+public:
+    explicit Details(QWidget * = nullptr, WaffleBox * = nullptr);
     virtual QSize sizeHint() const override;
 
 };

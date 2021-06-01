@@ -97,15 +97,12 @@ public:
     void enableFields(bool) const;
     void resetAllFields();
     void insert(); //Metodo che crea un oggetto in base ai campi inseriti
-
 private slots:
     void resetFields();    //Metodo per resettare a " " tutti i campi.
     void showItemTypeField(const QString&) const; //Metodo per mostrare i campi corretti in base al tipo di Box
     void addFoto();   //Metodo per aggiungere foto
-
 signals:
     void signalToInsert(WaffleBox*) const;
-
 };
 
 #endif // ADDPRODUCT_H

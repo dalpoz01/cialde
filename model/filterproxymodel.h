@@ -6,13 +6,13 @@
 #include <iostream>
 using namespace std;
 
-class filterProxyModel : public QSortFilterProxyModel{
+class FilterProxyModel : public QSortFilterProxyModel{
 private:
     QString itemType;
     QString detailsToSearch;
     int columnCount;
 public:
-    filterProxyModel(QObject* = nullptr);
+    FilterProxyModel(QObject* = nullptr);
     void setColumnCount(int);
     void setItemType(const QString &);
     unsigned int getIndexByQIndex(const QModelIndex &) const;

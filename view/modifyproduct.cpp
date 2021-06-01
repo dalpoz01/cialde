@@ -1,6 +1,6 @@
 #include "modifyproduct.h"
 
-modifyProduct::modifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
+ModifyProduct::ModifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
     w(wf)
 {
     setWindowTitle("Wafflebox - Modifica prodotto");
@@ -147,25 +147,25 @@ modifyProduct::modifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
     setLayout(main);
 }
 
-std::string modifyProduct::doubleToString(double d){
+std::string ModifyProduct::doubleToString(double d){
     std::stringstream s;
     s << std::fixed <<std::setprecision(2) << d;
     return s.str();
 }
 
-QSize modifyProduct::sizeHint() const{
+QSize ModifyProduct::sizeHint() const{
     return QSize(900,500);
 }
 
-QPushButton *modifyProduct::getCancelButton() const{ return cancelButton; }
+QPushButton *ModifyProduct::getCancelButton() const{ return cancelButton; }
 
-QPushButton *modifyProduct::getModifyPhotoButton() const { return modifyPhotoButton; }
+QPushButton *ModifyProduct::getModifyPhotoButton() const { return modifyPhotoButton; }
 
-QPushButton *modifyProduct::getOkButton() const { return okButton; }
+QPushButton *ModifyProduct::getOkButton() const { return okButton; }
 
-WaffleBox* modifyProduct::getWaffleBox() const{ return w; }
+WaffleBox* ModifyProduct::getWaffleBox() const{ return w; }
 
-void modifyProduct::changePhoto(){
+void ModifyProduct::changePhoto(){
     QString path(QFileDialog::getOpenFileName(this, "Seleziona file", "../", "Immagine (*.png *.jpg *.jpeg)"));
     if (path.isNull()==false){
         if(!QFile::exists("../cialde-test/Data/Photo/" + path.section("/", -1, -1))){
@@ -182,12 +182,12 @@ void modifyProduct::changePhoto(){
     }
 }
 
-void modifyProduct::noModify(){
+void ModifyProduct::noModify(){
     QMessageBox::warning(nullptr, "Attenzione", "Operazione annullata", QMessageBox::Ok);
     close();
 }
 
-void modifyProduct::modifica() {
+void ModifyProduct::modifica() {
     w->setID(idValueEdit->text().toStdString());
     w->setName(nomeValueEdit->text().toStdString());
     w->setPhoto(imgpath);

@@ -34,21 +34,21 @@ void Controller::setView(MainWindow *v){
     connect(view->getCatalog()->getBtnModifiy(),SIGNAL(clicked()),this,SLOT(modificaProdotto())); //connessione per il bottone Modifica in catalogo, che apre una finestra di modifica dell'oggetto selezionato dalla tabella.
 }
 
-void Controller::setModel(Model *m){ model = m; }
+void Controller::setModel(Model *m) { model = m; }
 
-Model* Controller::getModel() const{return model;}
+Model* Controller::getModel() const { return model; }
 
-void Controller::showCatalogo() const{
+void Controller::showCatalogo() const {
     view->getAddProduct()->hide();
     view->getCatalog()->show();
 }
 
-void Controller::showAddProduct() const{
+void Controller::showAddProduct() const {
     view->getCatalog()->hide();
     view->getAddProduct()->show();
 }
 
-void Controller::existItem() const{
+void Controller::existItem() const {
     if(model->findItem(view->getAddProduct()->getIdLineString())==true){
         QMessageBox::warning(nullptr, "Attenzione", "Tipo di WaffleBox già esistente con questo ID, si consiglia di cambiare ID", QMessageBox::Ok);
     }else{
@@ -56,38 +56,38 @@ void Controller::existItem() const{
     }
 }
 
-void Controller::insertItemController(WaffleBox* wb){
+void Controller::insertItemController(WaffleBox* wb) {
     view->getTM()->setWBToinsert(wb); //Setto obj da inserire nel TableModel della vista, che verrà passato alla scheda catalogo
     view->getTM()->insertRows(view->getTM()->rowCount(), 1);    //inserisco l'obj nel TableModel, la vista lo notificherà aggiornandosi aggiungendo una riga in più
     view->insertItemInfo(); //Stampa finestra di successo
 }
 
-void Controller::changeType(const QString & tipo){
+void Controller::changeType(const QString & tipo) {
     view->getCatalog()->getFpm()->setItemType(tipo);
     emit view->getCatalog()->getSearchEdit()->returnPressed();
 }
 
-void Controller::search() const{
+void Controller::search() const {
     view->getCatalog()->getFpm()->setDetailsToSearch(view->getCatalog()->getSearchEdit()->text());
     view->getCatalog()->getFpm()->setFilterRegExp(QRegExp(view->getCatalog()->getSearchEdit()->text(), Qt::CaseInsensitive, QRegExp::Wildcard));
 }
 
-void Controller::loadingXmlController(){
+void Controller::loadingXmlController() {
     view->getTM()->getModel()->loadXml();
     view->getFPM()->setSourceModel(view->getTM());
     view->getCatalog()->getTable()->setModel(view->getFPM());
     view->loadingXmlInfo();
 }
 
-void Controller::savingXmlController(){
+void Controller::savingXmlController() {
     view->getTM()->getModel()->writeXml();
     view->savingXmlInfo();
 }
 
-void Controller::showDetails(){
+void Controller::showDetails() {
     const QModelIndexList selection = view->getCatalog()->getTable()->selectionModel()->selectedIndexes();
     if(selection.size()>0){
-        details *d=new details(nullptr, view->getCatalog()->getTm()->getItemByIndex(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0))));
+        Details *d=new Details(nullptr, view->getCatalog()->getTm()->getItemByIndex(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0))));
         d->setAttribute(Qt::WA_DeleteOnClose);
         d->show();
     }else{
@@ -95,10 +95,10 @@ void Controller::showDetails(){
     }
 }
 
-void Controller::modificaProdotto(){
+void Controller::modificaProdotto() {
     const QModelIndexList selection = view->getCatalog()->getTable()->selectionModel()->selectedIndexes();
     if(selection.size()>0){
-        modifyProduct *mp=new modifyProduct(nullptr, view->getCatalog()->getTm()->getItemByIndex(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0))));
+        ModifyProduct *mp=new ModifyProduct(nullptr, view->getCatalog()->getTm()->getItemByIndex(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0))));
         mp->setAttribute(Qt::WA_DeleteOnClose);
         connect(mp->getModifyPhotoButton(),SIGNAL(clicked()),mp,SLOT(changePhoto()));
         connect(mp->getOkButton(),SIGNAL(clicked()),mp,SLOT(modifica()));
@@ -110,11 +110,11 @@ void Controller::modificaProdotto(){
 
 }
 
-void Controller::enableBtnTableController(){ view->enableBtnTable(true); }
+void Controller::enableBtnTableController() { view->enableBtnTable(true); }
 
-void Controller::disableBtnTableController(){ view->enableBtnTable(false); }
+void Controller::disableBtnTableController() { view->enableBtnTable(false); }
 
-void Controller::removeItem(){
+void Controller::removeItem() {
     const QModelIndexList selection = view->getCatalog()->getTable()->selectionModel()->selectedIndexes();
     if(selection.size()>0){
         if(QMessageBox::question(nullptr, "Attenzione", "Sei sicuro di voler eliminare questo prodotto?", QMessageBox::Yes, QMessageBox::No)==QMessageBox::Yes){
@@ -129,7 +129,7 @@ void Controller::removeItem(){
     }
 }
 
-void Controller::setCurrectColumnFpm(const QString &a) const{
+void Controller::setCurrectColumnFpm(const QString &a) const {
     if(a.toStdString()=="ID"){
         view->getCatalog()->getFpm()->setColumnCount(0);
     }else{
@@ -153,4 +153,4 @@ void Controller::setCurrectColumnFpm(const QString &a) const{
     }
 }
 
-void Controller::headerClicked(int n){ view->getCatalog()->sortHeaderClicked(n); }
+void Controller::headerClicked(int n) { view->getCatalog()->sortHeaderClicked(n); }
