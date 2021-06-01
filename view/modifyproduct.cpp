@@ -259,22 +259,27 @@ void ModifyProduct::modifica() {
         } else {
             if (w->getItemType()=="Ventaglio Box"){
                 VentaglioBox *tmp=static_cast<VentaglioBox*>(w);
+                tmp->setHeight(heightValueEdit->text().toUInt());
                 tmp->setWidth(widthValueEdit->text().toUInt());
             } else {
                 if (w->getItemType()=="Cannolo Box") {
                     CannoloBox *tmp=static_cast<CannoloBox*>(w);
+                    tmp->setHeight(heightValueEdit->text().toUInt());
                     tmp->setIntDiameter(intDiameterValueEdit->text().toUInt());
                 } else {
                     if (w->getItemType()=="Cone Box") {
                         ConeBox *tmp=static_cast<ConeBox*>(w);
+                        tmp->setHeight(heightValueEdit->text().toUInt());
                         tmp->setExtDiameter(externalRadiusValueEdit->text().toUInt());
                     } else {
                         if (w->getItemType()=="Covered Box") {
                             Covered *tmp=static_cast<Covered*>(w);
+                            tmp->setHeight(heightValueEdit->text().toUInt());
                             tmp->setExtDiameter(externalRadiusValueEdit->text().toUInt());
                             tmp->setTaste(tasteValueEdit->text().toStdString());
                         } else {
                             Branded *tmp=static_cast<Branded*>(w);
+                            tmp->setHeight(heightValueEdit->text().toUInt());
                             tmp->setExtDiameter(externalRadiusValueEdit->text().toUInt());
                             tmp->setPrincipalColor(principalColorValueEdit->text().toStdString());
                             tmp->setSecundaryColor(secondaryColorValueEdit->text().toStdString());
