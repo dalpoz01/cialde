@@ -31,6 +31,8 @@ public:
 
     std::string getPath() const;
     std::string getFileName() const;
+    void setPath(const std::string&);
+    void setFileName(const std::string&);
     Container<DeepPtr<WaffleBox>> getContainer() const;
 
 };

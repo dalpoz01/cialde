@@ -45,7 +45,9 @@ SOURCES +=\
     view/mainwindow.cpp \
     controller.cpp \
     view/details.cpp \
-    model/filterproxymodel.cpp
+    model/filterproxymodel.cpp \
+    view/order.cpp \
+    model/ordersmodel.cpp
 
 HEADERS +=\
     model/covered.h \
@@ -69,7 +71,9 @@ HEADERS +=\
     view/mainwindow.h \
     controller.h \
     view/details.h \
-    model/filterproxymodel.h
+    model/filterproxymodel.h \
+    view/order.h \
+    model/ordersmodel.h
 
 RESOURCES += \
     Data/res.qrc

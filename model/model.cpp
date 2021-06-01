@@ -31,6 +31,9 @@ std::string Model::getPath() const{ return path; }
 
 std::string Model::getFileName() const{ return fileName; }
 
+void Model::setPath(const std::string& s){ path = s; }
+void Model::setFileName(const std::string& s){ fileName = s; }
+
 Container<DeepPtr<WaffleBox>> Model::getContainer() const{ return container; }
 
 void Model::updateItem(u_int index, WaffleBox* wb){

@@ -11,6 +11,7 @@ private:
     QAction *save;
     QAction *catalog;
     QAction *addProduct;
+    QAction* orderTab;
 
 public:
     explicit MenuBar(QWidget * = nullptr);
@@ -18,6 +19,8 @@ public:
     QAction* getSave() const;
     QAction *getCatalog() const;
     QAction *getAddProduct() const;
+    QAction *getOrderTab() const;
+
 
 private slots:
     void loadXmlFile();

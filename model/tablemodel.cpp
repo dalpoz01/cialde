@@ -153,8 +153,12 @@ bool TableModel::removeRows(int startRow, int n, const QModelIndex &modelIndex){
 
 void TableModel::setWBToinsert(WaffleBox* wb){ wbToInsert = wb; }
 
+WaffleBox* TableModel::getWbToInsert() const { return wbToInsert;}
+
 WaffleBox* TableModel::getItemByIndex(u_int index) const{ return model->getItem(index); }
 
 Model* TableModel::getModel() const{ return model;}
 
 void TableModel::setModel(Model *value){/*model->~Model();*/ model = value; }
+
+void TableModel::clearContainer(){ model->getContainer().clear();}

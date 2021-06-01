@@ -1,19 +1,20 @@
-#ifndef TABLEMODEL_H
-#define TABLEMODEL_H
+#ifndef ORDERSMODEL_H
+#define ORDERSMODEL_H
 
-#include<QAbstractTableModel>
+#include <QAbstractTableModel>
 #include <QPushButton>
 #include "model.h"
 #include "model/wafflebox.h"
 
-class TableModel : public QAbstractTableModel{
+class OrdersModel : public QAbstractTableModel {
 private:
     Model* model;
     WaffleBox* wbToInsert;
+    Container<u_int>* quantity;
 
 public:
-    TableModel(QObject * = nullptr, const std::string& = "../cialde-test/Data/Xml/", const std::string& = "products.xml");
-    ~TableModel();
+    OrdersModel(QObject * = nullptr);
+    ~OrdersModel();
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override; //Metodo di QAbstractTableModel che ritorna numero di righe per la view
     int columnCount(const QModelIndex& = QModelIndex()) const override; //Metodo di QAbstractTableModel che ritorna numero di colonne per la view
@@ -26,7 +27,8 @@ public:
     WaffleBox* getItemByIndex(u_int) const;
     Model* getModel() const;
     void setModel(Model *);
-    void clearContainer();
+    Container<u_int>* getQuantity() const;
+    void clearQuantity();
 };
 
-#endif // TABLEMODEL_H
+#endif // ORDERSMODEL_H

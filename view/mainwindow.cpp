@@ -7,7 +7,8 @@ MainWindow::MainWindow(QWidget *parent):
     aggiungiProdotto(new AddProduct(this)),
     tm(new TableModel(this)),
     fpm(new filterProxyModel(this)),
-    catalogo(new catalog(this,tm,fpm))
+    catalogo(new catalog(this,tm,fpm)),
+    ordini(new Order(this))
 {
     setWindowTitle("Wafflebox Store");
     setWindowIcon(QIcon(QPixmap("../cialde-test/Data/Photo/icon.png")));
@@ -27,8 +28,10 @@ MainWindow::MainWindow(QWidget *parent):
 
     main->setMenuBar(menu);
     aggiungiProdotto->hide();
+    ordini->hide();
     main->addWidget(catalogo);
     main->addWidget(aggiungiProdotto);
+    main->addWidget(ordini);
 
     setLayout(main);
 }
@@ -44,6 +47,8 @@ catalog* MainWindow::getCatalog() const{ return catalogo; }
 MenuBar *MainWindow::getMenu() const{ return menu; }
 
 TableModel* MainWindow::getTM() const{ return tm; }
+
+Order* MainWindow::getOrder() const { return ordini; }
 
 filterProxyModel* MainWindow::getFPM() const{ return fpm; }
 

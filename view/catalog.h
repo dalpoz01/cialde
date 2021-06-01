@@ -21,6 +21,7 @@ private:
     QPushButton *btnModify;
     QPushButton *btnViewItem;
     QPushButton *btnRemove;
+    QPushButton* btnBuy;
     QLineEdit *searchEdit;
     QComboBox *typeCombobox;
     QComboBox *detailsCombobox;
@@ -43,6 +44,7 @@ public:
     void sortHeaderClicked(int);
 /*public slots:
     void setOrder();*/
+    QPushButton *getBtnBuy() const;
 };
 
 #endif // CATALOG_H

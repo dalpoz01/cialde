@@ -10,6 +10,7 @@ void Controller::setView(MainWindow *v){
     connect(view->getMenu()->getAddProduct(),SIGNAL(triggered()),this,SLOT(showAddProduct()));  //connessione per visualizzare Aggiungi prodotto selezionando la voce dal menubar
     connect(view->getMenu()->getLoad(),SIGNAL(triggered()),this,SLOT(loadingXmlController()));  //connessione per caricare i dati da un file.xml selezionando la voce dal menubar
     connect(view->getMenu()->getSave(),SIGNAL(triggered()),this,SLOT(savingXmlController()));   //connessione per salvare i dati in un file.xml selezionando la voce dal menubar
+    connect(view->getMenu()->getOrderTab(),SIGNAL(triggered()),this,SLOT(showOrdini()));   //connessione per visualizzare Ordini selezionando la voce dal menubar
 
     //Aggiungi Prodotto
     connect(view->getAddProduct()->getItemCombo(),SIGNAL(currentIndexChanged(const QString&)),view->getAddProduct(),SLOT(showItemTypeField(const QString&))); //connessione alla QComboBox del tipo di box da inserire, per visualizzare i campi corretti
@@ -26,12 +27,20 @@ void Controller::setView(MainWindow *v){
     //connect(view->getCatalog()->getTable()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(enableBtnTableController()));  //connessione per bottone Visualizza prodotto nella parte inferiore
     connect(view->getCatalog()->getBtnRemove(),SIGNAL(clicked()),this,SLOT(removeItem()));
     connect(view->getCatalog()->getTable()->getHeader(),SIGNAL(sectionClicked(int)),this,SLOT(headerClicked(int)));
+    connect(view->getCatalog()->getTable()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(enableBtnBuy())); //Attiva il bottone di acquisto
+    connect(view->getCatalog()->getBtnBuy(),SIGNAL(clicked()), this, SLOT(enableOrder()));  //attiva la tab sul menubar dell'ordine
+
 
     //Visualizza dettagli
     connect(view->getCatalog()->getBtnViewItem(),SIGNAL(clicked()),this,SLOT(showDetails())); //connessione per mostrare un oggetto in dettaglio
 
     //Modifica prodotto
     connect(view->getCatalog()->getBtnModifiy(),SIGNAL(clicked()),this,SLOT(modificaProdotto())); //connessione per il bottone Modifica in catalogo, che apre una finestra di modifica dell'oggetto selezionato dalla tabella.
+
+    //Ordini
+    connect(view->getOrder()->getSendOrderBtn(),SIGNAL(clicked()),this, SLOT(confirmOrder()));
+    //connect(view->getOrder()->getCancBtn(),SIGNAL(clicked()),);
+
 }
 
 void Controller::setModel(Model *m){ model = m; }
@@ -40,11 +49,13 @@ Model* Controller::getModel() const{return model;}
 
 void Controller::showCatalogo() const{
     view->getAddProduct()->hide();
+    view->getOrder()->hide();
     view->getCatalog()->show();
 }
 
 void Controller::showAddProduct() const{
     view->getCatalog()->hide();
+    view->getOrder()->hide();
     view->getAddProduct()->show();
 }
 
@@ -54,6 +65,13 @@ void Controller::existItem() const{
     }else{
         view->getAddProduct()->insert();
     }
+}
+
+void Controller::showOrdini(){
+    view->getCatalog()->hide();
+    view->getAddProduct()->hide();
+    view->getOrder()->show();
+
 }
 
 void Controller::insertItemController(WaffleBox* wb){
@@ -154,3 +172,40 @@ void Controller::setCurrectColumnFpm(const QString &a) const{
 }
 
 void Controller::headerClicked(int n){ view->getCatalog()->sortHeaderClicked(n); }
+
+void Controller::enableBtnBuy(){view->getCatalog()->getBtnBuy()->setEnabled(true);}
+
+void Controller::enableOrder(){
+    const QModelIndexList selection = view->getCatalog()->getTable()->selectionModel()->selectedIndexes();
+    view->getMenu()->getOrderTab()->setVisible(true);
+        if(selection.size()>0){
+            if(view->getTM()->getModel()->getItem(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0)))->getStockAvailability() == 1){
+                if(QMessageBox::question(nullptr, "Attenzione", "Ultima rimanenza in magazzino! Continuare?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
+//                    if(view->getOrder()->getOm()->getModel()->findItem(view->getTM()->getModel()->getItem(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0)))->getID())){
+//                          view->getTM()->getModel()->getItem(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0)))->setStockAvailability(view->getTM()->getModel()->getItem(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0)))->getStockAvailability()-1);
+//                          view->getOrder()->getOm()->get
+//                    }
+                        view->getOrder()->getOm()->setWBToinsert(view->getTM()->getModel()->getItem(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0))));
+                        view->getOrder()->getOm()->insertRows(view->getOrder()->getOm()->rowCount(),1);
+                        view->getCatalog()->getFpm()->removeRows(selection.at(0).row(), 1);
+                        view->getOrder()->getOm()->getQuantity()->operator [](view->getOrder()->getOm()->rowCount())++;
+                        QMessageBox::information(nullptr, "Messaggio", "Prodotto aggiunto all'ordine con successo", QMessageBox::Ok);
+                }
+            }else if(view->getTM()->getModel()->getItem(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0)))->getStockAvailability() > 0){
+                view->getOrder()->getOm()->getQuantity()->push_back(QInputDialog::getInt(nullptr, "Prima di procedere..", "Inserisci la quantità del prodotto selezionato: ", 0,1,view->getTM()->getModel()->getItem(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0)))->getStockAvailability()));
+                int count = view->getOrder()->getOm()->getQuantity()->operator [](view->getOrder()->getOm()->rowCount());
+                view->getOrder()->getOm()->setWBToinsert(view->getTM()->getModel()->getItem(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0))));
+                view->getOrder()->getOm()->insertRows(view->getOrder()->getOm()->rowCount(),1);
+                view->getTM()->getModel()->getItem(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0)))->setStockAvailability(view->getTM()->getModel()->getItem(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0)))->getStockAvailability() - count);
+                QMessageBox::information(nullptr, "Messaggio", "Prodotto aggiunto all'ordine con successo", QMessageBox::Ok);
+            }
+        }else{
+            QMessageBox::warning(nullptr, "Attenzione", "Selezionare una riga per procedere all'acquisto!", QMessageBox::Ok);
+        }
+}
+
+void Controller::confirmOrder(){
+    if(QMessageBox::question(nullptr, "Attenzione", "Sicuro di voler inoltrare l'ordine?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
+        QMessageBox::information(nullptr, "Messaggio", "Stampato lo scontrino", QMessageBox::Ok);
+    }
+}

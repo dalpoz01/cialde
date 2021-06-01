@@ -5,6 +5,7 @@
 #include <QModelIndexList>
 #include <QString>
 #include <QItemSelectionModel>
+#include <QInputDialog>
 #include <iostream>
 #include "view/mainwindow.h"
 #include "model/model.h"
@@ -46,12 +47,18 @@ public slots:
     void removeItem();
     void setCurrectColumnFpm(const QString &) const;
     void headerClicked(int);
+    void enableBtnBuy();
 
     //Visualizza dettagli
     void showDetails(); //Visualizza la finestra con un oggetto preselezionato da tabella in dettaglio
 
     //Modifica
     void modificaProdotto();    //Visualizza la finestra per modificare un oggetto preseleionato in tabella
+
+    //Ordini
+    void showOrdini();
+    void enableOrder();
+    void confirmOrder();
 
     //Unused
     //void avoidSearch() const;

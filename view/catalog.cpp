@@ -1,10 +1,12 @@
 #include "catalog.h"
 
+
 catalog::catalog(QWidget(*parent), TableModel *TM, filterProxyModel *FPM):QWidget(parent),
     table(new Table(this)),
     btnModify(new QPushButton("Modifica",this)),
     btnViewItem(new QPushButton("Visualizza prodotto",this)),
     btnRemove(new QPushButton("Elimina",this)),
+    btnBuy(new QPushButton("Acquista",this)),
     searchEdit(new QLineEdit(this)),
     typeCombobox(new QComboBox(this)),
     detailsCombobox(new QComboBox(this)),
@@ -49,11 +51,14 @@ catalog::catalog(QWidget(*parent), TableModel *TM, filterProxyModel *FPM):QWidge
     topHalf->addWidget(detailsCombobox);
     topHalf->setAlignment(Qt::AlignTop);
 
-    //Parte inferiore della view in layout orizzontale, con a sinistra la tabella e a destra due bottoni, "Visualizza" e "Modifica" (rispettivamente in layout verticale)
+    //Parte inferiore della view in layout orizzontale, con a sinistra la tabella e a destra due bottoni, "Visualizza" e "Modifica" (rispettivamente in layout verticale
     bottomHalf->addWidget(table);
+    btnBuy->setEnabled(false);
+    btnBottom->addWidget(btnBuy);
     btnBottom->addWidget(btnModify);
     btnBottom->addWidget(btnViewItem);
     btnBottom->addWidget(btnRemove);
+
     btnBottom->setAlignment(Qt::AlignBottom);
 
     mainLayout->addLayout(topHalf);
@@ -89,6 +94,12 @@ void catalog::sortHeaderClicked(int a){
         ord=true;
     }
 
+}
+
+
+QPushButton *catalog::getBtnBuy() const
+{
+    return btnBuy;
 }
 
 

@@ -12,6 +12,7 @@
 #include "view/addproduct.h"
 #include "view/modifyproduct.h"
 #include "view/table.h"
+#include "view/order.h"
 #include "model/tablemodel.h"
 #include "model/filterproxymodel.h"
 
@@ -29,18 +30,19 @@ private:
     TableModel *tm;
     filterProxyModel *fpm;
     catalog *catalogo;
-    catalog *c;
+    Order* ordini;
 
 public:
     explicit MainWindow(QWidget * = nullptr);
     ~MainWindow() override = default;
     virtual QSize sizeHint() const override;
-    void setController(Controller *c);
+    void setController(Controller *);
     AddProduct* getAddProduct() const;
     catalog* getCatalog() const;
     MenuBar *getMenu() const;
     TableModel* getTM() const;
     filterProxyModel* getFPM() const;
+    Order* getOrder() const;
 
 public slots:
     void insertItemInfo();  //slot che visualizza una finestra di successo
