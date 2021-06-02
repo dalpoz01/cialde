@@ -57,6 +57,7 @@ public slots:
     void showOrdini();
     void enableOrder();
     void confirmOrder();
+    void cancOrder();
 
     //Unused
     //void avoidSearch() const;
