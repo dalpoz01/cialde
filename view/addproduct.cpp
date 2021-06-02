@@ -424,6 +424,7 @@ void AddProduct::insert(){
                                 height = heightLine->text().toUInt();
                                 extDiam = extdiamLine->text().toUInt();   //Tipo "Cone Box"
                                 temp = new ConeBox(nome,id,foto,capa,peso,prezzo,disc,stockAva,height,extDiam);
+                                break;
                             }
                         }
                         height = heightLine->text().toUInt();
