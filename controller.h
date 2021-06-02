@@ -6,6 +6,7 @@
 #include <QString>
 #include <QItemSelectionModel>
 #include <QInputDialog>
+#include <QDateTime>
 #include <iostream>
 #include "view/mainwindow.h"
 #include "model/model.h"

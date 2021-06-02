@@ -23,7 +23,7 @@ public:
     void writeXml() const;
     u_int getSize() const;
     WaffleBox* getItem(unsigned int i) const; //Metodo per ottenere l'obj nel container
-    void printAll() const;
+    std::string printAll() const;
 
     void updateItem(u_int, WaffleBox*);
     bool findItem(std::string); //Metodo per veificare la presenza dell'ID di un wafflebox data una stringa, ritorna true se trovato

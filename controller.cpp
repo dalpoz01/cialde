@@ -204,14 +204,19 @@ void Controller::enableOrder(){
 }
 
 void Controller::confirmOrder(){
-    if(QMessageBox::question(nullptr, "Attenzione", "Sicuro di voler inoltrare l'ordine?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
-        cout << "RICEVUTA" << endl;
-        for(u_int i =0; i<view->getOrder()->getOm()->getModel()->getSize(); ++i){
-            cout << "Prodotto:" << endl;
-            cout << view->getOrder()->getOm()->getModel()->getItem(i)->printItem() << endl;
-
-        }
-        QMessageBox::information(nullptr, "Messaggio", "Stampato lo scontrino", QMessageBox::Ok);
+    if(view->getOrder()->getOm()->getModel()->getSize()!=0){
+        if(QMessageBox::question(nullptr, "Attenzione", "Sicuro di voler inoltrare l'ordine?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
+            QMessageBox::question(nullptr, "Ricevuta", QString::fromStdString(view->getOrder()->getOm()->getModel()->printAll()) +
+                                                       QString("------------------------------------") +
+                                                       QString::number(view->getOrder()->getTotPrice()) + QString(" €"), QMessageBox::Ok);
+            view->getOrder()->getOm()->removeRows(0,view->getOrder()->getOm()->rowCount());
+            QMessageBox::information(nullptr, "Messaggio", "Ordine inviato", QMessageBox::Ok);
+            view->getMenu()->getOrderTab()->setVisible(false);
+            view->getOrder()->hide();
+            cout << view->getOrder()->getOm()->getModel()->printAll() << endl;
+         }
+    }else{
+         QMessageBox::warning(nullptr, "Attenzione", "Ordine vuoto!", QMessageBox::Ok);
     }
 }
 
@@ -221,16 +226,11 @@ void Controller::cancOrder(){
         for(u_int i = 0; i<view->getOrder()->getOm()->getModel()->getSize(); ++i){
 
             int quantityReset = view->getOrder()->getOm()->getQuantity()->operator [](i);
-            cout << "Quantitytoreset: " << quantityReset << endl;
             WaffleBox* toReset = view->getOrder()->getOm()->getModel()->getItem(i);
-            cout << "OBJ to reset: " << toReset->printItem() << endl;
-
-            cout << "OM Model Size" << view->getOrder()->getOm()->getModel()->getSize() << endl;
 
            for(u_int j = 0; j<view->getTM()->getModel()->getSize(); ++j){
                if(view->getTM()->getModel()->getItem(j)->getID() == toReset->getID()){
                        view->getTM()->getModel()->getItem(j)->setStockAvailability(view->getTM()->getModel()->getItem(j)->getStockAvailability() + quantityReset);
-//                       view->getOrder()->getOm()->getQuantity()->operator [](i) = 0;
                }else if (!view->getTM()->getModel()->findItem(toReset->getID())){
                    toReset->setStockAvailability(quantityReset);
                    view->getTM()->setWBToinsert(toReset);
@@ -241,8 +241,8 @@ void Controller::cancOrder(){
         view->getOrder()->getOm()->removeRows(0,view->getOrder()->getOm()->rowCount());
         QMessageBox::information(nullptr, "Messaggio", "Ordine cancellato", QMessageBox::Ok);
 
-        //view->getMenu()->getOrderTab()->setVisible(false);
-        //view->getOrder()->hide();
+        view->getMenu()->getOrderTab()->setVisible(false);
+        view->getOrder()->hide();
     }
 }
 

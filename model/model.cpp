@@ -25,7 +25,13 @@ u_int Model::getSize() const{return container.getSize();}
 
 WaffleBox* Model::getItem(unsigned int i) const{return container[i].operator ->();}
 
-void Model::printAll() const{ for(u_int i=0; i < container.getSize(); ++i){ cout << container[i]->printItem() << endl; } }
+std::string Model::printAll() const{
+    std::string ss;
+    for(u_int i=0; i < container.getSize(); ++i){
+        ss.append(container[i]->printItem()) ;
+    }
+    return ss;
+}
 
 std::string Model::getPath() const{ return path; }
 
