@@ -50,7 +50,16 @@ void Model::updateItem(u_int index, WaffleBox* wb){
     }
 }
 
-bool Model::findItem(std::string s) {
+bool Model::findItem(WaffleBox* w) const {
+    for(u_int i = 0; i < container.getSize(); ++i){
+        if(container[i] == w ){ //Ho trovato l'oggetto
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Model::findItem(std::string s) const {
     for(u_int i = 0; i < container.getSize(); ++i){
         if(container[i]->getID() == s ){ //Ho trovato l'oggetto
             return true;

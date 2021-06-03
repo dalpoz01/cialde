@@ -8,7 +8,7 @@
         <weight>160</weight>
         <price>1</price>
         <discount>1</discount>
-        <stockavailability>50</stockavailability>
+        <stockavailability>1</stockavailability>
         <height>0</height>
         <int_diameter>0</int_diameter>
     </WaffleBox>
@@ -60,7 +60,7 @@
         <stockavailability>150</stockavailability>
         <height>161</height>
         <ext_diameter>2</ext_diameter>
-        <principal_color></principal_color>
+        <principal_color>Nero</principal_color>
         <secondary_color>Arancione</secondary_color>
     </WaffleBox>
 </element>

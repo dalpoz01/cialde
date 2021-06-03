@@ -26,7 +26,8 @@ public:
     std::string printAll() const;
 
     void updateItem(u_int, WaffleBox*);
-    bool findItem(std::string); //Metodo per veificare la presenza dell'ID di un wafflebox data una stringa, ritorna true se trovato
+    bool findItem(WaffleBox*) const;
+    bool findItem(std::string s) const; //Metodo per veificare la presenza dell'ID di un wafflebox data una stringa, ritorna true se trovato
 
     std::string getPath() const;
     std::string getFileName() const;
