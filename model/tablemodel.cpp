@@ -158,5 +158,4 @@ WaffleBox* TableModel::getItemByIndex(u_int index) const{ return model->getItem(
 
 Model* TableModel::getModel() const{ return model;}
 
-void TableModel::clearContainer(){ model->getContainer().clear();}
 void TableModel::setModel(Model *value){ model = value; }

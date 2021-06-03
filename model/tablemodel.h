@@ -25,7 +25,6 @@ public:
     WaffleBox* getItemByIndex(u_int) const;
     Model* getModel() const;
     void setModel(Model *);
-    void clearContainer();
 };
 
 #endif // TABLEMODEL_H

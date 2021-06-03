@@ -94,11 +94,9 @@ WaffleBox* OrdersModel::getItemByIndex(u_int index) const{ return model->getItem
 
 Model* OrdersModel::getModel() const{ return model;}
 
-Container<u_int>* OrdersModel::getQuantity() const{ return quantity; }
-
 void OrdersModel::setModel(Model *value){ model = value; }
 
-void OrdersModel::clearQuantity(){ quantity->clear();}
+Container<u_int>* OrdersModel::getQuantity() const{ return quantity; }
 
 double OrdersModel::getTotPrice() const {
     double tot;

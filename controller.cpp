@@ -181,10 +181,6 @@ void Controller::enableOrder(){
             WaffleBox* toOrder = view->getTM()->getModel()->getItem(view->getFPM()->getIndexByQIndex(selection.at(0)));
             if(toOrder->getStockAvailability() == 1){
                 if(QMessageBox::question(nullptr, "Attenzione", "Ultima rimanenza in magazzino! Continuare?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
-//                    if(view->getOrder()->getOm()->getModel()->findItem(view->getTM()->getModel()->getItem(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0)))->getID())){
-//                          view->getTM()->getModel()->getItem(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0)))->setStockAvailability(view->getTM()->getModel()->getItem(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0)))->getStockAvailability()-1);
-//                          view->getOrder()->getOm()->get
-//                    }
                         view->getOrder()->getOm()->getQuantity()->push_back(1);
                         toOrder->setStockAvailability(toOrder->getStockAvailability()-1);
                         view->getOrder()->getOm()->setWBToinsert(toOrder);
@@ -210,7 +206,7 @@ void Controller::enableOrder(){
 void Controller::confirmOrder(){
     if(view->getOrder()->getOm()->getModel()->getSize()!=0){
         if(QMessageBox::question(nullptr, "Attenzione", "Sicuro di voler inoltrare l'ordine?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
-            QMessageBox::question(nullptr, "Ricevuta", QString::fromStdString(view->getOrder()->getOm()->getModel()->printAll()) + QString("\n") +
+            QMessageBox::question(nullptr, "Ricevuta\n", QString::fromStdString(view->getOrder()->getOm()->getModel()->printAll()) + QString("\n") +
                                                        QString("------------------------------------\n") + QString("TOTALE: ") +
                                                        QString::number(view->getOrder()->getOm()->getTotPrice()) + QString(" €"), QMessageBox::Ok);
             view->getOrder()->getOm()->removeRows(0,view->getOrder()->getOm()->rowCount());

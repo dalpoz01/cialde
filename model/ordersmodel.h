@@ -22,13 +22,13 @@ public:
     QVariant headerData(int, Qt::Orientation, int) const override;  //Metodo di QAbstractTableModel che inserisce i giusti nomi nelle colonne della tabella
     bool insertRows(int, int = 1, const QModelIndex& = QModelIndex()) override;  //Metodo di QAbstractTableModel che inserisce una riga sulla tabella
     bool removeRows(int, int = 1, const QModelIndex& = QModelIndex()) override; //Metodo di QAbstractTableModel che rimuove una riga dalla tabella
+
     void setWBToinsert(WaffleBox*);
     WaffleBox* getWbToInsert() const;
     WaffleBox* getItemByIndex(u_int) const;
     Model* getModel() const;
     void setModel(Model *);
     Container<u_int>* getQuantity() const;
-    void clearQuantity();
     double getTotPrice() const;
 };
 

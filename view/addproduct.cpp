@@ -232,7 +232,7 @@ void AddProduct::resetCovered() const{
     tasteLine->setText(" ");
 }
 
-void AddProduct::resetAllFields(){
+void AddProduct::resetAll(){
     resetCommon();
     resetCircle();
     resetHeight();
@@ -246,7 +246,7 @@ void AddProduct::resetAllFields(){
 
 void AddProduct::resetFields() {
     if(QMessageBox::question(this, "Attenzione" ,"Vuoi annullare l'inserimento e resettare i campi?", QMessageBox::Ok, QMessageBox::Close) == QMessageBox::Ok){
-        resetAllFields();
+        resetAll();
     }
 }
 
@@ -456,7 +456,7 @@ void AddProduct::insert(){
 
     if(temp != nullptr){
         emit signalToInsert(temp);
-        resetAllFields();
+        resetAll();
         delete temp;
     }
 }
