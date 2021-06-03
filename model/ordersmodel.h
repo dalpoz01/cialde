@@ -29,6 +29,7 @@ public:
     void setModel(Model *);
     Container<u_int>* getQuantity() const;
     void clearQuantity();
+    double getTotPrice() const;
 };
 
 #endif // ORDERSMODEL_H

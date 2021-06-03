@@ -99,3 +99,11 @@ Container<u_int>* OrdersModel::getQuantity() const{ return quantity; }
 void OrdersModel::setModel(Model *value){ model = value; }
 
 void OrdersModel::clearQuantity(){ quantity->clear();}
+
+double OrdersModel::getTotPrice() const {
+    double tot;
+    for(u_int i = 0; i<model->getSize(); ++i){
+        tot += getItemByIndex(i)->getRealPrice() * quantity->operator [](i);
+    }
+    return tot;
+}

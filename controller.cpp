@@ -211,8 +211,8 @@ void Controller::confirmOrder(){
     if(view->getOrder()->getOm()->getModel()->getSize()!=0){
         if(QMessageBox::question(nullptr, "Attenzione", "Sicuro di voler inoltrare l'ordine?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
             QMessageBox::question(nullptr, "Ricevuta", QString::fromStdString(view->getOrder()->getOm()->getModel()->printAll()) + QString("\n") +
-                                                       QString("------------------------------------\n") +
-                                                       QString::number(view->getOrder()->getTotPrice()) + QString(" €"), QMessageBox::Ok);
+                                                       QString("------------------------------------\n") + QString("TOTALE: ") +
+                                                       QString::number(view->getOrder()->getOm()->getTotPrice()) + QString(" €"), QMessageBox::Ok);
             view->getOrder()->getOm()->removeRows(0,view->getOrder()->getOm()->rowCount());
             view->getOrder()->getOm()->getQuantity()->clear();
             QMessageBox::information(nullptr, "Messaggio", "Ordine inviato", QMessageBox::Ok);
@@ -228,10 +228,7 @@ void Controller::cancOrder(){
     if(QMessageBox::question(nullptr, "Attenzione", "Sicuro di voler annullare l'ordine?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
 
         for(u_int i = 0; i<view->getOrder()->getOm()->getModel()->getSize(); ++i){
-            cout << "Size Model (" << i << ")" << view->getOrder()->getOm()->getModel()->getSize() << endl;
-
                 u_int quantityReset = view->getOrder()->getOm()->getQuantity()->operator [](i);
-                cout << quantityReset << endl;
                 WaffleBox* toReset = view->getOrder()->getOm()->getModel()->getItem(i);
 
                if(!view->getTM()->getModel()->findItem(toReset->getID())){ //Se non trova l'oggetto ordinato nell model principale, è da reinserire con la quantità ordinata

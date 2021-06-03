@@ -40,8 +40,6 @@ public:
     QPushButton* getCancBtn() const;
     QPushButton* getSendOrderBtn() const;
 
-    double getTotPrice() const;
-
 
 signals:
 

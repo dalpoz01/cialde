@@ -36,11 +36,3 @@ FilterProxyModel* Order::getFpm() const { return fpm; }
 QPushButton* Order::getCancBtn() const {return cancelBtn;}
 
 QPushButton* Order::getSendOrderBtn() const {return sendOrderBtn;}
-
-double Order::getTotPrice() const {
-    double tot;
-    for(u_int i = 0; i<om->getModel()->getSize(); ++i){
-        tot += om->getItemByIndex(i)->getRealPrice();
-    }
-    return tot;
-}
