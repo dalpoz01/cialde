@@ -381,9 +381,7 @@ void AddProduct::insert(){
                 stockAva = dim3Radio->text().toUInt();
             else if(dim4Radio->isChecked())
                 stockAva = dim4Radio->text().toUInt();
-            if(capacityBox->currentText().toUInt() < stockAva){
-                QMessageBox::critical(this,"Errore","La capacità non può essere inferiore allo stock!",QMessageBox::Ok);
-            }else{
+
                 //Creo attributi e assegno loro il valore presente nei campi
                 std::string nome = nomeLine->text().toStdString();
                 std::string id = idLine->text().toStdString();
@@ -446,9 +444,7 @@ void AddProduct::insert(){
             }
 
         }
-    }else{
         isEdited=false;
-    }
 
     if(!isEdited){
         QMessageBox::critical(this,"Errore","Campi essenziali errati o non compilati o vuoti",QMessageBox::Ok);

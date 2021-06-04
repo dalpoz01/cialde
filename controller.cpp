@@ -232,8 +232,13 @@ void Controller::cancOrder(){
                    view->getTM()->setWBToinsert(toReset);
                    view->getTM()->insertRows(view->getTM()->rowCount(),1);
 
-                }else{ //Lo trova, aggiorno la disponibiltà
-                    view->getTM()->getItemByIndex(i)->setStockAvailability(view->getTM()->getItemByIndex(i)->getStockAvailability() + quantityReset);
+                }else{
+                   //Il prodotto esiste e va aggiornata la disponibiltà
+                   for(u_int j = 0; j< view->getTM()->getModel()->getSize(); ++j){
+                        WaffleBox* toUpdate = view->getTM()->getModel()->getItem(j);
+                        if(toUpdate->operator ==(*toReset))
+                            toUpdate->setStockAvailability(toUpdate->getStockAvailability() + quantityReset);
+                   }
                 }
         }
 
