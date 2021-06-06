@@ -37,9 +37,8 @@ std::string WaffleBox::printItem() const {
              << "Nome: " << name <<std::endl
              << "ID: " << ID << std::endl
              << "Capacità: " << capacity << std::endl
-             << "Peso: " << weight << std::endl
-             << "Prezzo: " << price << std::endl
-             << "Sconto: " << discount << std::endl
-             << "Stock: " << stockavailability << std::endl;
+             << "Peso: " << weight << "g" << std::endl
+             << "Prezzo: " << getRealPrice() << "€" << std::endl;
+
     return stream.str();
 }

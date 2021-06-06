@@ -20,8 +20,7 @@ Details::Details(QWidget *parent, WaffleBox *wf): QWidget(parent),
     tipoLabel=new QLabel("Tipo: ",this);
     nomeLabel=new QLabel("Nome: ",this);
     idLabel=new QLabel("ID: ",this);
-    nPezziLabel=new QLabel("Capacità: ",this);
-    nPezziLabel=new QLabel("Capacità: ",this);
+    nPezziLabel=new QLabel("Capacità Box: ",this);
     prezzoLabel=new QLabel("Prezzo: ",this);
     discountLabel=new QLabel("Sconto: ",this);
     stockLabel=new QLabel("Disponibilità: ",this);
@@ -40,8 +39,8 @@ Details::Details(QWidget *parent, WaffleBox *wf): QWidget(parent),
     nomeValueLabel=new QLabel(QString::fromStdString(w->getName()), this);
     idValueLabel=new QLabel(QString::fromStdString(w->getID()), this);
     nPezziValueLabel=new QLabel(QString::fromStdString(std::to_string(w->getCapacity())), this);
-    prezzoValueLabel=new QLabel(QString::fromStdString(doubleToString(w->getRealPrice())), this);
-    discountValueLabel=new QLabel(QString::fromStdString(std::to_string(w->getDiscount())), this);
+    prezzoValueLabel=new QLabel(QString::fromStdString(doubleToString(w->getRealPrice()))+QString("€"), this);
+    discountValueLabel=new QLabel(QString::fromStdString(std::to_string(w->getDiscount()))+QString("%"), this);
     stockValueLabel=new QLabel(QString::fromStdString(std::to_string(w->getStockAvailability())), this);
 
     QHBoxLayout *main=new QHBoxLayout(this);
