@@ -52,7 +52,7 @@ QVariant TableModel::data(const QModelIndex &modelIndex, int role) const {
     return QVariant();
 }
 
-//Metodo
+//Metodo per definire le colonne della tabella
 QVariant TableModel::headerData(int section, Qt::Orientation orientation, int role) const {
     if(role != Qt::DisplayRole) return QVariant();
     if(orientation == Qt::Horizontal){

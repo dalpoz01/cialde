@@ -23,7 +23,6 @@ private:
     OrdersModel* om;
     QLabel* title;
     QPushButton* cancelBtn;
-    QLabel* emptyLabel;
     QPushButton* sendOrderBtn;
 public:
     explicit Order(QWidget *parent = nullptr);

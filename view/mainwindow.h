@@ -18,8 +18,6 @@
 
 class Controller;
 class AddProduct;
-using namespace std;
-
 
 class MainWindow : public QWidget{
     Q_OBJECT

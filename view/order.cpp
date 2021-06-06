@@ -6,7 +6,6 @@ Order::Order(QWidget *parent) :
     om(new OrdersModel(this)),
     title(new QLabel("Nuovo ordine",this)),
     cancelBtn(new QPushButton("Annulla",this)),
-    emptyLabel(new QLabel("Nessun ordine..")),
     sendOrderBtn(new QPushButton("Invia ordine",this))
 {
     QHBoxLayout* mainLayout = new QHBoxLayout(this);

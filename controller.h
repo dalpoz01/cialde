@@ -7,7 +7,6 @@
 #include <QItemSelectionModel>
 #include <QInputDialog>
 #include <QDateTime>
-#include <iostream>
 #include "view/mainwindow.h"
 #include "model/model.h"
 #include "model/container.h"
@@ -15,7 +14,6 @@
 #include "view/modifyproduct.h"
 
 class MainWindow;
-using namespace std;
 
 class Controller : public QObject {
     Q_OBJECT
@@ -29,7 +27,7 @@ public:
     Model *getModel() const;
 public slots:
     //Menubar
-    void showCatalogo() const;  //slot per visualizzare la scheda catalogo e nascondere le altre
+    void showCatalogo() const;      //slot per visualizzare la scheda catalogo e nascondere le altre
     void showAddProduct() const;    //slot per visualizzare la scheda aggiungi prodotto nascondendo le altre
     void loadingXmlController();    //slot che carica i dati da .xml
     void savingXmlController();     //slot che salva i dati in .xml
@@ -39,7 +37,7 @@ public slots:
     void insertItemController(WaffleBox*); //Inserisce un nuovo oggetto nel modello e nella tabella, dopo aver preso i dati dalla vista
 
     //Catalogo
-    void changeType(const QString &);   //
+    void changeType(const QString &);
     void search() const;
     void removeItem();
     void setCurrectColumnFpm(const QString &) const;

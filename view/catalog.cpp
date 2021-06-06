@@ -1,7 +1,6 @@
 #include "catalog.h"
 
 Catalog::Catalog(QWidget(*parent), TableModel *TM, FilterProxyModel *FPM):QWidget(parent),
-
     table(new Table(this)),
     btnModify(new QPushButton("Modifica",this)),
     btnViewItem(new QPushButton("Visualizza prodotto",this)),

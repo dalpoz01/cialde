@@ -20,7 +20,6 @@
 #include <QMessageBox>
 #include <sstream>
 #include <iomanip>
-#include <iostream>
 
 #include "model/wafflebox.h"
 #include "model/branded.h"

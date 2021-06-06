@@ -1,6 +1,4 @@
 #include "modifyproduct.h"
-#include <iostream>
-using namespace std;
 
 ModifyProduct::ModifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
     w(wf)
@@ -37,7 +35,6 @@ ModifyProduct::ModifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
     }else{
         imgLabel->setText("IMMAGINE NON TROVATA");
         imgLabel->setMinimumSize(400,400);
-        //imgLabel->setPixmap(QPixmap(QString::fromStdString("../cialde-test/Data/Photo/image-not-found.jpg")).scaled(QSize(400, 400)));
     }
     imgLabel->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 

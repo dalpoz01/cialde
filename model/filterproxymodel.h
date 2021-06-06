@@ -3,8 +3,6 @@
 
 #include <QSortFilterProxyModel>
 #include <QString>
-#include <iostream>
-using namespace std;
 
 class FilterProxyModel : public QSortFilterProxyModel {
 private:
