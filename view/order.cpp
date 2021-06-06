@@ -1,10 +1,9 @@
 #include "order.h"
 
-Order::Order(QWidget *parent, FilterProxyModel* FPM) :
+Order::Order(QWidget *parent) :
     QWidget(parent),
     tableProduct(new Table(this)),
     om(new OrdersModel(this)),
-    mainFpm(FPM),
     title(new QLabel("Nuovo ordine",this)),
     cancelBtn(new QPushButton("Annulla",this)),
     emptyLabel(new QLabel("Nessun ordine..")),
@@ -15,7 +14,6 @@ Order::Order(QWidget *parent, FilterProxyModel* FPM) :
     QVBoxLayout* tableLayout = new QVBoxLayout();
     QHBoxLayout* bottomLayout = new QHBoxLayout();
 
-//    fpm->setSourceModel(om);
     tableProduct->setModel(om);
 
     tableLayout->addWidget(title);
@@ -30,8 +28,6 @@ Order::Order(QWidget *parent, FilterProxyModel* FPM) :
 Table* Order::getTableProduct() const{ return tableProduct; }
 
 OrdersModel* Order::getOm() const { return om; }
-
-FilterProxyModel* Order::getMainFpm() const { return mainFpm; }
 
 QPushButton* Order::getCancBtn() const {return cancelBtn;}
 

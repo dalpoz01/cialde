@@ -33,7 +33,7 @@ bool WaffleBox::operator !=(const WaffleBox &w) const {return ID != w.ID || capa
 std::string WaffleBox::printItem() const{
     std::stringstream stream;
     stream <<
-              "------------------------------------" << std::endl
+              "\n------------------------------------" << std::endl
              << "Nome: " << name <<std::endl
              << "ID: " << ID << std::endl
              << "Capacità: " << capacity << std::endl

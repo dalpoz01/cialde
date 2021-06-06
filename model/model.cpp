@@ -13,10 +13,7 @@ Model::Model(const Model& m) : Model(m.getPath(), m.getFileName(), m.getSize()) 
 
 void Model::addBox(WaffleBox* waffleb){ container.push_back(DeepPtr<WaffleBox>(waffleb)); }
 
-void Model::removeBox(u_int index){
-    cout << "Tolgo il box " << index << endl;
-    cout << getItem(index)->printItem() << endl;
-    container.erase(index); }
+void Model::removeBox(u_int index){container.erase(index); }
 
 void Model::removeBox(DeepPtr<WaffleBox>& ptr){ container.erase(ptr); }
 
@@ -36,18 +33,20 @@ std::string Model::printAll() const{
     return ss;
 }
 
+std::string Model::printBill() const{
+    std::string ss;
+    for(u_int i=0; i < container.getSize(); ++i){
+        ss.append(container[i]->WaffleBox::printItem()) ;
+    }
+    return ss;
+}
+
 std::string Model::getPath() const{ return path; }
 
 std::string Model::getFileName() const{ return fileName; }
 
-void Model::emptyModel(){
-    for(u_int i=0; i < container.getSize(); ++i){
-        container.erase(i);
-    }
-
-}
-
 void Model::setPath(const std::string& s){ path = s; }
+
 void Model::setFileName(const std::string& s){ fileName = s; }
 
 Container<DeepPtr<WaffleBox>> Model::getContainer() const{ return container; }

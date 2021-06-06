@@ -205,11 +205,13 @@ void Controller::enableOrder(){
 }
 
 void Controller::confirmOrder(){
+    QDateTime now = QDateTime::currentDateTime();
     if(view->getOrder()->getOm()->getModel()->getSize()!=0){
         if(QMessageBox::question(nullptr, "Attenzione", "Sicuro di voler inoltrare l'ordine?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
-            QMessageBox::question(nullptr, "Ricevuta\n", QString::fromStdString(view->getOrder()->getOm()->getModel()->printAll()) + QString("\n") +
-                                                       QString("------------------------------------\n") + QString("TOTALE: ") +
-                                                       QString::number(view->getOrder()->getOm()->getTotPrice()) + QString(" €"), QMessageBox::Ok);
+            QMessageBox::information(nullptr, "Ricevuta",QString("WAFFLEBOX STORE\n") + QString(now.toString("yyyy-MM-dd hh:mm:ss")) +
+                                                       QString::fromStdString(view->getOrder()->getOm()->getModel()->printBill()) + QString("\n") +
+                                                       QString("------------------------------------\n") + QString("TOTALE:     ") +
+                                                       QString::number(view->getOrder()->getOm()->getTotPrice()) + QString(" €\n"), QMessageBox::Ok);
             view->getOrder()->getOm()->removeRows(0,view->getOrder()->getOm()->rowCount());
             view->getOrder()->getOm()->getQuantity()->clear();
             QMessageBox::information(nullptr, "Messaggio", "Ordine inviato", QMessageBox::Ok);
@@ -222,15 +224,12 @@ void Controller::confirmOrder(){
 }
 
 void Controller::cancOrder(){
-//    const QModelIndexList sel = view->getCatalog()->getTable()->selectionModel()->selectedRows();
+
     if(QMessageBox::question(nullptr, "Attenzione", "Sicuro di voler annullare l'ordine?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
         u_int realSize = view->getOrder()->getOm()->getModel()->getSize();
         for(u_int i = 0; i<realSize; ++i){
                 u_int quantityReset = view->getOrder()->getOm()->getQuantity()->operator [](i);
                 WaffleBox* toReset = view->getOrder()->getOm()->getModel()->getItem(0);
-
-                cout<< "Prendo l'oggetto degli ordini in posizione: " << i << endl;
-                cout<< "E l'oggetto è\n: " << toReset->getID() << endl;
 
                if(!view->getTM()->getModel()->findItem(toReset->getID())){ //Se non trova l'oggetto ordinato nel model, è da reinserire con la quantità ordinata
                    toReset->setStockAvailability(quantityReset);
@@ -241,7 +240,6 @@ void Controller::cancOrder(){
                    //Il prodotto esiste e va aggiornata la disponibiltà
                    for(u_int j = 0; j< view->getTM()->getModel()->getSize(); ++j){
                         WaffleBox* toUpdate = view->getTM()->getModel()->getItem(j);
-                        cout << "Oggetto da aggiornare:\n " << toUpdate->getID() << endl;
                         if(toUpdate->getID() == toReset->getID()){
                             toUpdate->setStockAvailability(toUpdate->getStockAvailability() + quantityReset);
                             view->getOrder()->getOm()->removeRows(0,1);
@@ -249,17 +247,9 @@ void Controller::cancOrder(){
                    }
                 }
         }
-
-//        view->getOrder()->getOm()->getModel()->getContainer().clear();
         view->getOrder()->getOm()->getQuantity()->clear();
         view->getMenu()->getOrderTab()->setVisible(false);
-        cout << "Stampo model OM:" << view->getOrder()->getOm()->getModel()->printAll() << endl;
-        if(view->getOrder()->getOm()->getQuantity()->getSize() == 0) cout << "QUANTITA VUOTA" << endl;
-        for(u_int k = 0; k<view->getOrder()->getOm()->getQuantity()->getSize(); ++k){
-
-            cout << "stampo container quantità" << view->getOrder()->getOm()->getQuantity()->operator [](k) << endl;
-        }
-            QMessageBox::information(nullptr, "Messaggio", "Ordine cancellato", QMessageBox::Ok);
+        QMessageBox::information(nullptr, "Messaggio", "Ordine cancellato", QMessageBox::Ok);
         view->getOrder()->hide();
     }
 }

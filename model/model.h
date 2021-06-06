@@ -24,6 +24,7 @@ public:
     u_int getSize() const;
     WaffleBox* getItem(unsigned int i) const; //Metodo per ottenere l'obj nel container
     std::string printAll() const;
+    std::string printBill() const;
 
     void updateItem(u_int, WaffleBox*);
     bool findItem(WaffleBox*) const;
@@ -34,7 +35,6 @@ public:
     void setPath(const std::string&);
     void setFileName(const std::string&);
     Container<DeepPtr<WaffleBox>> getContainer() const;
-    void emptyModel();
 };
 
 #endif // MODEL_H
