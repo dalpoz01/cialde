@@ -60,6 +60,15 @@ void Controller::showAddProduct() const {
 void Controller::existItem() const {
     if(model->findItem(view->getAddProduct()->getIdLineString())==true){
         QMessageBox::warning(nullptr, "Attenzione", "Tipo di WaffleBox già esistente con questo ID, si consiglia di cambiare ID", QMessageBox::Ok);
+        if(QMessageBox::question(nullptr, "Attenzione", "Vuoi generare automaticamente l'ID?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
+            srand(time(nullptr));
+            int n=rand() % 9000 + 1000;
+            while(model->findItem(std::to_string(n))==true){
+                n=rand() % 9000 + 1000;
+            }
+            QMessageBox::information(nullptr, "Messaggio", "Inserito nuovo ID", QMessageBox::Ok);
+            view->getAddProduct()->setIdLine(n);
+        }
     }else{
         view->getAddProduct()->insert();
     }

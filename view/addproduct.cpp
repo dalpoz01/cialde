@@ -77,10 +77,6 @@ AddProduct::AddProduct(QWidget(*parent)): QWidget(parent),
     heightLine->setValidator((new QIntValidator(0, 200, this)));
     intdiamLine->setValidator(new QIntValidator(0, 10, this));
     extdiamLine->setValidator(new QIntValidator(0, 90, this));
-
-    srand(time(nullptr));
-    int rndm = rand() % 9000 + 1000;
-    idLine->setText(QString::number(rndm));
     idLine->setEnabled(false);
 
     radiusSpin->setMaximum(10);
@@ -127,6 +123,8 @@ std::string AddProduct::getIdLineString() const {
     std::string id = idLine->text().toStdString();
     return id;
 }
+
+void AddProduct::setIdLine(int value) { idLine->setText(QString::number(value)); }
 
 void AddProduct::showCircle(bool flag) const {
     radiusLabel->setVisible(flag);
@@ -191,9 +189,7 @@ void AddProduct::resetCommon() {
     itemComboBox->setCurrentIndex(0);
     capacityBox->setCurrentIndex(0);
     nomeLine->setText(" ");
-    srand(time(nullptr));
-    int rndm = rand() % 9000 + 1000;
-    idLine->setText(QString::number(rndm));
+    idLine->setText(" ");
     prezzoLine->setText(" ");
     discountBox->setValue(0);
     dim1Radio->setChecked(false);
@@ -240,7 +236,7 @@ void AddProduct::resetFields() {
 void AddProduct::enableFields(bool flag) const {
     capacityBox->setEditable(flag);
     nomeLine->setEnabled(flag);
-//    idLine->setEnabled(flag);
+    idLine->setEnabled(flag);
     capacityBox->setEnabled(flag);
     prezzoLine->setEnabled(flag);
     dim1Radio->setChecked(flag);
