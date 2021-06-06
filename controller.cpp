@@ -178,24 +178,25 @@ void Controller::enableOrder(){
     const QModelIndexList selection = view->getCatalog()->getTable()->selectionModel()->selectedIndexes();
     view->getMenu()->getOrderTab()->setVisible(true);
         if(selection.size()>0){
-            WaffleBox* toOrder = view->getTM()->getModel()->getItem(view->getFPM()->getIndexByQIndex(selection.at(0)));
+            WaffleBox* toOrder = view->getCatalog()->getTm()->getItemByIndex(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0)));
             if(toOrder->getStockAvailability() == 1){
                 if(QMessageBox::question(nullptr, "Attenzione", "Ultima rimanenza in magazzino! Continuare?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
-                        view->getOrder()->getOm()->getQuantity()->push_back(1);
-                        toOrder->setStockAvailability(toOrder->getStockAvailability()-1);
+                        u_int count = 1;
+                        view->getOrder()->getOm()->getQuantity()->push_back(count);
+                        toOrder->setStockAvailability(toOrder->getStockAvailability() - count);
                         view->getOrder()->getOm()->setWBToinsert(toOrder);
-                        view->getOrder()->getFpm()->insertRows(view->getOrder()->getOm()->rowCount(),1);
-                        view->getTM()->removeRows(selection.at(0).row(), 1);
+                        view->getOrder()->getOm()->insertRows(view->getOrder()->getOm()->rowCount(),1);
+                        view->getFPM()->removeRows(selection.at(0).row(), 1);
                         QMessageBox::information(nullptr, "Messaggio", "Prodotto aggiunto all'ordine con successo", QMessageBox::Ok);
                 }
             }else if(toOrder->getStockAvailability() > 0){
-                u_int count = QInputDialog::getInt(nullptr, "Prima di procedere..", "Inserisci la quantità del prodotto selezionato: ", 0, 1, view->getTM()->getModel()->getItem(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0)))->getStockAvailability());
+                u_int count = QInputDialog::getInt(nullptr, "Prima di procedere..", "Inserisci la quantità del prodotto selezionato: ", 0, 1, toOrder->getStockAvailability());
                 toOrder->setStockAvailability(toOrder->getStockAvailability() - count);
                 view->getOrder()->getOm()->getQuantity()->push_back(count);
                 view->getOrder()->getOm()->setWBToinsert(toOrder);
-                view->getOrder()->getFpm()->insertRows(view->getOrder()->getOm()->rowCount(),1);
+                view->getOrder()->getOm()->insertRows(view->getOrder()->getOm()->rowCount(),1);
                 if(toOrder->getStockAvailability()==0)
-                     view->getTM()->removeRows(selection.at(0).row(), 1);
+                     view->getFPM()->removeRows(selection.at(0).row(), 1);
                 QMessageBox::information(nullptr, "Messaggio", "Prodotto aggiunto all'ordine con successo", QMessageBox::Ok);
             }
         }else{
@@ -221,32 +222,44 @@ void Controller::confirmOrder(){
 }
 
 void Controller::cancOrder(){
+//    const QModelIndexList sel = view->getCatalog()->getTable()->selectionModel()->selectedRows();
     if(QMessageBox::question(nullptr, "Attenzione", "Sicuro di voler annullare l'ordine?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
-
-        for(u_int i = 0; i<view->getOrder()->getOm()->getModel()->getSize(); ++i){
+        u_int realSize = view->getOrder()->getOm()->getModel()->getSize();
+        for(u_int i = 0; i<realSize; ++i){
                 u_int quantityReset = view->getOrder()->getOm()->getQuantity()->operator [](i);
-                WaffleBox* toReset = view->getOrder()->getOm()->getModel()->getItem(i);
+                WaffleBox* toReset = view->getOrder()->getOm()->getModel()->getItem(0);
 
-               if(!view->getTM()->getModel()->findItem(toReset->getID())){ //Se non trova l'oggetto ordinato nell model principale, è da reinserire con la quantità ordinata
+                cout<< "Prendo l'oggetto degli ordini in posizione: " << i << endl;
+                cout<< "E l'oggetto è\n: " << toReset->getID() << endl;
+
+               if(!view->getTM()->getModel()->findItem(toReset->getID())){ //Se non trova l'oggetto ordinato nel model, è da reinserire con la quantità ordinata
                    toReset->setStockAvailability(quantityReset);
                    view->getTM()->setWBToinsert(toReset);
-                   view->getTM()->insertRows(view->getTM()->rowCount(),1);
-
+                   view->getTM()->insertRows(view->getFPM()->rowCount(),1);
+                   view->getOrder()->getOm()->removeRows(0,1);
                 }else{
                    //Il prodotto esiste e va aggiornata la disponibiltà
                    for(u_int j = 0; j< view->getTM()->getModel()->getSize(); ++j){
                         WaffleBox* toUpdate = view->getTM()->getModel()->getItem(j);
-                        if(toUpdate->operator ==(*toReset))
+                        cout << "Oggetto da aggiornare:\n " << toUpdate->getID() << endl;
+                        if(toUpdate->getID() == toReset->getID()){
                             toUpdate->setStockAvailability(toUpdate->getStockAvailability() + quantityReset);
+                            view->getOrder()->getOm()->removeRows(0,1);
+                        }
                    }
                 }
         }
 
-        view->getOrder()->getOm()->removeRows(0,view->getOrder()->getOm()->rowCount());
+//        view->getOrder()->getOm()->getModel()->getContainer().clear();
         view->getOrder()->getOm()->getQuantity()->clear();
-        view->getOrder()->getOm()->getModel()->getContainer().clear();
         view->getMenu()->getOrderTab()->setVisible(false);
-        QMessageBox::information(nullptr, "Messaggio", "Ordine cancellato", QMessageBox::Ok);
+        cout << "Stampo model OM:" << view->getOrder()->getOm()->getModel()->printAll() << endl;
+        if(view->getOrder()->getOm()->getQuantity()->getSize() == 0) cout << "QUANTITA VUOTA" << endl;
+        for(u_int k = 0; k<view->getOrder()->getOm()->getQuantity()->getSize(); ++k){
+
+            cout << "stampo container quantità" << view->getOrder()->getOm()->getQuantity()->operator [](k) << endl;
+        }
+            QMessageBox::information(nullptr, "Messaggio", "Ordine cancellato", QMessageBox::Ok);
         view->getOrder()->hide();
     }
 }

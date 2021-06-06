@@ -34,6 +34,7 @@ public:
     void setPath(const std::string&);
     void setFileName(const std::string&);
     Container<DeepPtr<WaffleBox>> getContainer() const;
+    void emptyModel();
 };
 
 #endif // MODEL_H

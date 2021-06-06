@@ -10,6 +10,8 @@ OrdersModel::OrdersModel(QObject *parent) :
 OrdersModel::~OrdersModel() {
     if(model)
         delete model;
+    if(quantity)
+        delete quantity;
 }
 
 //Metodo che ritorna la dimensione del model, cioè il numero di righe della tabella
@@ -38,7 +40,7 @@ if(model->getItem(0) != nullptr){
                     return QString::number(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getPrice()) + QString(" €");
                 }
                 break;
-    case 4: return QString::number(quantity->operator [](modelIndex.row()));
+    case 4:return QString::number(quantity->operator [](modelIndex.row()));
                 break;
 
         default: return QVariant();
@@ -77,11 +79,13 @@ bool OrdersModel::insertRows(int afterRow, int n, const QModelIndex &modelIndex)
     return true;
 }
 
-//Metodo per rimuovere n righe dalla tabella dopo la riga afterRow
+//Metodo per rimuovere n righe dalla tabella dopo la riga startRow
 bool OrdersModel::removeRows(int startRow, int n, const QModelIndex &modelIndex){
     beginRemoveRows(modelIndex,startRow,(startRow+n-1));
-    model->removeBox(startRow);
-    //model->removeBox(static_cast<unsigned int>(startRow));
+    model->removeBox(static_cast<unsigned int>(startRow));
+    cout << "Ora il model ha dimensione \n" << model->getSize() << endl;
+    cout << "e contiene: \n " << endl;
+    for(u_int i = 0; i<model->getSize(); ++i) cout << model->getItem(i)->getID() << endl;
     endRemoveRows();
     return true;
 }

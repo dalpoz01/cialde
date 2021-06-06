@@ -13,7 +13,10 @@ Model::Model(const Model& m) : Model(m.getPath(), m.getFileName(), m.getSize()) 
 
 void Model::addBox(WaffleBox* waffleb){ container.push_back(DeepPtr<WaffleBox>(waffleb)); }
 
-void Model::removeBox(u_int index){ container.erase(index); }
+void Model::removeBox(u_int index){
+    cout << "Tolgo il box " << index << endl;
+    cout << getItem(index)->printItem() << endl;
+    container.erase(index); }
 
 void Model::removeBox(DeepPtr<WaffleBox>& ptr){ container.erase(ptr); }
 
@@ -37,6 +40,13 @@ std::string Model::getPath() const{ return path; }
 
 std::string Model::getFileName() const{ return fileName; }
 
+void Model::emptyModel(){
+    for(u_int i=0; i < container.getSize(); ++i){
+        container.erase(i);
+    }
+
+}
+
 void Model::setPath(const std::string& s){ path = s; }
 void Model::setFileName(const std::string& s){ fileName = s; }
 
@@ -50,14 +60,14 @@ void Model::updateItem(u_int index, WaffleBox* wb){
     }
 }
 
-bool Model::findItem(WaffleBox* w) const {
-    for(u_int i = 0; i < container.getSize(); ++i){
-        if(container[i] == w ){ //Ho trovato l'oggetto
-            return true;
-        }
-    }
-    return false;
-}
+//bool Model::findItem(WaffleBox* w) const {
+//    for(u_int i = 0; i < container.getSize(); ++i){
+//        if(container[i] == w ){ //Ho trovato l'oggetto
+//            return true;
+//        }
+//    }
+//    return false;
+//}
 
 bool Model::findItem(std::string s) const {
     for(u_int i = 0; i < container.getSize(); ++i){

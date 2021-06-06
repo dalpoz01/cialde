@@ -320,7 +320,7 @@ void Container<T>::erase(u_int first, u_int last){  //DA COMPLETARE
 
     size -= (last-first)+1; //dimensione effettiva diventa la dimensione precedente MENO gli elementi di cui si è fatto l'erase.
 
-    reduce();
+    if(size<capacity/2) reduce();
 }
 
 template<class T>
@@ -329,6 +329,7 @@ void Container<T>::erase(u_int position){
     for(u_int i = position; i<size; ++i)
         p[i] = p[i+1];
     size--;
+
 }
 
 template<class T>

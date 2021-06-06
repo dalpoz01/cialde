@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent):
     tm(new TableModel(this)),
     fpm(new FilterProxyModel(this)),
     catalogo(new Catalog(this,tm,fpm)),
-    ordini(new Order(this))
+    ordini(new Order(this,fpm))
 {
     setWindowTitle("Wafflebox Store");
     setWindowIcon(QIcon(QPixmap("../cialde-test/Data/Photo/icon.png")));

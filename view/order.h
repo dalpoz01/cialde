@@ -22,7 +22,7 @@ private:
 
     Table* tableProduct;
     OrdersModel* om;
-    FilterProxyModel *fpm;
+    FilterProxyModel *mainFpm;
 
     QLabel* title;
     QPushButton* cancelBtn;
@@ -32,11 +32,11 @@ private:
 
 
 public:
-    explicit Order(QWidget *parent = nullptr);
+    explicit Order(QWidget *parent = nullptr, FilterProxyModel* = nullptr);
 
     Table* getTableProduct() const;
     OrdersModel* getOm() const;
-    FilterProxyModel *getFpm() const;
+    FilterProxyModel *getMainFpm() const;
     QPushButton* getCancBtn() const;
     QPushButton* getSendOrderBtn() const;
 

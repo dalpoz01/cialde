@@ -383,7 +383,7 @@ void AddProduct::insert(){
                 stockAva = dim4Radio->text().toUInt();
 
                 //Creo attributi e assegno loro il valore presente nei campi
-                std::string nome = nomeLine->text().toStdString();
+            std::string nome = nomeLine->text().toStdString();
                 std::string id = idLine->text().toStdString();
                 std::string foto = imgpath;
                 u_int capa = capacityBox->currentText().toUInt();
