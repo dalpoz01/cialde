@@ -24,7 +24,6 @@ void Controller::setView(MainWindow *v){
     connect(view->getCatalog()->getSearchEdit(), SIGNAL(textChanged(const QString &)),this,SLOT(search()));
     connect(view->getCatalog()->getSearchEdit(), SIGNAL(returnPressed()),this,SLOT(search()));
     connect(view->getCatalog()->getDetailsCombobox(), SIGNAL(currentIndexChanged(const QString &)), this, SLOT(setCurrectColumnFpm(const QString &)));
-    //connect(view->getCatalog()->getTable()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(enableBtnTableController()));  //connessione per bottone Visualizza prodotto nella parte inferiore
     connect(view->getCatalog()->getBtnRemove(),SIGNAL(clicked()),this,SLOT(removeItem()));
     connect(view->getCatalog()->getTable()->getHeader(),SIGNAL(sectionClicked(int)),this,SLOT(headerClicked(int)));
     connect(view->getCatalog()->getTable()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(enableBtnBuy())); //Attiva il bottone di acquisto
@@ -127,10 +126,6 @@ void Controller::modificaProdotto() {
 
 }
 
-void Controller::enableBtnTableController() { view->enableBtnTable(true); }
-
-void Controller::disableBtnTableController() { view->enableBtnTable(false); }
-
 void Controller::removeItem() {
     const QModelIndexList selection = view->getCatalog()->getTable()->selectionModel()->selectedIndexes();
     if(selection.size()>0){
@@ -201,6 +196,8 @@ void Controller::enableOrder() {
                 }else{
                     QMessageBox::information(nullptr, "Informazione", "Ordine del prodotto annullato", QMessageBox::Ok);
                 }
+            }else{
+                QMessageBox::warning(nullptr, "Attenzione", "Prodotto non disponibile", QMessageBox::Ok);
             }
         }else{
             QMessageBox::warning(nullptr, "Attenzione", "Selezionare una riga per procedere all'acquisto!", QMessageBox::Ok);

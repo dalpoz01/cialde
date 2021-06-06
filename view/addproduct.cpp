@@ -110,53 +110,45 @@ AddProduct::AddProduct(QWidget(*parent)): QWidget(parent),
     enableFields(false);
 }
 
-QPushButton* AddProduct::getAdd(){
-    return addButton;
-}
+QPushButton* AddProduct::getAdd() { return addButton; }
 
-QPushButton* AddProduct::getCancel(){
-    return cancelButton;
-}
+QPushButton* AddProduct::getCancel() { return cancelButton; }
 
-QComboBox* AddProduct::getItemCombo(){
-    return itemComboBox;
-}
+QComboBox* AddProduct::getItemCombo() { return itemComboBox; }
 
-QPushButton *AddProduct::getAddPhoto() const{
-    return addPhoto;
-}
+QPushButton *AddProduct::getAddPhoto() const { return addPhoto; }
 
 std::string AddProduct::getIdLineString() const {
     std::string id = idLine->text().toStdString();
     return id;
 }
 
-void AddProduct::showCircle(bool flag) const{
+void AddProduct::showCircle(bool flag) const {
     radiusLabel->setVisible(flag);
     radiusSpin->setVisible(flag);
 }
 
-void AddProduct::showHeight(bool flag) const{
+void AddProduct::showHeight(bool flag) const {
     heightLabel->setVisible(flag);
     heightLine->setVisible(flag);
 }
 
-void AddProduct::showVentaglio(bool flag) const{
+void AddProduct::showVentaglio(bool flag) const {
     widthLabel->setVisible(flag);
     widthLine->setVisible(flag);
 }
 
-void AddProduct::showCannolo(bool flag) const{
+void AddProduct::showCannolo(bool flag) const {
     intdiamLabel->setVisible(flag);
     intdiamLine->setVisible(flag);
 }
 
-void AddProduct::showCone(bool flag) const{
+void AddProduct::showCone(bool flag) const {
     extdiamLabel->setVisible(flag);
     extdiamLine->setVisible(flag);
 }
 
-void AddProduct::showBranded(bool flag) const{
+void AddProduct::showBranded(bool flag) const {
     prncolorLabel->setVisible(flag);
     seccolorLabel->setVisible(flag);
     prncolorLine->setVisible(flag);
@@ -164,7 +156,7 @@ void AddProduct::showBranded(bool flag) const{
     colorLabel->setVisible(flag);
 }
 
-void AddProduct::showCovered(bool flag) const{
+void AddProduct::showCovered(bool flag) const {
     tasteLabel->setVisible(flag);
     tasteLine->setVisible(flag);
 }
@@ -203,34 +195,22 @@ void AddProduct::resetCommon() {
     dim3Radio->setChecked(false);
 }
 
-void AddProduct::resetCircle() const{
-    radiusSpin->setValue(0);
-}
+void AddProduct::resetCircle() const { radiusSpin->setValue(0); }
 
-void AddProduct::resetHeight() const{
-    heightLine->setText(" ");
-}
+void AddProduct::resetHeight() const { heightLine->setText(" "); }
 
-void AddProduct::resetVentaglio() const{
-    widthLine->setText(" ");
-}
+void AddProduct::resetVentaglio() const { widthLine->setText(" "); }
 
-void AddProduct::resetCannolo() const{
-    intdiamLine->setText(" ");
-}
+void AddProduct::resetCannolo() const { intdiamLine->setText(" "); }
 
-void AddProduct::resetCone() const{
-    extdiamLine->setText(" ");
-}
+void AddProduct::resetCone() const { extdiamLine->setText(" "); }
 
-void AddProduct::resetBranded() const{
+void AddProduct::resetBranded() const {
     prncolorLine->setText(" ");
     seccolorLine->setText(" ");
 }
 
-void AddProduct::resetCovered() const{
-    tasteLine->setText(" ");
-}
+void AddProduct::resetCovered() const { tasteLine->setText(" "); }
 
 void AddProduct::resetAll(){
     resetCommon();
@@ -338,7 +318,7 @@ void AddProduct::showItemTypeField(const QString& selection) const {
     }
 }
 
-void AddProduct::insert(){
+void AddProduct::insert() {
     WaffleBox* temp = nullptr;
     bool isEdited=true;
     int typeIndex = itemComboBox->currentIndex();
@@ -457,7 +437,7 @@ void AddProduct::insert(){
     }
 }
 
-void AddProduct::addFoto(){
+void AddProduct::addFoto() {
     QString path(QFileDialog::getOpenFileName(this, "Seleziona file", currentPath, "Immagine (*.png *.jpg *.jpeg)"));
     if (path.isNull()==false){
         currentPath = path;

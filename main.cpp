@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     Controller c;
-    Model* m = new Model();
+    Model *m = new Model();
 
     m->loadXml();
     c.setModel(m);

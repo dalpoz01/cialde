@@ -15,13 +15,13 @@ OrdersModel::~OrdersModel() {
 }
 
 //Metodo che ritorna la dimensione del model, cioè il numero di righe della tabella
-int OrdersModel::rowCount(const QModelIndex&) const{return model->getSize();}
+int OrdersModel::rowCount(const QModelIndex&) const { return model->getSize(); }
 
 //Metodo che ritorna il numero di colonne (attributi del WaffleBox)
-int OrdersModel::columnCount(const QModelIndex&) const{return 5;}
+int OrdersModel::columnCount(const QModelIndex&) const { return 5; }
 
 //Metodo che ritorna uno degli attributi di un WaffleBox
-QVariant OrdersModel::data(const QModelIndex &modelIndex, int role) const{
+QVariant OrdersModel::data(const QModelIndex &modelIndex, int role) const {
 if(model->getItem(0) != nullptr){
     if(role != Qt::DisplayRole) return QVariant(); //Qt::DisplayRole è una costante == 0, indica che i dati vengono presi in QString
     switch(modelIndex.column()){
@@ -40,9 +40,9 @@ if(model->getItem(0) != nullptr){
                     return QString::number(model->getItem(static_cast<unsigned int>(modelIndex.row()))->getPrice()) + QString(" €");
                 }
                 break;
-    case 4:return QString::number(quantity->operator [](modelIndex.row()));
+        case 4:
+                return QString::number(quantity->operator [](modelIndex.row()));
                 break;
-
         default: return QVariant();
      }
 }
@@ -50,7 +50,7 @@ if(model->getItem(0) != nullptr){
 }
 
 //Metodo
-QVariant OrdersModel::headerData(int section, Qt::Orientation orientation, int role) const{
+QVariant OrdersModel::headerData(int section, Qt::Orientation orientation, int role) const {
     if(role != Qt::DisplayRole) return QVariant();
     if(orientation == Qt::Horizontal){
         switch(section){
@@ -72,7 +72,7 @@ QVariant OrdersModel::headerData(int section, Qt::Orientation orientation, int r
 }
 
 //Metodo per inserire n righe nella tabella dopo la riga afterRow
-bool OrdersModel::insertRows(int afterRow, int n, const QModelIndex &modelIndex){
+bool OrdersModel::insertRows(int afterRow, int n, const QModelIndex &modelIndex) {
     beginInsertRows(modelIndex,afterRow,(afterRow+n-1));
     model->addBox(wbToInsert);
     endInsertRows();
@@ -80,27 +80,25 @@ bool OrdersModel::insertRows(int afterRow, int n, const QModelIndex &modelIndex)
 }
 
 //Metodo per rimuovere n righe dalla tabella dopo la riga startRow
-bool OrdersModel::removeRows(int startRow, int n, const QModelIndex &modelIndex){
+bool OrdersModel::removeRows(int startRow, int n, const QModelIndex &modelIndex) {
     beginRemoveRows(modelIndex,startRow,(startRow+n-1));
     model->removeBox(static_cast<unsigned int>(startRow));
-    cout << "Ora il model ha dimensione \n" << model->getSize() << endl;
-    cout << "e contiene: \n " << endl;
     for(u_int i = 0; i<model->getSize(); ++i) cout << model->getItem(i)->getID() << endl;
     endRemoveRows();
     return true;
 }
 
-void OrdersModel::setWBToinsert(WaffleBox* wb){ wbToInsert = wb; }
+void OrdersModel::setWBToinsert(WaffleBox* wb) { wbToInsert = wb; }
 
-WaffleBox* OrdersModel::getWbToInsert() const { return wbToInsert;}
+WaffleBox* OrdersModel::getWbToInsert() const { return wbToInsert; }
 
-WaffleBox* OrdersModel::getItemByIndex(u_int index) const{ return model->getItem(index); }
+WaffleBox* OrdersModel::getItemByIndex(u_int index) const { return model->getItem(index); }
 
-Model* OrdersModel::getModel() const{ return model;}
+Model* OrdersModel::getModel() const { return model; }
 
-void OrdersModel::setModel(Model *value){ model = value; }
+void OrdersModel::setModel(Model *value) { model = value; }
 
-Container<u_int>* OrdersModel::getQuantity() const{ return quantity; }
+Container<u_int>* OrdersModel::getQuantity() const { return quantity; }
 
 double OrdersModel::getTotPrice() const {
     double tot;

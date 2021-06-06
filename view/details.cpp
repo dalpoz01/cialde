@@ -124,13 +124,13 @@ Details::Details(QWidget *parent, WaffleBox *wf): QWidget(parent),
     setLayout(main);
 }
 
-std::string Details::doubleToString(double d){
+std::string Details::doubleToString(double d) {
     std::stringstream s;
     s << std::fixed <<std::setprecision(2) << d;
     return s.str();
 }
 
-QSize Details::sizeHint() const{
+QSize Details::sizeHint() const {
     return QSize(800,500);
 }
 

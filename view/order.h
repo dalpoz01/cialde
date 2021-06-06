@@ -19,17 +19,12 @@
 class Order : public QWidget {
     Q_OBJECT
 private:
-
     Table* tableProduct;
     OrdersModel* om;
-
     QLabel* title;
     QPushButton* cancelBtn;
     QLabel* emptyLabel;
     QPushButton* sendOrderBtn;
-
-
-
 public:
     explicit Order(QWidget *parent = nullptr);
 
@@ -37,11 +32,6 @@ public:
     OrdersModel* getOm() const;
     QPushButton* getCancBtn() const;
     QPushButton* getSendOrderBtn() const;
-
-
-signals:
-
-public slots:
 };
 
 #endif // ORDER_H

@@ -5,23 +5,23 @@ Branded::Branded(const std::string& nome, const std::string &id, const std::stri
 Branded::Branded(const Branded& b): ConeBox(b.getName(), b.getID(), b.getPhoto(), b.getCapacity(), b.getWeight(), b.getPrice(), b.getDiscount(), b.getStockAvailability(), b.getHeight(), b.getExtDiameter()), principal_color(b.getPrincipalColor()), secondary_color(b.getSecundaryColor()) {}
 
 //Getter
-std::string Branded::getPrincipalColor() const{return principal_color;}
-std::string Branded::getSecundaryColor() const{return secondary_color;}
+std::string Branded::getPrincipalColor() const { return principal_color; }
+std::string Branded::getSecundaryColor() const { return secondary_color; }
 
 //Setter
-void Branded::setPrincipalColor(const std::string& col) {principal_color=col;}
-void Branded::setSecundaryColor(const std::string& col) {secondary_color=col;}
+void Branded::setPrincipalColor(const std::string& col) { principal_color=col; }
+void Branded::setSecundaryColor(const std::string& col) { secondary_color=col; }
 
 //Operatori
-bool Branded::operator ==(const Branded& b) {return ConeBox::operator ==(b) && principal_color == b.principal_color && secondary_color == b.secondary_color;}
-bool Branded::operator !=(const Branded& b) {return ConeBox::operator !=(b) || principal_color != b.principal_color || secondary_color != b.secondary_color;}
+bool Branded::operator ==(const Branded& b) { return ConeBox::operator ==(b) && principal_color == b.principal_color && secondary_color == b.secondary_color; }
+bool Branded::operator !=(const Branded& b) { return ConeBox::operator !=(b) || principal_color != b.principal_color || secondary_color != b.secondary_color; }
 
 //Clone
-Branded* Branded::clone() const {return new Branded(*this);}
+Branded* Branded::clone() const { return new Branded(*this); }
 
-std::string Branded::getItemType() const{return "Branded Box";}
+std::string Branded::getItemType() const { return "Branded Box"; }
 
-std::string Branded::printItem() const{
+std::string Branded::printItem() const {
     std::stringstream stream;
     stream <<
               ConeBox::printItem() << std::endl

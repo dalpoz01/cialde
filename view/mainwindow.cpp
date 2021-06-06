@@ -38,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent):
 
 QSize MainWindow::sizeHint() const { return QSize(1024, 500); }
 
-void MainWindow::setController(Controller *c){ controller=c; }
+void MainWindow::setController(Controller *c) { controller=c; }
 
 AddProduct* MainWindow::getAddProduct() const { return aggiungiProdotto; }
 
@@ -57,12 +57,6 @@ void MainWindow::insertItemInfo() { QMessageBox::information(this,"DONE IT!", "I
 void MainWindow::loadingXmlInfo() { QMessageBox::information(this,"DONE IT!", "Caricamento avvenuto con successo"); }
 
 void MainWindow::savingXmlInfo() { QMessageBox::information(this,"DONE IT!", "XML creato con successo"); }
-
-void MainWindow::enableBtnTable(bool flag) {
-    catalogo->getBtnModifiy()->setEnabled(flag);
-    catalogo->getBtnViewItem()->setEnabled(flag);
-    catalogo->getBtnRemove()->setEnabled(flag);
-}
 
 void MainWindow::closeEvent(QCloseEvent* event) {
     if(QMessageBox::question(this,"Sicuro?", "Salvare prima di uscire?", QMessageBox::Yes, QMessageBox::No, QMessageBox::Close) == QMessageBox::Yes){

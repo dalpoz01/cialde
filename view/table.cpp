@@ -10,4 +10,4 @@ Table::Table(QWidget *parent) : QTableView(parent)
     horizontalHeader()->sortIndicatorOrder();
 }
 
-QHeaderView *Table::getHeader() const{ return horizontalHeader(); }
+QHeaderView *Table::getHeader() const { return horizontalHeader(); }

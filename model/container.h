@@ -132,13 +132,8 @@ public:
     iterator erase(iterator, iterator);
     iterator insert(iterator, const T&);
 
-
-     //const_iterator cbegin() const;   //ritorna iteratore costante che punta al primo elemento (non modificabile essendo const_iterator)
-    // const_iterator cend() const; //ritorna const_iterator che punta past-the-end del container
-     const_iterator begin() const;    //ritorna iteratore costante al primo elemento del container
-     const_iterator end() const;  //ritorna const_iterator past-the-end
-
-
+    const_iterator begin() const;    //ritorna iteratore costante al primo elemento del container
+    const_iterator end() const;  //ritorna const_iterator past-the-end
 };
 
 /*********************** CLASSE Container ***************************/

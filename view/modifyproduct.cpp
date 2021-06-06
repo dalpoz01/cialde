@@ -164,13 +164,13 @@ ModifyProduct::ModifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
     setLayout(main);
 }
 
-std::string ModifyProduct::doubleToString(double d){
+std::string ModifyProduct::doubleToString(double d) {
     std::stringstream s;
     s << std::fixed <<std::setprecision(2) << d;
     return s.str();
 }
 
-QSize ModifyProduct::sizeHint() const{
+QSize ModifyProduct::sizeHint() const {
     return QSize(900,500);
 }
 
@@ -182,7 +182,7 @@ QPushButton *ModifyProduct::getOkButton() const { return okButton; }
 
 WaffleBox* ModifyProduct::getWaffleBox() const{ return w; }
 
-void ModifyProduct::changePhoto(){
+void ModifyProduct::changePhoto() {
     QString path(QFileDialog::getOpenFileName(this, "Seleziona file", "../", "Immagine (*.png *.jpg *.jpeg)"));
     if (path.isNull()==false){
         if(!QFile::exists("../cialde-test/Data/Photo/" + path.section("/", -1, -1))){
@@ -199,7 +199,7 @@ void ModifyProduct::changePhoto(){
     }
 }
 
-void ModifyProduct::noModify(){
+void ModifyProduct::noModify() {
     QMessageBox::warning(nullptr, "Attenzione", "Operazione annullata", QMessageBox::Ok);
     close();
 }

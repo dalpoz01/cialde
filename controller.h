@@ -41,8 +41,6 @@ public slots:
     //Catalogo
     void changeType(const QString &);   //
     void search() const;
-    void enableBtnTableController();
-    void disableBtnTableController();
     void removeItem();
     void setCurrectColumnFpm(const QString &) const;
     void headerClicked(int);
@@ -59,15 +57,6 @@ public slots:
     void enableOrder();
     void confirmOrder();
     void cancOrder();
-
-    //Unused
-    //void avoidSearch() const;
-    //void showSearchTable();
-    //void modifyItemController(WaffleBox*); //Aggiorna il modello e la vista per una modifica effettuata
-    //void showSearch() const;
-    //void hideSearch() const;
-    //void seeTableItem() const;  //Visualizza o meno la tabella e i suoi bottoni in Catalogo
-
 };
 
 #endif // CONTROLLER_H

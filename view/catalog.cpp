@@ -96,10 +96,4 @@ void Catalog::sortHeaderClicked(int a) {
 
 }
 
-
-QPushButton *Catalog::getBtnBuy() const
-{
-    return btnBuy;
-}
-
-
+QPushButton *Catalog::getBtnBuy() const { return btnBuy; }

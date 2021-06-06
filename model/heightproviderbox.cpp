@@ -5,17 +5,17 @@ HeightProviderBox::HeightProviderBox(const std::string& nome, const std::string 
 HeightProviderBox::HeightProviderBox(const HeightProviderBox &hp) : WaffleBox(hp.getName(), hp.getID(), hp.getPhoto(), hp.getCapacity(), hp.getWeight(), hp.getPrice(), hp.getDiscount(), hp.getStockAvailability()), height(hp.getHeight()) {}
 
 //Getter
-u_int HeightProviderBox::getHeight() const { return height;}
+u_int HeightProviderBox::getHeight() const { return height; }
 
 //Setter
-void HeightProviderBox::setHeight(u_int h) {height = h;}
+void HeightProviderBox::setHeight(u_int h) { height = h; }
 
 //Operatori
-bool HeightProviderBox::operator ==(const HeightProviderBox& hp) const { return WaffleBox::operator ==(hp) && height == hp.height;}
-bool HeightProviderBox::operator !=(const HeightProviderBox& hp) const { return WaffleBox::operator !=(hp) || height != hp.height;}
+bool HeightProviderBox::operator ==(const HeightProviderBox& hp) const { return WaffleBox::operator ==(hp) && height == hp.height; }
+bool HeightProviderBox::operator !=(const HeightProviderBox& hp) const { return WaffleBox::operator !=(hp) || height != hp.height; }
 
 //STAMPA INFO
-std::string HeightProviderBox::printItem() const{
+std::string HeightProviderBox::printItem() const {
     std::stringstream stream;
     stream <<
               WaffleBox::printItem() << std::endl

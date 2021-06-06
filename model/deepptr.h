@@ -34,10 +34,10 @@ DeepPtr<T>::DeepPtr(const DeepPtr& ptr){
 }
 
 template<class T>
-DeepPtr<T>::~DeepPtr(){if(p) delete p;}
+DeepPtr<T>::~DeepPtr() { if(p) delete p; }
 
 template<class T>
-DeepPtr<T>& DeepPtr<T>::operator =(const DeepPtr& ptr){
+DeepPtr<T>& DeepPtr<T>::operator =(const DeepPtr& ptr) {
     if(&ptr != this){
         if(p) delete p;
         if(ptr.p == nullptr)
@@ -49,15 +49,15 @@ DeepPtr<T>& DeepPtr<T>::operator =(const DeepPtr& ptr){
 }
 
 template<class T>
-T& DeepPtr<T>::operator *() const{ if(p != nullptr) return *p;}
+T& DeepPtr<T>::operator *() const { if(p != nullptr) return *p; }
 
 template<class T>
-T* DeepPtr<T>::operator ->() const{ /*if(p != nullptr)*/ return p;}
+T* DeepPtr<T>::operator ->() const { return p; }
 
 template<class T>
-bool DeepPtr<T>::operator ==(const DeepPtr& ptr) const{ return p == ptr.p ? true : false;}
+bool DeepPtr<T>::operator ==(const DeepPtr& ptr) const { return p == ptr.p ? true : false; }
 
 template<class T>
-bool DeepPtr<T>::operator !=(const DeepPtr& ptr) const{ return p != ptr.p ? true : false;}
+bool DeepPtr<T>::operator !=(const DeepPtr& ptr) const { return p != ptr.p ? true : false; }
 
 #endif // DEEPPTR_H

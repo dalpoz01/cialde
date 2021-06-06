@@ -5,21 +5,21 @@ Covered::Covered(const std::string &nome, const std::string &id, const std::stri
 Covered::Covered(const Covered& c): ConeBox(c.getName(), c.getID(), c.getPhoto(), c.getCapacity(), c.getWeight(), c.getPrice(), c.getDiscount(), c.getStockAvailability(), c.getHeight(), c.getExtDiameter()), taste(c.getTaste()){}
 
 //Getter
-std::string Covered::getTaste() const{return taste;}
+std::string Covered::getTaste() const { return taste; }
 
 //Setter
-void Covered::setTaste(const std::string& ts){taste=ts;}
+void Covered::setTaste(const std::string& ts) { taste=ts; }
 
 //Operatori
-bool Covered::operator ==(const Covered&c) {return ConeBox::operator ==(c) && taste == c.taste;}
-bool Covered::operator !=(const Covered&c) {return ConeBox::operator !=(c) || taste != c.taste;}
+bool Covered::operator ==(const Covered&c) { return ConeBox::operator ==(c) && taste == c.taste; }
+bool Covered::operator !=(const Covered&c) { return ConeBox::operator !=(c) || taste != c.taste; }
 
 //Clone
-Covered* Covered::clone() const {return new Covered(*this);}
+Covered* Covered::clone() const { return new Covered(*this); }
 
-std::string Covered::getItemType() const{return "Covered Box";}
+std::string Covered::getItemType() const { return "Covered Box"; }
 
-std::string Covered::printItem() const{
+std::string Covered::printItem() const {
     std::stringstream stream;
     stream <<
               ConeBox::printItem() << std::endl

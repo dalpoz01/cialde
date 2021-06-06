@@ -2,7 +2,7 @@
 
 XmlManagement::XmlManagement(const std::string& p, const std::string& fn) : path(p), fileName(fn) {}
 
-Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
+Container<DeepPtr<WaffleBox>> XmlManagement::read() const {
 
     Container<DeepPtr<WaffleBox>> temp;
     QFile xFile(QString::fromStdString(path+fileName));
@@ -137,7 +137,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const{
     return temp;
 }
 
-void XmlManagement::write(const Container<DeepPtr<WaffleBox>> &cont) const{
+void XmlManagement::write(const Container<DeepPtr<WaffleBox>> &cont) const {
     QDir directory;
     //verifico che esista la directory, altrimento la creo
     if(!directory.exists(QString::fromStdString(path))) directory.mkdir(QString::fromStdString(path));
@@ -248,10 +248,10 @@ void XmlManagement::write(const Container<DeepPtr<WaffleBox>> &cont) const{
     }
 }
 
-std::string XmlManagement::DoubleToString(double d){std::stringstream stream; stream << d; return stream.str();}
+std::string XmlManagement::DoubleToString(double d) { std::stringstream stream; stream << d; return stream.str(); }
 
-std::string XmlManagement::UIntToString(unsigned int i){std::stringstream stream; stream << i; return stream.str();}
+std::string XmlManagement::UIntToString(unsigned int i) { std::stringstream stream; stream << i; return stream.str(); }
 
-std::string XmlManagement::getXmlPath() const{return path;}
+std::string XmlManagement::getXmlPath() const { return path; }
 
-std::string XmlManagement::getXmlFileName() const{return fileName;}
+std::string XmlManagement::getXmlFileName() const { return fileName; }

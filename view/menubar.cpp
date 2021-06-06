@@ -17,19 +17,13 @@ MenuBar::MenuBar(QWidget *parent) :
 
     orderTab->setVisible(false);
     addAction(orderTab);
-
-    /*connect(load,SIGNAL(changed()),this,SLOT(loadXmlFile()));
-    connect(save,SIGNAL(changed()),this,SLOT(saveXmlFile()));*/
-
 }
 
 QAction* MenuBar::getLoad() const { return load; }
 
 QAction* MenuBar::getSave() const { return save; }
 
-QAction *MenuBar::getOrderTab() const{ return orderTab; }
-
-//void MenuBar::loadXmlFile(){ emit signalToLoad(); }
+QAction *MenuBar::getOrderTab() const { return orderTab; }
 
 QAction* MenuBar::getCatalog() const { return catalog; }
 

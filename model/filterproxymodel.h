@@ -6,7 +6,7 @@
 #include <iostream>
 using namespace std;
 
-class FilterProxyModel : public QSortFilterProxyModel{
+class FilterProxyModel : public QSortFilterProxyModel {
 private:
     QString itemType;
     QString detailsToSearch;

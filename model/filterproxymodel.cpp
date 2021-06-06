@@ -7,9 +7,9 @@ FilterProxyModel::FilterProxyModel(QObject *parent):
 {
 }
 
-void FilterProxyModel::setItemType(const QString &value){ itemType = value; }
+void FilterProxyModel::setItemType(const QString &value) { itemType = value; }
 
-void FilterProxyModel::setColumnCount(int value){ columnCount = value; }
+void FilterProxyModel::setColumnCount(int value) { columnCount = value; }
 
 unsigned int FilterProxyModel::getIndexByQIndex(const QModelIndex &i) const {
     QModelIndex index = mapToSource(i);

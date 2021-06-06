@@ -39,10 +39,6 @@ public:
     QLineEdit *getSearchEdit() const;
     TableModel *getTm() const;
     FilterProxyModel *getFpm() const;
-    /*QRadioButton *getOrdAsc() const;
-    QRadioButton *getOrdDesc() const;*/
-/*public slots:
-    void setOrder();*/
     QPushButton *getBtnBuy() const;
     void sortHeaderClicked(int); //Metodo per gestire l'ordinamento della tabella in base alla colonna cliccata
 };
