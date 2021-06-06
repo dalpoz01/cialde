@@ -95,7 +95,7 @@ AddProduct::AddProduct(QWidget(*parent)): QWidget(parent),
     form->addRow(colorLabel,colorLayout);
     form->addRow(tasteLabel,tasteLine);
 
-    imgLabel->setPixmap(QPixmap(QString::fromStdString("../cialde-test/Data/Photo/image-not-found.jpg")).scaled(QSize(400, 400)));
+    imgLabel->setPixmap(QPixmap(QString::fromStdString(":/MyRes/Photo/image-not-found.jpg")).scaled(QSize(400, 400)));
     left->addWidget(imgLabel);
     left->addWidget(addPhoto);
     right->addLayout(form);
@@ -182,7 +182,7 @@ void AddProduct::createRadioLayout(QHBoxLayout* radioLayoutDown, QVBoxLayout* ra
 
 void AddProduct::resetCommon() {
     imgpath = "../cialde-test/Data/Photo/image-not-found.jpg";
-    imgLabel->setPixmap(QPixmap(QString::fromStdString("../cialde-test/Data/Photo/image-not-found.jpg")).scaled(QSize(400, 400)));
+    imgLabel->setPixmap(QPixmap(QString::fromStdString(":/MyRes/Photo/image-not-found.jpg")).scaled(QSize(400, 400)));
     itemComboBox->setCurrentIndex(0);
     capacityBox->setCurrentIndex(0);
     nomeLine->setText(" ");
