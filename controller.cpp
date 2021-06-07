@@ -66,7 +66,7 @@ void Controller::existItem() const {
             while(model->findItem(std::to_string(n))==true){
                 n=rand() % 9000 + 1000;
             }
-            QMessageBox::information(nullptr, "Messaggio", "Inserito nuovo ID", QMessageBox::Ok);
+            QMessageBox::information(nullptr, "Messaggio", "Nuovo ID: " + QString::fromStdString(std::to_string(n)), QMessageBox::Ok);
             view->getAddProduct()->setIdLine(n);
         }
     }else{
@@ -237,24 +237,24 @@ void Controller::cancOrder() {
     if(QMessageBox::question(nullptr, "Attenzione", "Sicuro di voler annullare l'ordine?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
         u_int realSize = view->getOrder()->getOm()->getModel()->getSize();
         for(u_int i = 0; i<realSize; ++i){
-                u_int quantityReset = view->getOrder()->getOm()->getQuantity()->operator [](i);
-                WaffleBox* toReset = view->getOrder()->getOm()->getModel()->getItem(0);
+           u_int quantityReset = view->getOrder()->getOm()->getQuantity()->operator [](i);
+           WaffleBox* toReset = view->getOrder()->getOm()->getModel()->getItem(0);
 
-               if(!view->getTM()->getModel()->findItem(toReset->getID())){ //Se non trova l'oggetto ordinato nel model, è da reinserire con la quantità ordinata
-                   toReset->setStockAvailability(quantityReset);
-                   view->getTM()->setWBToinsert(toReset);
-                   view->getTM()->insertRows(view->getFPM()->rowCount(),1);
-                   view->getOrder()->getOm()->removeRows(0,1);
-                }else{
-                   //Il prodotto esiste e va aggiornata la disponibiltà
-                   for(u_int j = 0; j< view->getTM()->getModel()->getSize(); ++j){
-                        WaffleBox* toUpdate = view->getTM()->getModel()->getItem(j);
-                        if(toUpdate->getID() == toReset->getID()){
-                            toUpdate->setStockAvailability(toUpdate->getStockAvailability() + quantityReset);
-                            view->getOrder()->getOm()->removeRows(0,1);
-                        }
-                   }
-                }
+           if(!view->getTM()->getModel()->findItem(toReset->getID())){ //Se non trova l'oggetto ordinato nel model, è da reinserire con la quantità ordinata
+               toReset->setStockAvailability(quantityReset);
+               view->getTM()->setWBToinsert(toReset);
+               view->getTM()->insertRows(view->getFPM()->rowCount(),1);
+               view->getOrder()->getOm()->removeRows(0,1);
+            }else{
+               //Il prodotto esiste e va aggiornata la disponibiltà
+               for(u_int j = 0; j< view->getTM()->getModel()->getSize(); ++j){
+                    WaffleBox* toUpdate = view->getTM()->getModel()->getItem(j);
+                    if(toUpdate->getID() == toReset->getID()){
+                        toUpdate->setStockAvailability(toUpdate->getStockAvailability() + quantityReset);
+                        view->getOrder()->getOm()->removeRows(0,1);
+                    }
+               }
+            }
         }
         view->getOrder()->getOm()->getQuantity()->clear();
         QMessageBox::information(nullptr, "Messaggio", "Ordine cancellato", QMessageBox::Ok);
