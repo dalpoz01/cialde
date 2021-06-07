@@ -1,65 +1,238 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<radix>
-    <WaffleBox type="CircleBox">
-        <ID>CIB03</ID>
-        <capacity>50</capacity>
-        <weight>5</weight>
-        <price>25</price>
-	<discount>5</discount>
-        <stockavailability>10</stockavailability>
-        <radius>3</radius>
+<element>
+    <WaffleBox type="Cannolo Box">
+        <Nome>Cannoloprova123</Nome>
+        <ID>123</ID>
+        <Foto>../cialde-test/Data/Photo/image-not-found.jpg</Foto>
+        <capacity>200</capacity>
+        <weight>160</weight>
+        <price>1</price>
+        <discount>1</discount>
+        <stockavailability>1</stockavailability>
+        <height>0</height>
+        <int_diameter>0</int_diameter>
     </WaffleBox>
-    <WaffleBox type="VentaglioBox">
-        <ID>VEB02</ID>
-        <capacity>100</capacity>
-        <weight>30</weight>
-        <price>27</price>
-	<discount>5</discount>
-        <stockavailability>5</stockavailability>
-        <height>5</height>
-        <width>2</width>
+    <WaffleBox type="Circle Box">
+        <Nome>cerchio</Nome>
+        <ID>8498</ID>
+        <Foto>../cialde-test/Data/Photo/image-not-found.jpg</Foto>
+        <capacity>150</capacity>
+        <weight>120</weight>
+        <price>500</price>
+        <discount>10</discount>
+        <stockavailability>200</stockavailability>
+        <radius>667410195</radius>
     </WaffleBox>
-    <WaffleBox type="CannoloBox">
-        <ID>CNB02</ID>
-        <capacity>70</capacity>
-        <weight>20</weight>
-        <price>50</price>
-	<discount>5</discount>
-        <stockavailability>20</stockavailability>
-        <height>8</height>
-        <int_diameter>0.9</int_diameter>
+    <WaffleBox type="Covered Box">
+        <Nome>CHOCO</Nome>
+        <ID>5632</ID>
+        <Foto>../cialde-test/Data/Photo/image-not-found.jpg</Foto>
+        <capacity>200</capacity>
+        <weight>160</weight>
+        <price>350</price>
+        <discount>5</discount>
+        <stockavailability>150</stockavailability>
+        <height>170</height>
+        <taste></taste>
     </WaffleBox>
-    <WaffleBox type="ConeBox">
-        <ID>COB10</ID>
-        <capacity>50</capacity>
-        <weight>15</weight>
-        <price>40</price>
-	<discount>5</discount>
+    <WaffleBox type="Branded Box">
+        <Nome>PadovaCone</Nome>
+        <ID>7854</ID>
+        <Foto>../cialde-test/Data/Photo/image-not-found.jpg</Foto>
+        <capacity>300</capacity>
+        <weight>240</weight>
+        <price>299.99</price>
+        <discount>5</discount>
+        <stockavailability>150</stockavailability>
+        <height>161</height>
+        <ext_diameter>2</ext_diameter>
+        <principal_color>Bianco</principal_color>
+        <secondary_color>Rosso</secondary_color>
+    </WaffleBox>
+    <WaffleBox type="Branded Box">
+        <Nome>VeneziaCone</Nome>
+        <ID>4521</ID>
+        <Foto>../cialde-test/Data/Photo/image-not-found.jpg</Foto>
+        <capacity>300</capacity>
+        <weight>240</weight>
+        <price>299.99</price>
+        <discount>5</discount>
+        <stockavailability>150</stockavailability>
+        <height>161</height>
+        <ext_diameter>2</ext_diameter>
+        <principal_color>Nero</principal_color>
+        <secondary_color>Arancione</secondary_color>
+    </WaffleBox>
+    <WaffleBox type="Branded Box">
+        <Nome>Black&amp;WhiteWrap</Nome>
+        <ID>9703</ID>
+        <Foto>../cialde-test/Data/Photo/blackwhite-branded.jpg</Foto>
+        <capacity>250</capacity>
+        <weight>200</weight>
+        <price>325</price>
+        <discount>5</discount>
         <stockavailability>50</stockavailability>
-        <height>8</height>
-        <ext_diameter>4</ext_diameter>
+        <height>170</height>
+        <ext_diameter>47</ext_diameter>
+        <principal_color> </principal_color>
+        <secondary_color> </secondary_color>
     </WaffleBox>
-    <WaffleBox type="BrandedBox">
-        <ID>BRB00</ID>
+    <WaffleBox type="Covered Box">
+        <Nome>ChocoNut</Nome>
+        <ID>9388</ID>
+        <Foto>../cialde-test/Data/Photo/chocolateskor-covered.jpg</Foto>
+        <capacity>300</capacity>
+        <weight>240</weight>
+        <price>390</price>
+        <discount>20</discount>
+        <stockavailability>100</stockavailability>
+        <height>155</height>
+        <taste></taste>
+    </WaffleBox>
+    <WaffleBox type="Covered Box">
+        <Nome>WhiteArlecchino</Nome>
+        <ID>2589</ID>
+        <Foto>../cialde-test/Data/Photo/whitechocolatesprinkles-covered.jpg</Foto>
+        <capacity>350</capacity>
+        <weight>280</weight>
+        <price>455</price>
+        <discount>20</discount>
+        <stockavailability>50</stockavailability>
+        <height>155</height>
+        <taste></taste>
+    </WaffleBox>
+    <WaffleBox type="Branded Box">
+        <Nome>GreenOrangeWrap</Nome>
+        <ID>5897</ID>
+        <Foto>../cialde-test/Data/Photo/greenorange-branded.jpg</Foto>
+        <capacity>100</capacity>
+        <weight>80</weight>
+        <price>130</price>
+        <discount>15</discount>
+        <stockavailability>50</stockavailability>
+        <height>183</height>
+        <ext_diameter>47</ext_diameter>
+        <principal_color>Verde Lime</principal_color>
+        <secondary_color>Arancione</secondary_color>
+    </WaffleBox>
+    <WaffleBox type="Covered Box">
+        <Nome>MiniChocoCone</Nome>
+        <ID>4561</ID>
+        <Foto>../cialde-test/Data/Photo/little-covered.jpg</Foto>
         <capacity>50</capacity>
-        <weight>20</weight>
-        <price>50</price>
-	<discount>5</discount>
-        <stockavailability>5</stockavailability>
-        <height>8</height>
-        <ext_diameter>4</ext_diameter>
-        <principal_color>Red</principal_color>
-        <secondary_color>Black</secondary_color>
+        <weight>40</weight>
+        <price>15</price>
+        <discount>0</discount>
+        <stockavailability>200</stockavailability>
+        <height>17</height>
+        <taste>Cioccolato</taste>
     </WaffleBox>
-    <WaffleBox type="CoveredBox">
-        <ID>CVB11</ID>
-        <capacity>50</capacity>
-        <weight>50</weight>
-        <price>70</price>
-	<discount>5</discount>
-        <stockavailability>10</stockavailability>
-        <height>8</height>
-        <ext_diameter>4</ext_diameter>
-        <taste>Choco</taste>
+    <WaffleBox type="Ventaglio Box">
+        <Nome> VentaglioOne</Nome>
+        <ID>7319</ID>
+        <Foto>../cialde-test/Data/Photo/vent1.jpg</Foto>
+        <capacity>200</capacity>
+        <weight>160</weight>
+        <price>25</price>
+        <discount>0</discount>
+        <stockavailability>200</stockavailability>
+        <height>95</height>
+        <width>55</width>
     </WaffleBox>
-</radix>
+    <WaffleBox type="Ventaglio Box">
+        <Nome> VentaglioTwo</Nome>
+        <ID> 4682</ID>
+        <Foto>../cialde-test/Data/Photo/vent2.jpg</Foto>
+        <capacity>200</capacity>
+        <weight>160</weight>
+        <price>25</price>
+        <discount>0</discount>
+        <stockavailability>200</stockavailability>
+        <height>90</height>
+        <width>45</width>
+    </WaffleBox>
+    <WaffleBox type="Ventaglio Box">
+        <Nome> VentaglioThree</Nome>
+        <ID> 7931</ID>
+        <Foto>../cialde-test/Data/Photo/vent3.jpg</Foto>
+        <capacity>200</capacity>
+        <weight>160</weight>
+        <price>27</price>
+        <discount>0</discount>
+        <stockavailability>200</stockavailability>
+        <height>90</height>
+        <width>60</width>
+    </WaffleBox>
+    <WaffleBox type="Cannolo Box">
+        <Nome> CannoloClassicLong</Nome>
+        <ID> 5456</ID>
+        <Foto>../cialde-test/Data/Photo/cannolo5.jpg</Foto>
+        <capacity>250</capacity>
+        <weight>200</weight>
+        <price>150</price>
+        <discount>0</discount>
+        <stockavailability>50</stockavailability>
+        <height>160</height>
+        <int_diameter>4</int_diameter>
+    </WaffleBox>
+    <WaffleBox type="Cannolo Box">
+        <Nome>MiniCannoloClassic</Nome>
+        <ID>7878</ID>
+        <Foto>../cialde-test/Data/Photo/cannolo6.jpg</Foto>
+        <capacity>250</capacity>
+        <weight>200</weight>
+        <price>122</price>
+        <discount>5</discount>
+        <stockavailability>200</stockavailability>
+        <height>90</height>
+        <int_diameter>4</int_diameter>
+    </WaffleBox>
+    <WaffleBox type="Cannolo Box">
+        <Nome> MiniCannoloBigusto</Nome>
+        <ID> 7889</ID>
+        <Foto>../cialde-test/Data/Photo/cannolo1.jpg</Foto>
+        <capacity>150</capacity>
+        <weight>120</weight>
+        <price>100</price>
+        <discount>0</discount>
+        <stockavailability>100</stockavailability>
+        <height>90</height>
+        <int_diameter>4</int_diameter>
+    </WaffleBox>
+    <WaffleBox type="Cannolo Box">
+        <Nome> CannoloBigusto</Nome>
+        <ID> 7414</ID>
+        <Foto>../cialde-test/Data/Photo/cannolo2.jpg</Foto>
+        <capacity>250</capacity>
+        <weight>200</weight>
+        <price>150</price>
+        <discount>10</discount>
+        <stockavailability>50</stockavailability>
+        <height>160</height>
+        <int_diameter>4</int_diameter>
+    </WaffleBox>
+    <WaffleBox type="Cannolo Box">
+        <Nome> SpecialCannoloBigusto</Nome>
+        <ID> 5258</ID>
+        <Foto>../cialde-test/Data/Photo/cannolo4.jpg</Foto>
+        <capacity>200</capacity>
+        <weight>160</weight>
+        <price>155</price>
+        <discount>15</discount>
+        <stockavailability>100</stockavailability>
+        <height>160</height>
+        <int_diameter>4</int_diameter>
+    </WaffleBox>
+    <WaffleBox type="Cannolo Box">
+        <Nome>MiniSpecialCannoloBigusto</Nome>
+        <ID>9636</ID>
+        <Foto>../cialde-test/Data/Photo/cannolo3.jpg</Foto>
+        <capacity>150</capacity>
+        <weight>120</weight>
+        <price>99</price>
+        <discount>5</discount>
+        <stockavailability>50</stockavailability>
+        <height>90</height>
+        <int_diameter>4</int_diameter>
+    </WaffleBox>
+</element>

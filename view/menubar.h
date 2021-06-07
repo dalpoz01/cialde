@@ -11,14 +11,15 @@ private:
     QAction *save;
     QAction *catalog;
     QAction *addProduct;
-    QAction *modProduct;
-    QAction *carrello;
+    QAction* orderTab;
+
 public:
     explicit MenuBar(QWidget * = nullptr);
-    QAction *getCarrello();
+    QAction* getLoad() const;
+    QAction* getSave() const;
     QAction *getCatalog() const;
     QAction *getAddProduct() const;
-    QAction *getModProduct() const;
+    QAction *getOrderTab() const;
 };
 
 #endif // MENUBAR_H

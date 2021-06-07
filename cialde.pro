@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT += core gui
+QT += xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -40,11 +41,13 @@ SOURCES +=\
     view/catalog.cpp \
     view/addproduct.cpp \
     view/modifyproduct.cpp \
-    view/searchinventory.cpp \
     view/table.cpp \
-    view/tablezone.cpp \
     view/mainwindow.cpp \
-    controller.cpp
+    controller.cpp \
+    view/details.cpp \
+    model/filterproxymodel.cpp \
+    view/order.cpp \
+    model/ordersmodel.cpp
 
 HEADERS +=\
     model/covered.h \
@@ -64,11 +67,13 @@ HEADERS +=\
     view/catalog.h \
     view/addproduct.h \
     view/modifyproduct.h \
-    view/searchinventory.h \
     view/table.h \
-    view/tablezone.h \
     view/mainwindow.h \
-    controller.h
+    controller.h \
+    view/details.h \
+    model/filterproxymodel.h \
+    view/order.h \
+    model/ordersmodel.h
 
 RESOURCES += \
     Data/res.qrc

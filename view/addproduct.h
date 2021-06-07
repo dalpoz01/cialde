@@ -13,6 +13,7 @@
 #include <QRadioButton>
 #include <QButtonGroup>
 #include <QMessageBox>
+#include <QFileDialog>
 
 #include "model/wafflebox.h"
 #include "model/circlebox.h"
@@ -27,6 +28,8 @@
 class AddProduct : public QWidget{
     Q_OBJECT
 private:
+    std::string imgpath;
+    QString currentPath;
     //Common Field
     QComboBox *itemComboBox, *capacityBox;
     QLabel *imgLabel;
@@ -76,7 +79,7 @@ private:
     void showCommon() const;
     void createRadioLayout(QHBoxLayout* radioLayoutDown, QVBoxLayout* radioLayout, QHBoxLayout* radioLayoutUp);
 
-    void resetCommon() const;
+    void resetCommon();
     void resetCircle() const;
     void resetHeight() const;
     void resetVentaglio() const;
@@ -84,18 +87,27 @@ private:
     void resetCone() const;
     void resetBranded() const;
     void resetCovered() const;
+
 public:
     explicit AddProduct(QWidget * = nullptr);
     QPushButton* getAdd();
+    QPushButton* getCancel();
+    QPushButton *getAddPhoto() const;
+    QComboBox* getItemCombo();
+    std::string getIdLineString() const;
+    void enableFields(bool) const;
+    void resetAll();
+    void insert(); //Metodo che crea un oggetto in base ai campi inseriti
+
+    void setIdLine(int);
 
 private slots:
     void resetFields();    //Metodo per resettare a " " tutti i campi.
-    void showItemTypeField(const QString&) const;
-    void insert();    //Metodo che crea un oggetto in base ai campi inseriti
+    void showItemTypeField(const QString&) const; //Metodo per mostrare i campi corretti in base al tipo di Box
+    void addFoto();   //Metodo per aggiungere foto
 
 signals:
     void signalToInsert(WaffleBox*) const;
-
 };
 
 #endif // ADDPRODUCT_H

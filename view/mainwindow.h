@@ -6,42 +6,42 @@
 #include <QHBoxLayout>
 #include <QDesktopWidget>
 #include <QApplication>
+#include <QCloseEvent>
 #include "view/menubar.h"
 #include "view/catalog.h"
 #include "view/addproduct.h"
 #include "view/modifyproduct.h"
-#include "view/searchinventory.h"
+#include "view/table.h"
+#include "view/order.h"
+#include "model/tablemodel.h"
+#include "model/filterproxymodel.h"
 
 class Controller;
 class AddProduct;
-using namespace std;
-
 
 class MainWindow : public QWidget{
     Q_OBJECT
 private:
     MenuBar *menu;
-    catalog *catalogo;
     AddProduct* aggiungiProdotto;
-    modifyProduct *modificaProdotto;
-    SearchInventory* ricercaProdotto;
-
-   /* TableModel* absModel;
-    TableZone* tabella;*/
-
-    Controller *controller;
-
+    Controller* controller;
+    TableModel *tm;
+    FilterProxyModel *fpm;
+    Catalog *catalogo;
+    Order* ordini;
 public:
     explicit MainWindow(QWidget * = nullptr);
     ~MainWindow() override = default;
     virtual QSize sizeHint() const override;
-    void setController(Controller *c);
-    void showAddProduct() const;
-    void showCatalog() const;
-    void showModifyProduct() const;
+    void setController(Controller *);
+    AddProduct* getAddProduct() const;
+    Catalog* getCatalog() const;
     MenuBar *getMenu() const;
+    TableModel* getTM() const;
+    FilterProxyModel* getFPM() const;
+    Order* getOrder() const;
 public slots:
-      void insertItemInfo();
+    virtual void closeEvent(QCloseEvent*) override; //Chiusura finestra
 };
 
 #endif // MAINWINDOW_H

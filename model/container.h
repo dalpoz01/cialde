@@ -16,7 +16,7 @@ private:
     void resize();
 public:
     //Costruttore standard
-    Container(u_int = 1, u_int = 0);
+    Container(u_int = 0, u_int = 10);
     //Fill constructor, cioè crea il contenitore avente n copie di t.
     Container(const T&, u_int);
     //costruttore di copia
@@ -132,13 +132,8 @@ public:
     iterator erase(iterator, iterator);
     iterator insert(iterator, const T&);
 
-
-     //const_iterator cbegin() const;   //ritorna iteratore costante che punta al primo elemento (non modificabile essendo const_iterator)
-    // const_iterator cend() const; //ritorna const_iterator che punta past-the-end del container
-     const_iterator begin() const;    //ritorna iteratore costante al primo elemento del container
-     const_iterator end() const;  //ritorna const_iterator past-the-end
-
-
+    const_iterator begin() const;    //ritorna iteratore costante al primo elemento del container
+    const_iterator end() const;  //ritorna const_iterator past-the-end
 };
 
 /*********************** CLASSE Container ***************************/
@@ -295,7 +290,13 @@ template<class T>
 bool Container<T>::empty() const{return size==0;}
 
 template<class T>
-void Container<T>::push_back(const T& t){if(size == capacity) resize(); p[size] = t; size++;} //size è l'ultimo elemento
+void Container<T>::push_back(const T& t){
+    if(size == capacity){
+        resize();
+    }
+    p[size] = t;
+    size++;
+} //size è l'ultimo elemento
 
 template<class T>
 void Container<T>::pop_back(){if(size > 0) size--;}
@@ -314,7 +315,7 @@ void Container<T>::erase(u_int first, u_int last){  //DA COMPLETARE
 
     size -= (last-first)+1; //dimensione effettiva diventa la dimensione precedente MENO gli elementi di cui si è fatto l'erase.
 
-    reduce();
+    if(size<capacity/2) reduce();
 }
 
 template<class T>
@@ -323,6 +324,7 @@ void Container<T>::erase(u_int position){
     for(u_int i = position; i<size; ++i)
         p[i] = p[i+1];
     size--;
+
 }
 
 template<class T>

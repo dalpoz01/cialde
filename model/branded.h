@@ -7,7 +7,7 @@ private:
     std::string principal_color;
     std::string secondary_color;
 public:
-    Branded(const std::string& = "", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0, u_int = 0, u_int = 0, const std::string& = "", const std::string& = "");
+    Branded(const std::string& = "", const std::string& = "", const std::string& = "", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0, u_int = 0, u_int = 0, const std::string& = "", const std::string& = "");
     Branded(const Branded&);
 
     //Getter, setter
@@ -26,6 +26,7 @@ public:
 
     std::string getItemType() const;
 
+    virtual std::string printItem() const;
 };
 
 #endif // BRANDED_H

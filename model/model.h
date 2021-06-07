@@ -1,28 +1,40 @@
 #ifndef MODEL_H
 #define MODEL_H
-#include "container.h"
-#include "deepptr.h"
-#include "wafflebox.h"
 #include "xmlmanagement.h"
+#include "container.h"
+#include "wafflebox.h"
+#include "deepptr.h"
 
 class Model{
 private:
     std::string path;
     std::string fileName;
+    XmlManagement xmlManager;
     Container<DeepPtr<WaffleBox>> container;
 public:
+    Model(const std::string& = "../cialde/Data/Xml/", const std::string& = "products.xml", u_int = 10);
+    Model(const Model&);
 
-    Model(const std::string& = "..cialde-test/Data/Xml", const std::string& = "products.xml", u_int = 10);
-    bool findItem(WaffleBox*) const;
+    //bool findItem(WaffleBox*) const;
     void addBox(WaffleBox*);
     void removeBox(u_int);
     void removeBox(DeepPtr<WaffleBox>&);
-    void loadXMl(); //Carico i dati dal file
+    void loadXml(); //Carico i dati dal file
     void writeXml() const;
-    int getSize() const;
+    u_int getSize() const;
     WaffleBox* getItem(unsigned int i) const; //Metodo per ottenere l'obj nel container
+    std::string printAll() const;
+    std::string printBill() const;
 
+    void updateItem(u_int, WaffleBox*);
+    bool findItem(WaffleBox*) const;
+    bool findItem(std::string s) const; //Metodo per veificare la presenza dell'ID di un wafflebox data una stringa, ritorna true se trovato
 
+    std::string getPath() const;
+    std::string getFileName() const;
+    void setPath(const std::string&);
+    void setFileName(const std::string&);
+    Container<DeepPtr<WaffleBox>> getContainer() const;
 };
 
 #endif // MODEL_H

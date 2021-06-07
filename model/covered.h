@@ -9,7 +9,7 @@ private:
     std::string taste;
 public:
     //Costruttore, costruttore di copia e distruttore
-    Covered(const std::string& = "", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0, u_int = 0, u_int = 0, const std::string& = "");
+    Covered(const std::string& = "", const std::string& = "", const std::string & = "", u_int = 0, u_int = 0, double = 0, u_int = 0, u_int = 0, u_int = 0, u_int = 0, const std::string& = "");
     Covered(const Covered&);
     virtual ~Covered() = default;
 
@@ -27,6 +27,8 @@ public:
     virtual Covered *clone() const;
 
     std::string getItemType() const;
+
+    virtual std::string printItem() const;
 };
 
 #endif // COVERED_H

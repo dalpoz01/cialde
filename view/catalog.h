@@ -9,24 +9,38 @@
 #include <QLabel>
 #include <QFormLayout>
 #include <QLineEdit>
+#include <QRadioButton>
+#include "view/table.h"
+#include "model/tablemodel.h"
+#include "model/filterproxymodel.h"
 
-class catalog : public QWidget{
+class Catalog : public QWidget{
     Q_OBJECT
 private:
-    QVBoxLayout *mainLayout;
-    QComboBox *itemTypeCombobox;
-    QPushButton *search;
-    QLabel *imgLabel;
-    QLabel *nome;
-    QLabel *disponibilita;
-    QLineEdit *editNome;
-    QLineEdit *editDisponibilta;
-    QPushButton *acquista;
-    QPushButton *prec;
-    QPushButton *succ;
-    QFormLayout *formLayout;
+    Table *table;
+    QPushButton *btnModify;
+    QPushButton *btnViewItem;
+    QPushButton *btnRemove;
+    QPushButton* btnBuy;
+    QLineEdit *searchEdit;
+    QComboBox *typeCombobox;
+    QComboBox *detailsCombobox;
+    TableModel *Tm;
+    FilterProxyModel *fpm;
+    bool ord;  //Variabile booleana per gestire l'ordinamento della tabella. Se falsa ordina in modo crescente, altrimenti in ordine decrescente
 public:
-    explicit catalog(QWidget * = nullptr);
+    explicit Catalog(QWidget * = nullptr, TableModel * = nullptr, FilterProxyModel * = nullptr);
+    QPushButton *getBtnModifiy() const;
+    QPushButton *getBtnViewItem() const;
+    QPushButton *getBtnRemove() const;
+    Table *getTable() const;
+    QComboBox *getTypeCombobox() const;
+    QComboBox *getDetailsCombobox() const;
+    QLineEdit *getSearchEdit() const;
+    TableModel *getTm() const;
+    FilterProxyModel *getFpm() const;
+    QPushButton *getBtnBuy() const;
+    void sortHeaderClicked(int); //Metodo per gestire l'ordinamento della tabella in base alla colonna cliccata
 };
 
 #endif // CATALOG_H
