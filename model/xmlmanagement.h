@@ -30,7 +30,7 @@ private:
     static std::string DoubleToString(double);
     static std::string UIntToString(unsigned int);
 public:
-    XmlManagement(const std::string& = "../cialde-test/Data/Xml/", const std::string& = "products.xml");
+    XmlManagement(const std::string& = "../cialde/Data/Xml/", const std::string& = "products.xml");
 
     //Metodo per leggere Xml
     Container<DeepPtr<WaffleBox>> read() const;

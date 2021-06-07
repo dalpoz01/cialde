@@ -1,8 +1,8 @@
 #include "addproduct.h"
 
 AddProduct::AddProduct(QWidget(*parent)): QWidget(parent),
-    imgpath("../cialde-test/Data/Photo/image-not-found.jpg"),
-    currentPath("../cialde-test/Data/Photo"),
+    imgpath("../cialde/Data/Photo/image-not-found.jpg"),
+    currentPath("../cialde/Data/Photo"),
     itemComboBox(new QComboBox(this)),
     capacityBox(new QComboBox(this)),
     imgLabel(new QLabel(this)),
@@ -184,7 +184,7 @@ void AddProduct::createRadioLayout(QHBoxLayout* radioLayoutDown, QVBoxLayout* ra
 }
 
 void AddProduct::resetCommon() {
-    imgpath = "../cialde-test/Data/Photo/image-not-found.jpg";
+    imgpath = "../cialde/Data/Photo/image-not-found.jpg";
     imgLabel->setPixmap(QPixmap(QString::fromStdString(":/MyRes/Photo/image-not-found.jpg")).scaled(QSize(400, 400)));
     itemComboBox->setCurrentIndex(0);
     capacityBox->setCurrentIndex(0);
@@ -447,15 +447,15 @@ void AddProduct::addFoto() {
     if (path.isNull()==false){
         currentPath = path;
         currentPath.remove(QRegExp(currentPath.section("/", -1, -1)));
-        if(!QFile::exists("../cialde-test/Data/Photo/" + path.section("/", -1, -1))){
-            if(QFile::copy(path, QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)))) {
-                QPixmap qpm(QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)));
+        if(!QFile::exists("../cialde/Data/Photo/" + path.section("/", -1, -1))){
+            if(QFile::copy(path, QString("../cialde/Data/Photo/" + path.section("/", -1, -1)))) {
+                QPixmap qpm(QString("../cialde/Data/Photo/" + path.section("/", -1, -1)));
                 imgLabel->setPixmap(qpm.scaled(QSize(400, 400)));
-                imgpath = QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)).toStdString();
+                imgpath = QString("../cialde/Data/Photo/" + path.section("/", -1, -1)).toStdString();
             }
         }else{
-            QPixmap qpm(QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)));
-                imgpath = QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)).toStdString();
+            QPixmap qpm(QString("../cialde/Data/Photo/" + path.section("/", -1, -1)));
+                imgpath = QString("../cialde/Data/Photo/" + path.section("/", -1, -1)).toStdString();
                 imgLabel->setPixmap(qpm.scaled(QSize(400, 400)));
         }
     }

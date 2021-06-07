@@ -11,7 +11,7 @@ private:
     Model* model;
     WaffleBox* wbToInsert;
 public:
-    TableModel(QObject * = nullptr, const std::string& = "../cialde-test/Data/Xml/", const std::string& = "products.xml");
+    TableModel(QObject * = nullptr, const std::string& = "../cialde/Data/Xml/", const std::string& = "products.xml");
     ~TableModel();
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;      //Metodo di QAbstractTableModel che ritorna numero di righe per la view

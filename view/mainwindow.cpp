@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent):
     ordini(new Order(this))
 {
     setWindowTitle("Wafflebox Store");
-    setWindowIcon(QIcon(QPixmap("../cialde-test/Data/Photo/icon.png")));
+    setWindowIcon(QIcon(QPixmap(":/MyRes/Photo/icon.png")));
 
     //Centro la finestra sullo schermo
     QSize size = sizeHint();

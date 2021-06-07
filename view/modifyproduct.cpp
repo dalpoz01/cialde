@@ -4,7 +4,7 @@ ModifyProduct::ModifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
     w(wf)
 {
     setWindowTitle("Wafflebox - Modifica prodotto");
-    setWindowIcon(QIcon(QPixmap("../cialde-test/Data/Photo/icon.png")));
+    setWindowIcon(QIcon(QPixmap(":/MyRes/Data/Photo/icon.png")));
 
     //Centro la finestra sullo schermo
     QSize size = sizeHint();
@@ -182,16 +182,16 @@ WaffleBox* ModifyProduct::getWaffleBox() const{ return w; }
 void ModifyProduct::changePhoto() {
     QString path(QFileDialog::getOpenFileName(this, "Seleziona file", "../", "Immagine (*.png *.jpg *.jpeg)"));
     if (path.isNull()==false){
-        if(!QFile::exists("../cialde-test/Data/Photo/" + path.section("/", -1, -1))){
-            if(QFile::copy(path, QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)))) {
-                QPixmap qpm(QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)));
+        if(!QFile::exists("../cialde/Data/Photo/" + path.section("/", -1, -1))){
+            if(QFile::copy(path, QString("../cialde/Data/Photo/" + path.section("/", -1, -1)))) {
+                QPixmap qpm(QString("../cialde/Data/Photo/" + path.section("/", -1, -1)));
                 imgLabel->setPixmap(qpm.scaled(QSize(400, 400)));
-                imgpath = QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)).toStdString();
+                imgpath = QString("../cialde/Data/Photo/" + path.section("/", -1, -1)).toStdString();
             }
         } else {
-            QPixmap qpm(QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)));
+            QPixmap qpm(QString("../cialde/Data/Photo/" + path.section("/", -1, -1)));
             imgLabel->setPixmap(qpm.scaled(QSize(400, 400)));
-            imgpath = QString("../cialde-test/Data/Photo/" + path.section("/", -1, -1)).toStdString();
+            imgpath = QString("../cialde/Data/Photo/" + path.section("/", -1, -1)).toStdString();
         }
     }
 }
