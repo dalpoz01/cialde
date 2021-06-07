@@ -52,12 +52,6 @@ Order* MainWindow::getOrder() const { return ordini; }
 
 FilterProxyModel* MainWindow::getFPM() const { return fpm; }
 
-void MainWindow::insertItemInfo() { QMessageBox::information(this,"DONE IT!", "Inserimento avvenuto con successo"); }
-
-void MainWindow::loadingXmlInfo() { QMessageBox::information(this,"DONE IT!", "Caricamento avvenuto con successo"); }
-
-void MainWindow::savingXmlInfo() { QMessageBox::information(this,"DONE IT!", "XML creato con successo"); }
-
 void MainWindow::closeEvent(QCloseEvent* event) {
     if(QMessageBox::question(this,"Sicuro?", "Salvare prima di uscire?", QMessageBox::Yes, QMessageBox::No, QMessageBox::Close) == QMessageBox::Yes){
         tm->getModel()->writeXml();

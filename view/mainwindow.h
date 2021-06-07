@@ -41,9 +41,6 @@ public:
     FilterProxyModel* getFPM() const;
     Order* getOrder() const;
 public slots:
-    void insertItemInfo();  //slot che visualizza una finestra di successo
-    void loadingXmlInfo();  //slot che visualizza una finestra di successo
-    void savingXmlInfo();   //slot che visualizza una finestra di successo
     virtual void closeEvent(QCloseEvent*) override; //Chiusura finestra
 };
 

@@ -58,7 +58,7 @@ void Controller::showAddProduct() const {
 }
 
 void Controller::existItem() const {
-    if(view->getCatalog()->getTm()->getModel()->findItem(view->getAddProduct()->getIdLineString())==true){
+    if(model->findItem(view->getAddProduct()->getIdLineString())==true){
         QMessageBox::warning(nullptr, "Attenzione", "Tipo di WaffleBox già esistente con questo ID, si consiglia di cambiare ID", QMessageBox::Ok);
         if(QMessageBox::question(nullptr, "Attenzione", "Vuoi generare automaticamente l'ID?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
             srand(time(nullptr));
@@ -84,7 +84,7 @@ void Controller::showOrdini() {
 void Controller::insertItemController(WaffleBox* wb) {
     view->getTM()->setWBToinsert(wb); //Setto obj da inserire nel TableModel della vista, che verrà passato alla scheda catalogo
     view->getTM()->insertRows(view->getTM()->rowCount(), 1);    //inserisco l'obj nel TableModel, la vista lo notificherà aggiornandosi aggiungendo una riga in più
-    view->insertItemInfo(); //Stampa finestra di successo
+    QMessageBox::information(nullptr,"DONE IT!", "Inserimento avvenuto con successo");
 }
 
 void Controller::changeType(const QString & tipo) {
@@ -98,15 +98,15 @@ void Controller::search() const {
 }
 
 void Controller::loadingXmlController() {
-    view->getTM()->getModel()->loadXml();
+    model->loadXml();
     view->getFPM()->setSourceModel(view->getTM());
     view->getCatalog()->getTable()->setModel(view->getFPM());
-    view->loadingXmlInfo();
+    QMessageBox::information(nullptr,"DONE IT!", "Caricamento avvenuto con successo");
 }
 
 void Controller::savingXmlController() {
-    view->getTM()->getModel()->writeXml();
-    view->savingXmlInfo();
+    model->writeXml();
+    QMessageBox::information(nullptr,"DONE IT!", "XML creato con successo");
 }
 
 void Controller::showDetails() {
@@ -240,15 +240,15 @@ void Controller::cancOrder() {
            u_int quantityReset = view->getOrder()->getOm()->getQuantity()->operator [](i);
            WaffleBox* toReset = view->getOrder()->getOm()->getModel()->getItem(0);
 
-           if(!view->getTM()->getModel()->findItem(toReset->getID())){ //Se non trova l'oggetto ordinato nel model, è da reinserire con la quantità ordinata
+           if(!model->findItem(toReset->getID())){ //Se non trova l'oggetto ordinato nel model, è da reinserire con la quantità ordinata
                toReset->setStockAvailability(quantityReset);
                view->getTM()->setWBToinsert(toReset);
                view->getTM()->insertRows(view->getFPM()->rowCount(),1);
                view->getOrder()->getOm()->removeRows(0,1);
             }else{
                //Il prodotto esiste e va aggiornata la disponibiltà
-               for(u_int j = 0; j< view->getTM()->getModel()->getSize(); ++j){
-                    WaffleBox* toUpdate = view->getTM()->getModel()->getItem(j);
+               for(u_int j = 0; j< model->getSize(); ++j){
+                    WaffleBox* toUpdate = model->getItem(j);
                     if(toUpdate->getID() == toReset->getID()){
                         toUpdate->setStockAvailability(toUpdate->getStockAvailability() + quantityReset);
                         view->getOrder()->getOm()->removeRows(0,1);

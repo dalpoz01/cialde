@@ -83,7 +83,6 @@ bool OrdersModel::insertRows(int afterRow, int n, const QModelIndex &modelIndex)
 bool OrdersModel::removeRows(int startRow, int n, const QModelIndex &modelIndex) {
     beginRemoveRows(modelIndex,startRow,(startRow+n-1));
     model->removeBox(static_cast<unsigned int>(startRow));
-    //for(u_int i = 0; i<model->getSize(); ++i) cout << model->getItem(i)->getID() << endl;
     endRemoveRows();
     return true;
 }
