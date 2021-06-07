@@ -384,7 +384,7 @@ void AddProduct::insert() {
             std::string seco = "";
             std::string taste = "";
 
-               switch(typeIndex){
+            switch(typeIndex){
                case 0: QMessageBox::critical(this,"Impossibile inserire!","Tipo Box mancante.", QMessageBox::Ok, QMessageBox::Close);  //Tipo item = " - ".
                        break;
                case 1: radius = radiusSpin->text().toUInt(); //Tipo "Circle Box"
@@ -429,14 +429,12 @@ void AddProduct::insert() {
                     break;
                 }
            }
-
-       }
-       isEdited=false;
-
+    }else{
+        isEdited=false;
+    }
     if(!isEdited){
         QMessageBox::critical(this,"Errore","Campi essenziali errati o non compilati o vuoti",QMessageBox::Ok);
     }
-
     if(temp != nullptr){
         emit signalToInsert(temp);
         resetAll();

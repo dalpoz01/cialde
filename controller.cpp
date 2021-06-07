@@ -58,7 +58,7 @@ void Controller::showAddProduct() const {
 }
 
 void Controller::existItem() const {
-    if(model->findItem(view->getAddProduct()->getIdLineString())==true){
+    if(view->getCatalog()->getTm()->getModel()->findItem(view->getAddProduct()->getIdLineString())==true){
         QMessageBox::warning(nullptr, "Attenzione", "Tipo di WaffleBox già esistente con questo ID, si consiglia di cambiare ID", QMessageBox::Ok);
         if(QMessageBox::question(nullptr, "Attenzione", "Vuoi generare automaticamente l'ID?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
             srand(time(nullptr));
