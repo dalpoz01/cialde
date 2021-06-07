@@ -77,7 +77,7 @@ AddProduct::AddProduct(QWidget(*parent)): QWidget(parent),
     heightLine->setValidator((new QIntValidator(0, 200, this)));
     intdiamLine->setValidator(new QIntValidator(0, 10, this));
     extdiamLine->setValidator(new QIntValidator(0, 90, this));
-    idLine->setEnabled(false);
+    idLine->setValidator(new QIntValidator(1111,9999,this));
 
     radiusSpin->setMaximum(10);
 
@@ -188,9 +188,9 @@ void AddProduct::resetCommon() {
     imgLabel->setPixmap(QPixmap(QString::fromStdString(":/MyRes/Photo/image-not-found.jpg")).scaled(QSize(400, 400)));
     itemComboBox->setCurrentIndex(0);
     capacityBox->setCurrentIndex(0);
-    nomeLine->setText(" ");
-    idLine->setText(" ");
-    prezzoLine->setText(" ");
+    nomeLine->setText("");
+    idLine->setText("");
+    prezzoLine->setText("");
     discountBox->setValue(0);
     dim1Radio->setChecked(false);
     dim2Radio->setChecked(false);
@@ -200,20 +200,20 @@ void AddProduct::resetCommon() {
 
 void AddProduct::resetCircle() const { radiusSpin->setValue(0); }
 
-void AddProduct::resetHeight() const { heightLine->setText(" "); }
+void AddProduct::resetHeight() const { heightLine->setText(""); }
 
-void AddProduct::resetVentaglio() const { widthLine->setText(" "); }
+void AddProduct::resetVentaglio() const { widthLine->setText(""); }
 
-void AddProduct::resetCannolo() const { intdiamLine->setText(" "); }
+void AddProduct::resetCannolo() const { intdiamLine->setText(""); }
 
-void AddProduct::resetCone() const { extdiamLine->setText(" "); }
+void AddProduct::resetCone() const { extdiamLine->setText(""); }
 
 void AddProduct::resetBranded() const {
-    prncolorLine->setText(" ");
-    seccolorLine->setText(" ");
+    prncolorLine->setText("");
+    seccolorLine->setText("");
 }
 
-void AddProduct::resetCovered() const { tasteLine->setText(" "); }
+void AddProduct::resetCovered() const { tasteLine->setText(""); }
 
 void AddProduct::resetAll(){
     resetCommon();
@@ -325,7 +325,7 @@ void AddProduct::insert() {
     WaffleBox* temp = nullptr;
     bool isEdited=true;
     int typeIndex = itemComboBox->currentIndex();
-    if(itemComboBox->currentText().toStdString() != " - " && nomeLine->text().toStdString() != "" && idLine->text().toStdString() != " " && capacityBox->currentText().toUInt() != 0 && prezzoLine->text().toUInt() != 0){
+    if(itemComboBox->currentText().toStdString() != " - " && nomeLine->text().toStdString() != "" && capacityBox->currentText().toUInt() != 0 && prezzoLine->text().toUInt() != 0){
         switch(typeIndex){
         case 0: QMessageBox::critical(this,"Impossibile inserire!","Tipo Box mancante.", QMessageBox::Ok, QMessageBox::Close);  //Tipo item = " - ".
                 break;
@@ -354,6 +354,7 @@ void AddProduct::insert() {
                 }   //Tipo "Branded"
             break;
         }
+
         if(isEdited){
             u_int stockAva;
             if(dim1Radio->isChecked())
@@ -379,9 +380,9 @@ void AddProduct::insert() {
             u_int width = 0;
             u_int intDiam = 0;
             u_int extDiam = 0;
-            std::string princ = " ";
-            std::string seco = " ";
-            std::string taste = " ";
+            std::string princ = "";
+            std::string seco = "";
+            std::string taste = "";
 
                switch(typeIndex){
                case 0: QMessageBox::critical(this,"Impossibile inserire!","Tipo Box mancante.", QMessageBox::Ok, QMessageBox::Close);  //Tipo item = " - ".
@@ -422,6 +423,8 @@ void AddProduct::insert() {
                                princ = prncolorLine->text().toStdString() == "" ? "Bianco" : prncolorLine->text().toStdString();
                                seco = seccolorLine->text().toStdString() == "" ? "Bianco" : seccolorLine->text().toStdString();  //Tipo "Branded Box"
                        }
+                       princ = prncolorLine->text().toStdString();
+                       seco = seccolorLine->text().toStdString();
                        temp = new Branded(nome,id,foto,capa,peso,prezzo,disc,stockAva,height,extDiam,princ,seco);
                     break;
                 }
