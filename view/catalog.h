@@ -37,8 +37,6 @@ public:
     QComboBox *getTypeCombobox() const;
     QComboBox *getDetailsCombobox() const;
     QLineEdit *getSearchEdit() const;
-    TableModel *getTm() const;
-    FilterProxyModel *getFpm() const;
     QPushButton *getBtnBuy() const;
     void sortHeaderClicked(int); //Metodo per gestire l'ordinamento della tabella in base alla colonna cliccata
 };

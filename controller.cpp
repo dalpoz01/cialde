@@ -88,13 +88,13 @@ void Controller::insertItemController(WaffleBox* wb) {
 }
 
 void Controller::changeType(const QString & tipo) {
-    view->getCatalog()->getFpm()->setItemType(tipo);
+    view->getFPM()->setItemType(tipo);
     emit view->getCatalog()->getSearchEdit()->returnPressed();
 }
 
 void Controller::search() const {
-    view->getCatalog()->getFpm()->setDetailsToSearch(view->getCatalog()->getSearchEdit()->text());
-    view->getCatalog()->getFpm()->setFilterRegExp(QRegExp(view->getCatalog()->getSearchEdit()->text(), Qt::CaseInsensitive, QRegExp::Wildcard));
+    view->getFPM()->setDetailsToSearch(view->getCatalog()->getSearchEdit()->text());
+    view->getFPM()->setFilterRegExp(QRegExp(view->getCatalog()->getSearchEdit()->text(), Qt::CaseInsensitive, QRegExp::Wildcard));
 }
 
 void Controller::loadingXmlController() {
@@ -112,7 +112,7 @@ void Controller::savingXmlController() {
 void Controller::showDetails() {
     const QModelIndexList selection = view->getCatalog()->getTable()->selectionModel()->selectedIndexes();
     if(selection.size()>0){
-        Details *d=new Details(nullptr, view->getCatalog()->getTm()->getItemByIndex(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0))));
+        Details *d=new Details(nullptr, view->getTM()->getItemByIndex(view->getFPM()->getIndexByQIndex(selection.at(0))));
         d->setAttribute(Qt::WA_DeleteOnClose);
         d->show();
     }else{
@@ -123,7 +123,7 @@ void Controller::showDetails() {
 void Controller::modificaProdotto() {
     const QModelIndexList selection = view->getCatalog()->getTable()->selectionModel()->selectedIndexes();
     if(selection.size()>0){
-        ModifyProduct *mp=new ModifyProduct(nullptr, view->getCatalog()->getTm()->getItemByIndex(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0))));
+        ModifyProduct *mp=new ModifyProduct(nullptr, view->getTM()->getItemByIndex(view->getFPM()->getIndexByQIndex(selection.at(0))));
         mp->setAttribute(Qt::WA_DeleteOnClose);
         connect(mp->getModifyPhotoButton(),SIGNAL(clicked()),mp,SLOT(changePhoto()));
         connect(mp->getOkButton(),SIGNAL(clicked()),mp,SLOT(modifica()));
@@ -140,7 +140,7 @@ void Controller::removeItem() {
     if(selection.size()>0){
         if(QMessageBox::question(nullptr, "Attenzione", "Sei sicuro di voler eliminare questo prodotto?", QMessageBox::Yes, QMessageBox::No)==QMessageBox::Yes){
             //ELIMINAZIONE DALLA TABELLA
-            view->getCatalog()->getFpm()->removeRows(selection.at(0).row(), 1);
+            view->getFPM()->removeRows(selection.at(0).row(), 1);
             QMessageBox::information(nullptr, "Messaggio", "Eliminazione effettuata con successo", QMessageBox::Ok);
         }else{
             QMessageBox::warning(nullptr, "Attenzione", "Operazione annullata", QMessageBox::Ok);
@@ -152,21 +152,21 @@ void Controller::removeItem() {
 
 void Controller::setCurrectColumnFpm(const QString &a) const {
     if(a.toStdString()=="ID"){
-        view->getCatalog()->getFpm()->setColumnCount(0);
+        view->getFPM()->setColumnCount(0);
     }else{
         if (a.toStdString()=="Nome") {
-            view->getCatalog()->getFpm()->setColumnCount(2);
+            view->getFPM()->setColumnCount(2);
         } else {
             if (a.toStdString()=="Capacità") {
-                view->getCatalog()->getFpm()->setColumnCount(3);
+                view->getFPM()->setColumnCount(3);
             } else {
                 if (a.toStdString()=="Peso") {
-                    view->getCatalog()->getFpm()->setColumnCount(4);
+                    view->getFPM()->setColumnCount(4);
                 } else {
                     if(a.toStdString()=="Prezzo"){
-                        view->getCatalog()->getFpm()->setColumnCount(5);
+                        view->getFPM()->setColumnCount(5);
                     }else{
-                         view->getCatalog()->getFpm()->setColumnCount(6);
+                         view->getFPM()->setColumnCount(6);
                     }
                 }
             }
@@ -179,7 +179,7 @@ void Controller::enableBtnBuy() { view->getCatalog()->getBtnBuy()->setEnabled(tr
 void Controller::enableOrder() {
     const QModelIndexList selection = view->getCatalog()->getTable()->selectionModel()->selectedIndexes();
         if(selection.size()>0){
-            WaffleBox* toOrder = view->getCatalog()->getTm()->getItemByIndex(view->getCatalog()->getFpm()->getIndexByQIndex(selection.at(0)));
+            WaffleBox* toOrder = view->getTM()->getItemByIndex(view->getFPM()->getIndexByQIndex(selection.at(0)));
             if(toOrder->getStockAvailability() == 1){
                 if(QMessageBox::question(nullptr, "Attenzione", "Ultima rimanenza in magazzino! Continuare?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
                         u_int count = 1;

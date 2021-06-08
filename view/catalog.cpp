@@ -80,10 +80,6 @@ QComboBox *Catalog::getDetailsCombobox() const { return detailsCombobox; }
 
 QLineEdit *Catalog::getSearchEdit() const { return searchEdit; }
 
-TableModel *Catalog::getTm() const { return Tm; }
-
-FilterProxyModel *Catalog::getFpm() const { return fpm; }
-
 void Catalog::sortHeaderClicked(int a) {
     if(ord){
         fpm->sort(a,Qt::DescendingOrder);
@@ -92,7 +88,6 @@ void Catalog::sortHeaderClicked(int a) {
         fpm->sort(a,Qt::AscendingOrder);
         ord=true;
     }
-
 }
 
 QPushButton *Catalog::getBtnBuy() const { return btnBuy; }
