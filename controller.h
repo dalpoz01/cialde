@@ -24,7 +24,6 @@ public:
     explicit Controller(QObject *parent = nullptr);
     void setView(MainWindow*);
     void setModel(Model*);
-    Model *getModel() const;
 public slots:
     //Menubar
     void showCatalogo() const;      //slot per visualizzare la scheda catalogo e nascondere le altre
@@ -45,7 +44,7 @@ public slots:
     void enableBtnBuy();
 
     //Visualizza dettagli
-    void showDetails(); //Visualizza la finestra con un oggetto preselezionato da tabella in dettaglio
+    void showDetails();         //Visualizza la finestra con un oggetto preselezionato da tabella in dettaglio
 
     //Modifica
     void modificaProdotto();    //Visualizza la finestra per modificare un oggetto preseleionato in tabella

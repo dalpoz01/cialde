@@ -6,34 +6,34 @@ void Controller::setView(MainWindow *v){
     view=v;
 
     //Menu
-    connect(view->getMenu()->getCatalog(),SIGNAL(triggered()),this,SLOT(showCatalogo()));       //connessione per visualizzare Catalogo selezionando la voce dal menubar
-    connect(view->getMenu()->getAddProduct(),SIGNAL(triggered()),this,SLOT(showAddProduct()));  //connessione per visualizzare Aggiungi prodotto selezionando la voce dal menubar
-    connect(view->getMenu()->getLoad(),SIGNAL(triggered()),this,SLOT(loadingXmlController()));  //connessione per caricare i dati da un file.xml selezionando la voce dal menubar
-    connect(view->getMenu()->getSave(),SIGNAL(triggered()),this,SLOT(savingXmlController()));   //connessione per salvare i dati in un file.xml selezionando la voce dal menubar
-    connect(view->getMenu()->getOrderTab(),SIGNAL(triggered()),this,SLOT(showOrdini()));        //connessione per visualizzare Ordini selezionando la voce dal menubar
+    connect(view->getMenu()->getCatalog(),SIGNAL(triggered()),this,SLOT(showCatalogo()));       //Connessione per visualizzare Catalogo selezionando la voce dal menubar
+    connect(view->getMenu()->getAddProduct(),SIGNAL(triggered()),this,SLOT(showAddProduct()));  //Connessione per visualizzare Aggiungi prodotto selezionando la voce dal menubar
+    connect(view->getMenu()->getLoad(),SIGNAL(triggered()),this,SLOT(loadingXmlController()));  //Connessione per caricare i dati da un file.xml selezionando la voce dal menubar
+    connect(view->getMenu()->getSave(),SIGNAL(triggered()),this,SLOT(savingXmlController()));   //Connessione per salvare i dati in un file.xml selezionando la voce dal menubar
+    connect(view->getMenu()->getOrderTab(),SIGNAL(triggered()),this,SLOT(showOrdini()));        //Connessione per visualizzare Ordini selezionando la voce dal menubar
 
     //Aggiungi Prodotto
     connect(view->getAddProduct()->getItemCombo(),SIGNAL(currentIndexChanged(const QString&)),view->getAddProduct(),SLOT(showItemTypeField(const QString&))); //connessione alla QComboBox del tipo di box da inserire, per visualizzare i campi corretti
-    connect(view->getAddProduct()->getCancel(),SIGNAL(clicked()),view->getAddProduct(),SLOT(resetFields()));        //connessione per bottone Cancella, che resetta i campi di inserimento
-    connect(view->getAddProduct()->getAddPhoto(),SIGNAL(clicked()),view->getAddProduct(),SLOT(addFoto()));          //connessione per bottone Aggiungi foto, che inserisce una foto al prodotto
+    connect(view->getAddProduct()->getCancel(),SIGNAL(clicked()),view->getAddProduct(),SLOT(resetFields()));        //Connessione per bottone Cancella, che resetta i campi di inserimento
+    connect(view->getAddProduct()->getAddPhoto(),SIGNAL(clicked()),view->getAddProduct(),SLOT(addFoto()));          //Connessione per bottone Aggiungi foto, che inserisce una foto al prodotto
     connect(view->getAddProduct()->getAdd(),SIGNAL(clicked()),this,SLOT(existItem()));                              //Connessione per bottone Aggiungi, richiama il metodo insert() che preleva i dati dai campi e crea l'oggetto
     connect(view->getAddProduct(),SIGNAL(signalToInsert(WaffleBox*)),this,SLOT(insertItemController(WaffleBox*)));  //Connessione per il segnale emesso da insert(), se l'inserimento avviene correttamente lo aggiunge al container
 
     //Catalogo
-    connect(view->getCatalog()->getTypeCombobox(), SIGNAL(currentIndexChanged(const QString &)), this, SLOT(changeType(const QString &)));
-    connect(view->getCatalog()->getSearchEdit(), SIGNAL(textChanged(const QString &)),this,SLOT(search()));
+    connect(view->getCatalog()->getTypeCombobox(), SIGNAL(currentIndexChanged(const QString &)), this, SLOT(changeType(const QString &)));  //Visualizza nella tabella i tipi di Wafflebox selezionati
+    connect(view->getCatalog()->getSearchEdit(), SIGNAL(textChanged(const QString &)),this,SLOT(search()));                                 //Visualizza nella tabella gli elementi in base al testo scritto
     connect(view->getCatalog()->getSearchEdit(), SIGNAL(returnPressed()),this,SLOT(search()));
-    connect(view->getCatalog()->getDetailsCombobox(), SIGNAL(currentIndexChanged(const QString &)), this, SLOT(setCurrectColumnFpm(const QString &)));
+    connect(view->getCatalog()->getDetailsCombobox(), SIGNAL(currentIndexChanged(const QString &)), this, SLOT(setCurrectColumnFpm(const QString &)));  //Setta come dettaglio di ricerca (Nome,ID,...) il campo selezionato
     connect(view->getCatalog()->getBtnRemove(),SIGNAL(clicked()),this,SLOT(removeItem()));
-    connect(view->getCatalog()->getTable()->getHeader(),SIGNAL(sectionClicked(int)),this,SLOT(headerClicked(int)));
+    connect(view->getCatalog()->getTable()->getHeader(),SIGNAL(sectionClicked(int)),this,SLOT(headerClicked(int)));                         //Segnala quale colonna è stata cliccata
     connect(view->getCatalog()->getTable()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(enableBtnBuy())); //Attiva il bottone di acquisto
-    connect(view->getCatalog()->getBtnBuy(),SIGNAL(clicked()), this, SLOT(enableOrder()));        //attiva la tab sul menubar dell'ordine
+    connect(view->getCatalog()->getBtnBuy(),SIGNAL(clicked()), this, SLOT(enableOrder()));                                                  //Attiva la tab sul menubar dell'ordine
 
     //Visualizza dettagli
-    connect(view->getCatalog()->getBtnViewItem(),SIGNAL(clicked()),this,SLOT(showDetails()));     //connessione per mostrare un oggetto in dettaglio
+    connect(view->getCatalog()->getBtnViewItem(),SIGNAL(clicked()),this,SLOT(showDetails()));     //Connessione per mostrare un oggetto in dettaglio
 
     //Modifica prodotto
-    connect(view->getCatalog()->getBtnModifiy(),SIGNAL(clicked()),this,SLOT(modificaProdotto())); //connessione per il bottone Modifica in catalogo, che apre una finestra di modifica dell'oggetto selezionato dalla tabella.
+    connect(view->getCatalog()->getBtnModifiy(),SIGNAL(clicked()),this,SLOT(modificaProdotto())); //Connessione per il bottone Modifica in catalogo, che apre una finestra di modifica dell'oggetto selezionato dalla tabella.
 
     //Ordini
     connect(view->getOrder()->getSendOrderBtn(),SIGNAL(clicked()),this, SLOT(confirmOrder()));
@@ -42,8 +42,6 @@ void Controller::setView(MainWindow *v){
 }
 
 void Controller::setModel(Model *m) { model = m; }
-
-Model* Controller::getModel() const { return model; }
 
 void Controller::showCatalogo() const {
     view->getAddProduct()->hide();
@@ -78,7 +76,6 @@ void Controller::showOrdini() {
     view->getCatalog()->hide();
     view->getAddProduct()->hide();
     view->getOrder()->show();
-
 }
 
 void Controller::insertItemController(WaffleBox* wb) {
@@ -132,7 +129,6 @@ void Controller::modificaProdotto() {
     }else{
          QMessageBox::warning(nullptr, "Attenzione", "Selezionare una riga per procedere con la modifica!", QMessageBox::Ok);
     }
-
 }
 
 void Controller::removeItem() {

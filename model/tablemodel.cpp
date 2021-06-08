@@ -48,7 +48,7 @@ QVariant TableModel::data(const QModelIndex &modelIndex, int role) const {
                 break;
         //Ho definito le colonne
         default: return QVariant();
-     }
+    }
     return QVariant();
 }
 

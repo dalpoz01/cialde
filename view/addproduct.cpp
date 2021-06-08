@@ -215,7 +215,7 @@ void AddProduct::resetBranded() const {
 
 void AddProduct::resetCovered() const { tasteLine->setText(""); }
 
-void AddProduct::resetAll(){
+void AddProduct::resetAll() {
     resetCommon();
     resetCircle();
     resetHeight();

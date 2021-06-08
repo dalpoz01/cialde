@@ -44,8 +44,8 @@ if(model->getItem(0) != nullptr){
                 return QString::number(quantity->operator [](modelIndex.row()));
                 break;
         default: return QVariant();
-     }
-}
+    }
+    }
     return QVariant();
 }
 
