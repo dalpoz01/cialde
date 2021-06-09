@@ -4,7 +4,7 @@ Details::Details(QWidget *parent, WaffleBox *wf): QWidget(parent),
     w(wf)
 {
     setWindowTitle("Wafflebox - Dettagli prodotto");
-    setWindowIcon(QIcon(QPixmap(":/MyRes/Data/Photo/icon.png")));
+    setWindowIcon(QIcon(QPixmap(":/MyRes/Photo/icon.png")));
 
     //Centro la finestra sullo schermo
     QSize size = sizeHint();
