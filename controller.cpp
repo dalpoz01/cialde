@@ -231,10 +231,9 @@ void Controller::confirmOrder() {
 
 void Controller::cancOrder() {
     if(QMessageBox::question(nullptr, "Attenzione", "Sicuro di voler annullare l'ordine?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
-        /*u_int realSize = view->getOrder()->getOm()->getModel()->getSize();
-        for(u_int i = 0; i<realSize; ++i){*/
-        while(view->getOrder()->getOm()->getModel()->getSize() != 0){
-            unsigned int quantityReset = view->getOrder()->getOm()->getQuantity()->operator [](0);
+        u_int realSize = view->getOrder()->getOm()->getModel()->getSize();
+        for(u_int i = 0; i<realSize; ++i){
+            unsigned int quantityReset = view->getOrder()->getOm()->getQuantity()->operator [](i);
             WaffleBox* toReset = view->getOrder()->getOm()->getModel()->getItem(0);
 
             if(!model->findItem(toReset->getID())){ //Se non trova l'oggetto ordinato nel model, è da reinserire con la quantità ordinata
