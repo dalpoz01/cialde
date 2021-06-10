@@ -44,17 +44,17 @@ ModifyProduct::ModifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
     nomeValueEdit->setMaximumWidth(maxSizeEdit);
     idValueEdit=new QLineEdit(QString::fromStdString(w->getID()),this);
     idValueEdit->setMaximumWidth(maxSizeEdit);
-    nPezziValueEdit=new QLineEdit(QString::fromStdString(std::to_string(w->getCapacity())), this);
+    nPezziValueEdit=new QLineEdit(QString::number((w->getCapacity())), this);
     nPezziValueEdit->setMaximumWidth(maxSizeEdit);
     nPezziValueEdit->setValidator(new QIntValidator(50,500,this));
-    weightEdit=new QLineEdit(QString::fromStdString(std::to_string(w->getWeight())), this);
+    weightEdit=new QLineEdit(QString::number((w->getWeight())), this);
     weightEdit->setMaximumWidth(maxSizeEdit);
-    prezzoValueEdit=new QLineEdit(QString::fromStdString(doubleToString(w->getPrice())), this);
+    prezzoValueEdit=new QLineEdit(QString::number((w->getPrice())), this);
     prezzoValueEdit->setMaximumWidth(maxSizeEdit);
     prezzoValueEdit->setValidator(new QDoubleValidator(0.00, 9999.00, 2, this));
-    discountValueEdit=new QLineEdit(QString::fromStdString(std::to_string(w->getDiscount())), this);
+    discountValueEdit=new QLineEdit(QString::number((w->getDiscount())), this);
     discountValueEdit->setMaximumWidth(maxSizeEdit);
-    stockValueEdit=new QLineEdit(QString::fromStdString(std::to_string(w->getStockAvailability())), this);
+    stockValueEdit=new QLineEdit(QString::number((w->getStockAvailability())), this);
     stockValueEdit->setMaximumWidth(maxSizeEdit);
 
     QHBoxLayout *main=new QHBoxLayout(this);
@@ -76,16 +76,16 @@ ModifyProduct::ModifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
     if (w->getItemType()=="Circle Box") {
         CircleBox *ci=dynamic_cast<CircleBox*>(w);
         radiusLabel=new QLabel("Raggio: ",this);
-        radiusValueEdit=new QLineEdit(QString::fromStdString(std::to_string(ci->getRadius())), this);
+        radiusValueEdit=new QLineEdit(QString::number((ci->getRadius())), this);
         radiusValueEdit->setMaximumWidth(maxSizeEdit);
         formLayout->addRow(radiusLabel,radiusValueEdit);
     } else {
         if (w->getItemType()=="Ventaglio Box"){
             VentaglioBox *v=dynamic_cast<VentaglioBox*>(w);
             heightLabel=new QLabel("Altezza: ",this);
-            heightValueEdit=new QLineEdit(QString::fromStdString(std::to_string(v->getHeight())), this);
+            heightValueEdit=new QLineEdit(QString::number((v->getHeight())), this);
             widthLabel=new QLabel("Larghezza: ",this);
-            widthValueEdit=new QLineEdit(QString::fromStdString(std::to_string(v->getWidth())), this);
+            widthValueEdit=new QLineEdit(QString::number((v->getWidth())), this);
             widthValueEdit->setMaximumWidth(maxSizeEdit);
             formLayout->addRow(heightLabel,heightValueEdit);
             formLayout->addRow(widthLabel,widthValueEdit);
@@ -93,42 +93,33 @@ ModifyProduct::ModifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
             if (w->getItemType()=="Cannolo Box") {
                 CannoloBox *ca=dynamic_cast<CannoloBox*>(w);
                 heightLabel=new QLabel("Altezza: ",this);
-                heightValueEdit=new QLineEdit(QString::fromStdString(std::to_string(ca->getHeight())), this);
+                heightValueEdit=new QLineEdit(QString::number((ca->getHeight())), this);
                 intDiameterLabel=new QLabel("Diamentro interno: ",this);
-                intDiameterValueEdit=new QLineEdit(QString::fromStdString(std::to_string(ca->getIntDiameter())), this);
+                intDiameterValueEdit=new QLineEdit(QString::number((ca->getIntDiameter())), this);
                 intDiameterValueEdit->setMaximumWidth(maxSizeEdit);
                 formLayout->addRow(heightLabel,heightValueEdit);
                 formLayout->addRow(intDiameterLabel,intDiameterValueEdit);
             } else {
-                if (w->getItemType()=="Cone Box") {
-                    ConeBox *co=dynamic_cast<ConeBox*>(w);
+                if (w->getItemType()=="Covered Box") {
+                    Covered *cv=dynamic_cast<Covered*>(w);
                     heightLabel=new QLabel("Altezza: ",this);
-                    heightValueEdit=new QLineEdit(QString::fromStdString(std::to_string(co->getHeight())), this);
+                    heightValueEdit=new QLineEdit(QString::number((cv->getHeight())), this);
                     externalRadiusLabel=new QLabel("Diametro esterno: ",this);
-                    externalRadiusValueEdit=new QLineEdit(QString::fromStdString(std::to_string(co->getExtDiameter())), this);
+                    externalRadiusValueEdit=new QLineEdit(QString::number((cv->getExtDiameter())), this);
                     externalRadiusValueEdit->setMaximumWidth(maxSizeEdit);
+                    tasteLabel=new QLabel("Gusto",this);
+                    tasteValueEdit=new QLineEdit(QString::fromStdString(cv->getTaste()), this);
+                    tasteValueEdit->setMaximumWidth(maxSizeEdit);
                     formLayout->addRow(heightLabel,heightValueEdit);
                     formLayout->addRow(externalRadiusLabel,externalRadiusValueEdit);
+                    formLayout->addRow(tasteLabel,tasteValueEdit);
                 } else {
-                    if (w->getItemType()=="Covered Box") {
-                        Covered *cv=dynamic_cast<Covered*>(w);
-                        heightLabel=new QLabel("Altezza: ",this);
-                        heightValueEdit=new QLineEdit(QString::fromStdString(std::to_string(cv->getHeight())), this);
-                        externalRadiusLabel=new QLabel("Diametro esterno: ",this);
-                        externalRadiusValueEdit=new QLineEdit(QString::fromStdString(std::to_string(cv->getExtDiameter())), this);
-                        externalRadiusValueEdit->setMaximumWidth(maxSizeEdit);
-                        tasteLabel=new QLabel("Gusto",this);
-                        tasteValueEdit=new QLineEdit(QString::fromStdString(cv->getTaste()), this);
-                        tasteValueEdit->setMaximumWidth(maxSizeEdit);
-                        formLayout->addRow(heightLabel,heightValueEdit);
-                        formLayout->addRow(externalRadiusLabel,externalRadiusValueEdit);
-                        formLayout->addRow(tasteLabel,tasteValueEdit);
-                    } else {
+                    if(w->getItemType()== "Branded Box"){
                         Branded *br=dynamic_cast<Branded*>(w);
                         heightLabel=new QLabel("Altezza: ",this);
-                        heightValueEdit=new QLineEdit(QString::fromStdString(std::to_string(br->getHeight())), this);
+                        heightValueEdit=new QLineEdit(QString::number((br->getHeight())), this);
                         externalRadiusLabel=new QLabel("Diametro esterno: ",this);
-                        externalRadiusValueEdit=new QLineEdit(QString::fromStdString(std::to_string(br->getExtDiameter())), this);
+                        externalRadiusValueEdit=new QLineEdit(QString::number((br->getExtDiameter())), this);
                         externalRadiusValueEdit->setMaximumWidth(maxSizeEdit);
                         principalColorLabel=new QLabel("Colore principale: ",this);
                         principalColorValueEdit=new QLineEdit(QString::fromStdString(br->getPrincipalColor()), this);
@@ -140,6 +131,15 @@ ModifyProduct::ModifyProduct(QWidget *parent, WaffleBox *wf) : QWidget(parent),
                         formLayout->addRow(externalRadiusLabel,externalRadiusValueEdit);
                         formLayout->addRow(principalColorLabel,principalColorValueEdit);
                         formLayout->addRow(secondaryColorLabel,secondaryColorValueEdit);
+                    } else {
+                        ConeBox *co=dynamic_cast<ConeBox*>(w);
+                        heightLabel=new QLabel("Altezza: ",this);
+                        heightValueEdit=new QLineEdit(QString::number((co->getHeight())), this);
+                        externalRadiusLabel=new QLabel("Diametro esterno: ",this);
+                        externalRadiusValueEdit=new QLineEdit(QString::number((co->getExtDiameter())), this);
+                        externalRadiusValueEdit->setMaximumWidth(maxSizeEdit);
+                        formLayout->addRow(heightLabel,heightValueEdit);
+                        formLayout->addRow(externalRadiusLabel,externalRadiusValueEdit);
                     }
                 }
             }
@@ -264,10 +264,12 @@ void ModifyProduct::modifica() {
                     tmp->setHeight(heightValueEdit->text().toUInt());
                     tmp->setIntDiameter(intDiameterValueEdit->text().toUInt());
                 } else {
-                    if (w->getItemType()=="Cone Box") {
-                        ConeBox *tmp=static_cast<ConeBox*>(w);
+                    if (w->getItemType()=="Branded Box") {
+                        Branded *tmp=static_cast<Branded*>(w);
                         tmp->setHeight(heightValueEdit->text().toUInt());
                         tmp->setExtDiameter(externalRadiusValueEdit->text().toUInt());
+                        tmp->setPrincipalColor(principalColorValueEdit->text().toStdString());
+                        tmp->setSecundaryColor(secondaryColorValueEdit->text().toStdString());
                     } else {
                         if (w->getItemType()=="Covered Box") {
                             Covered *tmp=static_cast<Covered*>(w);
@@ -275,11 +277,9 @@ void ModifyProduct::modifica() {
                             tmp->setExtDiameter(externalRadiusValueEdit->text().toUInt());
                             tmp->setTaste(tasteValueEdit->text().toStdString());
                         } else {
-                            Branded *tmp=static_cast<Branded*>(w);
+                            ConeBox *tmp=static_cast<ConeBox*>(w);
                             tmp->setHeight(heightValueEdit->text().toUInt());
                             tmp->setExtDiameter(externalRadiusValueEdit->text().toUInt());
-                            tmp->setPrincipalColor(principalColorValueEdit->text().toStdString());
-                            tmp->setSecundaryColor(secondaryColorValueEdit->text().toStdString());
                         }
                     }
                 }

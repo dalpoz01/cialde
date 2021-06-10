@@ -91,7 +91,7 @@ void OrdersModel::setWBToinsert(WaffleBox* wb) { wbToInsert = wb; }
 
 WaffleBox* OrdersModel::getWbToInsert() const { return wbToInsert; }
 
-WaffleBox* OrdersModel::getItemByIndex(u_int index) const { return model->getItem(index); }
+WaffleBox* OrdersModel::getItemByIndex(unsigned int index) const { return model->getItem(index); }
 
 Model* OrdersModel::getModel() const { return model; }
 

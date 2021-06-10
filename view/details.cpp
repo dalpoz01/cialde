@@ -38,10 +38,10 @@ Details::Details(QWidget *parent, WaffleBox *wf): QWidget(parent),
     tipoValueLabel=new QLabel(QString::fromStdString(w->getItemType()), this);
     nomeValueLabel=new QLabel(QString::fromStdString(w->getName()), this);
     idValueLabel=new QLabel(QString::fromStdString(w->getID()), this);
-    nPezziValueLabel=new QLabel(QString::fromStdString(std::to_string(w->getCapacity())), this);
-    prezzoValueLabel=new QLabel(QString::fromStdString(doubleToString(w->getRealPrice()))+QString("€"), this);
-    discountValueLabel=new QLabel(QString::fromStdString(std::to_string(w->getDiscount()))+QString("%"), this);
-    stockValueLabel=new QLabel(QString::fromStdString(std::to_string(w->getStockAvailability())), this);
+    nPezziValueLabel=new QLabel(QString::number((w->getCapacity())), this);
+    prezzoValueLabel=new QLabel(QString::number((w->getRealPrice()))+QString("€"), this);
+    discountValueLabel=new QLabel(QString::number((w->getDiscount()))+QString("%"), this);
+    stockValueLabel=new QLabel(QString::number((w->getStockAvailability())), this);
 
     QHBoxLayout *main=new QHBoxLayout(this);
     QHBoxLayout *left=new QHBoxLayout();
@@ -60,31 +60,31 @@ Details::Details(QWidget *parent, WaffleBox *wf): QWidget(parent),
     CircleBox *ci=dynamic_cast<CircleBox*>(w);
     if(ci){
         radiusLabel=new QLabel("Raggio: ",this);
-        radiusValueLabel=new QLabel(QString::fromStdString(std::to_string(ci->getRadius()))+QString("mm"), this);
+        radiusValueLabel=new QLabel(QString::number((ci->getRadius()))+QString("mm"), this);
         formLayout->addRow(radiusLabel,radiusValueLabel);
     }else{
         VentaglioBox *v=dynamic_cast<VentaglioBox*>(w);
         if (v) {
             heightLabel=new QLabel("Altezza: ",this);
-            heightValueLabel=new QLabel(QString::fromStdString(std::to_string(v->getHeight()))+QString("mm"), this);
+            heightValueLabel=new QLabel(QString::number((v->getHeight()))+QString("mm"), this);
             widthLabel=new QLabel("Larghezza: ",this);
-            widthValueLabel=new QLabel(QString::fromStdString(std::to_string(v->getWidth()))+QString("mm"), this);
+            widthValueLabel=new QLabel(QString::number((v->getWidth()))+QString("mm"), this);
             formLayout->addRow(heightLabel,heightValueLabel);
             formLayout->addRow(widthLabel,widthValueLabel);
         } else {
             CannoloBox *ca=dynamic_cast<CannoloBox*>(w);
             if (ca) {
                 heightLabel=new QLabel("Altezza: ",this);
-                heightValueLabel=new QLabel(QString::fromStdString(std::to_string(ca->getHeight()))+QString("mm"), this);
+                heightValueLabel=new QLabel(QString::number((ca->getHeight()))+QString("mm"), this);
                 intDiameterLabel=new QLabel("Diamentro interno: ",this);
-                intDiameterValueLabel=new QLabel(QString::fromStdString(std::to_string(ca->getIntDiameter()))+QString("mm"), this);
+                intDiameterValueLabel=new QLabel(QString::number((ca->getIntDiameter()))+QString("mm"), this);
                 formLayout->addRow(heightLabel,heightValueLabel);
                 formLayout->addRow(intDiameterLabel,intDiameterValueLabel);
             } else {
                 Covered *cv=dynamic_cast<Covered*>(w);
                 if(cv){
                     heightLabel=new QLabel("Altezza: ",this);
-                    heightValueLabel=new QLabel(QString::fromStdString(std::to_string(cv->getHeight()))+QString("mm"), this);
+                    heightValueLabel=new QLabel(QString::number((cv->getHeight()))+QString("mm"), this);
                     tasteLabel=new QLabel("Gusto",this);
                     tasteValueLabel=new QLabel(QString::fromStdString(cv->getTaste()), this);
                     formLayout->addRow(heightLabel,heightValueLabel);
@@ -93,7 +93,7 @@ Details::Details(QWidget *parent, WaffleBox *wf): QWidget(parent),
                    Branded *br=dynamic_cast<Branded*>(w);
                    if (br) {
                        heightLabel=new QLabel("Altezza: ",this);
-                       heightValueLabel=new QLabel(QString::fromStdString(std::to_string(br->getHeight()))+QString("mm"), this);
+                       heightValueLabel=new QLabel(QString::number((br->getHeight()))+QString("mm"), this);
                        principalColorLabel=new QLabel("Colore principale: ",this);
                        principalColorValueLabel=new QLabel(QString::fromStdString(br->getPrincipalColor()), this);
                        secondaryColorLabel=new QLabel("Colore secondario: ",this);
@@ -105,9 +105,9 @@ Details::Details(QWidget *parent, WaffleBox *wf): QWidget(parent),
                        ConeBox *co=dynamic_cast<ConeBox*>(w);
                        if(co){
                            heightLabel=new QLabel("Altezza: ",this);
-                           heightValueLabel=new QLabel(QString::fromStdString(std::to_string(co->getHeight()))+QString("mm"), this);
+                           heightValueLabel=new QLabel(QString::number((co->getHeight()))+QString("mm"), this);
                            externalRadiusLabel=new QLabel("Diametro esterno: ",this);
-                           externalRadiusValueLabel=new QLabel(QString::fromStdString(std::to_string(co->getExtDiameter()))+QString("mm"), this);
+                           externalRadiusValueLabel=new QLabel(QString::number((co->getExtDiameter()))+QString("mm"), this);
                            formLayout->addRow(heightLabel,heightValueLabel);
                            formLayout->addRow(externalRadiusLabel,externalRadiusValueLabel);
                        }

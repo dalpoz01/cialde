@@ -10,7 +10,7 @@ class OrdersModel : public QAbstractTableModel {
 private:
     Model* model;
     WaffleBox* wbToInsert;
-    Container<u_int>* quantity; //tengo conto del moltiplicatore
+    Container<unsigned int>* quantity; //tengo conto del moltiplicatore
 
 public:
     OrdersModel(QObject * = nullptr);
@@ -25,10 +25,10 @@ public:
 
     void setWBToinsert(WaffleBox*);
     WaffleBox* getWbToInsert() const;
-    WaffleBox* getItemByIndex(u_int) const;
+    WaffleBox* getItemByIndex(unsigned int) const;
     Model* getModel() const;
     void setModel(Model *);
-    Container<u_int>* getQuantity() const;
+    Container<unsigned int>* getQuantity() const;
     double getTotPrice() const;
 };
 

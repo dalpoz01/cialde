@@ -98,7 +98,7 @@ void TableModel::setWBToinsert(WaffleBox* wb) { wbToInsert = wb; }
 
 WaffleBox* TableModel::getWbToInsert() const { return wbToInsert; }
 
-WaffleBox* TableModel::getItemByIndex(u_int index) const { return model->getItem(index); }
+WaffleBox* TableModel::getItemByIndex(unsigned int index) const { return model->getItem(index); }
 
 Model* TableModel::getModel() const { return model; }
 

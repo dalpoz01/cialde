@@ -22,7 +22,7 @@ public:
     bool removeRows(int, int = 1, const QModelIndex& = QModelIndex()) override;  //Metodo di QAbstractTableModel che rimuove una riga dalla tabella
     void setWBToinsert(WaffleBox*);
     WaffleBox* getWbToInsert() const;
-    WaffleBox* getItemByIndex(u_int) const;
+    WaffleBox* getItemByIndex(unsigned int) const;
     Model* getModel() const;
     void setModel(Model *);
 };
