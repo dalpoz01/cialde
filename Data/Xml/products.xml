@@ -33,7 +33,8 @@
         <discount>5</discount>
         <stockavailability>150</stockavailability>
         <height>170</height>
-        <taste></taste>
+        <ext_diameter>22</ext_diameter>
+        <taste>Cioccolato</taste>
     </WaffleBox>
     <WaffleBox type="Branded Box">
         <Nome>PadovaCone</Nome>
@@ -87,6 +88,7 @@
         <discount>20</discount>
         <stockavailability>100</stockavailability>
         <height>155</height>
+        <ext_diameter>47</ext_diameter>
         <taste>Cioccolato e noci</taste>
     </WaffleBox>
     <WaffleBox type="Covered Box">
@@ -99,7 +101,8 @@
         <discount>20</discount>
         <stockavailability>50</stockavailability>
         <height>155</height>
-        <taste>Cioccolato e sprinkles</taste>
+        <ext_diameter>47</ext_diameter>
+        <taste>Cioccolato bianco e sprinkles</taste>
     </WaffleBox>
     <WaffleBox type="Branded Box">
         <Nome>GreenOrangeWrap</Nome>
@@ -125,6 +128,7 @@
         <discount>0</discount>
         <stockavailability>200</stockavailability>
         <height>17</height>
+        <ext_diameter>4</ext_diameter>
         <taste>Cioccolato</taste>
     </WaffleBox>
     <WaffleBox type="Ventaglio Box">

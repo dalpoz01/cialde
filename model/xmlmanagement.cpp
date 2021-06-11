@@ -220,6 +220,9 @@ void XmlManagement::write(const Container<DeepPtr<WaffleBox>> &cont) const {
                  writer.writeStartElement("height");
                  writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const Covered*>(wb)->getHeight())));
                  writer.writeEndElement();
+                 writer.writeStartElement("ext_diameter");
+                 writer.writeCharacters(QString::fromStdString(UIntToString(static_cast<const Branded*>(wb)->getExtDiameter())));
+                 writer.writeEndElement();
                  writer.writeStartElement("taste");
                  writer.writeCharacters(QString::fromStdString(static_cast<const Covered*>(wb)->getTaste()));
                  writer.writeEndElement();
