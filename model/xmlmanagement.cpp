@@ -40,7 +40,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const {
                         photo = reader.readElementText().toStdString();
                     if(reader.readNextStartElement()==true && reader.name() == "capacity")
                         capacity = reader.readElementText().toUInt();
-                    if(reader.readNextStartElement()==true && reader.name() == "weight")std::string ID;
+                    if(reader.readNextStartElement()==true && reader.name() == "weight")
                         weight = reader.readElementText().toUInt();
                     if(reader.readNextStartElement()==true && reader.name() == "price")
                         price = reader.readElementText().toDouble();
