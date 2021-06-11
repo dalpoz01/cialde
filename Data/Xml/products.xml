@@ -87,6 +87,7 @@
         <discount>20</discount>
         <stockavailability>100</stockavailability>
         <height>155</height>
+        <ext_diameter>4</ext_diameter>
         <taste></taste>
     </WaffleBox>
     <WaffleBox type="Covered Box">
@@ -99,6 +100,7 @@
         <discount>20</discount>
         <stockavailability>50</stockavailability>
         <height>155</height>
+        <ext_diameter>4</ext_diameter>
         <taste></taste>
     </WaffleBox>
     <WaffleBox type="Branded Box">
@@ -125,6 +127,7 @@
         <discount>0</discount>
         <stockavailability>200</stockavailability>
         <height>17</height>
+        <ext_diameter>4</ext_diameter>
         <taste>Cioccolato</taste>
     </WaffleBox>
     <WaffleBox type="Ventaglio Box">

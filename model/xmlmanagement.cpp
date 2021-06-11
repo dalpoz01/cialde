@@ -24,11 +24,11 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const {
                     std::string name = "";
                     std::string ID = "";
                     std::string photo = "";
-                    unsigned int capacity;
-                    unsigned int weight;
-                    double price;
-                    unsigned int discount;
-                    unsigned int stockAva;
+                    unsigned int capacity = 0;
+                    unsigned int weight = 0;
+                    double price = 0;
+                    unsigned int discount = 0;
+                    unsigned int stockAva = 0;
 
                     //Leggo gli attributi comuni con readElementText()
 
@@ -51,7 +51,7 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const {
 
                     //Leggo gli attributi degli oggetti concreti.
                     if(itemType == "Circle Box"){
-                        unsigned int radius;
+                        unsigned int radius = 0;
                         if(reader.readNextStartElement()==true && reader.name() == "radius")
                             radius = reader.readElementText().toUInt();
                         reader.skipCurrentElement();    //Skippo all'elemento successivo perchè ho finito quello corrente e devo continuare il ciclo
@@ -59,8 +59,8 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const {
                         temp.push_back(DeepPtr<WaffleBox>(cb));
                         delete cb;
                     }else if(itemType == "Ventaglio Box"){
-                        unsigned int height;
-                        unsigned int width;
+                        unsigned int height = 0;
+                        unsigned int width = 0;
                         if(reader.readNextStartElement()==true && reader.name() == "height")
                             height = reader.readElementText().toUInt();
                         if(reader.readNextStartElement()==true && reader.name() == "width")
@@ -70,8 +70,8 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const {
                         temp.push_back(DeepPtr<WaffleBox>(vb));
                         delete vb;
                     }else if(itemType == "Cannolo Box"){
-                        unsigned int height;
-                        unsigned int int_diam;
+                        unsigned int height = 0;
+                        unsigned int int_diam = 0;
                         if(reader.readNextStartElement()==true && reader.name() == "height")
                             height = reader.readElementText().toUInt();
                         if(reader.readNextStartElement()==true && reader.name() == "int_diameter")
@@ -81,8 +81,8 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const {
                         temp.push_back(DeepPtr<WaffleBox>(c));
                         delete c;
                     }else if(itemType == "Cone Box"){
-                        unsigned int height;
-                        unsigned int ext_diam;
+                        unsigned int height = 0;
+                        unsigned int ext_diam = 0;
                         if(reader.readNextStartElement()==true && reader.name() == "height")
                             height = reader.readElementText().toUInt();
                         if(reader.readNextStartElement()==true && reader.name() == "ext_diameter")
@@ -92,10 +92,10 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const {
                         temp.push_back(DeepPtr<WaffleBox>(co));
                         delete co;
                     }else if(itemType == "Branded Box"){
-                        unsigned int height;
-                        unsigned int ext_diam;
-                        std::string princ;
-                        std::string seco;
+                        unsigned int height = 0;
+                        unsigned int ext_diam = 0;
+                        std::string princ = "";
+                        std::string seco = "";
                         if(reader.readNextStartElement()==true && reader.name() == "height")
                             height = reader.readElementText().toUInt();
                         if(reader.readNextStartElement()==true && reader.name() == "ext_diameter")
@@ -109,9 +109,9 @@ Container<DeepPtr<WaffleBox>> XmlManagement::read() const {
                         temp.push_back(DeepPtr<WaffleBox>(b));
                         delete b;
                     }else if(itemType == "Covered Box"){
-                        unsigned int height;
-                        unsigned int ext_diam;
-                        std::string taste;
+                        unsigned int height = 0;
+                        unsigned int ext_diam = 0;
+                        std::string taste = "";
                         if(reader.readNextStartElement()==true && reader.name() == "height")
                             height = reader.readElementText().toUInt();
                         if(reader.readNextStartElement()==true && reader.name() == "ext_diameter")

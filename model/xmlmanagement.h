@@ -8,7 +8,6 @@
 #include<QDir>
 #include<QSaveFile>
 #include<QIODevice>
-#include <QtXml>
 
 #include <sstream>
 

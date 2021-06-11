@@ -13,6 +13,7 @@ Order::Order(QWidget *parent) :
     QHBoxLayout* bottomLayout = new QHBoxLayout();
 
     tableProduct->setModel(om);
+    tableProduct->setSortingEnabled(false);
 
     tableLayout->addWidget(title);
     tableLayout->addWidget(tableProduct);

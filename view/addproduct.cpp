@@ -349,14 +349,14 @@ void AddProduct::insert() {
                     isEdited=false;
                 }   //Tipo "Covered Box"
             break;
-        case 6: if(heightLine->text().toUInt() == 0 || extdiamLine->text().toUInt() == 0){
+        case 6: if(heightLine->text().toUInt() == 0 || extdiamLine->text().toUInt() == 0 || prncolorLine->text().toStdString() == "" || seccolorLine->text().toStdString() == ""){
                     isEdited=false;
                 }   //Tipo "Branded"
             break;
         }
 
         if(isEdited){
-            u_int stockAva;
+            u_int stockAva=0;
             if(dim1Radio->isChecked())
                 stockAva = dim1Radio->text().toUInt();
             else if(dim2Radio->isChecked())
@@ -402,29 +402,32 @@ void AddProduct::insert() {
                        extDiam = extdiamLine->text().toUInt();   //Tipo "Cone Box"
                        temp = new ConeBox(nome,id,foto,capa,peso,prezzo,disc,stockAva,height,extDiam);
                    break;
-               case 5: if(tasteLine->text().toStdString() == " "){
+               case 5: if(tasteLine->text().toStdString() == ""){
                            if(QMessageBox::question(this,"Ops","Hai dimenticato il gusto! \nIntendevi un ConeBox senza gusto?", QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes){
                                height = heightLine->text().toUInt();
                                extDiam = extdiamLine->text().toUInt();   //Tipo "Cone Box"
                                temp = new ConeBox(nome,id,foto,capa,peso,prezzo,disc,stockAva,height,extDiam);
                                break;
+                           }else{
+                               isEdited=false;
                            }
-                       }
-                       height = heightLine->text().toUInt();
-                       extDiam = extdiamLine->text().toUInt();
-                       taste = tasteLine->text().toStdString(); //Tipo "Covered Box"
-                       temp = new Covered(nome,id,foto,capa,peso,prezzo,disc,stockAva,height,extDiam,taste);
+                        }else{
+                            height = heightLine->text().toUInt();
+                            extDiam = extdiamLine->text().toUInt();
+                            taste = tasteLine->text().toStdString(); //Tipo "Covered Box"
+                            temp = new Covered(nome,id,foto,capa,peso,prezzo,disc,stockAva,height,extDiam,taste);
+                        }
                    break;
                case 6: height = heightLine->text().toUInt();
                        extDiam = extdiamLine->text().toUInt();
-                       if((prncolorLine->text().toStdString() == "" || seccolorLine->text().toStdString() == "") ||
-                          (prncolorLine->text().toStdString() == "" && seccolorLine->text().toStdString() == "")){
-                               QMessageBox::warning(this,"Ops","Hai dimenticato uno o più colori! \nSe non inserisci un colore, verrà settato 'Bianco' di default.", QMessageBox::Ok, QMessageBox::Close);
-                               princ = prncolorLine->text().toStdString() == "" ? "Bianco" : prncolorLine->text().toStdString();
-                               seco = seccolorLine->text().toStdString() == "" ? "Bianco" : seccolorLine->text().toStdString();  //Tipo "Branded Box"
-                       }
                        princ = prncolorLine->text().toStdString();
                        seco = seccolorLine->text().toStdString();
+                       if((princ == "" || seco == "") ||
+                          (princ == "" && seco == "")){
+                               QMessageBox::warning(this,"Ops","Hai dimenticato uno o più colori! \nSe non inserisci un colore, verrà settato 'Bianco' di default.", QMessageBox::Ok, QMessageBox::Close);
+                               princ == "" ? "Bianco" : prncolorLine->text().toStdString();
+                               seco == "" ? "Bianco" : seccolorLine->text().toStdString();  //Tipo "Branded Box"
+                       }
                        temp = new Branded(nome,id,foto,capa,peso,prezzo,disc,stockAva,height,extDiam,princ,seco);
                     break;
                 }

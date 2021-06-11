@@ -85,20 +85,26 @@ Details::Details(QWidget *parent, WaffleBox *wf): QWidget(parent),
                 if(cv){
                     heightLabel=new QLabel("Altezza: ",this);
                     heightValueLabel=new QLabel(QString::number((cv->getHeight()))+QString("mm"), this);
+                    externalRadiusLabel=new QLabel("Diametro esterno: ",this);
+                    externalRadiusValueLabel=new QLabel(QString::number((cv->getExtDiameter()))+QString("mm"), this);
                     tasteLabel=new QLabel("Gusto",this);
                     tasteValueLabel=new QLabel(QString::fromStdString(cv->getTaste()), this);
                     formLayout->addRow(heightLabel,heightValueLabel);
+                    formLayout->addRow(externalRadiusLabel,externalRadiusValueLabel);
                     formLayout->addRow(tasteLabel,tasteValueLabel);
                 }else{
                    Branded *br=dynamic_cast<Branded*>(w);
                    if (br) {
                        heightLabel=new QLabel("Altezza: ",this);
                        heightValueLabel=new QLabel(QString::number((br->getHeight()))+QString("mm"), this);
+                       externalRadiusLabel=new QLabel("Diametro esterno: ",this);
+                       externalRadiusValueLabel=new QLabel(QString::number((br->getExtDiameter()))+QString("mm"), this);
                        principalColorLabel=new QLabel("Colore principale: ",this);
                        principalColorValueLabel=new QLabel(QString::fromStdString(br->getPrincipalColor()), this);
                        secondaryColorLabel=new QLabel("Colore secondario: ",this);
                        secondaryColorValueLabel=new QLabel(QString::fromStdString(br->getSecundaryColor()), this);
                        formLayout->addRow(heightLabel,heightValueLabel);
+                       formLayout->addRow(externalRadiusLabel,externalRadiusValueLabel);
                        formLayout->addRow(principalColorLabel,principalColorValueLabel);
                        formLayout->addRow(secondaryColorLabel,secondaryColorValueLabel);
                    }else{

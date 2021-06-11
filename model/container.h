@@ -284,7 +284,7 @@ template<class T>
 const T& Container<T>::front() const{return p[0];}
 
 template<class T>
-void Container<T>::clear(){if(p) delete[] p; p = new T[5]; size=0; capacity=5;}
+void Container<T>::clear(){if(p) delete[] p; p = new T[1]; size=0; capacity=1;}
 
 template<class T>
 bool Container<T>::empty() const{return size==0;}

@@ -100,7 +100,7 @@ void OrdersModel::setModel(Model *value) { model = value; }
 Container<u_int>* OrdersModel::getQuantity() const { return quantity; }
 
 double OrdersModel::getTotPrice() const {
-    double tot;
+    double tot=0;
     for(u_int i = 0; i<model->getSize(); ++i){
         tot += getItemByIndex(i)->getRealPrice() * quantity->operator [](i);
     }
