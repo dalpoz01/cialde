@@ -74,8 +74,8 @@
         <stockavailability>50</stockavailability>
         <height>170</height>
         <ext_diameter>47</ext_diameter>
-        <principal_color> </principal_color>
-        <secondary_color> </secondary_color>
+        <principal_color>Bianco</principal_color>
+        <secondary_color>Nero</secondary_color>
     </WaffleBox>
     <WaffleBox type="Covered Box">
         <Nome>ChocoNut</Nome>
@@ -87,8 +87,7 @@
         <discount>20</discount>
         <stockavailability>100</stockavailability>
         <height>155</height>
-        <ext_diameter>4</ext_diameter>
-        <taste></taste>
+        <taste>Cioccolato e noci</taste>
     </WaffleBox>
     <WaffleBox type="Covered Box">
         <Nome>WhiteArlecchino</Nome>
@@ -100,8 +99,7 @@
         <discount>20</discount>
         <stockavailability>50</stockavailability>
         <height>155</height>
-        <ext_diameter>4</ext_diameter>
-        <taste></taste>
+        <taste>Cioccolato e sprinkles</taste>
     </WaffleBox>
     <WaffleBox type="Branded Box">
         <Nome>GreenOrangeWrap</Nome>
@@ -127,7 +125,6 @@
         <discount>0</discount>
         <stockavailability>200</stockavailability>
         <height>17</height>
-        <ext_diameter>4</ext_diameter>
         <taste>Cioccolato</taste>
     </WaffleBox>
     <WaffleBox type="Ventaglio Box">
